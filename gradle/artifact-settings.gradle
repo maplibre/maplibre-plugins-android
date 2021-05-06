@@ -10,5 +10,28 @@ ext {
     mapLibreArtifactScmUrl = 'scm:git@github.com:maplibre/maplibre-plugins-android.git'
     mapLibreArtifactLicenseName = 'BSD'
     mapLibreArtifactLicenseUrl = 'https://opensource.org/licenses/BSD-2-Clause'
-    versionName = project.property('VERSION_NAME')
+    versionName = getVersionName()
+}
+
+def getVersionName() {
+    def cmd = "git describe --tag --abbrev=0"
+    def version = cmd.execute().text.trim()
+    return isSnapshot() ? getSnapshotVersion(version) : getReleaseVersion(version)
+}
+
+def isSnapshot() {
+    return project.hasProperty("snapshot")
+            ? project.property("snapshot").toBoolean()
+            : false
+}
+
+private static def getReleaseVersion(String version) {
+    return version.substring(1)
+}
+
+private static def getSnapshotVersion(String version) {
+    def matcher = version =~ /^[v|V](\d+).(\d+)?.*/
+    def major = (matcher[0][1] as Integer)
+    def minor = (matcher[0][2] as Integer) + 1
+    return "${major}.${minor}.0-SNAPSHOT"
 }
