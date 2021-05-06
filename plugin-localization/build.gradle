@@ -20,9 +20,9 @@ android {
 
 dependencies {
   implementation dependenciesList.supportAppcompatV7
-  implementation dependenciesList.mapboxMapSdk
+  implementation dependenciesList.mapLibreAndroidSdk
   implementation dependenciesList.timber
-  javadocDeps dependenciesList.mapboxMapSdk
+  javadocDeps dependenciesList.mapLibreAndroidSdk
 
   // Unit testing
   testImplementation dependenciesList.junit

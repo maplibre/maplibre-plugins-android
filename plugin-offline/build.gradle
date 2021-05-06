@@ -29,8 +29,8 @@ dependencies {
   implementation dependenciesList.supportV4
   implementation dependenciesList.supportDesign
 
-  // Mapbox
-  implementation dependenciesList.mapboxMapSdk
+  // MapLibre
+  implementation dependenciesList.mapLibreAndroidSdk
 
   // AutoValues
   annotationProcessor dependenciesList.autoValuesParcel
@@ -45,7 +45,7 @@ dependencies {
   testImplementation dependenciesList.mockito
   testImplementation dependenciesList.androidArchCore
 
-  javadocDeps dependenciesList.mapboxMapSdk
+  javadocDeps dependenciesList.mapLibreAndroidSdk
 }
 
 apply from: "${rootDir}/gradle/javadoc.gradle"

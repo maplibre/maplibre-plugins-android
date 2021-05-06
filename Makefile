@@ -23,9 +23,8 @@ javadoc:
 	# Output is ./mapbox/*/build/docs/javadoc/release
 	./gradlew javadocrelease
 
-# Uploads the compiled Android SDK to Mapbox SDK Registry
 publish:
-	./gradlew mapboxSDKRegistryUpload
+	./gradlew publishReleasePublicationToSonatypeRepository closeAndReleaseSonatypeStagingRepository
 
 generate-sanity-test:
 	npm install && node scripts/generate-activity-test.js

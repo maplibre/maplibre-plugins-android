@@ -29,8 +29,8 @@ android {
 
 dependencies {
     implementation dependenciesList.kotlin
-    implementation dependenciesList.mapboxMapSdk
-    javadocDeps dependenciesList.mapboxMapSdk
+    implementation dependenciesList.mapLibreAndroidSdk
+    javadocDeps dependenciesList.mapLibreAndroidSdk
     testImplementation dependenciesList.junit
     testImplementation dependenciesList.mockito
     testImplementation dependenciesList.robolectric

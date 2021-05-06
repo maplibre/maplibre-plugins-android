@@ -1,56 +1,10 @@
-apply plugin: 'digital.wup.android-maven-publish'
 apply plugin: 'maven-publish'
-apply plugin: 'com.mapbox.sdkRegistry'
-apply from: file('../gradle/artifact-settings.gradle')
+apply plugin: 'signing'
+apply from: '../gradle/artifact-settings.gradle'
+apply from: '../gradle/publish-root.gradle'
 
 version = project.ext.versionName
-group = project.ext.mapboxArtifactGroupId
-
-publishing {
-    publications {
-        ModularMapboxMapsSdkRegistryPublication(MavenPublication) {
-            from components.android
-            groupId this.group
-            artifactId project.ext.mapboxArtifactId
-            version this.version
-            afterEvaluate {
-              artifact(androidSourcesJar)
-              artifact(androidJavadocsJar)
-            }
-
-            pom.withXml {
-                final mainNode = asNode()
-                mainNode.appendNode('name', project.ext.mapboxArtifactTitle)
-                mainNode.appendNode('description', project.ext.mapboxArtifactTitle)
-                mainNode.appendNode('url', project.ext.mapboxArtifactUrl)
-
-                final licenseNode = mainNode.appendNode('licenses').appendNode('license')
-                licenseNode.appendNode('name', project.ext.mapboxArtifactLicenseName)
-                licenseNode.appendNode('url', project.ext.mapboxArtifactLicenseUrl)
-                licenseNode.appendNode('distribution', "repo")
-
-                final developerNode = mainNode.appendNode('developers').appendNode('developer')
-                developerNode.appendNode('id', project.ext.mapboxDeveloperId)
-                developerNode.appendNode('name', project.ext.mapboxDeveloperName)
-
-                final scmNode = mainNode.appendNode("scm")
-                scmNode.appendNode("connection", project.ext.mapboxArtifactScmUrl)
-                scmNode.appendNode("developerConnection", project.ext.mapboxArtifactScmUrl)
-                scmNode.appendNode("url", project.ext.mapboxArtifactUrl)
-            }
-        }
-    }
-}
-
-registry {
-    sdkName = project.ext.mapboxRegistrySdkName
-    override = project.ext.versionName.endsWith("-SNAPSHOT")
-    dryRun = false
-    publish = true
-    snapshot = project.ext.versionName.endsWith("-SNAPSHOT")
-    publishMessage = "cc @mapbox/maps-android"
-    publications = ["ModularMapboxMapsSdkRegistryPublication"]
-}
+group = project.ext.mapLibreArtifactGroupId
 
 task androidJavadocs(type: Javadoc) {
   source = android.sourceSets.main.java.sourceFiles
@@ -68,6 +22,55 @@ task androidSourcesJar(type: Jar) {
     from android.sourceSets.main.java.sourceFiles
 }
 
+artifacts {
+    archives androidSourcesJar
+    archives androidJavadocsJar
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                            
+                groupId this.group
+                artifactId project.ext.mapLibreArtifactId
+                
+                from components.release
+
+                artifact androidSourcesJar
+                artifact androidJavadocsJar  
+
+                version this.version
+
+                pom {
+                    name = project.ext.mapLibreArtifactTitle
+                    description = project.ext.mapLibreArtifactTitle
+                    url = project.ext.mapLibreArtifactUrl
+                    licenses {
+                        license {
+                            name = project.ext.mapLibreArtifactLicenseName
+                            url = project.ext.mapLibreArtifactLicenseUrl
+                        }
+                    }
+                    developers {
+                        developer {
+                            id = project.ext.mapLibreDeveloperId
+                            name = project.ext.mapLibreDeveloperName
+                            email = 'maplibre@maplibre.org'
+                        }
+                    }
+                    scm {
+                        connection = project.ext.mapLibreArtifactScmUrl
+                        developerConnection = project.ext.mapLibreArtifactScmUrl
+                        url = project.ext.mapLibreArtifactUrl
+                    }
+                }            
+            }
+        }
+    }
+}
+
+
 // See: https://github.com/chrisbanes/gradle-mvn-push/issues/43#issuecomment-84140513
 afterEvaluate { project ->
     android.libraryVariants.all { variant ->
@@ -76,4 +79,8 @@ afterEvaluate { project ->
             classpath += configurations.javadocDeps
         }
     }
+}
+
+signing {
+    sign publishing.publications
 }

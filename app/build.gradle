@@ -9,7 +9,7 @@ android {
   defaultConfig {
     minSdkVersion androidVersions.minSdkVersion
     targetSdkVersion androidVersions.targetSdkVersion
-    applicationId "com.mapbox.mapboxsdk.plugins.testapp"
+    applicationId "com.maplibre.gl.plugins.testapp"
     testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     vectorDrawables.useSupportLibrary = true
   }
@@ -59,13 +59,12 @@ dependencies {
   // Kotlin
   implementation dependenciesList.kotlin
 
-  // Mapbox
-  implementation(dependenciesList.mapboxMapSdk, {
+  // MapLibre
+  implementation(dependenciesList.mapLibreAndroidSdk, {
     exclude group: 'android.arch.lifecycle'
     exclude group: 'com.google.android.gms'
   })
-  implementation dependenciesList.mapboxGeocoding
-  implementation dependenciesList.mapboxTurf
+  implementation dependenciesList.maplibreTurf
 
   // Architecture
   implementation dependenciesList.lifecycleExtensions
@@ -107,9 +106,6 @@ dependencies {
   testImplementation dependenciesList.leakCanaryTest
 
   // Plugin modules
-  implementation project(':plugin-traffic')
-  implementation project(':plugin-building')
-  implementation project(':plugin-places')
   implementation project(':plugin-offline')
   implementation project(':plugin-localization')
   implementation project(':plugin-annotation')

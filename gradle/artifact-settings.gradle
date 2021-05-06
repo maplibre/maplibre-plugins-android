@@ -1,15 +1,14 @@
 ext {
-    mapboxArtifactGroupId = 'com.mapbox.mapboxsdk'
-    mapboxArtifactId = project.property('POM_ARTIFACT_ID')
-    mapboxArtifactTitle = project.property('POM_NAME')
-    mapboxArtifactDescription = project.property('POM_DESCRIPTION')
-    mapboxDeveloperName = 'Mapbox'
-    mapboxDeveloperId = 'mapbox'
-    mapboxArtifactUrl = 'https://github.com/mapbox/mapbox-plugins-android'
-    mapboxArtifactVcsUrl = 'git@github.com:mapbox/mapbox-plugins-android.git'
-    mapboxArtifactScmUrl = 'scm:git@github.com:mapbox/mapbox-plugins-android.git'
-    mapboxArtifactLicenseName = 'BSD'
-    mapboxArtifactLicenseUrl = 'https://opensource.org/licenses/BSD-2-Clause'
+    mapLibreArtifactGroupId = 'org.maplibre.gl'
+    mapLibreArtifactId = project.property('POM_ARTIFACT_ID')
+    mapLibreArtifactTitle = project.property('POM_NAME')
+    mapLibreArtifactDescription = project.property('POM_DESCRIPTION')
+    mapLibreDeveloperName = 'MapLibre'
+    mapLibreDeveloperId = 'maplibre'
+    mapLibreArtifactUrl = 'https://github.com/maplibre/maplibre-plugins-android'
+    mapLibreArtifactVcsUrl = 'git@github.com:maplibre/maplibre-plugins-android.git'
+    mapLibreArtifactScmUrl = 'scm:git@github.com:maplibre/maplibre-plugins-android.git'
+    mapLibreArtifactLicenseName = 'BSD'
+    mapLibreArtifactLicenseUrl = 'https://opensource.org/licenses/BSD-2-Clause'
     versionName = project.property('VERSION_NAME')
-    mapboxRegistrySdkName = project.hasProperty('REGISTRY_SDK_NAME') ? project.property('REGISTRY_SDK_NAME') : System.getenv('REGISTRY_SDK_NAME')
 }

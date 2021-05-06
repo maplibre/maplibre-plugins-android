@@ -19,14 +19,14 @@ android {
 }
 
 dependencies {
-  implementation dependenciesList.mapboxMapSdk
+  implementation dependenciesList.mapLibreAndroidSdk
   implementation dependenciesList.supportAnnotation
 
   // Unit testing
   testImplementation dependenciesList.junit
   testImplementation dependenciesList.mockito
 
-  javadocDeps dependenciesList.mapboxMapSdk
+  javadocDeps dependenciesList.mapLibreAndroidSdk
 }
 
 apply from: "${rootDir}/gradle/javadoc.gradle"

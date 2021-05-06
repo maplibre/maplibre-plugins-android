@@ -1,7 +1,5 @@
 include ':app'
-include ':plugin-traffic'
 include ':plugin-building'
-include ':plugin-places'
 include ':plugin-offline'
 include ':plugin-localization'
 include ':plugin-annotation'

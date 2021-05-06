@@ -1,10 +1,10 @@
 {
-  "name": "mapbox-plugins-android",
-  "description": "Node configuration for mapbox plugins android",
+  "name": "maplibre-plugins-android",
+  "description": "Node configuration for maplibre plugins android",
   "version": "1.0.0",
   "repository": {
     "type": "git",
-    "url": "git://github.com/mapbox/mapbox-plugins-android.git"
+    "url": "git://github.com/maplibre/maplibre-plugins-android.git"
   },
   "license": "BSD-2-Clause",
   "dependencies": {
