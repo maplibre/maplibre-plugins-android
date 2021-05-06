@@ -45,6 +45,7 @@
           maplibreGeoJson        : "org.maplibre.gl:android-sdk-geojson:${version.maplibreJava}",
           maplibreGeocoding      : "org.maplibre.gl:android-sdk-services:${version.maplibreJava}",
           maplibreTurf           : "org.maplibre.gl:android-sdk-turf:${version.mapLibreTurf}",
+          maplibreCore           : "org.maplibre.gl:android-sdk-core:${version.mapLibreJava}",
 
           // Google Play Location
           playLocation           : "com.google.android.gms:play-services-location:${version.playLocation}",
