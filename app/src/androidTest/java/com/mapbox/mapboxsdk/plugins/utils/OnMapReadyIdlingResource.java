@@ -22,11 +22,6 @@ public class OnMapReadyIdlingResource implements IdlingResource, OnMapReadyCallb
   public OnMapReadyIdlingResource(Activity activity) {
     new Handler(Looper.getMainLooper()).post(() -> {
       mapView = activity.findViewById(R.id.mapView);
-      if (mapView == null) {
-        // some activities have different MapView id
-        mapView = activity.findViewById(R.id.map_view);
-      }
-
       if (mapView != null) {
         mapView.getMapAsync(OnMapReadyIdlingResource.this);
       }
