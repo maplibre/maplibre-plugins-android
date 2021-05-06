@@ -61,8 +61,8 @@ public class DynamicSymbolChangeActivity extends AppCompatActivity {
 
       mapboxMap.setStyle(new Style.Builder()
           .fromUri(Style.MAPBOX_STREETS)
-          .withImage(ID_ICON_1, generateBitmap(R.drawable.mapbox_ic_place), true)
-          .withImage(ID_ICON_2, generateBitmap(R.drawable.mapbox_ic_offline), true)
+          //.withImage(ID_ICON_1, generateBitmap(R.drawable.mapbox_ic_place), true)
+          //.withImage(ID_ICON_2, generateBitmap(R.drawable.mapbox_ic_offline), true)
         , style -> {
           symbolManager = new SymbolManager(mapView, mapboxMap, style);
           symbolManager.setIconAllowOverlap(true);

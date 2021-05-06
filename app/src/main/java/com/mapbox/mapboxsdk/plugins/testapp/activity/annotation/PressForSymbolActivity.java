@@ -80,8 +80,8 @@ public class PressForSymbolActivity extends AppCompatActivity {
   }
 
   private Style.Builder getStyleBuilder(@NonNull String styleUrl) {
-    return new Style.Builder().fromUri(styleUrl)
-      .withImage(ID_ICON, generateBitmap(R.drawable.mapbox_ic_place));
+    return new Style.Builder().fromUri(styleUrl);
+      //.withImage(ID_ICON, generateBitmap(R.drawable.mapbox_ic_place));
   }
 
   @Override

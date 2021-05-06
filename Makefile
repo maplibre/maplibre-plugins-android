@@ -60,3 +60,6 @@ $(call ANDROID_RULES,$(word 1,$1),$(word 2,$1))
 endef
 
 $(foreach plugin,$(MBGL_ANDROID_PLUGINS),$(eval $(call ANDROID_RULES_INVOKER,$(subst ;, ,$(plugin)))))
+
+clean:
+	./gradlew clean
