@@ -31,8 +31,3 @@ Once you’ve finished translating the Android Plugins SDK into a new language i
 1. _(First time only.)_ Download the [`tx` command line tool](https://docs.transifex.com/client/installing-the-client) and [configure your .transifexrc](https://docs.transifex.com/client/client-configuration).
 1. Run `tx pull -a` to fetch translations from Transifex. You can restrict the operation to just the new language using `tx pull -l xyz`, where _xyz_ is the language code.
 1. Commit any new files that were added and open a pull request with your changes.
-
-# Code of conduct
-Everyone is invited to participate in Mapbox’s open source projects and public discussions: we want to create a welcoming and friendly environment. Harassment of participants or other unethical and unprofessional behavior will not be tolerated in our spaces. The [Contributor Covenant](http://contributor-covenant.org) applies to all projects under the Mapbox organization and we ask that you please read [the full text](http://contributor-covenant.org/version/1/2/0/).
-
-You can learn more about our open source philosophy on [mapbox.com](https://www.mapbox.com/about/open/).
