@@ -2,7 +2,7 @@
 
 We welcome contributions to this plugin repository. If you're interested in building and sharing your own, please follow these steps:
 
-- [Open a ticket](https://github.com/maplibre/maplibre-plugins-android/issues/new) to kick off a conversation, feel free to tag the `@mapbox/android` team. It's a good idea to explain your plans before you push any code to make sure noone else is working on something similar and to discuss the best approaches to tackle your particular idea.
+- [Open a ticket](https://github.com/maplibre/maplibre-plugins-android/issues/new) to kick off a conversation. It's a good idea to explain your plans before you push any code to make sure noone else is working on something similar and to discuss the best approaches to tackle your particular idea.
 
 - Create a new branch that will contain the code for your plugin.
 
