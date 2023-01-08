@@ -45,6 +45,7 @@ public abstract class AnnotationManager<
 
   private static final String TAG = "AnnotationManager";
 
+  private final MapView mapView;
   protected final MapboxMap mapboxMap;
   protected final LongSparseArray<T> annotations = new LongSparseArray<>();
   final Map<String, Boolean> dataDrivenPropertyUsageMap = new HashMap<>();
@@ -64,11 +65,14 @@ public abstract class AnnotationManager<
   protected CoreElementProvider<L> coreElementProvider;
   private DraggableAnnotationController draggableAnnotationController;
 
+  private boolean isSourceUpToDate = true;
+
   @UiThread
   protected AnnotationManager(MapView mapView, final MapboxMap mapboxMap, Style style,
                               CoreElementProvider<L> coreElementProvider,
                               DraggableAnnotationController draggableAnnotationController,
                               String belowLayerId, final GeoJsonOptions geoJsonOptions) {
+    this.mapView = mapView;
     this.mapboxMap = mapboxMap;
     this.style = style;
     this.belowLayerId = belowLayerId;
@@ -222,7 +226,18 @@ public abstract class AnnotationManager<
    */
   public void updateSource() {
     draggableAnnotationController.onSourceUpdated();
-    internalUpdateSource();
+    postUpdateSource();
+  }
+
+  void postUpdateSource() {
+    // Only schedule a new refresh if not already scheduled
+    if (isSourceUpToDate) {
+      isSourceUpToDate = false;
+      mapView.post(() -> {
+        internalUpdateSource();
+        isSourceUpToDate = true;
+      });
+    }
   }
 
   void internalUpdateSource() {
