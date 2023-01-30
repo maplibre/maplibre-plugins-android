@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -65,7 +66,7 @@ public abstract class AnnotationManager<
   protected CoreElementProvider<L> coreElementProvider;
   private DraggableAnnotationController draggableAnnotationController;
 
-  private boolean isSourceUpToDate = true;
+  private AtomicBoolean isSourceUpToDate = new AtomicBoolean(true);
 
   @UiThread
   protected AnnotationManager(MapView mapView, final MapboxMap mapboxMap, Style style,
@@ -231,11 +232,10 @@ public abstract class AnnotationManager<
 
   void postUpdateSource() {
     // Only schedule a new refresh if not already scheduled
-    if (isSourceUpToDate) {
-      isSourceUpToDate = false;
+    if (isSourceUpToDate.compareAndSet(true, false)) {
       mapView.post(() -> {
         internalUpdateSource();
-        isSourceUpToDate = true;
+        isSourceUpToDate.set(true);
       });
     }
   }
