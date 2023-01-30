@@ -233,9 +233,12 @@ public abstract class AnnotationManager<
   void postUpdateSource() {
     // Only schedule a new refresh if not already scheduled
     if (isSourceUpToDate.compareAndSet(true, false)) {
-      mapView.post(() -> {
-        internalUpdateSource();
-        isSourceUpToDate.set(true);
+      mapView.post(new Runnable() {
+        @Override
+        public void run() {
+          internalUpdateSource();
+          isSourceUpToDate.set(true);
+        }
       });
     }
   }
