@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <a href="https://www.mapbox.com/android-docs/plugins/overview/"><img src="https://github.com/mapbox/mapbox-plugins-android/blob/master/.github/mbx-plugins-logo.png" alt="Mapbox Plugins" width="500"></a>
+  <a href="https://www.mapbox.com/android-docs/plugins/overview/"><img src="https://github.com/mapbox/mapbox-plugins-android/blob/master/.github/mlb-plugins-logo.png" alt="Mapbox Plugins" width="500"></a>
 </h1>
 
 <h4 align="center">Plugins are single-purpose libraries built on top of the <a href="https://www.mapbox.com/android-docs/">Mapbox Maps SDK for Android</a> that you can include in your apps like any other Android dependency</h4>
@@ -17,11 +17,11 @@
 Plugins are single-purpose libraries built on top of the [Mapbox Maps SDK for Android](https://www.mapbox.com/android-docs/) that you can include in your apps like any other Android dependency. You'll find [documentation for each plugin on our Android documentation website](https://www.mapbox.com/android-docs/plugins/overview/). A full list of the current plugins is available below.
 
 ## Available Plugins
- 
+
 * [**Annotation:** Simplify the way to set and adjust the visual properties of annotations on a map.](https://github.com/maplibre/maplibre-plugins-android/tree/master/plugin-annotation)
 
 * [**MarkerView:** Add map markers that are Android views.](https://github.com/maplibre/maplibre-plugins-android/tree/master/plugin-markerview)
- 
+
 * [**Traffic:** Adds a real-time traffic layer to any Mapbox base map.](https://github.com/maplibre/maplibre-plugins-android/tree/master/plugin-traffic)
 
 * [**Location layer:** [Deprecated] Add a location marker on your map indicating the user's location.](https://github.com/maplibre/maplibre-plugins-android/tree/master/plugin-locationlayer)
