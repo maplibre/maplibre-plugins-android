@@ -1,4 +1,4 @@
-# Mapbox annotation plugin
+# MapLibre annotation plugin
 
 ![annotations-plugin](https://user-images.githubusercontent.com/2151639/44861322-945d5e00-ac78-11e8-8ccb-883a4a743bcf.gif)
 
@@ -66,8 +66,8 @@ We'd love to [hear your feedback](https://github.com/mapbox/mapbox-plugins-andro
 
 Splitting specific functionality into plugins makes our Map SDK lighter and nimble for you to use, and it also lets us iterate faster. We can release plugins more often than the SDK, which requires a slower pace due to its larger codebase.
 
-The Mapbox Android team creates plugins but this plugins repository is an open-source project similar to the various Mapbox SDKs for Android.
-Plugins' lightweight nature makes them much easier for you and anyone else to contribute rather than trying to add the same feature to the more robust Map SDK. The Mapbox team can also more easily accept contributed plugins and keep the plugin list growing.
+The MapLibre Android team creates plugins but this plugins repository is an open-source project similar to the various MapLibre SDKs for Android.
+Plugins' lightweight nature makes them much easier for you and anyone else to contribute rather than trying to add the same feature to the more robust Map SDK. The MapLibre team can also more easily accept contributed plugins and keep the plugin list growing.
 
 ## Contributing
 
