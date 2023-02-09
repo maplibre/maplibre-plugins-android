@@ -2,6 +2,8 @@
 
 ![buildings-plugin](https://user-images.githubusercontent.com/4394910/28844435-71442d04-76b9-11e7-8866-ee6a94306353.gif)
 
+This plugin is currently unmaintained.
+
 ## Getting Started
 
 <!-- [More documentation about the plugin can be found here](https://www.mapbox.com/android-docs/plugins/overview/building/) -->

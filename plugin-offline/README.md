@@ -2,6 +2,8 @@
 
 The offline plugin automatically does the downloading and managment of map tiles for offline Android device use. _Especially_ if you're building a project for outdoors use, a user's device won't always have a strong enough internet connection to download and view map tiles. Once given the desired coordinates, zoom levels, and map style, this plugin handles the rest of the work that's required for fetching and storing map tiles for any region of the world that you want.
 
+This plugin is currently unmaintained.
+
 ## Getting Started
 
 <!-- [More documentation about the plugin can be found here](https://www.mapbox.com/android-docs/plugins/overview/offline) -->

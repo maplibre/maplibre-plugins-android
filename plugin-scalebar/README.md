@@ -2,6 +2,8 @@
 
 The scale bar plugin adds a responsive scale bar on top of the map. The scale bar gives a visual indication of how far various map features are from one another at a certain zoom level. The scale bar can be customized with options such as the text color/size, referesh interval, margins, and border width.
 
+This plugin is currently unmaintained.
+
 ![ezgif com-resize (2)](https://user-images.githubusercontent.com/8577318/57837052-89416280-77f4-11e9-9d97-f164737acd46.gif)
 
 ## Getting Started
