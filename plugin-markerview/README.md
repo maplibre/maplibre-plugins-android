@@ -4,7 +4,7 @@
 
 ## Getting Started
 
-[More documentation about the plugin can be found here](https://www.mapbox.com/android-docs/plugins/overview/markerview/).
+<!-- [More documentation about the plugin can be found here](https://www.mapbox.com/android-docs/plugins/overview/markerview/). -->
 
 Please be aware that Android views are the less performant and less customizable option for adding icons to a map. The MapLibre Maps SDK's SymbolLayer is the recommended way to add icons. View [the MapLibre Annotation Plugin for Android](https://www.mapbox.com/android-docs/plugins/overview/annotation) for more information about using a SymbolLayer.
 

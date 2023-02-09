@@ -4,7 +4,7 @@
 
 ## Getting Started
 
-[More documentation about the plugin can be found here](https://www.mapbox.com/android-docs/plugins/overview/annotation/)
+<!-- [More documentation about the plugin can be found here](https://www.mapbox.com/android-docs/plugins/overview/annotation/) -->
 
 To use the annotation plugin you include it in your `build.gradle` file.
 
@@ -31,7 +31,7 @@ android {
 }
 
 dependencies {
-    implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-annotation-v9:0.9.0'
+    implementation 'com.maplibre.maplibresdk:maplibre-android-plugin-annotation-v9:0.9.0'
 }
 ```
 
@@ -48,19 +48,19 @@ repositories {
 
 // In the app build.gradle file
 dependencies {
-    implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-annotation-v9:0.10.0-SNAPSHOT'
+    implementation 'com.maplibre.maplibresdk:maplibre-android-plugin-annotation-v9:0.10.0-SNAPSHOT'
 }
 ```
 
 ## Annotation plugin examples
 
-- [In this repo's test app](https://github.com/mapbox/mapbox-plugins-android/tree/master/app/src/main/java/com/mapbox/mapboxsdk/plugins/testapp/activity/annotation)
+- [In this repo's test app](https://github.com/maplibre/maplibre-plugins-android/tree/master/app/src/main/java/com/mapbox/mapboxsdk/plugins/testapp/activity/annotation)
 
 ## Help and Usage
 
-This repository includes an app that shows how to use each plugin in this repository. [Check out its code](https://github.com/mapbox/mapbox-plugins-android/tree/master/app/src/main/java/com/mapbox/mapboxsdk/plugins/testapp/activity) for ready-to-use snippets.
+This repository includes an app that shows how to use each plugin in this repository. [Check out its code](https://github.com/maplibre/maplibre-plugins-android/tree/master/app/src/main/java/com/mapbox/mapboxsdk/plugins/testapp/activity) for ready-to-use snippets.
 
-We'd love to [hear your feedback](https://github.com/mapbox/mapbox-plugins-android/issues) as we build more plugins and learn how you use them.
+We'd love to [hear your feedback](https://github.com/maplibre/maplibre-plugins-android/issues) as we build more plugins and learn how you use them.
 
 ## Why Plugins
 
@@ -73,4 +73,4 @@ Plugins' lightweight nature makes them much easier for you and anyone else to co
 
 We welcome contributions to this plugin repository!
 
-If you're interested in building and sharing your own plugin, please read [the contribution guide](https://github.com/mapbox/mapbox-plugins-android/blob/master/CONTRIBUTING.md) to learn how to get started.
+If you're interested in building and sharing your own plugin, please read [the contribution guide](https://github.com/maplibre/maplibre-plugins-android/blob/master/CONTRIBUTING.md) to learn how to get started.

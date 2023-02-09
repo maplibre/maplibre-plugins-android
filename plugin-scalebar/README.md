@@ -18,7 +18,7 @@ repositories {
 
 // In the app build.gradle file
 dependencies {
-    implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-scalebar-v9:0.5.0'
+    implementation 'com.maplibre.maplibresdk:maplibre-android-plugin-scalebar-v9:0.5.0'
 }
 ```
 
@@ -35,21 +35,21 @@ repositories {
 
 // In the app build.gradle file
 dependencies {
-    implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-scalebar-v9:0.6.0-SNAPSHOT'
+    implementation 'com.maplibre.maplibresdk:maplibre-android-plugin-scalebar-v9:0.6.0-SNAPSHOT'
 }
 ```
 
 ## Scale bar plugin examples
 
-- [In this repo's test app](https://github.com/mapbox/mapbox-plugins-android/blob/master/app/src/main/java/com/mapbox/mapboxsdk/plugins/testapp/activity/scalebar/ScalebarActivity.kt)
+- [In this repo's test app](https://github.com/maplibre/maplibre-plugins-android/blob/master/app/src/main/java/com/mapbox/mapboxsdk/plugins/testapp/activity/scalebar/ScalebarActivity.kt)
 
 ## Help and Usage
 
-This repository includes an app that shows how to use each plugins in this repository. [Check out its code](https://github.com/mapbox/mapbox-plugins-android/tree/master/app/src/main/java/com/mapbox/mapboxsdk/plugins/testapp/activity) for ready-to-use snippets.
+This repository includes an app that shows how to use each plugins in this repository. [Check out its code](https://github.com/maplibre/maplibre-plugins-android/tree/master/app/src/main/java/com/mapbox/mapboxsdk/plugins/testapp/activity) for ready-to-use snippets.
 
 Plugins are easy to use. A plugin is simply a library module built on top of the MapLibre Maps SDK for Android. Currently, we are not requiring plugins to register themselves or to implement any specific interfaces so that they're simple to consume.
 
-We'd love to [hear your feedback](https://github.com/mapbox/mapbox-plugins-android/issues) as we build more plugins and learn how you use them.
+We'd love to [hear your feedback](https://github.com/maplibre/maplibre-plugins-android/issues) as we build more plugins and learn how you use them.
 
 ## Why Plugins
 
@@ -62,4 +62,4 @@ Plugins' lightweight nature makes them much easier for you and anyone else to co
 
 We welcome contributions to this plugin repository!
 
-If you're interested in building and sharing your own plugin, please read [the contribution guide](https://github.com/mapbox/mapbox-plugins-android/blob/master/CONTRIBUTING.md) to learn how to get started.
+If you're interested in building and sharing your own plugin, please read [the contribution guide](https://github.com/maplibre/maplibre-plugins-android/blob/master/CONTRIBUTING.md) to learn how to get started.

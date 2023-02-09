@@ -4,7 +4,7 @@
 
 ## Getting Started
 
-[More documentation about the plugin can be found here](https://www.mapbox.com/android-docs/plugins/overview/building/)
+<!-- [More documentation about the plugin can be found here](https://www.mapbox.com/android-docs/plugins/overview/building/) -->
 
 To use the building plugin you include it in your `build.gradle` file.
 
@@ -18,7 +18,7 @@ repositories {
 
 // In the app build.gradle file
 dependencies {
-    implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-building-v9:0.7.0'
+    implementation 'com.maplibre.maplibresdk:maplibre-android-plugin-building-v9:0.7.0'
 }
 ```
 
@@ -35,21 +35,19 @@ repositories {
 
 // In the app build.gradle file
 dependencies {
-    implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-building-v9:0.8.0-SNAPSHOT'
+    implementation 'com.maplibre.maplibresdk:maplibre-android-plugin-building-v9:0.8.0-SNAPSHOT'
 }
 ```
 
 ## Building plugin examples
 
-- [In this repo's test app](https://github.com/mapbox/mapbox-plugins-android/blob/master/app/src/main/java/com/mapbox/mapboxsdk/plugins/testapp/activity/building/BuildingActivity.kt)
-
-- [In the Mapbox Android demo app](https://github.com/mapbox/mapbox-android-demo/blob/a411fa95cd71c1b90a30895060b319310444aebb/MapboxAndroidDemo/src/main/java/com/mapbox/mapboxandroiddemo/examples/plugins/BuildingPluginActivity.java) – (Don't have the app? [Download it on Google Play](https://play.google.com/store/apps/details?id=com.mapbox.mapboxandroiddemo).)
+- [In this repo's test app](https://github.com/maplibre/maplibre-plugins-android/blob/master/app/src/main/java/com/mapbox/mapboxsdk/plugins/testapp/activity/building/BuildingActivity.kt)
 
 ## Help and Usage
 
-This repository includes an app that shows how to use each plugins in this repository. [Check out its code](https://github.com/mapbox/mapbox-plugins-android/tree/master/app/src/main/java/com/mapbox/mapboxsdk/plugins/testapp/activity) for ready-to-use snippets.
+This repository includes an app that shows how to use each plugins in this repository. [Check out its code](https://github.com/maplibre/maplibre-plugins-android/tree/master/app/src/main/java/com/mapbox/mapboxsdk/plugins/testapp/activity) for ready-to-use snippets.
 
-We'd love to [hear your feedback](https://github.com/mapbox/mapbox-plugins-android/issues) as we build more plugins and learn how you use them.
+We'd love to [hear your feedback](https://github.com/maplibre/maplibre-plugins-android/issues) as we build more plugins and learn how you use them.
 
 ## Why Plugins
 
@@ -62,4 +60,4 @@ Plugins' lightweight nature makes them much easier for you and anyone else to co
 
 We welcome contributions to this plugin repository!
 
-If you're interested in building and sharing your own plugin, please read [the contribution guide](https://github.com/mapbox/mapbox-plugins-android/blob/master/CONTRIBUTING.md) to learn how to get started.
+If you're interested in building and sharing your own plugin, please read [the contribution guide](https://github.com/maplibre/maplibre-plugins-android/blob/master/CONTRIBUTING.md) to learn how to get started.
