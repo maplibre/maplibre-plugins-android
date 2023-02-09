@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <img src="https://github.com/mapbox/mapbox-plugins-android/blob/master/.github/mlb-plugins-logo.png" alt="MapLibre Plugins" width="500">
+  <img src="https://github.com/maplibre/maplibre-plugins-android/blob/master/.github/mlb-plugins-logo.png" alt="MapLibre Plugins" width="500">
 </h1>
 
 <h4 align="center">Plugins are single-purpose libraries built on top of the <a href="https://maplibre.org/projects/maplibre-native/">MapLibre Maps SDK for Android</a> that you can include in your apps like any other Android dependency</h4>
@@ -55,7 +55,7 @@ repositories {
 }
 
 dependencies {
-  implementation 'com.mapbox.mapboxsdk:{PLUGIN_NAME}-v{MAJOR_MAPS_SDK_VERSION_NUMBER}:PLUGIN_VERSION_NUMBER'
+  implementation 'com.maplibre.maplibresdk:{PLUGIN_NAME}-v{MAJOR_MAPS_SDK_VERSION_NUMBER}:PLUGIN_VERSION_NUMBER'
 }
 ```
 
