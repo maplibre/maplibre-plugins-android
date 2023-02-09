@@ -1,20 +1,20 @@
 <h1 align="center">
   <br>
-  <a href="https://www.mapbox.com/android-docs/plugins/overview/"><img src="https://github.com/mapbox/mapbox-plugins-android/blob/master/.github/mlb-plugins-logo.png" alt="MapLibre Plugins" width="500"></a>
+  <img src="https://github.com/mapbox/mapbox-plugins-android/blob/master/.github/mlb-plugins-logo.png" alt="MapLibre Plugins" width="500">
 </h1>
 
-<h4 align="center">Plugins are single-purpose libraries built on top of the <a href="https://www.mapbox.com/android-docs/">MapLibre Maps SDK for Android</a> that you can include in your apps like any other Android dependency</h4>
+<h4 align="center">Plugins are single-purpose libraries built on top of the <a href="https://maplibre.org/projects/maplibre-native/">MapLibre Maps SDK for Android</a> that you can include in your apps like any other Android dependency</h4>
 
 <p align="center">
-  <a href="https://circleci.com/gh/mapbox/mapbox-plugins-android">
-    <img src="https://circleci.com/gh/mapbox/mapbox-plugins-android.svg?style=shield&circle-token=:circle-token">
+  <a href="https://circleci.com/gh/maplibre/maplibre-plugins-android">
+    <img src="https://circleci.com/gh/maplibre/maplibre-plugins-android.svg?style=shield&circle-token=:circle-token">
   </a>
 </p>
 <br>
 
 # MapLibre Plugins for Android
 
-Plugins are single-purpose libraries built on top of the [MapLibre Maps SDK for Android](https://www.mapbox.com/android-docs/) that you can include in your apps like any other Android dependency. You'll find [documentation for each plugin on our Android documentation website](https://www.mapbox.com/android-docs/plugins/overview/). A full list of the current plugins is available below.
+Plugins are single-purpose libraries built on top of the [MapLibre Maps SDK for Android](https://maplibre.org/projects/maplibre-native/) that you can include in your apps like any other Android dependency. A full list of the current plugins is available below.
 
 ## Available Plugins
 
@@ -38,7 +38,7 @@ Plugins are single-purpose libraries built on top of the [MapLibre Maps SDK for 
 
 ## Installing a plugin
 
-By using a plugin, you also have to include the MapLibre Maps SDK for Android which means that you'll need to setup your project to use the Maps SDK if you haven't already. Head over to the [overview page for the Maps SDK](https://www.mapbox.com/android-docs/map-sdk/overview/) to learn more.
+By using a plugin, you also have to include the MapLibre Maps SDK for Android which means that you'll need to setup your project to use the Maps SDK if you haven't already. Head over to the [overview page for the Maps SDK](https://maplibre.org/projects/maplibre-native/) to learn more.
 
 Note that depending on the plugin you add, there might be required permissions and additional setup steps. You'll find more information on whether or not more configuration steps are involved when looking at the specific plugin documentation.
 
@@ -82,10 +82,10 @@ A plugin is simply a library module built on top of the MapLibre Maps SDK for An
 ### Test app
 
 This repository includes an app with examples showing how you can use each plugin.
-- To access ready-to-use snippets, [see its code here](https://github.com/mapbox/mapbox-plugins-android/tree/master/app/src/main/java/com/mapbox/mapboxsdk/plugins/testapp).
+- To access ready-to-use snippets, [see its code here](https://github.com/maplibre/maplibre-plugins-android/tree/master/app/src/main/java/com/mapbox/mapboxsdk/plugins/testapp).
 - To run the application locally, open the [`PluginApplication`](https://github.com/mapbox/mapbox-plugins-android/blob/4ff768983323cc4a57791bcb577639109e4fd9ce/app/src/main/java/com/mapbox/mapboxsdk/plugins/testapp/PluginApplication.kt) file and replace `mapbox_access_token` with your own Mapbox token from [https://account.mapbox.com](https://account.mapbox.com).
 
-This might change in the future as we build more plugins and learn how you use them. We'd love to [hear your feedback](https://github.com/mapbox/mapbox-plugins-android/issues).
+This might change in the future as we build more plugins and learn how you use them. We'd love to [hear your feedback](https://github.com/maplibre/maplibre-plugins-android/issues).
 
 ## Why Plugins?
 
