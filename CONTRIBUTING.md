@@ -11,8 +11,6 @@ We welcome contributions to this plugin repository. If you're interested in buil
   - Tests.
   - Javadoc that documents the plugin usage and purpose in detail.
 
-- Create a new activity inside the demo app that showcases how to use your plugin. As important as having a working plugin is to show how to use it so that anyone can include it in their projects easily.
-
 - Finally, once you're ready to share your code, list your plugin in this file and then open a PR for the `@maplibre/android` team to review.
 
 ## Adding or updating a localization
