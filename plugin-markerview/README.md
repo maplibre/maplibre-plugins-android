@@ -8,7 +8,7 @@ This plugin is currently unmaintained.
 
 <!-- [More documentation about the plugin can be found here](https://www.mapbox.com/android-docs/plugins/overview/markerview/). -->
 
-Please be aware that Android views are the less performant and less customizable option for adding icons to a map. The MapLibre Maps SDK's SymbolLayer is the recommended way to add icons. View [the MapLibre Annotation Plugin for Android](https://www.mapbox.com/android-docs/plugins/overview/annotation) for more information about using a SymbolLayer.
+Please be aware that Android views are the less performant and less customizable option for adding icons to a map. The MapLibre Maps SDK's SymbolLayer is the recommended way to add icons.
 
 To use the MarkerView plugin, you include its dependency in your `build.gradle` file.
 
@@ -22,7 +22,7 @@ repositories {
 
 // In the app build.gradle file
 dependencies {
-    implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-markerview-v9:0.4.0'
+    implementation 'com.maplibre.maplibresdk:maplibre-android-plugin-markerview-v9:0.4.0'
 }
 ```
 
@@ -39,19 +39,19 @@ repositories {
 
 // In the app build.gradle file
 dependencies {
-    implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-markerview-v9:0.5.0-SNAPSHOT'
+    implementation 'com.maplibre.maplibresdk:maplibre-android-plugin-markerview-v9:0.5.0-SNAPSHOT'
 }
 ```
 
 ## MarkerView plugin examples
 
-- [In this repo's test app](https://github.com/mapbox/mapbox-plugins-android/blob/master/app/src/main/java/com/mapbox/mapboxsdk/plugins/testapp/activity/markerview/MarkerViewActivity.kt)
+- [In this repo's test app](https://github.com/maplibre/maplibre-plugins-android/blob/master/app/src/main/java/com/mapbox/mapboxsdk/plugins/testapp/activity/markerview/MarkerViewActivity.kt)
 
 ## Help and Usage
 
-This repository includes an app that shows how to use each plugin in this repository. [Check out its code](https://github.com/mapbox/mapbox-plugins-android/tree/master/app/src/main/java/com/mapbox/mapboxsdk/plugins/testapp/activity) for ready-to-use snippets.
+This repository includes an app that shows how to use each plugin in this repository. [Check out its code](https://github.com/maplibre/maplibre-plugins-android/tree/master/app/src/main/java/com/mapbox/mapboxsdk/plugins/testapp/activity) for ready-to-use snippets.
 
-We'd love to [hear your feedback](https://github.com/mapbox/mapbox-plugins-android/issues) as we build more plugins and learn how you use them.
+We'd love to [hear your feedback](https://github.com/maplibre/maplibre-plugins-android/issues) as we build more plugins and learn how you use them.
 
 ## Why Plugins
 
@@ -64,4 +64,4 @@ Plugins' lightweight nature makes them much easier for you and anyone else to co
 
 We welcome contributions to this plugin repository!
 
-If you're interested in building and sharing your own plugin, please read [the contribution guide](https://github.com/mapbox/mapbox-plugins-android/blob/master/CONTRIBUTING.md) to learn how to get started.
+If you're interested in building and sharing your own plugin, please read [the contribution guide](https://github.com/maplibre/maplibre-plugins-android/blob/master/CONTRIBUTING.md) to learn how to get started.
