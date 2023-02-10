@@ -3,7 +3,7 @@
   <img src="https://github.com/maplibre/maplibre-plugins-android/blob/master/.github/mlb-plugins-logo.png" alt="MapLibre Plugins" width="500">
 </h1>
 
-<h4 align="center">Plugins are single-purpose libraries built on top of the <a href="https://maplibre.org/projects/maplibre-native/">MapLibre Maps SDK for Android</a> that you can include in your apps like any other Android dependency</h4>
+<h4 align="center">Plugins are single-purpose libraries built on top of the <a href="https://maplibre.org/maplibre-gl-native/android/api/">MapLibre Maps SDK for Android</a> that you can include in your apps like any other Android dependency</h4>
 
 <p align="center">
   <a href="https://circleci.com/gh/maplibre/maplibre-plugins-android">
@@ -14,7 +14,7 @@
 
 # MapLibre Plugins for Android
 
-Plugins are single-purpose libraries built on top of the [MapLibre Maps SDK for Android](https://maplibre.org/projects/maplibre-native/) that you can include in your apps like any other Android dependency. A full list of the current plugins is available below.
+Plugins are single-purpose libraries built on top of the [MapLibre Maps SDK for Android](https://maplibre.org/maplibre-gl-native/android/api/) that you can include in your apps like any other Android dependency. A full list of the current plugins is available below.
 
 ## Available Plugins
 
