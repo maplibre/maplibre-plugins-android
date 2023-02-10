@@ -4,7 +4,7 @@ The scale bar plugin adds a responsive scale bar on top of the map. The scale ba
 
 This plugin is currently unmaintained.
 
-![ezgif com-resize (2)](https://user-images.githubusercontent.com/8577318/57837052-89416280-77f4-11e9-9d97-f164737acd46.gif)
+<!--![ezgif com-resize (2)](https://user-images.githubusercontent.com/8577318/57837052-89416280-77f4-11e9-9d97-f164737acd46.gif) -->
 
 ## Getting Started
 

@@ -1,6 +1,6 @@
 # MapLibre annotation plugin
 
-![annotations-plugin](https://user-images.githubusercontent.com/2151639/44861322-945d5e00-ac78-11e8-8ccb-883a4a743bcf.gif)
+<!-- ![annotations-plugin](https://user-images.githubusercontent.com/2151639/44861322-945d5e00-ac78-11e8-8ccb-883a4a743bcf.gif) -->
 
 ## Getting Started
 

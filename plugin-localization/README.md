@@ -1,6 +1,6 @@
 # MapLibre Localization Plugin
 
-![localization plugin](https://user-images.githubusercontent.com/4394910/35408667-d7689174-01c4-11e8-8bdb-e580df77d90b.gif)
+<!-- ![localization plugin](https://user-images.githubusercontent.com/4394910/35408667-d7689174-01c4-11e8-8bdb-e580df77d90b.gif) -->
 
 This plugin is currently unmaintained.
 

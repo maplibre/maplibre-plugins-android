@@ -1,6 +1,6 @@
 # MapLibre MarkerView plugin
 
-![markerview-plugin](https://user-images.githubusercontent.com/2151639/45137542-69f42f00-b1a9-11e8-854b-3335a5504337.gif)
+<!-- ![markerview-plugin](https://user-images.githubusercontent.com/2151639/45137542-69f42f00-b1a9-11e8-854b-3335a5504337.gif) -->
 
 This plugin is currently unmaintained.
 
