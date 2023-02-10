@@ -16,6 +16,8 @@
 
 Plugins are single-purpose libraries built on top of the [MapLibre Maps SDK for Android](https://maplibre.org/maplibre-gl-native/android/api/) that you can include in your apps like any other Android dependency. A full list of the current plugins is available below.
 
+We are looking for maintainers for these plugins! Please reach out to the Maplibre team and take a look at [the contribution guide](https://github.com/maplibre/maplibre-plugins-android/blob/master/CONTRIBUTING.md).
+
 ## Available Plugins
 
 * [**Annotation:** Simplify the way to set and adjust the visual properties of annotations on a map.](https://github.com/maplibre/maplibre-plugins-android/tree/master/plugin-annotation)
