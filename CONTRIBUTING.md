@@ -1,6 +1,8 @@
 # Contributing
 
-We welcome contributions to this plugin repository. Please be aware that all plugins, except Annotations, is currently unmaintained. If you're interested in building and sharing your own, please follow these steps:
+We welcome contributions to this plugin repository. Please be aware that all plugins, except Annotations, are not actively maintained. If you are interested in becoming a maintainer for a plugin feel free to submit a pull request with a short introduction and your name and GitHub handle in the respective README.
+
+If you're interested in building and sharing your own plugin, please follow these steps:
 
 - [Open a ticket](https://github.com/maplibre/maplibre-plugins-android/issues/new) to kick off a conversation. It's a good idea to explain your plans before you push any code to make sure noone else is working on something similar and to discuss the best approaches to tackle your particular idea.
 
