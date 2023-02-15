@@ -11,7 +11,7 @@ We welcome contributions to this plugin repository. Please be aware that all plu
   - Tests.
   - Javadoc that documents the plugin usage and purpose in detail.
 
-- Finally, once you're ready to share your code, list your plugin in this file and then open a PR for the `@maplibre/android` team to review.
+- Finally, once you're ready to share your code, list your plugin in this file and then open a PR for other contributors to review.
 
 ## Adding or updating a localization
 
