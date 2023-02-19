@@ -1,4 +1,4 @@
-package com.mapbox.mapboxsdk.plugins.localization;
+package org.maplibre.android.plugins.localization;
 
 import org.junit.Assert;
 import org.junit.Test;

@@ -21,7 +21,7 @@ repositories {
 
 // In the app build.gradle file
 dependencies {
-    implementation 'com.maplibre.maplibresdk:maplibre-android-plugin-localization-v9:0.12.0'
+    implementation 'org.maplibre.android:maplibre-android-plugin-localization-v9:0.12.0'
 }
 ```
 
@@ -39,7 +39,7 @@ repositories {
 
 // In the app build.gradle file
 dependencies {
-    implementation 'com.maplibre.maplibresdk:maplibre-android-plugin-localization-v9:0.13.0-SNAPSHOT'
+    implementation 'org.maplibre.android:maplibre-android-plugin-localization-v9:0.13.0-SNAPSHOT'
 }
 ```
 

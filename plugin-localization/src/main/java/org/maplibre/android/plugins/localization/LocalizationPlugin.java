@@ -1,4 +1,4 @@
-package com.mapbox.mapboxsdk.plugins.localization;
+package org.maplibre.android.plugins.localization;
 
 
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
@@ -6,7 +6,7 @@ import com.mapbox.mapboxsdk.geometry.LatLngBounds;
 import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.Style;
-import com.mapbox.mapboxsdk.plugins.localization.MapLocale.Languages;
+import org.maplibre.android.plugins.localization.MapLocale.Languages;
 import com.mapbox.mapboxsdk.style.expressions.Expression;
 import com.mapbox.mapboxsdk.style.layers.Layer;
 import com.mapbox.mapboxsdk.style.layers.PropertyValue;

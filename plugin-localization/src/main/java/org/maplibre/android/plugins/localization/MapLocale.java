@@ -1,4 +1,4 @@
-package com.mapbox.mapboxsdk.plugins.localization;
+package org.maplibre.android.plugins.localization;
 
 
 import com.mapbox.mapboxsdk.geometry.LatLng;
@@ -17,7 +17,7 @@ import static java.lang.annotation.RetentionPolicy.SOURCE;
 
 /**
  * A {@link MapLocale} object builds off of the {@link Locale} object and provides additional
- * geographical information particular to the Mapbox Maps SDK. Like Locale, MapLocale can be used to
+ * geographical information particular to the Maplibre Maps SDK. Like Locale, MapLocale can be used to
  * make the <em>map locale sensitive</em>.
  * <p>
  * The {@link MapLocale} object can be used to acquire the matching Locale's map language; useful for
@@ -38,7 +38,7 @@ import static java.lang.annotation.RetentionPolicy.SOURCE;
 public final class MapLocale {
 
   /*
-   * Supported Mapbox map languages.
+   * Supported Maplibre map languages.
    */
 
   /**
