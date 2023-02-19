@@ -20,7 +20,7 @@ repositories {
 
 // In the app build.gradle file
 dependencies {
-    implementation 'com.maplibre.maplibresdk:maplibre-android-plugin-offline-v9:0.7.0'
+    implementation 'org.maplibre.android:maplibre-android-plugin-offline-v9:0.7.0'
 }
 ```
 
@@ -37,7 +37,7 @@ repositories {
 
 // In the app build.gradle file
 dependencies {
-	implementation 'com.maplibre.maplibresdk:maplibre-android-plugin-offline-v9:0.8.0-SNAPSHOT'
+	implementation 'org.maplibre.android:maplibre-android-plugin-offline-v9:0.8.0-SNAPSHOT'
 }
 ```
 

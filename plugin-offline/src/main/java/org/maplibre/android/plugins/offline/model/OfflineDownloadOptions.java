@@ -1,12 +1,12 @@
-package com.mapbox.mapboxsdk.plugins.offline.model;
+package org.maplibre.android.plugins.offline.model;
 
 import android.os.Parcelable;
 
 import com.google.auto.value.AutoValue;
 import com.mapbox.mapboxsdk.offline.OfflineRegion;
 import com.mapbox.mapboxsdk.offline.OfflineRegionDefinition;
-import com.mapbox.mapboxsdk.plugins.offline.offline.OfflineDownloadService;
-import com.mapbox.mapboxsdk.plugins.offline.offline.OfflinePlugin;
+import org.maplibre.android.plugins.offline.offline.OfflineDownloadService;
+import org.maplibre.android.plugins.offline.offline.OfflinePlugin;
 
 import java.util.UUID;
 

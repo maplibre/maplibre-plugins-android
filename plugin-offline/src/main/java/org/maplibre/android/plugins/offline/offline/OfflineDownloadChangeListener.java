@@ -1,6 +1,6 @@
-package com.mapbox.mapboxsdk.plugins.offline.offline;
+package org.maplibre.android.plugins.offline.offline;
 
-import com.mapbox.mapboxsdk.plugins.offline.model.OfflineDownloadOptions;
+import org.maplibre.android.plugins.offline.model.OfflineDownloadOptions;
 
 public interface OfflineDownloadChangeListener {
 

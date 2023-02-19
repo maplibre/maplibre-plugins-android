@@ -1,19 +1,19 @@
-package com.mapbox.mapboxsdk.plugins.offline;
+package org.maplibre.android.plugins.offline;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
 import com.mapbox.mapboxsdk.offline.OfflineRegionDefinition;
-import com.mapbox.mapboxsdk.plugins.offline.model.NotificationOptions;
-import com.mapbox.mapboxsdk.plugins.offline.model.OfflineDownloadOptions;
-import com.mapbox.mapboxsdk.plugins.offline.model.RegionSelectionOptions;
-import com.mapbox.mapboxsdk.plugins.offline.ui.OfflineActivity;
+import org.maplibre.android.plugins.offline.model.NotificationOptions;
+import org.maplibre.android.plugins.offline.model.OfflineDownloadOptions;
+import org.maplibre.android.plugins.offline.model.RegionSelectionOptions;
+import org.maplibre.android.plugins.offline.ui.OfflineActivity;
 
 import androidx.annotation.NonNull;
 
-import static com.mapbox.mapboxsdk.plugins.offline.offline.OfflineConstants.RETURNING_DEFINITION;
-import static com.mapbox.mapboxsdk.plugins.offline.offline.OfflineConstants.RETURNING_REGION_NAME;
+import static org.maplibre.android.plugins.offline.offline.OfflineConstants.RETURNING_DEFINITION;
+import static org.maplibre.android.plugins.offline.offline.OfflineConstants.RETURNING_REGION_NAME;
 
 /**
  * While the offline plugin includes a service for optimally launching an offline download session,
@@ -56,7 +56,7 @@ public class OfflineRegionSelector {
    *                 it
    * @return a new {@link OfflineDownloadOptions} instance which can be used to launch the download
    * service using
-   * {@link com.mapbox.mapboxsdk.plugins.offline.offline.OfflinePlugin#startDownload(OfflineDownloadOptions)}
+   * {@link org.maplibre.android.plugins.offline.offline.OfflinePlugin#startDownload(OfflineDownloadOptions)}
    * @since 0.1.0
    */
   public static OfflineDownloadOptions getOfflineDownloadOptions(final Intent data, byte[] metadata) {
@@ -78,7 +78,7 @@ public class OfflineRegionSelector {
    *                            when launching the offline region download service.
    * @return a new {@link OfflineDownloadOptions} instance which can be used to launch the download
    * service using
-   * {@link com.mapbox.mapboxsdk.plugins.offline.offline.OfflinePlugin#startDownload(OfflineDownloadOptions)}
+   * {@link org.maplibre.android.plugins.offline.offline.OfflinePlugin#startDownload(OfflineDownloadOptions)}
    * @since 0.1.0
    */
   public static OfflineDownloadOptions getOfflineDownloadOptions(final Intent data,
@@ -104,7 +104,7 @@ public class OfflineRegionSelector {
    *                            still wish to use it
    * @return a new {@link OfflineDownloadOptions} instance which can be used to launch the download
    * service using
-   * {@link com.mapbox.mapboxsdk.plugins.offline.offline.OfflinePlugin#startDownload(OfflineDownloadOptions)}
+   * {@link org.maplibre.android.plugins.offline.offline.OfflinePlugin#startDownload(OfflineDownloadOptions)}
    * @since 0.1.0
    */
   public static OfflineDownloadOptions getOfflineDownloadOptions(final Intent data,

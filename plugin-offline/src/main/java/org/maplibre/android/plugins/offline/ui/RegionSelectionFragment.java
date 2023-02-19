@@ -1,4 +1,4 @@
-package com.mapbox.mapboxsdk.plugins.offline.ui;
+package org.maplibre.android.plugins.offline.ui;
 
 import android.graphics.PointF;
 import android.graphics.RectF;
@@ -19,9 +19,9 @@ import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 import com.mapbox.mapboxsdk.maps.Style;
 import com.mapbox.mapboxsdk.offline.OfflineRegionDefinition;
 import com.mapbox.mapboxsdk.offline.OfflineTilePyramidRegionDefinition;
-import com.mapbox.mapboxsdk.plugins.offline.OfflinePluginConstants;
-import com.mapbox.mapboxsdk.plugins.offline.R;
-import com.mapbox.mapboxsdk.plugins.offline.model.RegionSelectionOptions;
+import org.maplibre.android.plugins.offline.OfflinePluginConstants;
+import org.maplibre.android.plugins.offline.R;
+import org.maplibre.android.plugins.offline.model.RegionSelectionOptions;
 import com.mapbox.mapboxsdk.style.sources.VectorSource;
 
 import java.util.List;

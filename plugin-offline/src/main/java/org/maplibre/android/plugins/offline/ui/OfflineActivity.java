@@ -1,21 +1,21 @@
-package com.mapbox.mapboxsdk.plugins.offline.ui;
+package org.maplibre.android.plugins.offline.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Window;
 
 import com.mapbox.mapboxsdk.offline.OfflineRegionDefinition;
-import com.mapbox.mapboxsdk.plugins.offline.OfflinePluginConstants;
-import com.mapbox.mapboxsdk.plugins.offline.R;
-import com.mapbox.mapboxsdk.plugins.offline.model.RegionSelectionOptions;
-import com.mapbox.mapboxsdk.plugins.offline.utils.ColorUtils;
+import org.maplibre.android.plugins.offline.OfflinePluginConstants;
+import org.maplibre.android.plugins.offline.R;
+import org.maplibre.android.plugins.offline.model.RegionSelectionOptions;
+import org.maplibre.android.plugins.offline.utils.ColorUtils;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import static com.mapbox.mapboxsdk.plugins.offline.offline.OfflineConstants.RETURNING_DEFINITION;
-import static com.mapbox.mapboxsdk.plugins.offline.offline.OfflineConstants.RETURNING_REGION_NAME;
+import static org.maplibre.android.plugins.offline.offline.OfflineConstants.RETURNING_DEFINITION;
+import static org.maplibre.android.plugins.offline.offline.OfflineConstants.RETURNING_REGION_NAME;
 
 public class OfflineActivity extends AppCompatActivity implements RegionSelectedCallback {
 

@@ -1,4 +1,4 @@
-package com.mapbox.mapboxsdk.plugins.offline.offline;
+package org.maplibre.android.plugins.offline.offline;
 
 import android.app.Service;
 import android.content.Intent;
@@ -17,15 +17,15 @@ import com.mapbox.mapboxsdk.offline.OfflineRegion;
 import com.mapbox.mapboxsdk.offline.OfflineRegionDefinition;
 import com.mapbox.mapboxsdk.offline.OfflineRegionError;
 import com.mapbox.mapboxsdk.offline.OfflineRegionStatus;
-import com.mapbox.mapboxsdk.plugins.offline.model.OfflineDownloadOptions;
-import com.mapbox.mapboxsdk.plugins.offline.utils.NotificationUtils;
+import org.maplibre.android.plugins.offline.model.OfflineDownloadOptions;
+import org.maplibre.android.plugins.offline.utils.NotificationUtils;
 import com.mapbox.mapboxsdk.snapshotter.MapSnapshot;
 import com.mapbox.mapboxsdk.snapshotter.MapSnapshotter;
 
 import timber.log.Timber;
 
-import static com.mapbox.mapboxsdk.plugins.offline.offline.OfflineConstants.KEY_BUNDLE;
-import static com.mapbox.mapboxsdk.plugins.offline.utils.NotificationUtils.setupNotificationChannel;
+import static org.maplibre.android.plugins.offline.offline.OfflineConstants.KEY_BUNDLE;
+import static org.maplibre.android.plugins.offline.utils.NotificationUtils.setupNotificationChannel;
 
 /**
  * Internal usage only, use this service indirectly by using methods found in

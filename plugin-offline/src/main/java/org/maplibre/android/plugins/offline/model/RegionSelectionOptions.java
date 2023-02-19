@@ -1,11 +1,11 @@
-package com.mapbox.mapboxsdk.plugins.offline.model;
+package org.maplibre.android.plugins.offline.model;
 
 import android.os.Parcelable;
 
 import com.google.auto.value.AutoValue;
 import com.mapbox.mapboxsdk.camera.CameraPosition;
 import com.mapbox.mapboxsdk.geometry.LatLngBounds;
-import com.mapbox.mapboxsdk.plugins.offline.ui.OfflineActivity;
+import org.maplibre.android.plugins.offline.ui.OfflineActivity;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

@@ -1,10 +1,10 @@
-package com.mapbox.mapboxsdk.plugins.offline.model;
+package org.maplibre.android.plugins.offline.model;
 
 import android.content.Context;
 import android.os.Parcelable;
 
 import com.google.auto.value.AutoValue;
-import com.mapbox.mapboxsdk.plugins.offline.R;
+import org.maplibre.android.plugins.offline.R;
 
 import androidx.annotation.DrawableRes;
 
