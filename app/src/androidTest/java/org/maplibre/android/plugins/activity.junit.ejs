@@ -1,0 +1,31 @@
+<%
+  const activity = locals[0];
+  const subPackage = locals[1];
+-%>
+// This file is generated
+package org.maplibre.android.plugins.gen.<%- subPackage %>;
+
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+
+import org.maplibre.android.plugins.BaseActivityTest;
+import org.maplibre.android.plugins.testapp.activity.<%- subPackage %>.<%- activity %>;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+/**
+ * Sanity test for <%- activity %>
+ */
+@RunWith(AndroidJUnit4.class)
+public class <%- activity %>Test extends BaseActivityTest {
+
+    @Test
+    public void testSanity() {
+        validateTestSetup();
+    }
+
+    @Override
+    protected Class getActivityClass() {
+        return <%- activity %>.class;
+    }
+}
