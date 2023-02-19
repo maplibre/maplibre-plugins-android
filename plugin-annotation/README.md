@@ -48,7 +48,7 @@ repositories {
 
 // In the app build.gradle file
 dependencies {
-    implementation 'com.maplibre.maplibresdk:maplibre-android-plugin-annotation-v9:0.10.0-SNAPSHOT'
+    implementation 'org.maplibre.android:maplibre-android-plugin-annotation-v9:0.10.0-SNAPSHOT'
 }
 ```
 

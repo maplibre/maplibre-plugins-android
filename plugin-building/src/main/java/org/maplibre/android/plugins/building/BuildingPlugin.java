@@ -1,4 +1,4 @@
-package com.mapbox.mapboxsdk.plugins.building;
+package org.maplibre.android.plugins.building;
 
 import android.graphics.Color;
 
@@ -29,7 +29,7 @@ import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.fillExtrusionOpa
 import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.visibility;
 
 /**
- * The building plugin allows you to add 3d buildings FillExtrusionLayer to the Mapbox Maps SDK for
+ * The building plugin allows you to add 3d buildings FillExtrusionLayer to the Maplibre Maps SDK for
  * Android v5.1.0.
  * <p>
  * Initialise this plugin in the {@link com.mapbox.mapboxsdk.maps.OnMapReadyCallback#onMapReady(MapboxMap)}
@@ -218,5 +218,3 @@ public final class BuildingPlugin {
     return light;
   }
 }
-
-
