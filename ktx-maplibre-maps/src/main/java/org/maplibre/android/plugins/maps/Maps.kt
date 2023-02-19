@@ -2,10 +2,10 @@ package org.maplibre.android.plugins.maps
 
 import android.graphics.RectF
 import com.mapbox.geojson.Feature
-import org.maplibre.android.geometry.LatLng
-import org.maplibre.android.geometry.LatLngBounds
-import org.maplibre.android.maps.MapboxMap
-import org.maplibre.android.style.expressions.Expression
+import com.mapbox.mapboxsdk.geometry.LatLng
+import com.mapbox.mapboxsdk.geometry.LatLngBounds
+import com.mapbox.mapboxsdk.maps.MapboxMap
+import com.mapbox.mapboxsdk.style.expressions.Expression
 
 /**
  * Queries the map for rendered features
