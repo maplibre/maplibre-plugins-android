@@ -111,7 +111,7 @@ dependencies {
   implementation project(':plugin-localization')
   implementation project(':plugin-annotation')
   implementation project(':plugin-markerview')
-  implementation project(':ktx-mapbox-maps')
+  implementation project(':ktx-maplibre-maps')
   implementation project(':plugin-scalebar')
 }
 
