@@ -1,7 +1,7 @@
-package com.mapbox.mapboxsdk.plugins.maps
+package org.maplibre.android.plugins.maps
 
 import com.mapbox.geojson.Point
-import com.mapbox.mapboxsdk.geometry.LatLng
+import org.maplibre.android.geometry.LatLng
 import junit.framework.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
