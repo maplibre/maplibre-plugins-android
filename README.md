@@ -76,8 +76,8 @@ A plugin is simply a library module built on top of the MapLibre Maps SDK for An
 ### Test app
 
 This repository includes an app with examples showing how you can use each plugin.
-- To access ready-to-use snippets, [see its code here](https://github.com/maplibre/maplibre-plugins-android/tree/master/app/src/main/java/com/mapbox/mapboxsdk/plugins/testapp).
-- To run the application locally, open the [`PluginApplication`](https://github.com/maplibre/maplibre-plugins-android/blob/4ff768983323cc4a57791bcb577639109e4fd9ce/app/src/main/java/com/mapbox/mapboxsdk/plugins/testapp/PluginApplication.kt) file
+- To access ready-to-use snippets, [see its code here](https://github.com/maplibre/maplibre-plugins-android/tree/master/app/src/main/java/org/maplibre/android/plugins/testapp).
+- To run the application locally, open the [`PluginApplication`](https://github.com/maplibre/maplibre-plugins-android/blob/4ff768983323cc4a57791bcb577639109e4fd9ce/app/src/main/java/org/maplibre/android/plugins/testapp/PluginApplication.kt) file
 
 This might change in the future as we build more plugins and learn how you use them. We'd love to [hear your feedback](https://github.com/maplibre/maplibre-plugins-android/issues).
 
