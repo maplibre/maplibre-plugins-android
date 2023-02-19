@@ -31,7 +31,7 @@ android {
 }
 
 dependencies {
-    implementation 'com.maplibre.maplibresdk:maplibre-android-plugin-annotation-v9:0.9.0'
+    implementation 'org.maplibre.android:maplibre-android-plugin-annotation-v9:0.9.0'
 }
 ```
 
