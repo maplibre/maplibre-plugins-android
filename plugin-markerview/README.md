@@ -22,7 +22,7 @@ repositories {
 
 // In the app build.gradle file
 dependencies {
-    implementation 'com.maplibre.maplibresdk:maplibre-android-plugin-markerview-v9:0.4.0'
+    implementation 'org.maplibre.android:maplibre-android-plugin-markerview-v9:0.4.0'
 }
 ```
 
@@ -39,7 +39,7 @@ repositories {
 
 // In the app build.gradle file
 dependencies {
-    implementation 'com.maplibre.maplibresdk:maplibre-android-plugin-markerview-v9:0.5.0-SNAPSHOT'
+    implementation 'org.maplibre.android:maplibre-android-plugin-markerview-v9:0.5.0-SNAPSHOT'
 }
 ```
 
