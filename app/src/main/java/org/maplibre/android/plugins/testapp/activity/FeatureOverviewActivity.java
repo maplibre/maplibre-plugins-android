@@ -18,8 +18,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.mapbox.android.core.permissions.PermissionsListener;
-import com.mapbox.android.core.permissions.PermissionsManager;
+import org.maplibre.android.core.permissions.PermissionsListener;
+import org.maplibre.android.core.permissions.PermissionsManager;
 import org.maplibre.android.plugins.testapp.R;
 
 import androidx.annotation.IdRes;
