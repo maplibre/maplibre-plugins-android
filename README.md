@@ -38,7 +38,7 @@ We are looking for maintainers for these plugins! Please reach out to the Maplib
 
 ## Installing a plugin
 
-By using a plugin, you also have to include the MapLibre Maps SDK for Android which means that you'll need to setup your project to use the Maps SDK if you haven't already. Head over to the [overview page for the Maps SDK](https://maplibre.org/projects/maplibre-native/) to learn more.
+By using a plugin, you also have to include the MapLibre GL Native for Android which means that you'll need to setup your project to use the Maps SDK if you haven't already. Head over to the [overview page for the Maps SDK](https://maplibre.org/projects/maplibre-native/) to learn more.
 
 Note that depending on the plugin you add, there might be required permissions and additional setup steps. You'll find more information on whether or not more configuration steps are involved when looking at the specific plugin documentation.
 
