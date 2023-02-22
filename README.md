@@ -6,9 +6,7 @@
 <h4 align="center">Plugins are single-purpose libraries built on top of the <a href="https://maplibre.org/maplibre-gl-native/android/api/">MapLibre Maps SDK for Android</a> that you can include in your apps like any other Android dependency</h4>
 
 <p align="center">
-  <a href="https://circleci.com/gh/maplibre/maplibre-plugins-android">
-    <img src="https://circleci.com/gh/maplibre/maplibre-plugins-android.svg?style=shield&circle-token=:circle-token">
-  </a>
+  [![ci](https://github.com/maplibre/maplibre-plugins-android/actions/workflows/ci.yml/badge.svg)](https://github.com/maplibre/maplibre-plugins-android/actions/workflows/ci.yml)
 </p>
 <br>
 
