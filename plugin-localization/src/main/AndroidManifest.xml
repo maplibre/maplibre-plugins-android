@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.mapbox.mapboxsdk.plugins.localization"/>
+<manifest package="org.maplibre.android.plugins.localization"/>
