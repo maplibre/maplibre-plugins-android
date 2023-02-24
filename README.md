@@ -51,9 +51,6 @@ Note that depending on the plugin you add, there might be required permissions a
 ```gradle
 repositories {
   mavenCentral()
-  maven {
-    url 'https://api.maplibre.com/downloads/v2/releases/maven'
-  }
 }
 
 dependencies {
