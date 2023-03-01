@@ -3,8 +3,10 @@ package com.mapbox.mapboxsdk.plugins.testapp.activity.localization
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.mapbox.mapboxsdk.maps.MapView
 import com.mapbox.mapboxsdk.maps.MapboxMap
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback
 import com.mapbox.mapboxsdk.maps.Style
@@ -12,31 +14,34 @@ import com.mapbox.mapboxsdk.plugins.localization.LocalizationPlugin
 import com.mapbox.mapboxsdk.plugins.localization.MapLocale
 import com.mapbox.mapboxsdk.plugins.testapp.R
 import com.mapbox.mapboxsdk.plugins.testapp.Utils
-import kotlinx.android.synthetic.main.activity_localization.*
+import com.mapbox.mapboxsdk.plugins.testapp.databinding.ActivityLocalizationBinding
 
 class LocalizationActivity : AppCompatActivity(), OnMapReadyCallback {
 
   private var localizationPlugin: LocalizationPlugin? = null
   private var mapboxMap: MapboxMap? = null
   private var mapIsLocalized: Boolean = false
+  private lateinit var mapView: MapView
+  private lateinit var binding: ActivityLocalizationBinding
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_localization)
+    binding = ActivityLocalizationBinding.inflate(layoutInflater)
     mapIsLocalized = true
     Toast.makeText(this, R.string.change_language_instruction, Toast.LENGTH_LONG).show()
+    mapView = findViewById<View>(R.id.mapView) as MapView
     mapView.onCreate(savedInstanceState)
-    mapView.getMapAsync(this)
   }
 
   override fun onMapReady(mapboxMap: MapboxMap) {
-    mapboxMap.setStyle(Style.MAPBOX_STREETS) { style ->
+    mapboxMap.setStyle(Style.getPredefinedStyle("Streets")) { style ->
       this.mapboxMap = mapboxMap
       localizationPlugin = LocalizationPlugin(mapView, mapboxMap, style).also { localizationPlugin ->
         localizationPlugin.matchMapLanguageWithDeviceDefault()
       }
 
-      fabLocalize.setOnClickListener {
+      binding.fabLocalize.setOnClickListener {
         mapIsLocalized = if (mapIsLocalized) {
           localizationPlugin?.setMapLanguage(MapLocale(MapLocale.FRENCH))
           Toast.makeText(this, R.string.map_not_localized, Toast.LENGTH_SHORT).show()
@@ -48,7 +53,7 @@ class LocalizationActivity : AppCompatActivity(), OnMapReadyCallback {
         }
       }
 
-      fabCamera.setOnClickListener {
+      binding.fabCamera.setOnClickListener {
         val locale = nextMapLocale
         localizationPlugin?.apply {
           setMapLanguage(locale)
@@ -56,7 +61,7 @@ class LocalizationActivity : AppCompatActivity(), OnMapReadyCallback {
         }
       }
 
-      fabStyles.setOnClickListener {
+      binding.fabStyles.setOnClickListener {
         mapboxMap.setStyle(Style.Builder().fromUri(Utils.nextStyle))
       }
     }
@@ -170,7 +175,8 @@ class LocalizationActivity : AppCompatActivity(), OnMapReadyCallback {
 
   companion object {
 
-    private val LOCALES = arrayOf(MapLocale.CANADA, MapLocale.GERMANY, MapLocale.CHINA,
+    private val LOCALES = arrayOf(
+      MapLocale.CANADA, MapLocale.GERMANY, MapLocale.CHINA,
       MapLocale.US, MapLocale.CANADA_FRENCH, MapLocale.JAPAN, MapLocale.KOREA,
       MapLocale.FRANCE, MapLocale.SPAIN, MapLocale.VIETNAM, MapLocale.ITALY, MapLocale.UK
     )

@@ -54,7 +54,7 @@ public class OnMapReadyIdlingResource implements IdlingResource, OnMapReadyCallb
   @Override
   public void onMapReady(@NonNull MapboxMap mapboxMap) {
     this.mapboxMap = mapboxMap;
-    mapboxMap.setStyle(Style.MAPBOX_STREETS, style -> {
+    mapboxMap.setStyle(Style.getPredefinedStyle("Streets"), style -> {
       if (resourceCallback != null) {
         resourceCallback.onTransitionToIdle();
       }

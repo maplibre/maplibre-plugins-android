@@ -40,7 +40,7 @@ public class LineActivity extends AppCompatActivity {
     setContentView(R.layout.activity_annotation);
     mapView = findViewById(R.id.mapView);
     mapView.onCreate(savedInstanceState);
-    mapView.getMapAsync(mapboxMap -> mapboxMap.setStyle(Style.MAPBOX_STREETS, style -> {
+    mapView.getMapAsync(mapboxMap -> mapboxMap.setStyle(Style.getPredefinedStyle("Streets"), style -> {
       findViewById(R.id.fabStyles).setOnClickListener(v -> mapboxMap.setStyle(Utils.INSTANCE.getNextStyle()));
 
       mapboxMap.moveCamera(CameraUpdateFactory.zoomTo(2));

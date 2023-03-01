@@ -17,7 +17,7 @@ class PluginApplication : Application() {
 
         LeakCanary.install(this)
         initializeLogger()
-        Mapbox.getInstance(this, getString(R.string.mapbox_access_token))
+        Mapbox.getInstance(this)
     }
 
     private fun initializeLogger() {

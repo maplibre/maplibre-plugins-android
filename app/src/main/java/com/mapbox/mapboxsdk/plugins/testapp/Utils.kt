@@ -17,7 +17,7 @@ import java.util.*
  */
 object Utils {
 
-  private val STYLES = arrayOf(Style.MAPBOX_STREETS, Style.OUTDOORS, Style.LIGHT, Style.DARK, Style.SATELLITE_STREETS)
+  private val STYLES = arrayOf(Style.getPredefinedStyle("Streets"), Style.getPredefinedStyle("Outdoors"), Style.getPredefinedStyle("Light"), Style.getPredefinedStyle("Dark"))
 
   private var index: Int = 0
 

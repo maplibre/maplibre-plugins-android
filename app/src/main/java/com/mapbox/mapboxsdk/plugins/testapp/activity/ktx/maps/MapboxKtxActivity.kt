@@ -1,76 +1,84 @@
 package com.mapbox.mapboxsdk.plugins.testapp.activity.ktx.maps
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.mapbox.mapboxsdk.geometry.LatLng
+import com.mapbox.mapboxsdk.maps.MapView
 import com.mapbox.mapboxsdk.maps.MapboxMap
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback
 import com.mapbox.mapboxsdk.maps.Style
 import com.mapbox.mapboxsdk.plugins.maps.queryRenderedFeatures
 import com.mapbox.mapboxsdk.plugins.testapp.R
-import kotlinx.android.synthetic.main.activity_maps_ktx.*
+import com.mapbox.mapboxsdk.plugins.testapp.databinding.ActivityMapsKtxBinding
 
 class MapboxKtxActivity : AppCompatActivity(), OnMapReadyCallback, MapboxMap.OnMapClickListener {
 
-    private var mapboxMap: MapboxMap? = null
+  private var mapboxMap: MapboxMap? = null
+  private lateinit var mapView: MapView
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_maps_ktx)
-        mapView.onCreate(savedInstanceState)
-        mapView.getMapAsync(this)
-    }
+  private lateinit var binding: ActivityMapsKtxBinding
 
-    override fun onMapReady(mapboxMap: MapboxMap) {
-        this.mapboxMap = mapboxMap
-        mapboxMap.setStyle(Style.MAPBOX_STREETS) {
-            mapboxMap.addOnMapClickListener(this)
-            Toast.makeText(this, "Click on the map", Toast.LENGTH_SHORT).show()
-        }
-    }
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    binding = ActivityMapsKtxBinding.inflate(layoutInflater)
+    val view = binding.root
+    setContentView(view)
+    mapView = findViewById<View>(R.id.mapView) as MapView
+    mapView.onCreate(savedInstanceState)
+    mapView.getMapAsync(this)
+  }
 
-    override fun onMapClick(point: LatLng): Boolean {
-        val features = mapboxMap?.queryRenderedFeatures(point)
-        features?.first().let {
-            Toast.makeText(this, it.toString(), Toast.LENGTH_SHORT).show()
-        }
-        return true
+  override fun onMapReady(mapboxMap: MapboxMap) {
+    this.mapboxMap = mapboxMap
+    mapboxMap.setStyle(Style.getPredefinedStyle("Streets")) {
+      mapboxMap.addOnMapClickListener(this)
+      Toast.makeText(this, "Click on the map", Toast.LENGTH_SHORT).show()
     }
+  }
 
-    public override fun onResume() {
-        super.onResume()
-        mapView.onResume()
+  override fun onMapClick(point: LatLng): Boolean {
+    val features = mapboxMap?.queryRenderedFeatures(point)
+    features?.first().let {
+      Toast.makeText(this, it.toString(), Toast.LENGTH_SHORT).show()
     }
+    return true
+  }
 
-    override fun onStart() {
-        super.onStart()
-        mapView.onStart()
-    }
+  public override fun onResume() {
+    super.onResume()
+    mapView.onResume()
+  }
 
-    override fun onStop() {
-        super.onStop()
-        mapView.onStop()
-    }
+  override fun onStart() {
+    super.onStart()
+    mapView.onStart()
+  }
 
-    public override fun onPause() {
-        super.onPause()
-        mapView.onPause()
-    }
+  override fun onStop() {
+    super.onStop()
+    mapView.onStop()
+  }
 
-    override fun onLowMemory() {
-        super.onLowMemory()
-        mapView.onLowMemory()
-    }
+  public override fun onPause() {
+    super.onPause()
+    mapView.onPause()
+  }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        mapboxMap?.removeOnMapClickListener(this)
-        mapView.onDestroy()
-    }
+  override fun onLowMemory() {
+    super.onLowMemory()
+    mapView.onLowMemory()
+  }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        mapView.onSaveInstanceState(outState)
-    }
+  override fun onDestroy() {
+    super.onDestroy()
+    mapboxMap?.removeOnMapClickListener(this)
+    mapView.onDestroy()
+  }
+
+  override fun onSaveInstanceState(outState: Bundle) {
+    super.onSaveInstanceState(outState)
+    mapView.onSaveInstanceState(outState)
+  }
 }

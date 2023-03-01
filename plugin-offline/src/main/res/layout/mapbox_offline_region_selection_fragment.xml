@@ -15,8 +15,8 @@
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-    app:mapbox_uiRotateGestures="false"
-    app:mapbox_uiTiltGestures="false"/>
+    app:maplibre_uiRotateGestures="false"
+    app:maplibre_uiTiltGestures="false"/>
 
   <View
     android:id="@+id/mapbox_offline_scrim_view"

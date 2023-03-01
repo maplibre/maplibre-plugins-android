@@ -16,6 +16,8 @@ import android.widget.Spinner;
 import com.mapbox.geojson.Feature;
 import com.mapbox.geojson.FeatureCollection;
 import com.mapbox.geojson.Point;
+import com.mapbox.mapboxsdk.Mapbox;
+import com.mapbox.mapboxsdk.WellKnownTileServer;
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
 import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.maps.MapView;
@@ -24,6 +26,7 @@ import com.mapbox.mapboxsdk.maps.Style;
 import com.mapbox.mapboxsdk.plugins.annotation.Symbol;
 import com.mapbox.mapboxsdk.plugins.annotation.SymbolManager;
 import com.mapbox.mapboxsdk.plugins.annotation.SymbolOptions;
+import com.mapbox.mapboxsdk.plugins.testapp.BuildConfig;
 import com.mapbox.mapboxsdk.plugins.testapp.R;
 import com.mapbox.mapboxsdk.plugins.testapp.Utils;
 
@@ -53,7 +56,7 @@ public class BulkSymbolActivity extends AppCompatActivity implements AdapterView
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_annotation);
-
+    Mapbox.getInstance(this, BuildConfig.MAPTILER_API_KEY, WellKnownTileServer.MapTiler);
     mapView = findViewById(R.id.mapView);
     mapView.onCreate(savedInstanceState);
     mapView.getMapAsync(this::initMap);
@@ -67,7 +70,7 @@ public class BulkSymbolActivity extends AppCompatActivity implements AdapterView
       )
     );
 
-    mapboxMap.setStyle(new Style.Builder().fromUri(Style.MAPBOX_STREETS), style -> {
+    mapboxMap.setStyle(new Style.Builder().fromUri(Style.getPredefinedStyle("Streets")), style -> {
       findViewById(R.id.fabStyles).setOnClickListener(v -> mapboxMap.setStyle(Utils.INSTANCE.getNextStyle()));
       symbolManager = new SymbolManager(mapView, mapboxMap, style);
       symbolManager.setIconAllowOverlap(true);
@@ -120,7 +123,9 @@ public class BulkSymbolActivity extends AppCompatActivity implements AdapterView
   }
 
   private void showMarkers(int amount) {
+    Timber.i("Showing markers");
     if (mapboxMap == null || locations == null || locations.features() == null || mapView.isDestroyed()) {
+      Timber.i("Not showing markers");
       return;
     }
 
@@ -141,6 +146,7 @@ public class BulkSymbolActivity extends AppCompatActivity implements AdapterView
 
     List<Feature> features = locations.features();
     if (features == null) {
+      Timber.i("No features");
       return;
     }
 

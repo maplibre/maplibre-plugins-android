@@ -72,7 +72,7 @@ public class ClusterSymbolActivity extends AppCompatActivity {
         new Pair(0, Color.GREEN)
       });
 
-    mapboxMap.setStyle(new Style.Builder().fromUri(Style.MAPBOX_STREETS), style -> {
+    mapboxMap.setStyle(new Style.Builder().fromUri(Style.getPredefinedStyle("Streets")), style -> {
       symbolManager = new SymbolManager(mapView, mapboxMap, style, null, clusterOptions);
       symbolManager.setIconAllowOverlap(true);
       loadData();

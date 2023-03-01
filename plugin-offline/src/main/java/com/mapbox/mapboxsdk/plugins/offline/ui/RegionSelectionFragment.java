@@ -98,7 +98,7 @@ public class RegionSelectionFragment extends Fragment implements OnMapReadyCallb
   @Override
   public void onMapReady(final MapboxMap mapboxMap) {
     this.mapboxMap = mapboxMap;
-    mapboxMap.setStyle(Style.MAPBOX_STREETS, new Style.OnStyleLoaded() {
+    mapboxMap.setStyle(Style.getPredefinedStyle("Streets"), new Style.OnStyleLoaded() {
       @Override
       public void onStyleLoaded(@NonNull Style style) {
         RegionSelectionFragment.this.style = style;

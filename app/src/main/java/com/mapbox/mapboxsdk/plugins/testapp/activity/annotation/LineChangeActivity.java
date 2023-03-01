@@ -68,7 +68,7 @@ public class LineChangeActivity extends AppCompatActivity {
           4)
       );
 
-      mapboxMap.setStyle(new Style.Builder().fromUri(Style.MAPBOX_STREETS), style -> {
+      mapboxMap.setStyle(new Style.Builder().fromUri(Style.getPredefinedStyle("Streets")), style -> {
         findViewById(R.id.fabStyles).setOnClickListener(v -> mapboxMap.setStyle(Utils.INSTANCE.getNextStyle()));
 
         lineManager = new LineManager(mapView, mapboxMap, style);

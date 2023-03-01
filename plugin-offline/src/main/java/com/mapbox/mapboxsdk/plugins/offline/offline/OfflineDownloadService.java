@@ -119,7 +119,7 @@ public class OfflineDownloadService extends Service {
   private void createDownload(final OfflineDownloadOptions offlineDownload) {
     final OfflineRegionDefinition definition = offlineDownload.definition();
     final byte[] metadata = offlineDownload.metadata();
-    OfflineManager.getInstance(getApplicationContext())
+    OfflineManager.Companion.getInstance(getApplicationContext())
       .createOfflineRegion(
         definition,
         metadata,
@@ -127,7 +127,7 @@ public class OfflineDownloadService extends Service {
           @Override
           public void onCreate(OfflineRegion offlineRegion) {
             OfflineDownloadOptions options
-              = offlineDownload.toBuilder().uuid(offlineRegion.getID()).build();
+              = offlineDownload.toBuilder().uuid(offlineRegion.getId()).build();
             OfflineDownloadStateReceiver.dispatchStartBroadcast(getApplicationContext(), options);
             regionLongSparseArray.put(options.uuid(), offlineRegion);
 

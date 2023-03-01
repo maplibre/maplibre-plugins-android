@@ -55,7 +55,7 @@ public class PressForSymbolActivity extends AppCompatActivity {
       );
       mapboxMap.addOnMapLongClickListener(this::addSymbol);
       mapboxMap.addOnMapClickListener(this::addSymbol);
-      mapboxMap.setStyle(getStyleBuilder(Style.MAPBOX_STREETS), style -> {
+      mapboxMap.setStyle(getStyleBuilder(Style.getPredefinedStyle("Streets")), style -> {
         findViewById(R.id.fabStyles).setOnClickListener(v ->
           mapboxMap.setStyle(getStyleBuilder(Utils.INSTANCE.getNextStyle())));
 
