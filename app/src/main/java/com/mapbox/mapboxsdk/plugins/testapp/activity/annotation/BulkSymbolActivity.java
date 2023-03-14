@@ -44,6 +44,8 @@ import java.util.Random;
  */
 public class BulkSymbolActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
+  private static final String IMAGE_ID_FIRE_HYDRANT = "fire-hydrant";
+
   private SymbolManager symbolManager;
   private List<Symbol> symbols = new ArrayList<>();
 
@@ -70,12 +72,15 @@ public class BulkSymbolActivity extends AppCompatActivity implements AdapterView
       )
     );
 
-    mapboxMap.setStyle(new Style.Builder().fromUri(Style.getPredefinedStyle("Streets")), style -> {
-      findViewById(R.id.fabStyles).setOnClickListener(v -> mapboxMap.setStyle(Utils.INSTANCE.getNextStyle()));
-      symbolManager = new SymbolManager(mapView, mapboxMap, style);
-      symbolManager.setIconAllowOverlap(true);
-      loadData(0);
-    });
+    mapboxMap.setStyle(new Style.Builder()
+        .fromUri(Style.getPredefinedStyle("Streets"))
+        .withImage(IMAGE_ID_FIRE_HYDRANT, getDrawable(R.drawable.ic_fire_hydrant)),
+      style -> {
+        findViewById(R.id.fabStyles).setOnClickListener(v -> mapboxMap.setStyle(Utils.INSTANCE.getNextStyle()));
+        symbolManager = new SymbolManager(mapView, mapboxMap, style);
+        symbolManager.setIconAllowOverlap(true);
+        loadData(0);
+      });
   }
 
   @Override
@@ -155,7 +160,7 @@ public class BulkSymbolActivity extends AppCompatActivity implements AdapterView
       Feature feature = features.get(randomIndex);
       options.add(new SymbolOptions()
         .withGeometry((Point) feature.geometry())
-        .withIconImage("fire-station-11")
+        .withIconImage(IMAGE_ID_FIRE_HYDRANT)
       );
     }
     symbols = symbolManager.create(options);
