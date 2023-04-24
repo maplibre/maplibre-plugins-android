@@ -57,7 +57,7 @@ class OfflineRegionListActivity : AppCompatActivity(), AdapterView.OnItemClickLi
                     Toast.makeText(
                         this@OfflineRegionListActivity,
                         "Error loading regions $error",
-                        Toast.LENGTH_LONG
+                        Toast.LENGTH_LONG,
                     ).show()
                 }
             })

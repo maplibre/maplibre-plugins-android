@@ -32,7 +32,7 @@ class OfflineUiComponentsActivity : AppCompatActivity() {
         // Create the offline region selector options
         val options = RegionSelectionOptions.builder()
             .statingCameraPosition(
-                CameraPosition.Builder().target(LatLng(32.7852, -96.8154)).zoom(12.0).build()
+                CameraPosition.Builder().target(LatLng(32.7852, -96.8154)).zoom(12.0).build(),
             ).build()
 
         val intent = OfflineRegionSelector.IntentBuilder()
@@ -61,8 +61,10 @@ class OfflineUiComponentsActivity : AppCompatActivity() {
                 String.format(
                     Locale.US,
                     "Region name: %s",
-                    data?.let { OfflineRegionSelector.getRegionName(it) } ?: "null"),
-                Toast.LENGTH_LONG).show()
+                    data?.let { OfflineRegionSelector.getRegionName(it) } ?: "null",
+                ),
+                Toast.LENGTH_LONG,
+            ).show()
         } else if (resultCode == Activity.RESULT_CANCELED) {
             Toast.makeText(this, "user canceled out of region selector", Toast.LENGTH_LONG).show()
         }

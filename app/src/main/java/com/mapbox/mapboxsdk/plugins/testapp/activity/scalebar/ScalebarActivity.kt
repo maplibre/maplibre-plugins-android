@@ -1,7 +1,6 @@
 package com.mapbox.mapboxsdk.plugins.testapp.activity.scalebar
 
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.mapbox.geojson.LineString
 import com.mapbox.geojson.Point

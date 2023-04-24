@@ -21,7 +21,7 @@ object Utils {
         Style.getPredefinedStyle("Streets"),
         Style.getPredefinedStyle("Outdoors"),
         Style.getPredefinedStyle("Light"),
-        Style.getPredefinedStyle("Dark")
+        Style.getPredefinedStyle("Dark"),
     )
 
     private var index: Int = 0

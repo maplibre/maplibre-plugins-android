@@ -52,7 +52,7 @@ class OfflineRegionDetailActivity : AppCompatActivity(), OfflineDownloadChangeLi
             Toast.makeText(
                 this@OfflineRegionDetailActivity,
                 "Error getting offline region state: $error",
-                Toast.LENGTH_SHORT
+                Toast.LENGTH_SHORT,
             ).show()
         }
     }
@@ -62,7 +62,7 @@ class OfflineRegionDetailActivity : AppCompatActivity(), OfflineDownloadChangeLi
             Toast.makeText(
                 this@OfflineRegionDetailActivity,
                 "Region deleted.",
-                Toast.LENGTH_SHORT
+                Toast.LENGTH_SHORT,
             ).show()
             finish()
         }
@@ -72,7 +72,7 @@ class OfflineRegionDetailActivity : AppCompatActivity(), OfflineDownloadChangeLi
             Toast.makeText(
                 this@OfflineRegionDetailActivity,
                 "Error getting offline region state: $error",
-                Toast.LENGTH_SHORT
+                Toast.LENGTH_SHORT,
             ).show()
         }
     }

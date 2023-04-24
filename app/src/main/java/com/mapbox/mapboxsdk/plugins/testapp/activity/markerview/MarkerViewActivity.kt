@@ -20,7 +20,9 @@ import com.mapbox.mapboxsdk.plugins.testapp.R
 import com.mapbox.mapboxsdk.plugins.testapp.Utils
 import java.util.Random
 
-class MarkerViewActivity : AppCompatActivity(), MapboxMap.OnMapLongClickListener,
+class MarkerViewActivity :
+    AppCompatActivity(),
+    MapboxMap.OnMapLongClickListener,
     MapboxMap.OnMapClickListener {
 
     private val random = Random()
@@ -94,7 +96,7 @@ class MarkerViewActivity : AppCompatActivity(), MapboxMap.OnMapLongClickListener
     private fun createRandomLatLng(): LatLng {
         return LatLng(
             random.nextDouble() * -180.0 + 90.0,
-            random.nextDouble() * -360.0 + 180.0
+            random.nextDouble() * -360.0 + 180.0,
         )
     }
 

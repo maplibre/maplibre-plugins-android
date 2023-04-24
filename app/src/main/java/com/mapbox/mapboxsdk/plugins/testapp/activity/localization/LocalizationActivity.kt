@@ -193,7 +193,7 @@ class LocalizationActivity : AppCompatActivity(), OnMapReadyCallback {
         private val LOCALES = arrayOf(
             MapLocale.CANADA, MapLocale.GERMANY, MapLocale.CHINA,
             MapLocale.US, MapLocale.CANADA_FRENCH, MapLocale.JAPAN, MapLocale.KOREA,
-            MapLocale.FRANCE, MapLocale.SPAIN, MapLocale.VIETNAM, MapLocale.ITALY, MapLocale.UK
+            MapLocale.FRANCE, MapLocale.SPAIN, MapLocale.VIETNAM, MapLocale.ITALY, MapLocale.UK,
         )
 
         private var index: Int = 0
