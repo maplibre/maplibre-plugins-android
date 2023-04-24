@@ -16,16 +16,16 @@ import com.mapbox.mapboxsdk.plugins.testapp.databinding.ActivityMapsKtxBinding
 class MapboxKtxActivity : AppCompatActivity(), OnMapReadyCallback, MapboxMap.OnMapClickListener {
 
   private var mapboxMap: MapboxMap? = null
-  private lateinit var mapView: MapView
 
   private lateinit var binding: ActivityMapsKtxBinding
+  private lateinit var mapView: MapView
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     binding = ActivityMapsKtxBinding.inflate(layoutInflater)
-    val view = binding.root
-    setContentView(view)
-    mapView = findViewById<View>(R.id.mapView) as MapView
+    setContentView(binding.root)
+
+    mapView = binding.mapView
     mapView.onCreate(savedInstanceState)
     mapView.getMapAsync(this)
   }

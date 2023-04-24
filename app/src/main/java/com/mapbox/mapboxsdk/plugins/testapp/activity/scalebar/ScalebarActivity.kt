@@ -25,9 +25,10 @@ class ScalebarActivity : AppCompatActivity() {
   private lateinit var binding: ActivityScalebarBinding
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_scalebar)
     binding = ActivityScalebarBinding.inflate(layoutInflater)
-    mapView = findViewById<View>(R.id.mapView) as MapView
+    setContentView(binding.root)
+
+    mapView = binding.mapView
     mapView.onCreate(savedInstanceState)
     mapView.getMapAsync { mapboxMap ->
       mapboxMap.setStyle(Style.getPredefinedStyle("Streets")) {

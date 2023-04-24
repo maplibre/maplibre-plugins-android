@@ -26,8 +26,8 @@ class LocalizationActivity : AppCompatActivity(), OnMapReadyCallback {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_localization)
     binding = ActivityLocalizationBinding.inflate(layoutInflater)
+    setContentView(binding.root)
     mapIsLocalized = true
     Toast.makeText(this, R.string.change_language_instruction, Toast.LENGTH_LONG).show()
     mapView = findViewById<View>(R.id.mapView) as MapView
