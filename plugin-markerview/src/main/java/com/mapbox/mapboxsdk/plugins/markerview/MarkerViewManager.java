@@ -15,86 +15,86 @@ import androidx.annotation.UiThread;
  */
 public class MarkerViewManager implements MapView.OnCameraDidChangeListener, MapView.OnCameraIsChangingListener {
 
-  private final MapView mapView;
-  private final MapboxMap mapboxMap;
-  private final List<MarkerView> markers = new ArrayList<>();
-  private boolean initialised;
+    private final MapView mapView;
+    private final MapboxMap mapboxMap;
+    private final List<MarkerView> markers = new ArrayList<>();
+    private boolean initialised;
 
-  /**
-   * Create a MarkerViewManager.
-   *
-   * @param mapView   the MapView used to synchronise views on
-   * @param mapboxMap the MapboxMap to synchronise views with
-   */
-  public MarkerViewManager(MapView mapView, MapboxMap mapboxMap) {
-    this.mapView = mapView;
-    this.mapboxMap = mapboxMap;
-  }
-
-  /**
-   * Destroys the MarkerViewManager.
-   * <p>
-   * Should be called before MapView#onDestroy
-   * </p>
-   */
-  @UiThread
-  public void onDestroy() {
-    markers.clear();
-    mapView.removeOnCameraDidChangeListener(this);
-    mapView.removeOnCameraIsChangingListener(this);
-    initialised = false;
-  }
-
-  /**
-   * Add a MarkerView to the map using MarkerView and LatLng.
-   *
-   * @param markerView the markerView to synchronise on the map
-   */
-  @UiThread
-  public void addMarker(@NonNull MarkerView markerView) {
-    if (mapView.isDestroyed() || markers.contains(markerView)) {
-      return;
+    /**
+     * Create a MarkerViewManager.
+     *
+     * @param mapView   the MapView used to synchronise views on
+     * @param mapboxMap the MapboxMap to synchronise views with
+     */
+    public MarkerViewManager(MapView mapView, MapboxMap mapboxMap) {
+        this.mapView = mapView;
+        this.mapboxMap = mapboxMap;
     }
 
-    if (!initialised) {
-      initialised = true;
-      mapView.addOnCameraDidChangeListener(this);
-      mapView.addOnCameraIsChangingListener(this);
-    }
-    markerView.setProjection(mapboxMap.getProjection());
-    mapView.addView(markerView.getView());
-    markers.add(markerView);
-    markerView.update();
-  }
-
-  /**
-   * Remove an existing markerView from the map.
-   *
-   * @param markerView the markerView to be removed from the map
-   */
-  @UiThread
-  public void removeMarker(@NonNull MarkerView markerView) {
-    if (mapView.isDestroyed() || !markers.contains(markerView)) {
-      return;
+    /**
+     * Destroys the MarkerViewManager.
+     * <p>
+     * Should be called before MapView#onDestroy
+     * </p>
+     */
+    @UiThread
+    public void onDestroy() {
+        markers.clear();
+        mapView.removeOnCameraDidChangeListener(this);
+        mapView.removeOnCameraIsChangingListener(this);
+        initialised = false;
     }
 
-    mapView.removeView(markerView.getView());
-    markers.remove(markerView);
-  }
+    /**
+     * Add a MarkerView to the map using MarkerView and LatLng.
+     *
+     * @param markerView the markerView to synchronise on the map
+     */
+    @UiThread
+    public void addMarker(@NonNull MarkerView markerView) {
+        if (mapView.isDestroyed() || markers.contains(markerView)) {
+            return;
+        }
 
-  private void update() {
-    for (MarkerView marker : markers) {
-      marker.update();
+        if (!initialised) {
+            initialised = true;
+            mapView.addOnCameraDidChangeListener(this);
+            mapView.addOnCameraIsChangingListener(this);
+        }
+        markerView.setProjection(mapboxMap.getProjection());
+        mapView.addView(markerView.getView());
+        markers.add(markerView);
+        markerView.update();
     }
-  }
 
-  @Override
-  public void onCameraDidChange(boolean animated) {
-    update();
-  }
+    /**
+     * Remove an existing markerView from the map.
+     *
+     * @param markerView the markerView to be removed from the map
+     */
+    @UiThread
+    public void removeMarker(@NonNull MarkerView markerView) {
+        if (mapView.isDestroyed() || !markers.contains(markerView)) {
+            return;
+        }
 
-  @Override
-  public void onCameraIsChanging() {
-    update();
-  }
+        mapView.removeView(markerView.getView());
+        markers.remove(markerView);
+    }
+
+    private void update() {
+        for (MarkerView marker : markers) {
+            marker.update();
+        }
+    }
+
+    @Override
+    public void onCameraDidChange(boolean animated) {
+        update();
+    }
+
+    @Override
+    public void onCameraIsChanging() {
+        update();
+    }
 }

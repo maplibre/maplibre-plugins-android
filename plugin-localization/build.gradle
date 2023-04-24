@@ -1,32 +1,32 @@
 apply plugin: 'com.android.library'
 
 android {
-  compileSdkVersion androidVersions.compileSdkVersion
+    compileSdkVersion androidVersions.compileSdkVersion
 
-  defaultConfig {
-    minSdkVersion androidVersions.minSdkVersion
-    targetSdkVersion androidVersions.targetSdkVersion
-    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-  }
+    defaultConfig {
+        minSdkVersion androidVersions.minSdkVersion
+        targetSdkVersion androidVersions.targetSdkVersion
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
 
-  configurations {
-    javadocDeps
-  }
+    configurations {
+        javadocDeps
+    }
 
-  lintOptions {
-    abortOnError false
-  }
+    lintOptions {
+        abortOnError false
+    }
 }
 
 dependencies {
-  implementation dependenciesList.supportAppcompatV7
-  implementation dependenciesList.mapLibreAndroidSdk
-  implementation dependenciesList.timber
-  javadocDeps dependenciesList.mapLibreAndroidSdk
+    implementation dependenciesList.supportAppcompatV7
+    implementation dependenciesList.mapLibreAndroidSdk
+    implementation dependenciesList.timber
+    javadocDeps dependenciesList.mapLibreAndroidSdk
 
-  // Unit testing
-  testImplementation dependenciesList.junit
-  testImplementation dependenciesList.mockito
+    // Unit testing
+    testImplementation dependenciesList.junit
+    testImplementation dependenciesList.mockito
 }
 
 apply from: "${rootDir}/gradle/javadoc.gradle"

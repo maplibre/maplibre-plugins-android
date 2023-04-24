@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.mapbox.mapboxsdk.plugins.offline">
+    package="com.mapbox.mapboxsdk.plugins.offline">
 
-  <application>
-    <!-- Offline download region picker activity -->
-    <activity
-      android:name="com.mapbox.mapboxsdk.plugins.offline.ui.OfflineActivity"
-      android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
+    <application>
+        <!-- Offline download region picker activity -->
+        <activity
+            android:name="com.mapbox.mapboxsdk.plugins.offline.ui.OfflineActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
 
-    <!-- Offline download service -->
-    <service
-      android:name="com.mapbox.mapboxsdk.plugins.offline.offline.OfflineDownloadService"
-      android:exported="false"/>
-  </application>
+        <!-- Offline download service -->
+        <service
+            android:name="com.mapbox.mapboxsdk.plugins.offline.offline.OfflineDownloadService"
+            android:exported="false" />
+    </application>
 </manifest>

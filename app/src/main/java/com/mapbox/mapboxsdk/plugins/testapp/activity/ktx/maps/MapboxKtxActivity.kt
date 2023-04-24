@@ -15,70 +15,70 @@ import com.mapbox.mapboxsdk.plugins.testapp.databinding.ActivityMapsKtxBinding
 
 class MapboxKtxActivity : AppCompatActivity(), OnMapReadyCallback, MapboxMap.OnMapClickListener {
 
-  private var mapboxMap: MapboxMap? = null
+    private var mapboxMap: MapboxMap? = null
 
-  private lateinit var binding: ActivityMapsKtxBinding
-  private lateinit var mapView: MapView
+    private lateinit var binding: ActivityMapsKtxBinding
+    private lateinit var mapView: MapView
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    binding = ActivityMapsKtxBinding.inflate(layoutInflater)
-    setContentView(binding.root)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityMapsKtxBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-    mapView = binding.mapView
-    mapView.onCreate(savedInstanceState)
-    mapView.getMapAsync(this)
-  }
-
-  override fun onMapReady(mapboxMap: MapboxMap) {
-    this.mapboxMap = mapboxMap
-    mapboxMap.setStyle(Style.getPredefinedStyle("Streets")) {
-      mapboxMap.addOnMapClickListener(this)
-      Toast.makeText(this, "Click on the map", Toast.LENGTH_SHORT).show()
+        mapView = binding.mapView
+        mapView.onCreate(savedInstanceState)
+        mapView.getMapAsync(this)
     }
-  }
 
-  override fun onMapClick(point: LatLng): Boolean {
-    val features = mapboxMap?.queryRenderedFeatures(point)
-    features?.first().let {
-      Toast.makeText(this, it.toString(), Toast.LENGTH_SHORT).show()
+    override fun onMapReady(mapboxMap: MapboxMap) {
+        this.mapboxMap = mapboxMap
+        mapboxMap.setStyle(Style.getPredefinedStyle("Streets")) {
+            mapboxMap.addOnMapClickListener(this)
+            Toast.makeText(this, "Click on the map", Toast.LENGTH_SHORT).show()
+        }
     }
-    return true
-  }
 
-  public override fun onResume() {
-    super.onResume()
-    mapView.onResume()
-  }
+    override fun onMapClick(point: LatLng): Boolean {
+        val features = mapboxMap?.queryRenderedFeatures(point)
+        features?.first().let {
+            Toast.makeText(this, it.toString(), Toast.LENGTH_SHORT).show()
+        }
+        return true
+    }
 
-  override fun onStart() {
-    super.onStart()
-    mapView.onStart()
-  }
+    public override fun onResume() {
+        super.onResume()
+        mapView.onResume()
+    }
 
-  override fun onStop() {
-    super.onStop()
-    mapView.onStop()
-  }
+    override fun onStart() {
+        super.onStart()
+        mapView.onStart()
+    }
 
-  public override fun onPause() {
-    super.onPause()
-    mapView.onPause()
-  }
+    override fun onStop() {
+        super.onStop()
+        mapView.onStop()
+    }
 
-  override fun onLowMemory() {
-    super.onLowMemory()
-    mapView.onLowMemory()
-  }
+    public override fun onPause() {
+        super.onPause()
+        mapView.onPause()
+    }
 
-  override fun onDestroy() {
-    super.onDestroy()
-    mapboxMap?.removeOnMapClickListener(this)
-    mapView.onDestroy()
-  }
+    override fun onLowMemory() {
+        super.onLowMemory()
+        mapView.onLowMemory()
+    }
 
-  override fun onSaveInstanceState(outState: Bundle) {
-    super.onSaveInstanceState(outState)
-    mapView.onSaveInstanceState(outState)
-  }
+    override fun onDestroy() {
+        super.onDestroy()
+        mapboxMap?.removeOnMapClickListener(this)
+        mapView.onDestroy()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        mapView.onSaveInstanceState(outState)
+    }
 }

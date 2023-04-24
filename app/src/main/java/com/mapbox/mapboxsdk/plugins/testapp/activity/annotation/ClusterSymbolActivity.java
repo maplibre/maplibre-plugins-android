@@ -40,193 +40,193 @@ import timber.log.Timber;
  */
 public class ClusterSymbolActivity extends AppCompatActivity {
 
-  private SymbolManager symbolManager;
-  private List<Symbol> symbols = new ArrayList<>();
+    private SymbolManager symbolManager;
+    private List<Symbol> symbols = new ArrayList<>();
 
-  private MapboxMap mapboxMap;
-  private MapView mapView;
-  private FeatureCollection locations;
+    private MapboxMap mapboxMap;
+    private MapView mapView;
+    private FeatureCollection locations;
 
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_cluster);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_cluster);
 
-    mapView = findViewById(R.id.mapView);
-    mapView.onCreate(savedInstanceState);
-    mapView.getMapAsync(this::initMap);
-  }
-
-  private void initMap(MapboxMap mapboxMap) {
-    this.mapboxMap = mapboxMap;
-    mapboxMap.moveCamera(
-      CameraUpdateFactory.newLatLngZoom(
-        new LatLng(38.87031, -77.00897), 10
-      )
-    );
-
-    ClusterOptions clusterOptions = new ClusterOptions()
-      .withColorLevels(new Pair[] {
-        new Pair(100, Color.RED),
-        new Pair(50, Color.BLUE),
-        new Pair(0, Color.GREEN)
-      });
-
-    mapboxMap.setStyle(new Style.Builder().fromUri(Style.getPredefinedStyle("Streets")), style -> {
-      symbolManager = new SymbolManager(mapView, mapboxMap, style, null, clusterOptions);
-      symbolManager.setIconAllowOverlap(true);
-      loadData();
-    });
-  }
-
-  private void loadData() {
-    int amount = 10000;
-    if (locations == null) {
-      new LoadLocationTask(this, amount).execute();
-    } else {
-      showMarkers(amount);
-    }
-  }
-
-  private void onLatLngListLoaded(FeatureCollection featureCollection, int amount) {
-    locations = featureCollection;
-    showMarkers(amount);
-  }
-
-  private void showMarkers(int amount) {
-    if (mapboxMap == null || locations == null || locations.features() == null || mapView.isDestroyed()) {
-      return;
-    }
-    // delete old symbols
-    symbolManager.delete(symbols);
-    if (locations.features().size() < amount) {
-      amount = locations.features().size();
+        mapView = findViewById(R.id.mapView);
+        mapView.onCreate(savedInstanceState);
+        mapView.getMapAsync(this::initMap);
     }
 
-    showSymbols(amount);
-  }
+    private void initMap(MapboxMap mapboxMap) {
+        this.mapboxMap = mapboxMap;
+        mapboxMap.moveCamera(
+            CameraUpdateFactory.newLatLngZoom(
+                new LatLng(38.87031, -77.00897), 10
+            )
+        );
 
-  private void showSymbols(int amount) {
-    List<SymbolOptions> options = new ArrayList<>();
-    Random random = new Random();
-    int randomIndex;
+        ClusterOptions clusterOptions = new ClusterOptions()
+            .withColorLevels(new Pair[]{
+                new Pair(100, Color.RED),
+                new Pair(50, Color.BLUE),
+                new Pair(0, Color.GREEN)
+            });
 
-    List<Feature> features = locations.features();
-    if (features == null) {
-      return;
+        mapboxMap.setStyle(new Style.Builder().fromUri(Style.getPredefinedStyle("Streets")), style -> {
+            symbolManager = new SymbolManager(mapView, mapboxMap, style, null, clusterOptions);
+            symbolManager.setIconAllowOverlap(true);
+            loadData();
+        });
     }
 
-    for (int i = 0; i < amount; i++) {
-      randomIndex = random.nextInt(features.size());
-      Feature feature = features.get(randomIndex);
-      options.add(new SymbolOptions()
-        .withGeometry((Point) feature.geometry())
-        .withIconImage("fire-station-11")
-      );
-    }
-    symbols = symbolManager.create(options);
-  }
-
-  @Override
-  protected void onStart() {
-    super.onStart();
-    mapView.onStart();
-  }
-
-  @Override
-  protected void onResume() {
-    super.onResume();
-    mapView.onResume();
-  }
-
-  @Override
-  protected void onPause() {
-    super.onPause();
-    mapView.onPause();
-  }
-
-  @Override
-  protected void onStop() {
-    super.onStop();
-    mapView.onStop();
-  }
-
-  @Override
-  protected void onSaveInstanceState(Bundle outState) {
-    super.onSaveInstanceState(outState);
-    mapView.onSaveInstanceState(outState);
-  }
-
-  @Override
-  protected void onDestroy() {
-    super.onDestroy();
-
-    if (symbolManager != null) {
-      symbolManager.onDestroy();
+    private void loadData() {
+        int amount = 10000;
+        if (locations == null) {
+            new LoadLocationTask(this, amount).execute();
+        } else {
+            showMarkers(amount);
+        }
     }
 
-    mapView.onDestroy();
-  }
+    private void onLatLngListLoaded(FeatureCollection featureCollection, int amount) {
+        locations = featureCollection;
+        showMarkers(amount);
+    }
 
-  @Override
-  public void onLowMemory() {
-    super.onLowMemory();
-    mapView.onLowMemory();
-  }
+    private void showMarkers(int amount) {
+        if (mapboxMap == null || locations == null || locations.features() == null || mapView.isDestroyed()) {
+            return;
+        }
+        // delete old symbols
+        symbolManager.delete(symbols);
+        if (locations.features().size() < amount) {
+            amount = locations.features().size();
+        }
 
-  private static class LoadLocationTask extends AsyncTask<Void, Integer, FeatureCollection> {
+        showSymbols(amount);
+    }
 
-    private final WeakReference<ClusterSymbolActivity> activity;
-    private final int amount;
+    private void showSymbols(int amount) {
+        List<SymbolOptions> options = new ArrayList<>();
+        Random random = new Random();
+        int randomIndex;
 
-    private LoadLocationTask(ClusterSymbolActivity activity, int amount) {
-      this.amount = amount;
-      this.activity = new WeakReference<>(activity);
+        List<Feature> features = locations.features();
+        if (features == null) {
+            return;
+        }
+
+        for (int i = 0; i < amount; i++) {
+            randomIndex = random.nextInt(features.size());
+            Feature feature = features.get(randomIndex);
+            options.add(new SymbolOptions()
+                .withGeometry((Point) feature.geometry())
+                .withIconImage("fire-station-11")
+            );
+        }
+        symbols = symbolManager.create(options);
     }
 
     @Override
-    protected FeatureCollection doInBackground(Void... params) {
-      ClusterSymbolActivity activity = this.activity.get();
-      if (activity != null) {
-        String json = null;
-        try {
-          json = GeoParseUtil.loadStringFromAssets(activity.getApplicationContext());
-        } catch (IOException exception) {
-          Timber.e(exception, "Could not add markers");
-        }
-
-        if (json != null) {
-          return FeatureCollection.fromJson(json);
-        }
-      }
-      return null;
+    protected void onStart() {
+        super.onStart();
+        mapView.onStart();
     }
 
     @Override
-    protected void onPostExecute(FeatureCollection locations) {
-      super.onPostExecute(locations);
-      ClusterSymbolActivity activity = this.activity.get();
-      if (activity != null) {
-        activity.onLatLngListLoaded(locations, amount);
-      }
-    }
-  }
-
-  public static class GeoParseUtil {
-
-    static String loadStringFromAssets(final Context context) throws IOException {
-      InputStream is = context.getAssets().open("points.geojson");
-      BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
-      return readAll(rd);
+    protected void onResume() {
+        super.onResume();
+        mapView.onResume();
     }
 
-    private static String readAll(Reader rd) throws IOException {
-      StringBuilder sb = new StringBuilder();
-      int cp;
-      while ((cp = rd.read()) != -1) {
-        sb.append((char) cp);
-      }
-      return sb.toString();
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mapView.onPause();
     }
-  }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mapView.onStop();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        mapView.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        if (symbolManager != null) {
+            symbolManager.onDestroy();
+        }
+
+        mapView.onDestroy();
+    }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        mapView.onLowMemory();
+    }
+
+    private static class LoadLocationTask extends AsyncTask<Void, Integer, FeatureCollection> {
+
+        private final WeakReference<ClusterSymbolActivity> activity;
+        private final int amount;
+
+        private LoadLocationTask(ClusterSymbolActivity activity, int amount) {
+            this.amount = amount;
+            this.activity = new WeakReference<>(activity);
+        }
+
+        @Override
+        protected FeatureCollection doInBackground(Void... params) {
+            ClusterSymbolActivity activity = this.activity.get();
+            if (activity != null) {
+                String json = null;
+                try {
+                    json = GeoParseUtil.loadStringFromAssets(activity.getApplicationContext());
+                } catch (IOException exception) {
+                    Timber.e(exception, "Could not add markers");
+                }
+
+                if (json != null) {
+                    return FeatureCollection.fromJson(json);
+                }
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(FeatureCollection locations) {
+            super.onPostExecute(locations);
+            ClusterSymbolActivity activity = this.activity.get();
+            if (activity != null) {
+                activity.onLatLngListLoaded(locations, amount);
+            }
+        }
+    }
+
+    public static class GeoParseUtil {
+
+        static String loadStringFromAssets(final Context context) throws IOException {
+            InputStream is = context.getAssets().open("points.geojson");
+            BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
+            return readAll(rd);
+        }
+
+        private static String readAll(Reader rd) throws IOException {
+            StringBuilder sb = new StringBuilder();
+            int cp;
+            while ((cp = rd.read()) != -1) {
+                sb.append((char) cp);
+            }
+            return sb.toString();
+        }
+    }
 }

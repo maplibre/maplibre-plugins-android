@@ -8,11 +8,11 @@ import androidx.annotation.Nullable;
 
 interface CoreElementProvider<L extends Layer> {
 
-  String getLayerId();
+    String getLayerId();
 
-  String getSourceId();
+    String getSourceId();
 
-  L getLayer();
+    L getLayer();
 
-  GeoJsonSource getSource(@Nullable GeoJsonOptions geoJsonOptions);
+    GeoJsonSource getSource(@Nullable GeoJsonOptions geoJsonOptions);
 }

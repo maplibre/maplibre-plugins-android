@@ -1,51 +1,51 @@
 apply plugin: 'com.android.library'
 
 android {
-  compileSdkVersion androidVersions.compileSdkVersion
+    compileSdkVersion androidVersions.compileSdkVersion
 
-  defaultConfig {
-    minSdkVersion androidVersions.minSdkVersion
-    targetSdkVersion androidVersions.targetSdkVersion
-    vectorDrawables.useSupportLibrary = true
-    consumerProguardFiles 'proguard-consumer.pro'
-  }
+    defaultConfig {
+        minSdkVersion androidVersions.minSdkVersion
+        targetSdkVersion androidVersions.targetSdkVersion
+        vectorDrawables.useSupportLibrary = true
+        consumerProguardFiles 'proguard-consumer.pro'
+    }
 
-  configurations {
-    javadocDeps
-  }
+    configurations {
+        javadocDeps
+    }
 
-  lintOptions {
-    abortOnError false
-  }
+    lintOptions {
+        abortOnError false
+    }
 
-  // Avoid naming conflicts
-  resourcePrefix 'mapbox_'
+    // Avoid naming conflicts
+    resourcePrefix 'mapbox_'
 }
 
 dependencies {
-  implementation dependenciesList.supportAppcompatV7
-  implementation dependenciesList.supportConstraintLayout
-  implementation dependenciesList.supportAnnotation
-  implementation dependenciesList.supportV4
-  implementation dependenciesList.supportDesign
+    implementation dependenciesList.supportAppcompatV7
+    implementation dependenciesList.supportConstraintLayout
+    implementation dependenciesList.supportAnnotation
+    implementation dependenciesList.supportV4
+    implementation dependenciesList.supportDesign
 
-  // MapLibre
-  implementation dependenciesList.mapLibreAndroidSdk
+    // MapLibre
+    implementation dependenciesList.mapLibreAndroidSdk
 
-  // AutoValues
-  annotationProcessor dependenciesList.autoValuesParcel
-  annotationProcessor dependenciesList.autoValue
-  compileOnly dependenciesList.autoValue
+    // AutoValues
+    annotationProcessor dependenciesList.autoValuesParcel
+    annotationProcessor dependenciesList.autoValue
+    compileOnly dependenciesList.autoValue
 
-  // Timber
-  implementation dependenciesList.timber
+    // Timber
+    implementation dependenciesList.timber
 
-  // Unit testing
-  testImplementation dependenciesList.junit
-  testImplementation dependenciesList.mockito
-  testImplementation dependenciesList.androidArchCore
+    // Unit testing
+    testImplementation dependenciesList.junit
+    testImplementation dependenciesList.mockito
+    testImplementation dependenciesList.androidArchCore
 
-  javadocDeps dependenciesList.mapLibreAndroidSdk
+    javadocDeps dependenciesList.mapLibreAndroidSdk
 }
 
 apply from: "${rootDir}/gradle/javadoc.gradle"
