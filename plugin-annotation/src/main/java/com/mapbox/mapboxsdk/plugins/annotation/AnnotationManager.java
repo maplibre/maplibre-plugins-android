@@ -137,7 +137,7 @@ public abstract class AnnotationManager<
         T t = options.build(currentId, this);
         annotations.put(t.getId(), t);
         currentId++;
-        updateSource();
+        internalUpdateSource();
         return t;
     }
 
@@ -156,7 +156,7 @@ public abstract class AnnotationManager<
             annotations.put(annotation.getId(), annotation);
             currentId++;
         }
-        updateSource();
+        internalUpdateSource();
         return annotationList;
     }
 
@@ -168,7 +168,8 @@ public abstract class AnnotationManager<
     @UiThread
     public void delete(T annotation) {
         annotations.remove(annotation.getId());
-        updateSource();
+        draggableAnnotationController.onAnnotationUpdated(annotation);
+        internalUpdateSource();
     }
 
     /**
@@ -180,8 +181,9 @@ public abstract class AnnotationManager<
     public void delete(List<T> annotationList) {
         for (T annotation : annotationList) {
             annotations.remove(annotation.getId());
+            draggableAnnotationController.onAnnotationUpdated(annotation);
         }
-        updateSource();
+        internalUpdateSource();
     }
 
     /**
@@ -202,7 +204,8 @@ public abstract class AnnotationManager<
     public void update(T annotation) {
         if (annotations.containsValue(annotation)) {
             annotations.put(annotation.getId(), annotation);
-            updateSource();
+            draggableAnnotationController.onAnnotationUpdated(annotation);
+            internalUpdateSource();
         } else {
             Logger.e(TAG, "Can't update annotation: "
                 + annotation.toString()
@@ -219,8 +222,9 @@ public abstract class AnnotationManager<
     public void update(List<T> annotationList) {
         for (T annotation : annotationList) {
             annotations.put(annotation.getId(), annotation);
+            draggableAnnotationController.onAnnotationUpdated(annotation);
         }
-        updateSource();
+        internalUpdateSource();
     }
 
     /**
