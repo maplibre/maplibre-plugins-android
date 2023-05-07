@@ -22,6 +22,7 @@ import androidx.test.espresso.IdlingRegistry;
 import androidx.test.espresso.IdlingResourceTimeoutException;
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.rule.ActivityTestRule;
+
 import timber.log.Timber;
 
 import static androidx.test.espresso.Espresso.onView;
@@ -31,74 +32,74 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 
 public abstract class BaseActivityTest {
 
-  @Rule
-  public ActivityTestRule<Activity> rule = new ActivityTestRule<>(getActivityClass());
+    @Rule
+    public ActivityTestRule<Activity> rule = new ActivityTestRule<>(getActivityClass());
 
-  @Rule
-  public TestName testName = new TestName();
+    @Rule
+    public TestName testName = new TestName();
 
-  protected MapboxMap mapboxMap;
-  protected OnMapReadyIdlingResource idlingResource;
+    protected MapboxMap mapboxMap;
+    protected OnMapReadyIdlingResource idlingResource;
 
-  @Before
-  public void beforeTest() {
-    try {
-      Timber.e("@Before %s: register idle resource", testName.getMethodName());
-      IdlingRegistry.getInstance().register(idlingResource = new OnMapReadyIdlingResource(rule.getActivity()));
-      Espresso.onIdle();
-      mapboxMap = idlingResource.getMapboxMap();
-    } catch (IdlingResourceTimeoutException idlingResourceTimeoutException) {
-      throw new RuntimeException(String.format("Could not start %s test for %s.\n  Either the ViewHierarchy doesn't "
-          + "contain a view with resource id = R.id.mapView or \n the hosting Activity wasn't in an idle state.",
-        testName.getMethodName(),
-        getActivityClass().getSimpleName())
-      );
+    @Before
+    public void beforeTest() {
+        try {
+            Timber.e("@Before %s: register idle resource", testName.getMethodName());
+            IdlingRegistry.getInstance().register(idlingResource = new OnMapReadyIdlingResource(rule.getActivity()));
+            Espresso.onIdle();
+            mapboxMap = idlingResource.getMapboxMap();
+        } catch (IdlingResourceTimeoutException idlingResourceTimeoutException) {
+            throw new RuntimeException(String.format("Could not start %s test for %s.\n  Either the ViewHierarchy doesn't "
+                    + "contain a view with resource id = R.id.mapView or \n the hosting Activity wasn't in an idle state.",
+                testName.getMethodName(),
+                getActivityClass().getSimpleName())
+            );
+        }
     }
-  }
 
-  protected void validateTestSetup() {
-    Assert.assertTrue("Device is not connected to the Internet.", isConnected(rule.getActivity()));
-    checkViewIsDisplayed(android.R.id.content);
-    Assert.assertNotNull(mapboxMap);
-  }
+    protected void validateTestSetup() {
+        Assert.assertTrue("Device is not connected to the Internet.", isConnected(rule.getActivity()));
+        checkViewIsDisplayed(android.R.id.content);
+        Assert.assertNotNull(mapboxMap);
+    }
 
-  protected MapboxMap getMapboxMap() {
-    return mapboxMap;
-  }
+    protected MapboxMap getMapboxMap() {
+        return mapboxMap;
+    }
 
-  protected abstract Class getActivityClass();
+    protected abstract Class getActivityClass();
 
-  protected void checkViewIsDisplayed(int id) {
-    onView(withId(id)).check(matches(isDisplayed()));
-  }
+    protected void checkViewIsDisplayed(int id) {
+        onView(withId(id)).check(matches(isDisplayed()));
+    }
 
-  protected void waitAction() {
-    waitAction(500);
-  }
+    protected void waitAction() {
+        waitAction(500);
+    }
 
-  protected void waitAction(long waitTime) {
-    onView(withId(android.R.id.content)).perform(new WaitAction(waitTime));
-  }
+    protected void waitAction(long waitTime) {
+        onView(withId(android.R.id.content)).perform(new WaitAction(waitTime));
+    }
 
-  static boolean isConnected(Context context) {
-    ConnectivityManager connectivityManager
-      = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-    NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-    return activeNetworkInfo != null && activeNetworkInfo.isConnected();
-  }
+    static boolean isConnected(Context context) {
+        ConnectivityManager connectivityManager
+            = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
 
-  protected ViewInteraction onMapView() {
-    return onView(withId(android.R.id.content));
-  }
+    protected ViewInteraction onMapView() {
+        return onView(withId(android.R.id.content));
+    }
 
-  protected MapboxMapAction getMapboxMapAction(MapboxMapAction.OnInvokeActionListener onInvokeActionListener) {
-    return new MapboxMapAction(onInvokeActionListener, mapboxMap);
-  }
+    protected MapboxMapAction getMapboxMapAction(MapboxMapAction.OnInvokeActionListener onInvokeActionListener) {
+        return new MapboxMapAction(onInvokeActionListener, mapboxMap);
+    }
 
-  @After
-  public void afterTest() {
-    Timber.e("@After test: unregister idle resource");
-    IdlingRegistry.getInstance().unregister(idlingResource);
-  }
+    @After
+    public void afterTest() {
+        Timber.e("@After test: unregister idle resource");
+        IdlingRegistry.getInstance().unregister(idlingResource);
+    }
 }
 

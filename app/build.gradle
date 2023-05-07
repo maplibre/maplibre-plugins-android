@@ -12,6 +12,9 @@ android {
     applicationId "com.mapbox.mapboxsdk.plugins.testapp"
     testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     vectorDrawables.useSupportLibrary = true
+
+    // add to local.properties
+    buildConfigField('String', 'MAPTILER_API_KEY', project.findProperty("maptilerApiKey") ?: '""')
   }
 
   buildTypes {
@@ -30,15 +33,13 @@ android {
     abortOnError false
   }
 
-  dexOptions {
-    maxProcessCount 8
-    javaMaxHeapSize "2g"
-    preDexLibraries true
-  }
-
   compileOptions {
     sourceCompatibility JavaVersion.VERSION_1_8
     targetCompatibility JavaVersion.VERSION_1_8
+  }
+
+  buildFeatures {
+    viewBinding true
   }
 }
 
@@ -117,4 +118,3 @@ dependencies {
 
 apply from: "${rootDir}/gradle/checkstyle.gradle"
 apply from: "${rootDir}/gradle/generate-token.gradle"
-apply plugin: 'kotlin-android-extensions'

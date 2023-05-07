@@ -4,36 +4,40 @@ import android.animation.ValueAnimator
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.FrameLayout
 import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory
 import com.mapbox.mapboxsdk.geometry.LatLng
+import com.mapbox.mapboxsdk.maps.MapView
 import com.mapbox.mapboxsdk.maps.MapboxMap
+import com.mapbox.mapboxsdk.maps.Style
 import com.mapbox.mapboxsdk.plugins.markerview.MarkerView
 import com.mapbox.mapboxsdk.plugins.markerview.MarkerViewManager
 import com.mapbox.mapboxsdk.plugins.testapp.R
-
+import com.mapbox.mapboxsdk.plugins.testapp.Utils
 import java.util.Random
 
-import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
-import androidx.appcompat.app.AppCompatActivity
-import com.mapbox.mapboxsdk.maps.Style
-import com.mapbox.mapboxsdk.plugins.testapp.Utils
-import kotlinx.android.synthetic.main.activity_annotation.*
-
-class MarkerViewActivity : AppCompatActivity(), MapboxMap.OnMapLongClickListener, MapboxMap.OnMapClickListener {
+class MarkerViewActivity :
+    AppCompatActivity(),
+    MapboxMap.OnMapLongClickListener,
+    MapboxMap.OnMapClickListener {
 
     private val random = Random()
     private var markerViewManager: MarkerViewManager? = null
     private var marker: MarkerView? = null
+    private lateinit var mapView: MapView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_annotation)
+        mapView = findViewById<View>(R.id.mapView) as MapView
+
         mapView.onCreate(savedInstanceState)
         mapView.getMapAsync { mapboxMap ->
-            mapboxMap.setStyle(Style.MAPBOX_STREETS) { _ ->
+            mapboxMap.setStyle(Style.getPredefinedStyle("Streets")) { _ ->
                 findViewById<View>(R.id.fabStyles).setOnClickListener { mapboxMap.setStyle(Utils.nextStyle) }
 
                 mapboxMap.moveCamera(CameraUpdateFactory.zoomTo(2.0))
@@ -90,8 +94,10 @@ class MarkerViewActivity : AppCompatActivity(), MapboxMap.OnMapLongClickListener
     }
 
     private fun createRandomLatLng(): LatLng {
-        return LatLng(random.nextDouble() * -180.0 + 90.0,
-                random.nextDouble() * -360.0 + 180.0)
+        return LatLng(
+            random.nextDouble() * -180.0 + 90.0,
+            random.nextDouble() * -360.0 + 180.0,
+        )
     }
 
     override fun onMapLongClick(point: LatLng): Boolean {

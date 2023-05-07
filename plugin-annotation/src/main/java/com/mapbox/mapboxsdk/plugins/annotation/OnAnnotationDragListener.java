@@ -7,24 +7,24 @@ package com.mapbox.mapboxsdk.plugins.annotation;
  */
 public interface OnAnnotationDragListener<T extends Annotation> {
 
-  /**
-   * Called when an annotation dragging has started.
-   *
-   * @param annotation the annotation
-   */
-  void onAnnotationDragStarted(T annotation);
+    /**
+     * Called when an annotation dragging has started.
+     *
+     * @param annotation the annotation
+     */
+    void onAnnotationDragStarted(T annotation);
 
-  /**
-   * Called when an annotation dragging is in progress.
-   *
-   * @param annotation the annotation
-   */
-  void onAnnotationDrag(T annotation);
+    /**
+     * Called when an annotation dragging is in progress.
+     *
+     * @param annotation the annotation
+     */
+    void onAnnotationDrag(T annotation);
 
-  /**
-   * Called when an annotation dragging has finished.
-   *
-   * @param annotation the annotation
-   */
-  void onAnnotationDragFinished(T annotation);
+    /**
+     * Called when an annotation dragging has finished.
+     *
+     * @param annotation the annotation
+     */
+    void onAnnotationDragFinished(T annotation);
 }

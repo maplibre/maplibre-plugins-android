@@ -5,6 +5,6 @@ package com.mapbox.mapboxsdk.plugins.annotation;
 /**
  * Interface definition for a callback to be invoked when a line is dragged.
  */
-public interface OnLineDragListener extends OnAnnotationDragListener<Line>{
+public interface OnLineDragListener extends OnAnnotationDragListener<Line> {
 
 }

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.mapbox.mapboxsdk.maps.MapView
 import com.mapbox.mapboxsdk.offline.OfflineManager
 import com.mapbox.mapboxsdk.offline.OfflineRegion
 import com.mapbox.mapboxsdk.offline.OfflineRegionDefinition
@@ -14,7 +15,7 @@ import com.mapbox.mapboxsdk.plugins.offline.offline.OfflineDownloadChangeListene
 import com.mapbox.mapboxsdk.plugins.offline.offline.OfflinePlugin
 import com.mapbox.mapboxsdk.plugins.offline.utils.OfflineUtils
 import com.mapbox.mapboxsdk.plugins.testapp.R
-import kotlinx.android.synthetic.main.activity_offline_region_detail.*
+import com.mapbox.mapboxsdk.plugins.testapp.databinding.ActivityOfflineRegionDetailBinding
 import timber.log.Timber
 
 /**
@@ -33,46 +34,55 @@ class OfflineRegionDetailActivity : AppCompatActivity(), OfflineDownloadChangeLi
     private var offlinePlugin: OfflinePlugin? = null
     private var offlineRegion: OfflineRegion? = null
     private var isDownloading: Boolean = false
+    private lateinit var mapView: MapView
+    private lateinit var binding: ActivityOfflineRegionDetailBinding
 
     /**
      * Callback invoked when the states of an offline region changes.
      */
     private val offlineRegionStatusCallback = object : OfflineRegion.OfflineRegionStatusCallback {
-        override fun onStatus(status: OfflineRegionStatus) {
-            isDownloading = !status.isComplete
+        override fun onStatus(status: OfflineRegionStatus?) {
+            if (status != null) {
+                isDownloading = !status.isComplete
+            }
             updateFab()
         }
 
-        override fun onError(error: String) {
+        override fun onError(error: String?) {
             Toast.makeText(
-                    this@OfflineRegionDetailActivity,
-                    "Error getting offline region state: $error",
-                    Toast.LENGTH_SHORT).show()
+                this@OfflineRegionDetailActivity,
+                "Error getting offline region state: $error",
+                Toast.LENGTH_SHORT,
+            ).show()
         }
     }
 
     private val offlineRegionDeleteCallback = object : OfflineRegion.OfflineRegionDeleteCallback {
         override fun onDelete() {
             Toast.makeText(
-                    this@OfflineRegionDetailActivity,
-                    "Region deleted.",
-                    Toast.LENGTH_SHORT).show()
+                this@OfflineRegionDetailActivity,
+                "Region deleted.",
+                Toast.LENGTH_SHORT,
+            ).show()
             finish()
         }
 
         override fun onError(error: String) {
-            fabDelete.isEnabled = true
+            binding.fabDelete.isEnabled = true
             Toast.makeText(
-                    this@OfflineRegionDetailActivity,
-                    "Error getting offline region state: $error",
-                    Toast.LENGTH_SHORT).show()
+                this@OfflineRegionDetailActivity,
+                "Error getting offline region state: $error",
+                Toast.LENGTH_SHORT,
+            ).show()
         }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_offline_region_detail)
-        mapView?.onCreate(savedInstanceState)
+        binding = ActivityOfflineRegionDetailBinding.inflate(layoutInflater)
+        mapView = findViewById<View>(R.id.mapView) as MapView
+        mapView.onCreate(savedInstanceState)
         offlinePlugin = OfflinePlugin.getInstance(this)
 
         val bundle = intent.extras
@@ -80,7 +90,7 @@ class OfflineRegionDetailActivity : AppCompatActivity(), OfflineDownloadChangeLi
             loadOfflineDownload(bundle)
         }
 
-        fabDelete.setOnClickListener { onFabClick(it) }
+        binding.fabDelete.setOnClickListener { onFabClick(it) }
     }
 
     private fun loadOfflineDownload(bundle: Bundle) {
@@ -101,9 +111,10 @@ class OfflineRegionDetailActivity : AppCompatActivity(), OfflineDownloadChangeLi
 
     private fun loadOfflineRegion(id: Long) {
         OfflineManager.getInstance(this)
-                .listOfflineRegions(object : OfflineManager.ListOfflineRegionsCallback {
+            .listOfflineRegions(object : OfflineManager.ListOfflineRegionsCallback {
 
-                    override fun onList(offlineRegions: Array<OfflineRegion>) {
+                override fun onList(offlineRegions: Array<OfflineRegion>?) {
+                    if (offlineRegions != null) {
                         for (region in offlineRegions) {
                             if (region.id == id) {
                                 offlineRegion = region
@@ -113,20 +124,21 @@ class OfflineRegionDetailActivity : AppCompatActivity(), OfflineDownloadChangeLi
                             }
                         }
                     }
+                }
 
-                    override fun onError(error: String) {
-                        Timber.e(error)
-                    }
-                })
+                override fun onError(error: String) {
+                    Timber.e(error)
+                }
+            })
     }
 
     private fun updateFab() {
         if (isDownloading) {
-            fabDelete.setImageResource(R.drawable.ic_cancel)
-            regionState.text = "DOWNLOADING"
+            binding.fabDelete.setImageResource(R.drawable.ic_cancel)
+            binding.regionState.text = "DOWNLOADING"
         } else {
-            fabDelete.setImageResource(R.drawable.ic_delete)
-            regionState.text = "DOWNLOADED"
+            binding.fabDelete.setImageResource(R.drawable.ic_delete)
+            binding.regionState.text = "DOWNLOADED"
         }
     }
 
@@ -140,12 +152,12 @@ class OfflineRegionDetailActivity : AppCompatActivity(), OfflineDownloadChangeLi
 
                 // update textview data
                 offlineRegion?.metadata?.let {
-                    regionName.text = OfflineUtils.convertRegionName(it)
+                    binding.regionName.text = OfflineUtils.convertRegionName(it)
                 }
-                regionStyleUrl.text = definition.styleURL
-                regionLatLngBounds.text = definition.bounds.toString()
-                regionMinZoom.text = definition.minZoom.toString()
-                regionMaxZoom.text = definition.maxZoom.toString()
+                binding.regionStyleUrl.text = definition.styleURL
+                binding.regionLatLngBounds.text = definition.bounds.toString()
+                binding.regionMinZoom.text = definition.minZoom.toString()
+                binding.regionMaxZoom.text = definition.maxZoom.toString()
                 offlineRegion?.getStatus(offlineRegionStatusCallback)
             }
         }
@@ -158,7 +170,8 @@ class OfflineRegionDetailActivity : AppCompatActivity(), OfflineDownloadChangeLi
                 offlineRegion?.delete(offlineRegionDeleteCallback)
             } else {
                 // cancel download
-                val offlineDownload = offlinePlugin?.getActiveDownloadForOfflineRegion(offlineRegion)
+                val offlineDownload =
+                    offlinePlugin?.getActiveDownloadForOfflineRegion(offlineRegion)
                 if (offlineDownload != null) {
                     offlinePlugin?.cancelDownload(offlineDownload)
                     isDownloading = false
@@ -174,7 +187,7 @@ class OfflineRegionDetailActivity : AppCompatActivity(), OfflineDownloadChangeLi
 
     override fun onSuccess(offlineDownload: OfflineDownloadOptions) {
         isDownloading = false
-        regionStateProgress.visibility = View.INVISIBLE
+        binding.regionStateProgress.visibility = View.INVISIBLE
         updateFab()
     }
 
@@ -183,8 +196,8 @@ class OfflineRegionDetailActivity : AppCompatActivity(), OfflineDownloadChangeLi
     }
 
     override fun onError(offlineDownload: OfflineDownloadOptions, error: String, message: String) {
-        regionStateProgress.visibility = View.INVISIBLE
-        regionState.text = "ERROR"
+        binding.regionStateProgress.visibility = View.INVISIBLE
+        binding.regionState.text = "ERROR"
         Toast.makeText(this, error + message, Toast.LENGTH_LONG).show()
     }
 
@@ -194,39 +207,39 @@ class OfflineRegionDetailActivity : AppCompatActivity(), OfflineDownloadChangeLi
         }
 
         if (offlineDownload.uuid() == offlineRegion?.id) {
-            if (regionStateProgress.visibility != View.VISIBLE) {
-                regionStateProgress.visibility = View.VISIBLE
+            if (binding.regionStateProgress.visibility != View.VISIBLE) {
+                binding.regionStateProgress.visibility = View.VISIBLE
             }
             isDownloading = true
-            regionStateProgress.progress = progress
+            binding.regionStateProgress.progress = progress
         }
     }
 
     override fun onStart() {
         super.onStart()
-        mapView?.onStart()
+        mapView.onStart()
         offlinePlugin?.addOfflineDownloadStateChangeListener(this)
     }
 
     override fun onResume() {
         super.onResume()
-        mapView?.onResume()
+        mapView.onResume()
     }
 
     override fun onPause() {
         super.onPause()
-        mapView?.onPause()
+        mapView.onPause()
     }
 
     override fun onStop() {
         super.onStop()
-        mapView?.onStop()
+        mapView.onStop()
         offlinePlugin?.removeOfflineDownloadStateChangeListener(this)
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        mapView?.onSaveInstanceState(outState)
+        mapView.onSaveInstanceState(outState)
     }
 
     override fun onDestroy() {
@@ -236,7 +249,7 @@ class OfflineRegionDetailActivity : AppCompatActivity(), OfflineDownloadChangeLi
 
     override fun onLowMemory() {
         super.onLowMemory()
-        mapView?.onLowMemory()
+        mapView.onLowMemory()
     }
 
     companion object {

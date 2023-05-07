@@ -45,17 +45,22 @@ class OfflineRegionListActivity : AppCompatActivity(), AdapterView.OnItemClickLi
     }
 
     private fun loadOfflineRegions() {
-        OfflineManager.getInstance(this).listOfflineRegions(object : OfflineManager.ListOfflineRegionsCallback {
-            override fun onList(offlineRegions: Array<OfflineRegion>?) {
-                if (offlineRegions != null) {
-                    adapter.setOfflineRegions(Arrays.asList(*offlineRegions))
+        OfflineManager.getInstance(this)
+            .listOfflineRegions(object : OfflineManager.ListOfflineRegionsCallback {
+                override fun onList(offlineRegions: Array<OfflineRegion>?) {
+                    if (offlineRegions != null) {
+                        adapter.setOfflineRegions(Arrays.asList(*offlineRegions))
+                    }
                 }
-            }
 
-            override fun onError(error: String) {
-                Toast.makeText(this@OfflineRegionListActivity, "Error loading regions $error", Toast.LENGTH_LONG).show()
-            }
-        })
+                override fun onError(error: String) {
+                    Toast.makeText(
+                        this@OfflineRegionListActivity,
+                        "Error loading regions $error",
+                        Toast.LENGTH_LONG,
+                    ).show()
+                }
+            })
     }
 
     private class OfflineRegionAdapter : BaseAdapter() {
@@ -89,7 +94,8 @@ class OfflineRegionListActivity : AppCompatActivity(), AdapterView.OnItemClickLi
 
             if (convertView == null) {
                 holder = ViewHolder()
-                convertView = LayoutInflater.from(parent.context).inflate(R.layout.item_feature, parent, false)
+                convertView = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.item_feature, parent, false)
                 holder.text = convertView?.findViewById(R.id.nameView)
                 holder.subText = convertView.findViewById(R.id.descriptionView)
                 convertView.tag = holder

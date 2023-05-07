@@ -41,147 +41,147 @@ import static com.mapbox.mapboxsdk.plugins.offline.offline.OfflineConstants.RETU
  */
 public class OfflineRegionSelector {
 
-  private OfflineRegionSelector() {
-    // No Instances
-  }
-
-  /**
-   * Use this method to take the returning {@link Intent} data and construct a {@link OfflineDownloadOptions}
-   * instance which can be used for starting a new offline region download.
-   *
-   * @param data     the {@link Activity#startActivityForResult(Intent, int)} which this method should
-   *                 be used in provides the returning intent which should be provided in this param
-   * @param metadata Add additional metadata to the {@link OfflineRegionDefinition}, note
-   *                 to make sure not to override the region definition name if you still wish to use
-   *                 it
-   * @return a new {@link OfflineDownloadOptions} instance which can be used to launch the download
-   * service using
-   * {@link com.mapbox.mapboxsdk.plugins.offline.offline.OfflinePlugin#startDownload(OfflineDownloadOptions)}
-   * @since 0.1.0
-   */
-  public static OfflineDownloadOptions getOfflineDownloadOptions(final Intent data, byte[] metadata) {
-    return OfflineDownloadOptions.builder()
-      .definition(getRegionDefinition(data))
-      .regionName(getRegionName(data))
-      .metadata(metadata)
-      .build();
-  }
-
-  /**
-   * Use this method to take the returning {@link Intent} data and construct a {@link OfflineDownloadOptions}
-   * instance which can be used for starting a new offline region download.
-   *
-   * @param data                the {@link Activity#startActivityForResult(Intent, int)} which this
-   *                            method should be used in provides the returning intent which should
-   *                            be provided in this param
-   * @param notificationOptions the {@link NotificationOptions} object you've constructed to be used
-   *                            when launching the offline region download service.
-   * @return a new {@link OfflineDownloadOptions} instance which can be used to launch the download
-   * service using
-   * {@link com.mapbox.mapboxsdk.plugins.offline.offline.OfflinePlugin#startDownload(OfflineDownloadOptions)}
-   * @since 0.1.0
-   */
-  public static OfflineDownloadOptions getOfflineDownloadOptions(final Intent data,
-                                                                 NotificationOptions notificationOptions) {
-    return OfflineDownloadOptions.builder()
-      .definition(getRegionDefinition(data))
-      .regionName(getRegionName(data))
-      .notificationOptions(notificationOptions)
-      .build();
-  }
-
-  /**
-   * Use this method to take the returning {@link Intent} data and construct a {@link OfflineDownloadOptions}
-   * instance which can be used for starting a new offline region download.
-   *
-   * @param data                the {@link Activity#startActivityForResult(Intent, int)} which this
-   *                            method should be used in provides the returning intent which should
-   *                            be provided in this param
-   * @param notificationOptions the {@link NotificationOptions} object you've constructed to be used
-   *                            when launching the offline region download service.
-   * @param metadata            Add additional metadata to the {@link OfflineRegionDefinition},
-   *                            note to make sure not to override the region definition name if you
-   *                            still wish to use it
-   * @return a new {@link OfflineDownloadOptions} instance which can be used to launch the download
-   * service using
-   * {@link com.mapbox.mapboxsdk.plugins.offline.offline.OfflinePlugin#startDownload(OfflineDownloadOptions)}
-   * @since 0.1.0
-   */
-  public static OfflineDownloadOptions getOfflineDownloadOptions(final Intent data,
-                                                                 NotificationOptions notificationOptions,
-                                                                 byte[] metadata) {
-    return OfflineDownloadOptions.builder()
-      .definition(getRegionDefinition(data))
-      .regionName(getRegionName(data))
-      .notificationOptions(notificationOptions)
-      .metadata(metadata)
-      .build();
-  }
-
-  /**
-   * Returns the {@link OfflineRegionDefinition} which was created when the user was
-   * inside the {@link OfflineActivity}.
-   *
-   * @param data the {@link Activity#startActivityForResult(Intent, int)} which this method should
-   *             be used in provides the returning intent which should be provided in this param
-   * @return the {@link OfflineRegionDefinition} which was created inside the
-   * {@link OfflineActivity}
-   * @since 0.1.0
-   */
-  public static OfflineRegionDefinition getRegionDefinition(Intent data) {
-    return data.getParcelableExtra(RETURNING_DEFINITION);
-  }
-
-  /**
-   * The {@link OfflineActivity} class will try to provide a region name which is either the default
-   * region naming string or, depending on the map's camera position and where it is positioned over
-   * the map.
-   *
-   * @param data the {@link Activity#startActivityForResult(Intent, int)} which this method should
-   *             be used in provides the returning intent which should be provided in this param
-   * @return either a string containing the default region name or the actual region name which the
-   * map's camera position was last placed over
-   * @since 0.1.0
-   */
-  public static String getRegionName(@NonNull Intent data) {
-    return data.getStringExtra(RETURNING_REGION_NAME);
-  }
-
-  /**
-   * Useful for building an {@link Intent} which can be used to launch the {@link OfflineActivity}
-   * allowing your app user to select a region which they'd like to download.
-   *
-   * @since 0.1.0
-   */
-  public static class IntentBuilder {
-
-    Intent intent;
-
-    /**
-     * Construct a new instance of this builder.
-     *
-     * @since 0.1.0
-     */
-    public IntentBuilder() {
-      intent = new Intent();
-    }
-
-    public IntentBuilder regionSelectionOptions(RegionSelectionOptions regionSelectionOptions) {
-      intent.putExtra(OfflinePluginConstants.REGION_SELECTION_OPTIONS, regionSelectionOptions);
-      return this;
+    private OfflineRegionSelector() {
+        // No Instances
     }
 
     /**
-     * Build a new {@link Intent} object which should be used to launch the {@link OfflineActivity}.
+     * Use this method to take the returning {@link Intent} data and construct a {@link OfflineDownloadOptions}
+     * instance which can be used for starting a new offline region download.
      *
-     * @param activity pass in the current activity which you intend to use
-     *                 {@link Activity#startActivityForResult(Intent, int)} in.
-     * @return a new {@link Intent} which should be used to launch the {@link OfflineActivity}
+     * @param data     the {@link Activity#startActivityForResult(Intent, int)} which this method should
+     *                 be used in provides the returning intent which should be provided in this param
+     * @param metadata Add additional metadata to the {@link OfflineRegionDefinition}, note
+     *                 to make sure not to override the region definition name if you still wish to use
+     *                 it
+     * @return a new {@link OfflineDownloadOptions} instance which can be used to launch the download
+     * service using
+     * {@link com.mapbox.mapboxsdk.plugins.offline.offline.OfflinePlugin#startDownload(OfflineDownloadOptions)}
      * @since 0.1.0
      */
-    public Intent build(Activity activity) {
-      intent.setClass(activity, OfflineActivity.class);
-      return intent;
+    public static OfflineDownloadOptions getOfflineDownloadOptions(final Intent data, byte[] metadata) {
+        return OfflineDownloadOptions.builder()
+            .definition(getRegionDefinition(data))
+            .regionName(getRegionName(data))
+            .metadata(metadata)
+            .build();
     }
-  }
+
+    /**
+     * Use this method to take the returning {@link Intent} data and construct a {@link OfflineDownloadOptions}
+     * instance which can be used for starting a new offline region download.
+     *
+     * @param data                the {@link Activity#startActivityForResult(Intent, int)} which this
+     *                            method should be used in provides the returning intent which should
+     *                            be provided in this param
+     * @param notificationOptions the {@link NotificationOptions} object you've constructed to be used
+     *                            when launching the offline region download service.
+     * @return a new {@link OfflineDownloadOptions} instance which can be used to launch the download
+     * service using
+     * {@link com.mapbox.mapboxsdk.plugins.offline.offline.OfflinePlugin#startDownload(OfflineDownloadOptions)}
+     * @since 0.1.0
+     */
+    public static OfflineDownloadOptions getOfflineDownloadOptions(final Intent data,
+                                                                   NotificationOptions notificationOptions) {
+        return OfflineDownloadOptions.builder()
+            .definition(getRegionDefinition(data))
+            .regionName(getRegionName(data))
+            .notificationOptions(notificationOptions)
+            .build();
+    }
+
+    /**
+     * Use this method to take the returning {@link Intent} data and construct a {@link OfflineDownloadOptions}
+     * instance which can be used for starting a new offline region download.
+     *
+     * @param data                the {@link Activity#startActivityForResult(Intent, int)} which this
+     *                            method should be used in provides the returning intent which should
+     *                            be provided in this param
+     * @param notificationOptions the {@link NotificationOptions} object you've constructed to be used
+     *                            when launching the offline region download service.
+     * @param metadata            Add additional metadata to the {@link OfflineRegionDefinition},
+     *                            note to make sure not to override the region definition name if you
+     *                            still wish to use it
+     * @return a new {@link OfflineDownloadOptions} instance which can be used to launch the download
+     * service using
+     * {@link com.mapbox.mapboxsdk.plugins.offline.offline.OfflinePlugin#startDownload(OfflineDownloadOptions)}
+     * @since 0.1.0
+     */
+    public static OfflineDownloadOptions getOfflineDownloadOptions(final Intent data,
+                                                                   NotificationOptions notificationOptions,
+                                                                   byte[] metadata) {
+        return OfflineDownloadOptions.builder()
+            .definition(getRegionDefinition(data))
+            .regionName(getRegionName(data))
+            .notificationOptions(notificationOptions)
+            .metadata(metadata)
+            .build();
+    }
+
+    /**
+     * Returns the {@link OfflineRegionDefinition} which was created when the user was
+     * inside the {@link OfflineActivity}.
+     *
+     * @param data the {@link Activity#startActivityForResult(Intent, int)} which this method should
+     *             be used in provides the returning intent which should be provided in this param
+     * @return the {@link OfflineRegionDefinition} which was created inside the
+     * {@link OfflineActivity}
+     * @since 0.1.0
+     */
+    public static OfflineRegionDefinition getRegionDefinition(Intent data) {
+        return data.getParcelableExtra(RETURNING_DEFINITION);
+    }
+
+    /**
+     * The {@link OfflineActivity} class will try to provide a region name which is either the default
+     * region naming string or, depending on the map's camera position and where it is positioned over
+     * the map.
+     *
+     * @param data the {@link Activity#startActivityForResult(Intent, int)} which this method should
+     *             be used in provides the returning intent which should be provided in this param
+     * @return either a string containing the default region name or the actual region name which the
+     * map's camera position was last placed over
+     * @since 0.1.0
+     */
+    public static String getRegionName(@NonNull Intent data) {
+        return data.getStringExtra(RETURNING_REGION_NAME);
+    }
+
+    /**
+     * Useful for building an {@link Intent} which can be used to launch the {@link OfflineActivity}
+     * allowing your app user to select a region which they'd like to download.
+     *
+     * @since 0.1.0
+     */
+    public static class IntentBuilder {
+
+        Intent intent;
+
+        /**
+         * Construct a new instance of this builder.
+         *
+         * @since 0.1.0
+         */
+        public IntentBuilder() {
+            intent = new Intent();
+        }
+
+        public IntentBuilder regionSelectionOptions(RegionSelectionOptions regionSelectionOptions) {
+            intent.putExtra(OfflinePluginConstants.REGION_SELECTION_OPTIONS, regionSelectionOptions);
+            return this;
+        }
+
+        /**
+         * Build a new {@link Intent} object which should be used to launch the {@link OfflineActivity}.
+         *
+         * @param activity pass in the current activity which you intend to use
+         *                 {@link Activity#startActivityForResult(Intent, int)} in.
+         * @return a new {@link Intent} which should be used to launch the {@link OfflineActivity}
+         * @since 0.1.0
+         */
+        public Intent build(Activity activity) {
+            intent.setClass(activity, OfflineActivity.class);
+            return intent;
+        }
+    }
 }
