@@ -11,8 +11,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container:
-      image: ghcr.io/maplibre/android-ndk-r21b
     env:
       BUILDTYPE: Release
       IS_LOCAL_DEVELOPMENT: false
