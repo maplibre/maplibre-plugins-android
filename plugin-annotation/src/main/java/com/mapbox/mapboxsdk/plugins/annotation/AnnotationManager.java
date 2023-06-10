@@ -63,6 +63,7 @@ public abstract class AnnotationManager<
     private final MapClickResolver mapClickResolver;
     private Style style;
     private String belowLayerId;
+    private String aboveLayerId;
     protected CoreElementProvider<L> coreElementProvider;
     private DraggableAnnotationController draggableAnnotationController;
 
@@ -72,11 +73,12 @@ public abstract class AnnotationManager<
     protected AnnotationManager(MapView mapView, final MapboxMap mapboxMap, Style style,
                                 CoreElementProvider<L> coreElementProvider,
                                 DraggableAnnotationController draggableAnnotationController,
-                                String belowLayerId, final GeoJsonOptions geoJsonOptions) {
+                                String belowLayerId, String aboveLayerId, final GeoJsonOptions geoJsonOptions) {
         this.mapView = mapView;
         this.mapboxMap = mapboxMap;
         this.style = style;
         this.belowLayerId = belowLayerId;
+        this.aboveLayerId = aboveLayerId;
         this.coreElementProvider = coreElementProvider;
         this.draggableAnnotationController = draggableAnnotationController;
 
@@ -370,12 +372,13 @@ public abstract class AnnotationManager<
     private void initializeSourcesAndLayers(GeoJsonOptions geoJsonOptions) {
         geoJsonSource = coreElementProvider.getSource(geoJsonOptions);
         layer = coreElementProvider.getLayer();
-
         style.addSource(geoJsonSource);
-        if (belowLayerId == null) {
-            style.addLayer(layer);
-        } else {
+        if (belowLayerId != null) {
             style.addLayerBelow(layer, belowLayerId);
+        } else if (aboveLayerId != null) {
+            style.addLayerAbove(layer, aboveLayerId);
+        } else {
+            style.addLayer(layer);
         }
 
         initializeDataDrivenPropertyMap();

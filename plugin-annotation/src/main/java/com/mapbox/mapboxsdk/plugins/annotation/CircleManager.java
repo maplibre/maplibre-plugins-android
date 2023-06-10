@@ -43,7 +43,7 @@ public class CircleManager extends AnnotationManager<CircleLayer, Circle, Circle
      */
     @UiThread
     public CircleManager(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap, @NonNull Style style) {
-        this(mapView, mapboxMap, style, null, (GeoJsonOptions) null);
+        this(mapView, mapboxMap, style, null, null, (GeoJsonOptions) null);
     }
 
     /**
@@ -52,10 +52,11 @@ public class CircleManager extends AnnotationManager<CircleLayer, Circle, Circle
      * @param mapboxMap    the map object to add circles to
      * @param style        a valid a fully loaded style object
      * @param belowLayerId the id of the layer above the circle layer
+     * @param aboveLayerId the id of the layer below the circle layer
      */
     @UiThread
-    public CircleManager(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap, @NonNull Style style, @Nullable String belowLayerId) {
-        this(mapView, mapboxMap, style, belowLayerId, (GeoJsonOptions) null);
+    public CircleManager(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap, @NonNull Style style, @Nullable String belowLayerId, @Nullable String aboveLayerId) {
+        this(mapView, mapboxMap, style, belowLayerId, aboveLayerId, (GeoJsonOptions) null);
     }
 
     /**
@@ -64,16 +65,17 @@ public class CircleManager extends AnnotationManager<CircleLayer, Circle, Circle
      * @param mapboxMap      the map object to add circles to
      * @param style          a valid a fully loaded style object
      * @param belowLayerId   the id of the layer above the circle layer
+     * @param aboveLayerId   the id of the layer below the circle layer
      * @param geoJsonOptions options for the internal source
      */
     @UiThread
-    public CircleManager(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap, @NonNull Style style, @Nullable String belowLayerId, @Nullable GeoJsonOptions geoJsonOptions) {
-        this(mapView, mapboxMap, style, new CircleElementProvider(), belowLayerId, geoJsonOptions, DraggableAnnotationController.getInstance(mapView, mapboxMap));
+    public CircleManager(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap, @NonNull Style style, @Nullable String belowLayerId, @Nullable String aboveLayerId, @Nullable GeoJsonOptions geoJsonOptions) {
+        this(mapView, mapboxMap, style, new CircleElementProvider(), belowLayerId, aboveLayerId, geoJsonOptions, DraggableAnnotationController.getInstance(mapView, mapboxMap));
     }
 
-    @VisibleForTesting
-    CircleManager(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap, @NonNull Style style, @NonNull CoreElementProvider<CircleLayer> coreElementProvider, @Nullable String belowLayerId, @Nullable GeoJsonOptions geoJsonOptions, DraggableAnnotationController draggableAnnotationController) {
-        super(mapView, mapboxMap, style, coreElementProvider, draggableAnnotationController, belowLayerId, geoJsonOptions);
+    @UiThread
+    CircleManager(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap, @NonNull Style style, @NonNull CoreElementProvider<CircleLayer> coreElementProvider, @Nullable String belowLayerId, @Nullable String aboveLayerId, @Nullable GeoJsonOptions geoJsonOptions, DraggableAnnotationController draggableAnnotationController) {
+        super(mapView, mapboxMap, style, coreElementProvider, draggableAnnotationController, belowLayerId, aboveLayerId, geoJsonOptions);
     }
 
     @Override
