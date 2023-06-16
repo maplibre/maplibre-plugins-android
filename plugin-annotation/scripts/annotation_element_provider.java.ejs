@@ -19,36 +19,36 @@ import java.util.concurrent.atomic.AtomicLong;
  */
 class <%- camelize(type) %>ElementProvider implements CoreElementProvider<<%- camelize(type) %>Layer>{
 
-  private static final AtomicLong ID_GENERATOR = new AtomicLong(0);
-  private static final String ID_GEOJSON_LAYER = "mapbox-android-<%- type %>-layer-%s";
-  private static final String ID_GEOJSON_SOURCE = "mapbox-android-<%- type %>-source-%s";
+    private static final AtomicLong ID_GENERATOR = new AtomicLong(0);
+    private static final String ID_GEOJSON_LAYER = "mapbox-android-<%- type %>-layer-%s";
+    private static final String ID_GEOJSON_SOURCE = "mapbox-android-<%- type %>-source-%s";
 
-  private final String layerId;
-  private final String sourceId;
+    private final String layerId;
+    private final String sourceId;
 
-  <%- camelize(type) %>ElementProvider() {
-    long id = ID_GENERATOR.incrementAndGet();
-    this.layerId = String.format(ID_GEOJSON_LAYER, id);
-    this.sourceId = String.format(ID_GEOJSON_SOURCE, id);
-  }
+    <%- camelize(type) %>ElementProvider() {
+        long id = ID_GENERATOR.incrementAndGet();
+        this.layerId = String.format(ID_GEOJSON_LAYER, id);
+        this.sourceId = String.format(ID_GEOJSON_SOURCE, id);
+    }
 
-  @Override
-  public String getLayerId() {
-    return layerId;
-  }
+    @Override
+    public String getLayerId() {
+        return layerId;
+    }
 
-  @Override
-  public String getSourceId() {
-    return sourceId;
-  }
+    @Override
+    public String getSourceId() {
+        return sourceId;
+    }
 
-  @Override
-  public <%- camelize(type) %>Layer getLayer() {
-    return new <%- camelize(type) %>Layer(layerId, sourceId);
-  }
+    @Override
+    public <%- camelize(type) %>Layer getLayer() {
+        return new <%- camelize(type) %>Layer(layerId, sourceId);
+    }
 
-  @Override
-  public GeoJsonSource getSource(@Nullable GeoJsonOptions geoJsonOptions) {
-    return new GeoJsonSource(sourceId, geoJsonOptions);
-  }
+    @Override
+    public GeoJsonSource getSource(@Nullable GeoJsonOptions geoJsonOptions) {
+        return new GeoJsonSource(sourceId, geoJsonOptions);
+    }
 }

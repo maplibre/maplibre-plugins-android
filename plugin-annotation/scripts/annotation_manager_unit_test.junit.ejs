@@ -37,560 +37,560 @@ import static org.mockito.Mockito.*;
 
 public class <%- camelize(type) %>ManagerTest {
 
-  private DraggableAnnotationController draggableAnnotationController = mock(DraggableAnnotationController.class);
-  private MapView mapView = mock(MapView.class);
-  private MapboxMap mapboxMap = mock(MapboxMap.class);
-  private Style style = mock(Style.class);
-  private GeoJsonSource geoJsonSource = mock(GeoJsonSource.class);
-  private GeoJsonSource optionedGeoJsonSource = mock(GeoJsonSource.class);
-  private String layerId = "annotation_layer";
-  private <%- camelize(type) %>Layer <%- type  %>Layer = mock(<%- camelize(type) %>Layer.class);
-  private <%- camelize(type) %>Manager <%- type  %>Manager;
-  private CoreElementProvider<<%- camelize(type) %>Layer> coreElementProvider = mock(CoreElementProvider.class);
-  private GeoJsonOptions geoJsonOptions = mock(GeoJsonOptions.class);
+    private DraggableAnnotationController draggableAnnotationController = mock(DraggableAnnotationController.class);
+    private MapView mapView = mock(MapView.class);
+    private MapboxMap mapboxMap = mock(MapboxMap.class);
+    private Style style = mock(Style.class);
+    private GeoJsonSource geoJsonSource = mock(GeoJsonSource.class);
+    private GeoJsonSource optionedGeoJsonSource = mock(GeoJsonSource.class);
+    private String layerId = "annotation_layer";
+    private <%- camelize(type) %>Layer <%- type  %>Layer = mock(<%- camelize(type) %>Layer.class);
+    private <%- camelize(type) %>Manager <%- type  %>Manager;
+    private CoreElementProvider<<%- camelize(type) %>Layer> coreElementProvider = mock(CoreElementProvider.class);
+    private GeoJsonOptions geoJsonOptions = mock(GeoJsonOptions.class);
 
-  @Before
-  public void beforeTest() {
-    when(<%- type  %>Layer.getId()).thenReturn(layerId);
-    when(coreElementProvider.getLayer()).thenReturn(<%- type  %>Layer);
-    when(coreElementProvider.getSource(null)).thenReturn(geoJsonSource);
-    when(coreElementProvider.getSource(geoJsonOptions)).thenReturn(optionedGeoJsonSource);
-    when(style.isFullyLoaded()).thenReturn(true);
-  }
-
-  @Test
-  public void testInitialization() {
-    <%- type  %>Manager = new <%- camelize(type) %>Manager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
-    verify(style).addSource(geoJsonSource);
-    verify(style).addLayer(<%- type  %>Layer);
-    assertTrue(<%- type  %>Manager.dataDrivenPropertyUsageMap.size() > 0);
-    for (Boolean value : <%- type  %>Manager.dataDrivenPropertyUsageMap.values()) {
-      assertFalse(value);
+    @Before
+    public void beforeTest() {
+        when(<%- type  %>Layer.getId()).thenReturn(layerId);
+        when(coreElementProvider.getLayer()).thenReturn(<%- type  %>Layer);
+        when(coreElementProvider.getSource(null)).thenReturn(geoJsonSource);
+        when(coreElementProvider.getSource(geoJsonOptions)).thenReturn(optionedGeoJsonSource);
+        when(style.isFullyLoaded()).thenReturn(true);
     }
-    verify(<%- type  %>Layer).setProperties(<%- type  %>Manager.constantPropertyUsageMap.values().toArray(new PropertyValue[0]));
-    verify(<%- type  %>Layer, times(0)).setFilter(any(Expression.class));
-    verify(draggableAnnotationController).onSourceUpdated();
-    verify(geoJsonSource).setGeoJson(any(FeatureCollection.class));
-  }
 
-  @Test
-  public void testInitializationOnStyleReload() {
-    <%- type  %>Manager = new <%- camelize(type) %>Manager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
-    verify(style).addSource(geoJsonSource);
-    verify(style).addLayer(<%- type  %>Layer);
-    assertTrue(<%- type  %>Manager.dataDrivenPropertyUsageMap.size() > 0);
-    for (Boolean value : <%- type  %>Manager.dataDrivenPropertyUsageMap.values()) {
-      assertFalse(value);
+    @Test
+    public void testInitialization() {
+        <%- type  %>Manager = new <%- camelize(type) %>Manager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+        verify(style).addSource(geoJsonSource);
+        verify(style).addLayer(<%- type  %>Layer);
+        assertTrue(<%- type  %>Manager.dataDrivenPropertyUsageMap.size() > 0);
+        for (Boolean value : <%- type  %>Manager.dataDrivenPropertyUsageMap.values()) {
+            assertFalse(value);
+        }
+        verify(<%- type  %>Layer).setProperties(<%- type  %>Manager.constantPropertyUsageMap.values().toArray(new PropertyValue[0]));
+        verify(<%- type  %>Layer, times(0)).setFilter(any(Expression.class));
+        verify(draggableAnnotationController).onSourceUpdated();
+        verify(geoJsonSource).setGeoJson(any(FeatureCollection.class));
     }
-    verify(<%- type  %>Layer).setProperties(<%- type  %>Manager.constantPropertyUsageMap.values().toArray(new PropertyValue[0]));
-    verify(draggableAnnotationController).onSourceUpdated();
-    verify(geoJsonSource).setGeoJson(any(FeatureCollection.class));
 
-    Expression filter = Expression.literal(false);
-    <%- type  %>Manager.setFilter(filter);
+    @Test
+    public void testInitializationOnStyleReload() {
+        <%- type  %>Manager = new <%- camelize(type) %>Manager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+        verify(style).addSource(geoJsonSource);
+        verify(style).addLayer(<%- type  %>Layer);
+        assertTrue(<%- type  %>Manager.dataDrivenPropertyUsageMap.size() > 0);
+        for (Boolean value : <%- type  %>Manager.dataDrivenPropertyUsageMap.values()) {
+            assertFalse(value);
+        }
+        verify(<%- type  %>Layer).setProperties(<%- type  %>Manager.constantPropertyUsageMap.values().toArray(new PropertyValue[0]));
+        verify(draggableAnnotationController).onSourceUpdated();
+        verify(geoJsonSource).setGeoJson(any(FeatureCollection.class));
 
-    ArgumentCaptor<MapView.OnDidFinishLoadingStyleListener> loadingArgumentCaptor = ArgumentCaptor.forClass(MapView.OnDidFinishLoadingStyleListener.class);
-    verify(mapView).addOnDidFinishLoadingStyleListener(loadingArgumentCaptor.capture());
-    loadingArgumentCaptor.getValue().onDidFinishLoadingStyle();
+        Expression filter = Expression.literal(false);
+        <%- type  %>Manager.setFilter(filter);
 
-    ArgumentCaptor<Style.OnStyleLoaded> styleLoadedArgumentCaptor = ArgumentCaptor.forClass(Style.OnStyleLoaded.class);
-    verify(mapboxMap).getStyle(styleLoadedArgumentCaptor.capture());
+        ArgumentCaptor<MapView.OnDidFinishLoadingStyleListener> loadingArgumentCaptor = ArgumentCaptor.forClass(MapView.OnDidFinishLoadingStyleListener.class);
+        verify(mapView).addOnDidFinishLoadingStyleListener(loadingArgumentCaptor.capture());
+        loadingArgumentCaptor.getValue().onDidFinishLoadingStyle();
 
-    Style newStyle = mock(Style.class);
-    when(newStyle.isFullyLoaded()).thenReturn(true);
-    GeoJsonSource newSource = mock(GeoJsonSource.class);
-    when(coreElementProvider.getSource(null)).thenReturn(newSource);
-    <%- camelize(type)  %>Layer newLayer = mock(<%- camelize(type)  %>Layer.class);
-    when(coreElementProvider.getLayer()).thenReturn(newLayer);
-    styleLoadedArgumentCaptor.getValue().onStyleLoaded(newStyle);
+        ArgumentCaptor<Style.OnStyleLoaded> styleLoadedArgumentCaptor = ArgumentCaptor.forClass(Style.OnStyleLoaded.class);
+        verify(mapboxMap).getStyle(styleLoadedArgumentCaptor.capture());
 
-    verify(newStyle).addSource(newSource);
-    verify(newStyle).addLayer(newLayer);
-    assertTrue(<%- type  %>Manager.dataDrivenPropertyUsageMap.size() > 0);
-    for (Boolean value : <%- type  %>Manager.dataDrivenPropertyUsageMap.values()) {
-      assertFalse(value);
+        Style newStyle = mock(Style.class);
+        when(newStyle.isFullyLoaded()).thenReturn(true);
+        GeoJsonSource newSource = mock(GeoJsonSource.class);
+        when(coreElementProvider.getSource(null)).thenReturn(newSource);
+        <%- camelize(type)  %>Layer newLayer = mock(<%- camelize(type)  %>Layer.class);
+        when(coreElementProvider.getLayer()).thenReturn(newLayer);
+        styleLoadedArgumentCaptor.getValue().onStyleLoaded(newStyle);
+
+        verify(newStyle).addSource(newSource);
+        verify(newStyle).addLayer(newLayer);
+        assertTrue(<%- type  %>Manager.dataDrivenPropertyUsageMap.size() > 0);
+        for (Boolean value : <%- type  %>Manager.dataDrivenPropertyUsageMap.values()) {
+            assertFalse(value);
+        }
+        verify(newLayer).setProperties(<%- type  %>Manager.constantPropertyUsageMap.values().toArray(new PropertyValue[0]));
+        verify(<%- type  %>Layer).setFilter(filter);
+        verify(draggableAnnotationController, times(2)).onSourceUpdated();
+        verify(newSource).setGeoJson(any(FeatureCollection.class));
     }
-    verify(newLayer).setProperties(<%- type  %>Manager.constantPropertyUsageMap.values().toArray(new PropertyValue[0]));
-    verify(<%- type  %>Layer).setFilter(filter);
-    verify(draggableAnnotationController, times(2)).onSourceUpdated();
-    verify(newSource).setGeoJson(any(FeatureCollection.class));
-  }
 
-  @Test
-  public void testLayerBelowInitialization() {
-    <%- type  %>Manager = new <%- camelize(type) %>Manager(mapView, mapboxMap, style, coreElementProvider, "test_layer", null, draggableAnnotationController);
-    verify(style).addSource(geoJsonSource);
-    verify(style).addLayerBelow(<%- type  %>Layer, "test_layer");
-    assertTrue(<%- type  %>Manager.dataDrivenPropertyUsageMap.size() > 0);
-    for (Boolean value : <%- type  %>Manager.dataDrivenPropertyUsageMap.values()) {
-      assertFalse(value);
+    @Test
+    public void testLayerBelowInitialization() {
+        <%- type  %>Manager = new <%- camelize(type) %>Manager(mapView, mapboxMap, style, coreElementProvider, "test_layer", null, draggableAnnotationController);
+        verify(style).addSource(geoJsonSource);
+        verify(style).addLayerBelow(<%- type  %>Layer, "test_layer");
+        assertTrue(<%- type  %>Manager.dataDrivenPropertyUsageMap.size() > 0);
+        for (Boolean value : <%- type  %>Manager.dataDrivenPropertyUsageMap.values()) {
+            assertFalse(value);
+        }
+        verify(<%- type  %>Layer).setProperties(<%- type  %>Manager.constantPropertyUsageMap.values().toArray(new PropertyValue[0]));
+        verify(draggableAnnotationController).onSourceUpdated();
+        verify(geoJsonSource).setGeoJson(any(FeatureCollection.class));
     }
-    verify(<%- type  %>Layer).setProperties(<%- type  %>Manager.constantPropertyUsageMap.values().toArray(new PropertyValue[0]));
-    verify(draggableAnnotationController).onSourceUpdated();
-    verify(geoJsonSource).setGeoJson(any(FeatureCollection.class));
-  }
 
-  @Test
-  public void testGeoJsonOptionsInitialization() {
-    <%- type  %>Manager = new <%- camelize(type) %>Manager(mapView, mapboxMap, style, coreElementProvider, null, geoJsonOptions, draggableAnnotationController);
-    verify(style).addSource(optionedGeoJsonSource);
-    verify(style).addLayer(<%- type  %>Layer);
-    assertTrue(<%- type  %>Manager.dataDrivenPropertyUsageMap.size() > 0);
-    for (Boolean value : <%- type  %>Manager.dataDrivenPropertyUsageMap.values()) {
-      assertFalse(value);
+    @Test
+    public void testGeoJsonOptionsInitialization() {
+        <%- type  %>Manager = new <%- camelize(type) %>Manager(mapView, mapboxMap, style, coreElementProvider, null, geoJsonOptions, draggableAnnotationController);
+        verify(style).addSource(optionedGeoJsonSource);
+        verify(style).addLayer(<%- type  %>Layer);
+        assertTrue(<%- type  %>Manager.dataDrivenPropertyUsageMap.size() > 0);
+        for (Boolean value : <%- type  %>Manager.dataDrivenPropertyUsageMap.values()) {
+            assertFalse(value);
+        }
+        verify(<%- type  %>Layer).setProperties(<%- type  %>Manager.constantPropertyUsageMap.values().toArray(new PropertyValue[0]));
+        verify(<%- type  %>Layer, times(0)).setFilter(any(Expression.class));
+        verify(draggableAnnotationController).onSourceUpdated();
+        verify(optionedGeoJsonSource).setGeoJson(any(FeatureCollection.class));
     }
-    verify(<%- type  %>Layer).setProperties(<%- type  %>Manager.constantPropertyUsageMap.values().toArray(new PropertyValue[0]));
-    verify(<%- type  %>Layer, times(0)).setFilter(any(Expression.class));
-    verify(draggableAnnotationController).onSourceUpdated();
-    verify(optionedGeoJsonSource).setGeoJson(any(FeatureCollection.class));
-  }
 
-  @Test
-  public void testNoUpdateOnStyleReload() {
-    <%- type  %>Manager = new <%- camelize(type) %>Manager(mapView, mapboxMap, style, coreElementProvider, "test_layer", null, draggableAnnotationController);
-    verify(geoJsonSource, times(1)).setGeoJson(any(FeatureCollection.class));
+    @Test
+    public void testNoUpdateOnStyleReload() {
+        <%- type  %>Manager = new <%- camelize(type) %>Manager(mapView, mapboxMap, style, coreElementProvider, "test_layer", null, draggableAnnotationController);
+        verify(geoJsonSource, times(1)).setGeoJson(any(FeatureCollection.class));
 
-    when(style.isFullyLoaded()).thenReturn(false);
-    <%- type  %>Manager.updateSource();
-    verify(geoJsonSource, times(1)).setGeoJson(any(FeatureCollection.class));
-  }
+        when(style.isFullyLoaded()).thenReturn(false);
+        <%- type  %>Manager.updateSource();
+        verify(geoJsonSource, times(1)).setGeoJson(any(FeatureCollection.class));
+    }
 
-  @Test
-  public void testLayerId() {
-    <%- type  %>Manager = new <%- camelize(type) %>Manager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
-    assertEquals(layerId, <%- type  %>Manager.getLayerId());
-  }
+    @Test
+    public void testLayerId() {
+        <%- type  %>Manager = new <%- camelize(type) %>Manager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+        assertEquals(layerId, <%- type  %>Manager.getLayerId());
+    }
 
-  @Test
-  public void testAdd<%- camelize(type) %>() {
-    <%- type  %>Manager = new <%- camelize(type) %>Manager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+    @Test
+    public void testAdd<%- camelize(type) %>() {
+        <%- type  %>Manager = new <%- camelize(type) %>Manager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
 <% if (type === "circle" || type === "symbol") { -%>
-    <%- camelize(type) %> <%- type %> = <%- type %>Manager.create(new <%- camelize(type) %>Options().withLatLng(new LatLng()));
+        <%- camelize(type) %> <%- type %> = <%- type %>Manager.create(new <%- camelize(type) %>Options().withLatLng(new LatLng()));
 <% } else if (type === "line") { -%>
-    List<LatLng>latLngs = new ArrayList<>();
-    latLngs.add(new LatLng());
-    latLngs.add(new LatLng(1,1));
-    <%- camelize(type) %> <%- type %> = <%- type %>Manager.create(new <%- camelize(type) %>Options().withLatLngs(latLngs));
+        List<LatLng>latLngs = new ArrayList<>();
+        latLngs.add(new LatLng());
+        latLngs.add(new LatLng(1,1));
+        <%- camelize(type) %> <%- type %> = <%- type %>Manager.create(new <%- camelize(type) %>Options().withLatLngs(latLngs));
 <% } else { -%>
-    List<LatLng>innerLatLngs = new ArrayList<>();
-    innerLatLngs.add(new LatLng());
-    innerLatLngs.add(new LatLng(1,1));
-    innerLatLngs.add(new LatLng(-1,-1));
-    innerLatLngs.add(new LatLng());
-    List<List<LatLng>>latLngs = new ArrayList<>();
-    latLngs.add(innerLatLngs);
-    <%- camelize(type) %> <%- type %> = <%- type %>Manager.create(new <%- camelize(type) %>Options().withLatLngs(latLngs));
+        List<LatLng>innerLatLngs = new ArrayList<>();
+        innerLatLngs.add(new LatLng());
+        innerLatLngs.add(new LatLng(1,1));
+        innerLatLngs.add(new LatLng(-1,-1));
+        innerLatLngs.add(new LatLng());
+        List<List<LatLng>>latLngs = new ArrayList<>();
+        latLngs.add(innerLatLngs);
+        <%- camelize(type) %> <%- type %> = <%- type %>Manager.create(new <%- camelize(type) %>Options().withLatLngs(latLngs));
 <% } -%>
-    assertEquals(<%- type  %>Manager.getAnnotations().get(0), <%- type  %>);
-  }
+        assertEquals(<%- type  %>Manager.getAnnotations().get(0), <%- type  %>);
+    }
 
-  @Test
-  public void add<%- camelize(type) %>FromFeatureCollection() {
-    <%- type  %>Manager = new <%- camelize(type) %>Manager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+    @Test
+    public void add<%- camelize(type) %>FromFeatureCollection() {
+        <%- type  %>Manager = new <%- camelize(type) %>Manager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
 <% if (type === "circle" || type === "symbol") { -%>
-    Geometry geometry = Point.fromLngLat(10, 10);
+        Geometry geometry = Point.fromLngLat(10, 10);
 <% } else if (type === "line") { -%>
-    List<Point> points = new ArrayList<>();
-    points.add(Point.fromLngLat(0, 0));
-    points.add(Point.fromLngLat(1, 1));
-    Geometry geometry = LineString.fromLngLats(points);
+        List<Point> points = new ArrayList<>();
+        points.add(Point.fromLngLat(0, 0));
+        points.add(Point.fromLngLat(1, 1));
+        Geometry geometry = LineString.fromLngLats(points);
 <% } else { -%>
-    List<Point> innerPoints = new ArrayList<>();
-    innerPoints.add(Point.fromLngLat(0, 0));
-    innerPoints.add(Point.fromLngLat(1, 1));
-    innerPoints.add(Point.fromLngLat(-1, -1));
-    innerPoints.add(Point.fromLngLat(0, 0));
-    List<List<Point>> points = new ArrayList<>();
-    points.add(innerPoints);
-    Geometry geometry = Polygon.fromLngLats(points);
+        List<Point> innerPoints = new ArrayList<>();
+        innerPoints.add(Point.fromLngLat(0, 0));
+        innerPoints.add(Point.fromLngLat(1, 1));
+        innerPoints.add(Point.fromLngLat(-1, -1));
+        innerPoints.add(Point.fromLngLat(0, 0));
+        List<List<Point>> points = new ArrayList<>();
+        points.add(innerPoints);
+        Geometry geometry = Polygon.fromLngLats(points);
 <% } -%>
 
-    Feature feature = Feature.fromGeometry(geometry);
+        Feature feature = Feature.fromGeometry(geometry);
 <% for (const property of properties) { -%>
 <% if (supportsPropertyFunction(property)) { -%>
 <% if (propertyType(property).endsWith("[]")) { -%>
-    feature.addProperty("<%- property.name %>", convertArray(<%- defaultValueJava(property) %>));
+        feature.addProperty("<%- property.name %>", convertArray(<%- defaultValueJava(property) %>));
 <% } else if (propertyType(property) === "Float") { -%>
-    feature.addNumberProperty("<%- property.name %>", <%- defaultValueJava(property) %>);
+        feature.addNumberProperty("<%- property.name %>", <%- defaultValueJava(property) %>);
 <% } else { -%>
-    feature.add<%- propertyType(property) -%>Property("<%- property.name %>", <%- defaultValueJava(property) %>);
+        feature.add<%- propertyType(property) -%>Property("<%- property.name %>", <%- defaultValueJava(property) %>);
 <% } -%>
 <% } -%>
 <% } -%>
-    feature.addBooleanProperty("is-draggable", true);
+        feature.addBooleanProperty("is-draggable", true);
 
-    List<<%- camelize(type) %>> <%- type %>s = <%- type %>Manager.create(FeatureCollection.fromFeature(feature));
-    <%- camelize(type) %> <%- type %> = <%- type %>s.get(0);
+        List<<%- camelize(type) %>> <%- type %>s = <%- type %>Manager.create(FeatureCollection.fromFeature(feature));
+        <%- camelize(type) %> <%- type %> = <%- type %>s.get(0);
 
-    assertEquals(<%- type %>.geometry, geometry);
+        assertEquals(<%- type %>.geometry, geometry);
 <% for (const property of properties) { -%>
 <% if (supportsPropertyFunction(property)) { -%>
 <% if (propertyType(property).endsWith("[]")) { -%>
 <% if (propertyType(property).endsWith("Float[]")) { -%>
-    PointF <%- camelizeWithLeadingLowercase(property.name) %>Expected = new PointF(<%- defaultValueJava(property) %>[0], <%- defaultValueJava(property) %>[1]);
-    assertEquals(<%- camelizeWithLeadingLowercase(property.name) %>Expected.x, <%- type %>.get<%- camelize(property.name) %>().x);
-    assertEquals(<%- camelizeWithLeadingLowercase(property.name) %>Expected.y, <%- type %>.get<%- camelize(property.name) %>().y);
+        PointF <%- camelizeWithLeadingLowercase(property.name) %>Expected = new PointF(<%- defaultValueJava(property) %>[0], <%- defaultValueJava(property) %>[1]);
+        assertEquals(<%- camelizeWithLeadingLowercase(property.name) %>Expected.x, <%- type %>.get<%- camelize(property.name) %>().x);
+        assertEquals(<%- camelizeWithLeadingLowercase(property.name) %>Expected.y, <%- type %>.get<%- camelize(property.name) %>().y);
 <% } else { -%>
-    assertTrue(Arrays.equals(<%- type %>.get<%- camelize(property.name) %>(), <%- defaultValueJava(property) %>));
+        assertTrue(Arrays.equals(<%- type %>.get<%- camelize(property.name) %>(), <%- defaultValueJava(property) %>));
 <% } -%>
 <% } else if (property.type == 'color') { -%>
-    assertEquals(<%- type %>.get<%- camelize(property.name) %>(), <%- defaultValueJava(property) %>);
+        assertEquals(<%- type %>.get<%- camelize(property.name) %>(), <%- defaultValueJava(property) %>);
 <% } else { -%>
-    assertEquals(<%- type %>.get<%- camelize(property.name) %>(), <%- defaultValueJava(property) %>);
+        assertEquals(<%- type %>.get<%- camelize(property.name) %>(), <%- defaultValueJava(property) %>);
 <% } -%>
 <% } -%>
 <% } -%>
-    assertTrue(<%- type %>.isDraggable());
-  }
-
-  @Test
-  public void add<%- camelize(type) %>s() {
-    <%- type  %>Manager = new <%- camelize(type) %>Manager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
-<% if (type === "circle" || type === "symbol") { -%>
-    List<LatLng> latLngList = new ArrayList<>();
-    latLngList.add(new LatLng());
-    latLngList.add(new LatLng(1, 1));
-    List< <%- camelize(type) %>Options> options = new ArrayList<>();
-    for (LatLng latLng : latLngList) {
-      options.add(new  <%- camelize(type) %>Options().withLatLng(latLng));
+        assertTrue(<%- type %>.isDraggable());
     }
+
+    @Test
+    public void add<%- camelize(type) %>s() {
+        <%- type  %>Manager = new <%- camelize(type) %>Manager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+<% if (type === "circle" || type === "symbol") { -%>
+        List<LatLng> latLngList = new ArrayList<>();
+        latLngList.add(new LatLng());
+        latLngList.add(new LatLng(1, 1));
+        List< <%- camelize(type) %>Options> options = new ArrayList<>();
+        for (LatLng latLng : latLngList) {
+            options.add(new  <%- camelize(type) %>Options().withLatLng(latLng));
+        }
 <% } else if (type === "line") { -%>
-    List<List<LatLng>> latLngList = new ArrayList<>();
-    latLngList.add(new ArrayList<LatLng>() {{
-      add(new LatLng(2, 2));
-      add(new LatLng(2, 3));
-    }});
-    latLngList.add(new ArrayList<LatLng>() {{
-      add(new LatLng(1, 1));
-      add(new LatLng(2, 3));
-    }});
-    List<LineOptions> options = new ArrayList<>();
-    for (List<LatLng> latLngs : latLngList) {
-      options.add(new LineOptions().withLatLngs(latLngs));
+        List<List<LatLng>> latLngList = new ArrayList<>();
+        latLngList.add(new ArrayList<LatLng>() {{
+            add(new LatLng(2, 2));
+            add(new LatLng(2, 3));
+        }});
+        latLngList.add(new ArrayList<LatLng>() {{
+            add(new LatLng(1, 1));
+            add(new LatLng(2, 3));
+        }});
+        List<LineOptions> options = new ArrayList<>();
+        for (List<LatLng> latLngs : latLngList) {
+            options.add(new LineOptions().withLatLngs(latLngs));
+        }
+<% } else { -%>
+        final List<List<LatLng>> latLngListOne = new ArrayList<>();
+        latLngListOne.add(new ArrayList<LatLng>() {{
+            add(new LatLng(2, 2));
+            add(new LatLng(2, 3));
+        }});
+        latLngListOne.add(new ArrayList<LatLng>() {{
+            add(new LatLng(1, 1));
+            add(new LatLng(2, 3));
+        }});
+
+        final List<List<LatLng>> latLngListTwo = new ArrayList<>();
+        latLngListTwo.add(new ArrayList<LatLng>() {{
+            add(new LatLng(5, 7));
+            add(new LatLng(2, 3));
+        }});
+        latLngListTwo.add(new ArrayList<LatLng>() {{
+            add(new LatLng(1, 1));
+            add(new LatLng(3, 9));
+        }});
+
+        List<List<List<LatLng>>> latLngList = new ArrayList<List<List<LatLng>>>(){{
+            add(latLngListOne);
+            add(latLngListTwo);
+        }};
+        List<FillOptions> options = new ArrayList<>();
+        for (List<List<LatLng>> lists : latLngList) {
+            options.add(new FillOptions().withLatLngs(lists));
+        }
+<% } -%>
+        List<<%- camelize(type) %>> <%- type %>s = <%- type %>Manager.create(options);
+        assertTrue("Returned value size should match", <%- type  %>s.size() == 2);
+        assertTrue("Annotations size should match", <%- type  %>Manager.getAnnotations().size() == 2);
     }
+
+    @Test
+    public void testDelete<%- camelize(type) %>() {
+        <%- type  %>Manager = new <%- camelize(type) %>Manager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+<% if (type === "circle" || type === "symbol") { -%>
+        <%- camelize(type) %> <%- type %> = <%- type %>Manager.create(new <%- camelize(type) %>Options().withLatLng(new LatLng()));
+<% } else if (type === "line") { -%>
+        List<LatLng>latLngs = new ArrayList<>();
+        latLngs.add(new LatLng());
+        latLngs.add(new LatLng(1,1));
+        <%- camelize(type) %> <%- type %> = <%- type %>Manager.create(new <%- camelize(type) %>Options().withLatLngs(latLngs));
 <% } else { -%>
-    final List<List<LatLng>> latLngListOne = new ArrayList<>();
-    latLngListOne.add(new ArrayList<LatLng>() {{
-      add(new LatLng(2, 2));
-      add(new LatLng(2, 3));
-    }});
-    latLngListOne.add(new ArrayList<LatLng>() {{
-      add(new LatLng(1, 1));
-      add(new LatLng(2, 3));
-    }});
-
-    final List<List<LatLng>> latLngListTwo = new ArrayList<>();
-    latLngListTwo.add(new ArrayList<LatLng>() {{
-      add(new LatLng(5, 7));
-      add(new LatLng(2, 3));
-    }});
-    latLngListTwo.add(new ArrayList<LatLng>() {{
-      add(new LatLng(1, 1));
-      add(new LatLng(3, 9));
-    }});
-
-    List<List<List<LatLng>>> latLngList = new ArrayList<List<List<LatLng>>>(){{
-      add(latLngListOne);
-      add(latLngListTwo);
-    }};
-    List<FillOptions> options = new ArrayList<>();
-    for (List<List<LatLng>> lists : latLngList) {
-      options.add(new FillOptions().withLatLngs(lists));
+        List<LatLng>innerLatLngs = new ArrayList<>();
+        innerLatLngs.add(new LatLng());
+        innerLatLngs.add(new LatLng(1,1));
+        innerLatLngs.add(new LatLng(-1,-1));
+        List<List<LatLng>>latLngs = new ArrayList<>();
+        latLngs.add(innerLatLngs);
+        <%- camelize(type) %> <%- type %> = <%- type %>Manager.create(new <%- camelize(type) %>Options().withLatLngs(latLngs));
+<% } -%>
+        <%- type  %>Manager.delete(<%- type  %>);
+        assertTrue(<%- type  %>Manager.getAnnotations().size() == 0);
     }
-<% } -%>
-    List<<%- camelize(type) %>> <%- type %>s = <%- type %>Manager.create(options);
-    assertTrue("Returned value size should match", <%- type  %>s.size() == 2);
-    assertTrue("Annotations size should match", <%- type  %>Manager.getAnnotations().size() == 2);
-  }
 
-  @Test
-  public void testDelete<%- camelize(type) %>() {
-    <%- type  %>Manager = new <%- camelize(type) %>Manager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+    @Test
+    public void testGeometry<%- camelize(type) %>() {
+        <%- type  %>Manager = new <%- camelize(type) %>Manager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
 <% if (type === "circle" || type === "symbol") { -%>
-    <%- camelize(type) %> <%- type %> = <%- type %>Manager.create(new <%- camelize(type) %>Options().withLatLng(new LatLng()));
+        LatLng latLng = new LatLng(12, 34);
+        <%- camelize(type) %>Options options = new <%- camelize(type) %>Options().withLatLng(latLng);
+        <%- camelize(type) %> <%- type %> = <%- type %>Manager.create(options);
+        assertEquals(options.getLatLng(), latLng);
+        assertEquals(<%- type %>.getLatLng(), latLng);
+        assertEquals(options.getGeometry(), Point.fromLngLat(34, 12));
+        assertEquals(<%- type  %>.getGeometry(), Point.fromLngLat(34, 12));
 <% } else if (type === "line") { -%>
-    List<LatLng>latLngs = new ArrayList<>();
-    latLngs.add(new LatLng());
-    latLngs.add(new LatLng(1,1));
-    <%- camelize(type) %> <%- type %> = <%- type %>Manager.create(new <%- camelize(type) %>Options().withLatLngs(latLngs));
+        List<LatLng>latLngs = new ArrayList<>();
+        latLngs.add(new LatLng());
+        latLngs.add(new LatLng(1,1));
+        <%- camelize(type) %>Options options = new <%- camelize(type) %>Options().withLatLngs(latLngs);
+        <%- camelize(type) %> <%- type %> = <%- type %>Manager.create(options);
+        assertEquals(options.getLatLngs(), latLngs);
+        assertEquals(line.getLatLngs(), latLngs);
+        assertEquals(options.getGeometry(), LineString.fromLngLats(new ArrayList<Point>() {{
+                    add(Point.fromLngLat(0, 0));
+                    add(Point.fromLngLat(1, 1));
+        }}));
+        assertEquals(line.getGeometry(), LineString.fromLngLats(new ArrayList<Point>() {{
+            add(Point.fromLngLat(0, 0));
+            add(Point.fromLngLat(1, 1));
+        }}));
 <% } else { -%>
-    List<LatLng>innerLatLngs = new ArrayList<>();
-    innerLatLngs.add(new LatLng());
-    innerLatLngs.add(new LatLng(1,1));
-    innerLatLngs.add(new LatLng(-1,-1));
-    List<List<LatLng>>latLngs = new ArrayList<>();
-    latLngs.add(innerLatLngs);
-    <%- camelize(type) %> <%- type %> = <%- type %>Manager.create(new <%- camelize(type) %>Options().withLatLngs(latLngs));
+        List<LatLng>innerLatLngs = new ArrayList<>();
+        innerLatLngs.add(new LatLng());
+        innerLatLngs.add(new LatLng(1,1));
+        innerLatLngs.add(new LatLng(-1,-1));
+        List<List<LatLng>>latLngs = new ArrayList<>();
+        latLngs.add(innerLatLngs);
+        <%- camelize(type) %>Options options = new <%- camelize(type) %>Options().withLatLngs(latLngs);
+        Fill fill = fillManager.create(options);
+        assertEquals(options.getLatLngs(), latLngs);
+        assertEquals(fill.getLatLngs(), latLngs);
+        assertEquals(options.getGeometry(), Polygon.fromLngLats(new ArrayList<List<Point>>() {{
+            add(new ArrayList<Point>() {{
+                add(Point.fromLngLat(0, 0));
+                add(Point.fromLngLat(1, 1));
+                add(Point.fromLngLat(-1, -1));
+            }});
+        }}));
+        assertEquals(fill.getGeometry(), Polygon.fromLngLats(new ArrayList<List<Point>>() {{
+            add(new ArrayList<Point>() {{
+                add(Point.fromLngLat(0, 0));
+                add(Point.fromLngLat(1, 1));
+                add(Point.fromLngLat(-1, -1));
+            }});
+        }}));
 <% } -%>
-    <%- type  %>Manager.delete(<%- type  %>);
-    assertTrue(<%- type  %>Manager.getAnnotations().size() == 0);
-  }
+    }
 
-  @Test
-  public void testGeometry<%- camelize(type) %>() {
-    <%- type  %>Manager = new <%- camelize(type) %>Manager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+    @Test
+    public void testFeatureId<%- camelize(type) %>() {
+        <%- type  %>Manager = new <%- camelize(type) %>Manager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
 <% if (type === "circle" || type === "symbol") { -%>
-    LatLng latLng = new LatLng(12, 34);
-    <%- camelize(type) %>Options options = new <%- camelize(type) %>Options().withLatLng(latLng);
-    <%- camelize(type) %> <%- type %> = <%- type %>Manager.create(options);
-    assertEquals(options.getLatLng(), latLng);
-    assertEquals(<%- type %>.getLatLng(), latLng);
-    assertEquals(options.getGeometry(), Point.fromLngLat(34, 12));
-    assertEquals(<%- type  %>.getGeometry(), Point.fromLngLat(34, 12));
+        <%- camelize(type) %> <%- type %>Zero = <%- type %>Manager.create(new <%- camelize(type) %>Options().withLatLng(new LatLng()));
+        <%- camelize(type) %> <%- type %>One = <%- type %>Manager.create(new <%- camelize(type) %>Options().withLatLng(new LatLng()));
 <% } else if (type === "line") { -%>
-    List<LatLng>latLngs = new ArrayList<>();
-    latLngs.add(new LatLng());
-    latLngs.add(new LatLng(1,1));
-    <%- camelize(type) %>Options options = new <%- camelize(type) %>Options().withLatLngs(latLngs);
-    <%- camelize(type) %> <%- type %> = <%- type %>Manager.create(options);
-    assertEquals(options.getLatLngs(), latLngs);
-    assertEquals(line.getLatLngs(), latLngs);
-    assertEquals(options.getGeometry(), LineString.fromLngLats(new ArrayList<Point>() {{
-          add(Point.fromLngLat(0, 0));
-          add(Point.fromLngLat(1, 1));
-    }}));
-    assertEquals(line.getGeometry(), LineString.fromLngLats(new ArrayList<Point>() {{
-      add(Point.fromLngLat(0, 0));
-      add(Point.fromLngLat(1, 1));
-    }}));
+        List<LatLng>latLngs = new ArrayList<>();
+        latLngs.add(new LatLng());
+        latLngs.add(new LatLng(1,1));
+        <%- camelize(type) %> <%- type %>Zero = <%- type %>Manager.create(new <%- camelize(type) %>Options().withLatLngs(latLngs));
+        <%- camelize(type) %> <%- type %>One = <%- type %>Manager.create(new <%- camelize(type) %>Options().withLatLngs(latLngs));
 <% } else { -%>
-    List<LatLng>innerLatLngs = new ArrayList<>();
-    innerLatLngs.add(new LatLng());
-    innerLatLngs.add(new LatLng(1,1));
-    innerLatLngs.add(new LatLng(-1,-1));
-    List<List<LatLng>>latLngs = new ArrayList<>();
-    latLngs.add(innerLatLngs);
-    <%- camelize(type) %>Options options = new <%- camelize(type) %>Options().withLatLngs(latLngs);
-    Fill fill = fillManager.create(options);
-    assertEquals(options.getLatLngs(), latLngs);
-    assertEquals(fill.getLatLngs(), latLngs);
-    assertEquals(options.getGeometry(), Polygon.fromLngLats(new ArrayList<List<Point>>() {{
-      add(new ArrayList<Point>() {{
-        add(Point.fromLngLat(0, 0));
-        add(Point.fromLngLat(1, 1));
-        add(Point.fromLngLat(-1, -1));
-      }});
-    }}));
-    assertEquals(fill.getGeometry(), Polygon.fromLngLats(new ArrayList<List<Point>>() {{
-      add(new ArrayList<Point>() {{
-        add(Point.fromLngLat(0, 0));
-        add(Point.fromLngLat(1, 1));
-        add(Point.fromLngLat(-1, -1));
-      }});
-    }}));
+        List<LatLng>innerLatLngs = new ArrayList<>();
+        innerLatLngs.add(new LatLng());
+        innerLatLngs.add(new LatLng(1,1));
+        innerLatLngs.add(new LatLng(-1,-1));
+        List<List<LatLng>>latLngs = new ArrayList<>();
+        latLngs.add(innerLatLngs);
+        <%- camelize(type) %> <%- type %>Zero = <%- type %>Manager.create(new <%- camelize(type) %>Options().withLatLngs(latLngs));
+        <%- camelize(type) %> <%- type %>One = <%- type %>Manager.create(new <%- camelize(type) %>Options().withLatLngs(latLngs));
 <% } -%>
-  }
+        assertEquals(<%- type  %>Zero.getFeature().get(<%- camelize(type) %>.ID_KEY).getAsLong(), 0);
+        assertEquals(<%- type  %>One.getFeature().get(<%- camelize(type) %>.ID_KEY).getAsLong(), 1);
+    }
 
-  @Test
-  public void testFeatureId<%- camelize(type) %>() {
-    <%- type  %>Manager = new <%- camelize(type) %>Manager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+    @Test
+    public void test<%- camelize(type) %>DraggableFlag() {
+        <%- type  %>Manager = new <%- camelize(type) %>Manager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
 <% if (type === "circle" || type === "symbol") { -%>
-    <%- camelize(type) %> <%- type %>Zero = <%- type %>Manager.create(new <%- camelize(type) %>Options().withLatLng(new LatLng()));
-    <%- camelize(type) %> <%- type %>One = <%- type %>Manager.create(new <%- camelize(type) %>Options().withLatLng(new LatLng()));
+        <%- camelize(type) %> <%- type %>Zero = <%- type %>Manager.create(new <%- camelize(type) %>Options().withLatLng(new LatLng()));
 <% } else if (type === "line") { -%>
-    List<LatLng>latLngs = new ArrayList<>();
-    latLngs.add(new LatLng());
-    latLngs.add(new LatLng(1,1));
-    <%- camelize(type) %> <%- type %>Zero = <%- type %>Manager.create(new <%- camelize(type) %>Options().withLatLngs(latLngs));
-    <%- camelize(type) %> <%- type %>One = <%- type %>Manager.create(new <%- camelize(type) %>Options().withLatLngs(latLngs));
+        List<LatLng>latLngs = new ArrayList<>();
+        latLngs.add(new LatLng());
+        latLngs.add(new LatLng(1,1));
+        <%- camelize(type) %> <%- type %>Zero = <%- type %>Manager.create(new <%- camelize(type) %>Options().withLatLngs(latLngs));
 <% } else { -%>
-    List<LatLng>innerLatLngs = new ArrayList<>();
-    innerLatLngs.add(new LatLng());
-    innerLatLngs.add(new LatLng(1,1));
-    innerLatLngs.add(new LatLng(-1,-1));
-    List<List<LatLng>>latLngs = new ArrayList<>();
-    latLngs.add(innerLatLngs);
-    <%- camelize(type) %> <%- type %>Zero = <%- type %>Manager.create(new <%- camelize(type) %>Options().withLatLngs(latLngs));
-    <%- camelize(type) %> <%- type %>One = <%- type %>Manager.create(new <%- camelize(type) %>Options().withLatLngs(latLngs));
-<% } -%>
-    assertEquals(<%- type  %>Zero.getFeature().get(<%- camelize(type) %>.ID_KEY).getAsLong(), 0);
-    assertEquals(<%- type  %>One.getFeature().get(<%- camelize(type) %>.ID_KEY).getAsLong(), 1);
-  }
-
-  @Test
-  public void test<%- camelize(type) %>DraggableFlag() {
-    <%- type  %>Manager = new <%- camelize(type) %>Manager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
-<% if (type === "circle" || type === "symbol") { -%>
-    <%- camelize(type) %> <%- type %>Zero = <%- type %>Manager.create(new <%- camelize(type) %>Options().withLatLng(new LatLng()));
-<% } else if (type === "line") { -%>
-    List<LatLng>latLngs = new ArrayList<>();
-    latLngs.add(new LatLng());
-    latLngs.add(new LatLng(1,1));
-    <%- camelize(type) %> <%- type %>Zero = <%- type %>Manager.create(new <%- camelize(type) %>Options().withLatLngs(latLngs));
-<% } else { -%>
-    List<LatLng>innerLatLngs = new ArrayList<>();
-    innerLatLngs.add(new LatLng());
-    innerLatLngs.add(new LatLng(1,1));
-    innerLatLngs.add(new LatLng(-1,-1));
-    List<List<LatLng>>latLngs = new ArrayList<>();
-    latLngs.add(innerLatLngs);
-    <%- camelize(type) %> <%- type %>Zero = <%- type %>Manager.create(new <%- camelize(type) %>Options().withLatLngs(latLngs));
+        List<LatLng>innerLatLngs = new ArrayList<>();
+        innerLatLngs.add(new LatLng());
+        innerLatLngs.add(new LatLng(1,1));
+        innerLatLngs.add(new LatLng(-1,-1));
+        List<List<LatLng>>latLngs = new ArrayList<>();
+        latLngs.add(innerLatLngs);
+        <%- camelize(type) %> <%- type %>Zero = <%- type %>Manager.create(new <%- camelize(type) %>Options().withLatLngs(latLngs));
 <% } -%>
 
-    assertFalse(<%- type %>Zero.isDraggable());
-    <%- type %>Zero.setDraggable(true);
-    assertTrue(<%- type %>Zero.isDraggable());
-    <%- type %>Zero.setDraggable(false);
-    assertFalse(<%- type %>Zero.isDraggable());
-  }
+        assertFalse(<%- type %>Zero.isDraggable());
+        <%- type %>Zero.setDraggable(true);
+        assertTrue(<%- type %>Zero.isDraggable());
+        <%- type %>Zero.setDraggable(false);
+        assertFalse(<%- type %>Zero.isDraggable());
+    }
 
 <% for (const property of properties) { -%>
 <% if (supportsPropertyFunction(property)) { -%>
 
-  @Test
-  public void test<%- camelize(property.name) %>LayerProperty() {
-    <%- type  %>Manager = new <%- camelize(type) %>Manager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
-    verify(<%- type  %>Layer, times(0)).setProperties(argThat(new PropertyValueMatcher(<%- camelizeWithLeadingLowercase(property.name) %>(get("<%- property.name %>")))));
+    @Test
+    public void test<%- camelize(property.name) %>LayerProperty() {
+        <%- type  %>Manager = new <%- camelize(type) %>Manager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+        verify(<%- type  %>Layer, times(0)).setProperties(argThat(new PropertyValueMatcher(<%- camelizeWithLeadingLowercase(property.name) %>(get("<%- property.name %>")))));
 
 <% if (type === "circle" || type === "symbol") { -%>
-    <%- camelize(type) %>Options options = new <%- camelize(type) %>Options().withLatLng(new LatLng()).with<%- camelize(property.name) %>(<%- defaultValueJava(property) %>);
+        <%- camelize(type) %>Options options = new <%- camelize(type) %>Options().withLatLng(new LatLng()).with<%- camelize(property.name) %>(<%- defaultValueJava(property) %>);
 <% } else if (type === "line") { -%>
-    List<LatLng>latLngs = new ArrayList<>();
-    latLngs.add(new LatLng());
-    latLngs.add(new LatLng(1,1));
-    <%- camelize(type) %>Options options = new <%- camelize(type) %>Options().withLatLngs(latLngs).with<%- camelize(property.name) %>(<%- defaultValueJava(property) %>);
+        List<LatLng>latLngs = new ArrayList<>();
+        latLngs.add(new LatLng());
+        latLngs.add(new LatLng(1,1));
+        <%- camelize(type) %>Options options = new <%- camelize(type) %>Options().withLatLngs(latLngs).with<%- camelize(property.name) %>(<%- defaultValueJava(property) %>);
 <% } else { -%>
-    List<LatLng>innerLatLngs = new ArrayList<>();
-    innerLatLngs.add(new LatLng());
-    innerLatLngs.add(new LatLng(1,1));
-    innerLatLngs.add(new LatLng(-1,-1));
-    List<List<LatLng>>latLngs = new ArrayList<>();
-    latLngs.add(innerLatLngs);
-    <%- camelize(type) %>Options options = new <%- camelize(type) %>Options().withLatLngs(latLngs).with<%- camelize(property.name) %>(<%- defaultValueJava(property) %>);
+        List<LatLng>innerLatLngs = new ArrayList<>();
+        innerLatLngs.add(new LatLng());
+        innerLatLngs.add(new LatLng(1,1));
+        innerLatLngs.add(new LatLng(-1,-1));
+        List<List<LatLng>>latLngs = new ArrayList<>();
+        latLngs.add(innerLatLngs);
+        <%- camelize(type) %>Options options = new <%- camelize(type) %>Options().withLatLngs(latLngs).with<%- camelize(property.name) %>(<%- defaultValueJava(property) %>);
 <% } -%>
-    <%- type  %>Manager.create(options);
-    verify(<%- type  %>Layer, times(1)).setProperties(argThat(new PropertyValueMatcher(<%- camelizeWithLeadingLowercase(property.name) %>(get("<%- property.name %>")))));
+        <%- type  %>Manager.create(options);
+        verify(<%- type  %>Layer, times(1)).setProperties(argThat(new PropertyValueMatcher(<%- camelizeWithLeadingLowercase(property.name) %>(get("<%- property.name %>")))));
 
-    <%- type  %>Manager.create(options);
-    verify(<%- type  %>Layer, times(1)).setProperties(argThat(new PropertyValueMatcher(<%- camelizeWithLeadingLowercase(property.name) %>(get("<%- property.name %>")))));
-  }
+        <%- type  %>Manager.create(options);
+        verify(<%- type  %>Layer, times(1)).setProperties(argThat(new PropertyValueMatcher(<%- camelizeWithLeadingLowercase(property.name) %>(get("<%- property.name %>")))));
+    }
 <% } -%>
 <% } -%>
 
-  @Test
-  public void test<%- camelize(type) %>LayerFilter() {
-    <%- type  %>Manager = new <%- camelize(type) %>Manager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
-    Expression expression = Expression.eq(Expression.get("test"), "selected");
-    verify(<%- type %>Layer, times(0)).setFilter(expression);
+    @Test
+    public void test<%- camelize(type) %>LayerFilter() {
+        <%- type  %>Manager = new <%- camelize(type) %>Manager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+        Expression expression = Expression.eq(Expression.get("test"), "selected");
+        verify(<%- type %>Layer, times(0)).setFilter(expression);
 
-    <%- type %>Manager.setFilter(expression);
-    verify(<%- type %>Layer, times(1)).setFilter(expression);
+        <%- type %>Manager.setFilter(expression);
+        verify(<%- type %>Layer, times(1)).setFilter(expression);
 
-    when(<%- type %>Layer.getFilter()).thenReturn(expression);
-    assertEquals(expression, <%- type %>Manager.getFilter());
-    assertEquals(expression, <%- type %>Manager.layerFilter);
-  }
+        when(<%- type %>Layer.getFilter()).thenReturn(expression);
+        assertEquals(expression, <%- type %>Manager.getFilter());
+        assertEquals(expression, <%- type %>Manager.layerFilter);
+    }
 
-  @Test
-  public void testClickListener() {
-    On<%- camelize(type) %>ClickListener listener = mock(On<%- camelize(type) %>ClickListener.class);
-    <%- type  %>Manager = new  <%- camelize(type) %>Manager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
-    assertTrue(<%- type  %>Manager.getClickListeners().isEmpty());
-    <%- type  %>Manager.addClickListener(listener);
-    assertTrue(<%- type  %>Manager.getClickListeners().contains(listener));
-    <%- type  %>Manager.removeClickListener(listener);
-    assertTrue( <%- type  %>Manager.getClickListeners().isEmpty());
-  }
+    @Test
+    public void testClickListener() {
+        On<%- camelize(type) %>ClickListener listener = mock(On<%- camelize(type) %>ClickListener.class);
+        <%- type  %>Manager = new  <%- camelize(type) %>Manager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+        assertTrue(<%- type  %>Manager.getClickListeners().isEmpty());
+        <%- type  %>Manager.addClickListener(listener);
+        assertTrue(<%- type  %>Manager.getClickListeners().contains(listener));
+        <%- type  %>Manager.removeClickListener(listener);
+        assertTrue( <%- type  %>Manager.getClickListeners().isEmpty());
+    }
 
-  @Test
-  public void testLongClickListener() {
-    On<%- camelize(type) %>LongClickListener listener = mock(On<%- camelize(type) %>LongClickListener.class);
-    <%- type  %>Manager = new <%- camelize(type) %>Manager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
-    assertTrue(<%- type  %>Manager.getLongClickListeners().isEmpty());
-    <%- type  %>Manager.addLongClickListener(listener);
-    assertTrue(<%- type  %>Manager.getLongClickListeners().contains(listener));
-    <%- type  %>Manager.removeLongClickListener(listener);
-    assertTrue(<%- type  %>Manager.getLongClickListeners().isEmpty());
-  }
+    @Test
+    public void testLongClickListener() {
+        On<%- camelize(type) %>LongClickListener listener = mock(On<%- camelize(type) %>LongClickListener.class);
+        <%- type  %>Manager = new <%- camelize(type) %>Manager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+        assertTrue(<%- type  %>Manager.getLongClickListeners().isEmpty());
+        <%- type  %>Manager.addLongClickListener(listener);
+        assertTrue(<%- type  %>Manager.getLongClickListeners().contains(listener));
+        <%- type  %>Manager.removeLongClickListener(listener);
+        assertTrue(<%- type  %>Manager.getLongClickListeners().isEmpty());
+    }
 
-  @Test
-  public void testDragListener() {
-    On<%- camelize(type) %>DragListener listener = mock(On<%- camelize(type) %>DragListener.class);
-    <%- type  %>Manager = new <%- camelize(type) %>Manager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
-    assertTrue(<%- type  %>Manager.getDragListeners().isEmpty());
-    <%- type  %>Manager.addDragListener(listener);
-    assertTrue(<%- type  %>Manager.getDragListeners().contains(listener));
-    <%- type  %>Manager.removeDragListener(listener);
-    assertTrue(<%- type  %>Manager.getDragListeners().isEmpty());
-  }
+    @Test
+    public void testDragListener() {
+        On<%- camelize(type) %>DragListener listener = mock(On<%- camelize(type) %>DragListener.class);
+        <%- type  %>Manager = new <%- camelize(type) %>Manager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+        assertTrue(<%- type  %>Manager.getDragListeners().isEmpty());
+        <%- type  %>Manager.addDragListener(listener);
+        assertTrue(<%- type  %>Manager.getDragListeners().contains(listener));
+        <%- type  %>Manager.removeDragListener(listener);
+        assertTrue(<%- type  %>Manager.getDragListeners().isEmpty());
+    }
 
-  @Test
-  public void testCustomData() {
-    <%- type  %>Manager = new <%- camelize(type) %>Manager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+    @Test
+    public void testCustomData() {
+        <%- type  %>Manager = new <%- camelize(type) %>Manager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
 <% if (type === "circle" || type === "symbol") { -%>
-    <%- camelize(type) %>Options options = new <%- camelize(type) %>Options().withLatLng(new LatLng());
+        <%- camelize(type) %>Options options = new <%- camelize(type) %>Options().withLatLng(new LatLng());
 <% } else if (type === "line") { -%>
-    List<LatLng>latLngs = new ArrayList<>();
-    latLngs.add(new LatLng());
-    latLngs.add(new LatLng(1,1));
-    <%- camelize(type) %>Options options = new <%- camelize(type) %>Options().withLatLngs(latLngs);
+        List<LatLng>latLngs = new ArrayList<>();
+        latLngs.add(new LatLng());
+        latLngs.add(new LatLng(1,1));
+        <%- camelize(type) %>Options options = new <%- camelize(type) %>Options().withLatLngs(latLngs);
 <% } else { -%>
-    List<LatLng>innerLatLngs = new ArrayList<>();
-    innerLatLngs.add(new LatLng());
-    innerLatLngs.add(new LatLng(1,1));
-    innerLatLngs.add(new LatLng(-1,-1));
-    List<List<LatLng>>latLngs = new ArrayList<>();
-    latLngs.add(innerLatLngs);
-    <%- camelize(type) %>Options options = new <%- camelize(type) %>Options().withLatLngs(latLngs);
+        List<LatLng>innerLatLngs = new ArrayList<>();
+        innerLatLngs.add(new LatLng());
+        innerLatLngs.add(new LatLng(1,1));
+        innerLatLngs.add(new LatLng(-1,-1));
+        List<List<LatLng>>latLngs = new ArrayList<>();
+        latLngs.add(innerLatLngs);
+        <%- camelize(type) %>Options options = new <%- camelize(type) %>Options().withLatLngs(latLngs);
 <% } -%>
-    options.withData(new JsonPrimitive("hello"));
-    <%- camelize(type) %> <%- type  %> = <%- type  %>Manager.create(options);
-    assertEquals(new JsonPrimitive("hello"), <%- type  %>.getData());
-  }
+        options.withData(new JsonPrimitive("hello"));
+        <%- camelize(type) %> <%- type  %> = <%- type  %>Manager.create(options);
+        assertEquals(new JsonPrimitive("hello"), <%- type  %>.getData());
+    }
 
-  @Test
-  public void testClearAll() {
-    <%- type  %>Manager = new <%- camelize(type) %>Manager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+    @Test
+    public void testClearAll() {
+        <%- type  %>Manager = new <%- camelize(type) %>Manager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
 <% if (type === "circle" || type === "symbol") { -%>
-    <%- camelize(type) %>Options options = new <%- camelize(type) %>Options().withLatLng(new LatLng());
+        <%- camelize(type) %>Options options = new <%- camelize(type) %>Options().withLatLng(new LatLng());
 <% } else if (type === "line") { -%>
-    List<LatLng>latLngs = new ArrayList<>();
-    latLngs.add(new LatLng());
-    latLngs.add(new LatLng(1,1));
-    <%- camelize(type) %>Options options = new <%- camelize(type) %>Options().withLatLngs(latLngs);
+        List<LatLng>latLngs = new ArrayList<>();
+        latLngs.add(new LatLng());
+        latLngs.add(new LatLng(1,1));
+        <%- camelize(type) %>Options options = new <%- camelize(type) %>Options().withLatLngs(latLngs);
 <% } else { -%>
-    List<LatLng>innerLatLngs = new ArrayList<>();
-    innerLatLngs.add(new LatLng());
-    innerLatLngs.add(new LatLng(1,1));
-    innerLatLngs.add(new LatLng(-1,-1));
-    List<List<LatLng>>latLngs = new ArrayList<>();
-    latLngs.add(innerLatLngs);
-    <%- camelize(type) %>Options options = new <%- camelize(type) %>Options().withLatLngs(latLngs);
+        List<LatLng>innerLatLngs = new ArrayList<>();
+        innerLatLngs.add(new LatLng());
+        innerLatLngs.add(new LatLng(1,1));
+        innerLatLngs.add(new LatLng(-1,-1));
+        List<List<LatLng>>latLngs = new ArrayList<>();
+        latLngs.add(innerLatLngs);
+        <%- camelize(type) %>Options options = new <%- camelize(type) %>Options().withLatLngs(latLngs);
 <% } -%>
-    <%- type  %>Manager.create(options);
-    assertEquals(1, <%- type  %>Manager.getAnnotations().size());
-    <%- type  %>Manager.deleteAll();
-    assertEquals(0, <%- type  %>Manager.getAnnotations().size());
-  }
+        <%- type  %>Manager.create(options);
+        assertEquals(1, <%- type  %>Manager.getAnnotations().size());
+        <%- type  %>Manager.deleteAll();
+        assertEquals(0, <%- type  %>Manager.getAnnotations().size());
+    }
 
-  @Test
-  public void testIgnoreClearedAnnotations() {
-    <%- type  %>Manager = new <%- camelize(type) %>Manager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+    @Test
+    public void testIgnoreClearedAnnotations() {
+        <%- type  %>Manager = new <%- camelize(type) %>Manager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
 <% if (type === "circle" || type === "symbol") { -%>
-    <%- camelize(type) %>Options options = new <%- camelize(type) %>Options().withLatLng(new LatLng());
+        <%- camelize(type) %>Options options = new <%- camelize(type) %>Options().withLatLng(new LatLng());
 <% } else if (type === "line") { -%>
-    List<LatLng>latLngs = new ArrayList<>();
-    latLngs.add(new LatLng());
-    latLngs.add(new LatLng(1,1));
-    <%- camelize(type) %>Options options = new <%- camelize(type) %>Options().withLatLngs(latLngs);
+        List<LatLng>latLngs = new ArrayList<>();
+        latLngs.add(new LatLng());
+        latLngs.add(new LatLng(1,1));
+        <%- camelize(type) %>Options options = new <%- camelize(type) %>Options().withLatLngs(latLngs);
 <% } else { -%>
-    List<LatLng>innerLatLngs = new ArrayList<>();
-    innerLatLngs.add(new LatLng());
-    innerLatLngs.add(new LatLng(1,1));
-    innerLatLngs.add(new LatLng(-1,-1));
-    List<List<LatLng>>latLngs = new ArrayList<>();
-    latLngs.add(innerLatLngs);
-    <%- camelize(type) %>Options options = new <%- camelize(type) %>Options().withLatLngs(latLngs);
+        List<LatLng>innerLatLngs = new ArrayList<>();
+        innerLatLngs.add(new LatLng());
+        innerLatLngs.add(new LatLng(1,1));
+        innerLatLngs.add(new LatLng(-1,-1));
+        List<List<LatLng>>latLngs = new ArrayList<>();
+        latLngs.add(innerLatLngs);
+        <%- camelize(type) %>Options options = new <%- camelize(type) %>Options().withLatLngs(latLngs);
 <% } -%>
-     <%- camelize(type) %>  <%- type %> = <%- type  %>Manager.create(options);
-    assertEquals(1, <%- type  %>Manager.annotations.size());
+         <%- camelize(type) %>  <%- type %> = <%- type  %>Manager.create(options);
+        assertEquals(1, <%- type  %>Manager.annotations.size());
 
-    <%- type  %>Manager.getAnnotations().clear();
-    <%- type  %>Manager.updateSource();
-    assertTrue(<%- type  %>Manager.getAnnotations().isEmpty());
+        <%- type  %>Manager.getAnnotations().clear();
+        <%- type  %>Manager.updateSource();
+        assertTrue(<%- type  %>Manager.getAnnotations().isEmpty());
 
-    <%- type  %>Manager.update(<%- type  %>);
-    assertTrue(<%- type  %>Manager.getAnnotations().isEmpty());
-  }
+        <%- type  %>Manager.update(<%- type  %>);
+        assertTrue(<%- type  %>Manager.getAnnotations().isEmpty());
+    }
 
 }
