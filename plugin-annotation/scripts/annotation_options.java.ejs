@@ -53,11 +53,12 @@ public class <%- camelize(type) %>Options extends Options<<%- camelize(type) %>>
      * <p>
      * <%- propertyFactoryMethodDoc(property) %>
      * </p>
+     *
      * @param <%- camelizeWithLeadingLowercase(property.name) %> the <%- property.name %> value
      * @return this
      */
     public <%- camelize(type) %>Options with<%- camelize(property.name) %>(<%- propertyTypeAnnotation(property) %><%- iff(() => propertyTypeAnnotation(property), " ") %><%- propertyType(property) %> <%- camelizeWithLeadingLowercase(property.name) %>) {
-        this.<%- camelizeWithLeadingLowercase(property.name) %> =  <%- camelizeWithLeadingLowercase(property.name) %>;
+        this.<%- camelizeWithLeadingLowercase(property.name) %> = <%- camelizeWithLeadingLowercase(property.name) %>;
         return this;
     }
 
@@ -66,6 +67,7 @@ public class <%- camelize(type) %>Options extends Options<<%- camelize(type) %>>
      * <p>
      * <%- propertyFactoryMethodDoc(property) %>
      * </p>
+     *
      * @return <%- camelizeWithLeadingLowercase(property.name) %> value
      */
     public <%- propertyType(property) %> get<%- camelize(property.name) %>() {
@@ -126,7 +128,7 @@ public class <%- camelize(type) %>Options extends Options<<%- camelize(type) %>>
      * @return this
      */
     public <%- camelize(type) %>Options withLatLngs(List<LatLng> latLngs) {
-        List<Point>points = new ArrayList<>();
+        List<Point> points = new ArrayList<>();
         for (LatLng latLng : latLngs) {
             points.add(Point.fromLngLat(latLng.getLongitude(), latLng.getLatitude()));
         }
@@ -140,8 +142,8 @@ public class <%- camelize(type) %>Options extends Options<<%- camelize(type) %>>
      * @return a list of the locations of the line in a longitude and latitude pairs
      */
     public List<LatLng> getLatLngs() {
-        List<LatLng>latLngs = new ArrayList<>();
-        if (geometry!=null) {
+        List<LatLng> latLngs = new ArrayList<>();
+        if (geometry != null) {
             for (Point coordinate : geometry.coordinates()) {
                 latLngs.add(new LatLng(coordinate.latitude(), coordinate.longitude()));
             }
@@ -179,7 +181,7 @@ public class <%- camelize(type) %>Options extends Options<<%- camelize(type) %>>
     public <%- camelize(type) %>Options withLatLngs(List<List<LatLng>> latLngs) {
         List<List<Point>> points = new ArrayList<>();
         for (List<LatLng> innerLatLngs : latLngs) {
-            List<Point>innerList = new ArrayList<>();
+            List<Point> innerList = new ArrayList<>();
             for (LatLng latLng : innerLatLngs) {
                 innerList.add(Point.fromLngLat(latLng.getLongitude(), latLng.getLatitude()));
             }
@@ -305,7 +307,8 @@ public class <%- camelize(type) %>Options extends Options<<%- camelize(type) %>>
 <% } else if (type === "line") { -%>
         if (!(feature.geometry() instanceof LineString)) {
 <% } else { -%>
-        if (!(feature.geometry() instanceof Polygon)) {<% } -%>
+        if (!(feature.geometry() instanceof Polygon)) {
+<% } -%>
             return null;
         }
 

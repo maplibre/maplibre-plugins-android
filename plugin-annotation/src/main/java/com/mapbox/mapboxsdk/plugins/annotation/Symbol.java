@@ -5,10 +5,9 @@ package com.mapbox.mapboxsdk.plugins.annotation;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.UiThread;
 
 import android.graphics.PointF;
-
-import androidx.annotation.UiThread;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonNull;

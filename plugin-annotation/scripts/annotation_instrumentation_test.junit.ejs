@@ -7,12 +7,14 @@
 package com.mapbox.mapboxsdk.plugins.annotation;
 
 import android.graphics.PointF;
+
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.plugins.BaseActivityTest;
 import com.mapbox.mapboxsdk.plugins.testapp.activity.TestActivity;
 import com.mapbox.mapboxsdk.utils.ColorUtils;
+
 import timber.log.Timber;
 
 import org.junit.Test;
@@ -47,16 +49,16 @@ public class <%- camelize(type) %>Test extends BaseActivityTest {
 <% if (type === "circle" || type === "symbol") { -%>
             <%- type %> = <%- type %>Manager.create(new <%- camelize(type) %>Options().withLatLng(new LatLng()));
 <% } else if (type === "line") { -%>
-            List<LatLng>latLngs = new ArrayList<>();
+            List<LatLng> latLngs = new ArrayList<>();
             latLngs.add(new LatLng());
-            latLngs.add(new LatLng(1,1));
+            latLngs.add(new LatLng(1, 1));
             <%- type %> = <%- type %>Manager.create(new <%- camelize(type) %>Options().withLatLngs(latLngs));
 <% } else { -%>
-            List<LatLng>innerLatLngs = new ArrayList<>();
+            List<LatLng> innerLatLngs = new ArrayList<>();
             innerLatLngs.add(new LatLng());
-            innerLatLngs.add(new LatLng(1,1));
-            innerLatLngs.add(new LatLng(-1,-1));
-            List<List<LatLng>>latLngs = new ArrayList<>();
+            innerLatLngs.add(new LatLng(1, 1));
+            innerLatLngs.add(new LatLng(-1, -1));
+            List<List<LatLng>> latLngs = new ArrayList<>();
             latLngs.add(innerLatLngs);
             <%- type %> = <%- type %>Manager.create(new <%- camelize(type) %>Options().withLatLngs(latLngs));
 <% } -%>

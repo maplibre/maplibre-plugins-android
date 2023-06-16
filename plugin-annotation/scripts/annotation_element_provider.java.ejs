@@ -8,6 +8,7 @@
 package com.mapbox.mapboxsdk.plugins.annotation;
 
 import androidx.annotation.Nullable;
+
 import com.mapbox.mapboxsdk.style.layers.<%- camelize(type) %>Layer;
 import com.mapbox.mapboxsdk.style.sources.GeoJsonOptions;
 import com.mapbox.mapboxsdk.style.sources.GeoJsonSource;
@@ -17,7 +18,7 @@ import java.util.concurrent.atomic.AtomicLong;
 /**
  * Concrete instance of a core element provider for <%- camelize(type) %>.
  */
-class <%- camelize(type) %>ElementProvider implements CoreElementProvider<<%- camelize(type) %>Layer>{
+class <%- camelize(type) %>ElementProvider implements CoreElementProvider<<%- camelize(type) %>Layer> {
 
     private static final AtomicLong ID_GENERATOR = new AtomicLong(0);
     private static final String ID_GEOJSON_LAYER = "mapbox-android-<%- type %>-layer-%s";
