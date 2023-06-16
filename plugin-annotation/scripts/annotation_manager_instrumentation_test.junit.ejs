@@ -28,34 +28,34 @@ import static com.mapbox.mapboxsdk.style.layers.Property.*;
 @RunWith(AndroidJUnit4.class)
 public class <%- camelize(type) %>ManagerTest extends BaseActivityTest {
 
-  private <%- camelize(type) %>Manager <%- type %>Manager;
+    private <%- camelize(type) %>Manager <%- type %>Manager;
 
-  @Override
-  protected Class getActivityClass() {
-    return TestActivity.class;
-  }
+    @Override
+    protected Class getActivityClass() {
+        return TestActivity.class;
+    }
 
-  private void setup<%- camelize(type) %>Manager() {
-    Timber.i("Retrieving layer");
-    invoke(mapboxMap, (uiController, mapboxMap) -> {
-      <%- type %>Manager = new <%- camelize(type) %>Manager(idlingResource.getMapView(), mapboxMap, Objects.requireNonNull(mapboxMap.getStyle()));
-    });
-  }
+    private void setup<%- camelize(type) %>Manager() {
+        Timber.i("Retrieving layer");
+        invoke(mapboxMap, (uiController, mapboxMap) -> {
+            <%- type %>Manager = new <%- camelize(type) %>Manager(idlingResource.getMapView(), mapboxMap, Objects.requireNonNull(mapboxMap.getStyle()));
+        });
+    }
 <% for (const property of properties) { -%>
 <% if (!supportsPropertyFunction(property) && property.name !== "line-gradient" && property.name !== "symbol-z-order") { -%>
 
-  @Test
-  public void test<%- camelize(property.name) %>AsConstant() {
-    validateTestSetup();
-    setup<%- camelize(type) %>Manager();
-    Timber.i("<%- property.name %>");
-    invoke(mapboxMap, (uiController, mapboxMap) -> {
-      assertNotNull(<%- type %>Manager);
+    @Test
+    public void test<%- camelize(property.name) %>AsConstant() {
+        validateTestSetup();
+        setup<%- camelize(type) %>Manager();
+        Timber.i("<%- property.name %>");
+        invoke(mapboxMap, (uiController, mapboxMap) -> {
+            assertNotNull(<%- type %>Manager);
 
-      <%- type %>Manager.set<%- camelize(property.name) %>(<%- defaultValueJava(property) %>);
-      assertEquals((<%- propertyType(property) %>) <%- type %>Manager.get<%- camelize(property.name) %>(), (<%- propertyType(property) %>) <%- defaultValueJava(property) %>);
-    });
-  }
+            <%- type %>Manager.set<%- camelize(property.name) %>(<%- defaultValueJava(property) %>);
+            assertEquals((<%- propertyType(property) %>) <%- type %>Manager.get<%- camelize(property.name) %>(), (<%- propertyType(property) %>) <%- defaultValueJava(property) %>);
+        });
+    }
 <% } -%>
 <% } -%>
 }

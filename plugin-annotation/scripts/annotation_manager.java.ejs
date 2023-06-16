@@ -37,206 +37,206 @@ public class <%- camelize(type) %>Manager extends AnnotationManager<<%- camelize
 
 <% for (const property of properties) { -%>
 <% if (!supportsPropertyFunction(property) && property.name !== "line-gradient" && property.name !== "symbol-z-order") { -%>
-  private static final String PROPERTY_<%- snakeCaseUpper(property.name) %> = "<%- property.name %>";
+    private static final String PROPERTY_<%- snakeCaseUpper(property.name) %> = "<%- property.name %>";
 <% } -%>
 <% } -%>
 
-  /**
-   * Create a <%- type %> manager, used to manage <%- type %>s.
-   *
-   * @param mapboxMap the map object to add <%- type %>s to
-   * @param style a valid a fully loaded style object
-   */
-  @UiThread
-  public <%- camelize(type) %>Manager(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap, @NonNull Style style) {
-    this(mapView, mapboxMap, style, null, (GeoJsonOptions) null);
-  }
+    /**
+     * Create a <%- type %> manager, used to manage <%- type %>s.
+     *
+     * @param mapboxMap the map object to add <%- type %>s to
+     * @param style a valid a fully loaded style object
+     */
+    @UiThread
+    public <%- camelize(type) %>Manager(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap, @NonNull Style style) {
+        this(mapView, mapboxMap, style, null, (GeoJsonOptions) null);
+    }
 
-  /**
-   * Create a <%- type %> manager, used to manage <%- type %>s.
-   *
-   * @param mapboxMap the map object to add <%- type %>s to
-   * @param style a valid a fully loaded style object
-   * @param belowLayerId the id of the layer above the circle layer
-   */
-  @UiThread
-  public <%- camelize(type) %>Manager(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap, @NonNull Style style, @Nullable String belowLayerId) {
-    this(mapView, mapboxMap, style, belowLayerId, (GeoJsonOptions) null);
-  }
+    /**
+     * Create a <%- type %> manager, used to manage <%- type %>s.
+     *
+     * @param mapboxMap the map object to add <%- type %>s to
+     * @param style a valid a fully loaded style object
+     * @param belowLayerId the id of the layer above the circle layer
+     */
+    @UiThread
+    public <%- camelize(type) %>Manager(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap, @NonNull Style style, @Nullable String belowLayerId) {
+        this(mapView, mapboxMap, style, belowLayerId, (GeoJsonOptions) null);
+    }
 
-  /**
-   * Create a <%- type %> manager, used to manage <%- type %>s.
-   *
-   * @param mapboxMap the map object to add <%- type %>s to
-   * @param style a valid a fully loaded style object
-   * @param belowLayerId the id of the layer above the circle layer
-   * @param geoJsonOptions options for the internal source
-   */
-  @UiThread
-  public <%- camelize(type) %>Manager(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap, @NonNull Style style, @Nullable String belowLayerId, @Nullable GeoJsonOptions geoJsonOptions) {
-    this(mapView, mapboxMap, style, new <%- camelize(type) %>ElementProvider(), belowLayerId, geoJsonOptions, DraggableAnnotationController.getInstance(mapView, mapboxMap));
-  }
+    /**
+     * Create a <%- type %> manager, used to manage <%- type %>s.
+     *
+     * @param mapboxMap the map object to add <%- type %>s to
+     * @param style a valid a fully loaded style object
+     * @param belowLayerId the id of the layer above the circle layer
+     * @param geoJsonOptions options for the internal source
+     */
+    @UiThread
+    public <%- camelize(type) %>Manager(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap, @NonNull Style style, @Nullable String belowLayerId, @Nullable GeoJsonOptions geoJsonOptions) {
+        this(mapView, mapboxMap, style, new <%- camelize(type) %>ElementProvider(), belowLayerId, geoJsonOptions, DraggableAnnotationController.getInstance(mapView, mapboxMap));
+    }
 <% if (type === "symbol") { -%>
 
-  /**
-   * Create a <%- type %> manager, used to manage <%- type %>s.
-   *
-   * @param mapboxMap the map object to add <%- type %>s to
-   * @param style a valid a fully loaded style object
-   * @param belowLayerId the id of the layer above the circle layer
-   * @param clusterOptions options for the clustering configuration
-   */
-  @UiThread
-  public <%- camelize(type) %>Manager(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap, @NonNull Style style, @Nullable String belowLayerId, @NonNull ClusterOptions clusterOptions) {
-    this(mapView, mapboxMap, style, new SymbolElementProvider(), belowLayerId, new GeoJsonOptions().withCluster(true).withClusterRadius(clusterOptions.getClusterRadius()).withClusterMaxZoom(clusterOptions.getClusterMaxZoom()), DraggableAnnotationController.getInstance(mapView, mapboxMap));
-    clusterOptions.apply(style, coreElementProvider.getSourceId());
-  }
+    /**
+     * Create a <%- type %> manager, used to manage <%- type %>s.
+     *
+     * @param mapboxMap the map object to add <%- type %>s to
+     * @param style a valid a fully loaded style object
+     * @param belowLayerId the id of the layer above the circle layer
+     * @param clusterOptions options for the clustering configuration
+     */
+    @UiThread
+    public <%- camelize(type) %>Manager(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap, @NonNull Style style, @Nullable String belowLayerId, @NonNull ClusterOptions clusterOptions) {
+        this(mapView, mapboxMap, style, new SymbolElementProvider(), belowLayerId, new GeoJsonOptions().withCluster(true).withClusterRadius(clusterOptions.getClusterRadius()).withClusterMaxZoom(clusterOptions.getClusterMaxZoom()), DraggableAnnotationController.getInstance(mapView, mapboxMap));
+        clusterOptions.apply(style, coreElementProvider.getSourceId());
+    }
 <% } -%>
 
-  @VisibleForTesting
-  <%- camelize(type) %>Manager(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap, @NonNull Style style, @NonNull CoreElementProvider<<%- camelize(type) %>Layer> coreElementProvider, @Nullable String belowLayerId, @Nullable GeoJsonOptions geoJsonOptions, DraggableAnnotationController draggableAnnotationController) {
-    super(mapView, mapboxMap, style, coreElementProvider, draggableAnnotationController, belowLayerId, geoJsonOptions);
-  }
+    @VisibleForTesting
+    <%- camelize(type) %>Manager(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap, @NonNull Style style, @NonNull CoreElementProvider<<%- camelize(type) %>Layer> coreElementProvider, @Nullable String belowLayerId, @Nullable GeoJsonOptions geoJsonOptions, DraggableAnnotationController draggableAnnotationController) {
+        super(mapView, mapboxMap, style, coreElementProvider, draggableAnnotationController, belowLayerId, geoJsonOptions);
+    }
 
-  @Override
-  void initializeDataDrivenPropertyMap() {
+    @Override
+    void initializeDataDrivenPropertyMap() {
 <% for (const property of properties) { -%>
 <% if (supportsPropertyFunction(property)) { -%>
-    dataDrivenPropertyUsageMap.put(<%- camelize(type) %>Options.PROPERTY_<%- snakeCaseUpper(property.name) %>, false);
-<% } -%>
-<% } -%>
-  }
-
-  @Override
-  protected void setDataDrivenPropertyIsUsed(@NonNull String property) {
-    switch (property) {
-<% for (const property of properties) { -%>
-<% if (supportsPropertyFunction(property)) { -%>
-      case <%- camelize(type) %>Options.PROPERTY_<%- snakeCaseUpper(property.name) %>:
-        layer.setProperties(<%- camelizeWithLeadingLowercase(property.name) %>(get(<%- camelize(type) %>Options.PROPERTY_<%- snakeCaseUpper(property.name) %>)));
-        break;
+        dataDrivenPropertyUsageMap.put(<%- camelize(type) %>Options.PROPERTY_<%- snakeCaseUpper(property.name) %>, false);
 <% } -%>
 <% } -%>
     }
-  }
 
-  /**
-   * Create a list of <%- type %>s on the map.
-   * <p>
-   * <%- camelize(type) %>s are going to be created only for features with a matching geometry.
-   * <p>
-   * All supported properties are:<br>
+    @Override
+    protected void setDataDrivenPropertyIsUsed(@NonNull String property) {
+        switch (property) {
 <% for (const property of properties) { -%>
 <% if (supportsPropertyFunction(property)) { -%>
-   * <%- camelize(type) %>Options.PROPERTY_<%- snakeCaseUpper(property.name) %> - <%- propertyType(property) -%><br>
+            case <%- camelize(type) %>Options.PROPERTY_<%- snakeCaseUpper(property.name) %>:
+                layer.setProperties(<%- camelizeWithLeadingLowercase(property.name) %>(get(<%- camelize(type) %>Options.PROPERTY_<%- snakeCaseUpper(property.name) %>)));
+                break;
 <% } -%>
 <% } -%>
-   * Learn more about above properties in the <a href="https://www.mapbox.com/mapbox-gl-js/style-spec/">Style specification</a>.
-   * <p>
-   * Out of spec properties:<br>
-   * "is-draggable" - Boolean, true if the <%- type %> should be draggable, false otherwise
-   *
-   * @param json the GeoJSON defining the list of <%- type %>s to build
-   * @return the list of built <%- type %>s
-   */
-  @UiThread
-  public List<<%- camelize(type) %>> create(@NonNull String json) {
-    return create(FeatureCollection.fromJson(json));
-  }
-
-  /**
-   * Create a list of <%- type %>s on the map.
-   * <p>
-   * <%- camelize(type) %>s are going to be created only for features with a matching geometry.
-   * <p>
-   * All supported properties are:<br>
-<% for (const property of properties) { -%>
-<% if (supportsPropertyFunction(property)) { -%>
-   * <%- camelize(type) %>Options.PROPERTY_<%- snakeCaseUpper(property.name) %> - <%- propertyType(property) -%><br>
-<% } -%>
-<% } -%>
-   * Learn more about above properties in the <a href="https://www.mapbox.com/mapbox-gl-js/style-spec/">Style specification</a>.
-   * <p>
-   * Out of spec properties:<br>
-   * "is-draggable" - Boolean, true if the <%- type %> should be draggable, false otherwise
-   *
-   * @param featureCollection the featureCollection defining the list of <%- type %>s to build
-   * @return the list of built <%- type %>s
-   */
-  @UiThread
-  public List<<%- camelize(type) %>> create(@NonNull FeatureCollection featureCollection) {
-    List<Feature> features = featureCollection.features();
-    List<<%- camelize(type) %>Options> options = new ArrayList<>();
-    if (features != null) {
-      for (Feature feature : features) {
-        <%- camelize(type) %>Options option = <%- camelize(type) %>Options.fromFeature(feature);
-        if (option != null) {
-          options.add(option);
         }
-      }
     }
-    return create(options);
-  }
 
-  /**
-   * Get the key of the id of the annotation.
-   *
-   * @return the key of the id of the annotation
-   */
-  @Override
-  String getAnnotationIdKey() {
-    return <%- camelize(type) %>.ID_KEY;
-  }
+    /**
+     * Create a list of <%- type %>s on the map.
+     * <p>
+     * <%- camelize(type) %>s are going to be created only for features with a matching geometry.
+     * <p>
+     * All supported properties are:<br>
+<% for (const property of properties) { -%>
+<% if (supportsPropertyFunction(property)) { -%>
+     * <%- camelize(type) %>Options.PROPERTY_<%- snakeCaseUpper(property.name) %> - <%- propertyType(property) -%><br>
+<% } -%>
+<% } -%>
+     * Learn more about above properties in the <a href="https://www.mapbox.com/mapbox-gl-js/style-spec/">Style specification</a>.
+     * <p>
+     * Out of spec properties:<br>
+     * "is-draggable" - Boolean, true if the <%- type %> should be draggable, false otherwise
+     *
+     * @param json the GeoJSON defining the list of <%- type %>s to build
+     * @return the list of built <%- type %>s
+     */
+    @UiThread
+    public List<<%- camelize(type) %>> create(@NonNull String json) {
+        return create(FeatureCollection.fromJson(json));
+    }
 
-  // Property accessors
+    /**
+     * Create a list of <%- type %>s on the map.
+     * <p>
+     * <%- camelize(type) %>s are going to be created only for features with a matching geometry.
+     * <p>
+     * All supported properties are:<br>
+<% for (const property of properties) { -%>
+<% if (supportsPropertyFunction(property)) { -%>
+     * <%- camelize(type) %>Options.PROPERTY_<%- snakeCaseUpper(property.name) %> - <%- propertyType(property) -%><br>
+<% } -%>
+<% } -%>
+     * Learn more about above properties in the <a href="https://www.mapbox.com/mapbox-gl-js/style-spec/">Style specification</a>.
+     * <p>
+     * Out of spec properties:<br>
+     * "is-draggable" - Boolean, true if the <%- type %> should be draggable, false otherwise
+     *
+     * @param featureCollection the featureCollection defining the list of <%- type %>s to build
+     * @return the list of built <%- type %>s
+     */
+    @UiThread
+    public List<<%- camelize(type) %>> create(@NonNull FeatureCollection featureCollection) {
+        List<Feature> features = featureCollection.features();
+        List<<%- camelize(type) %>Options> options = new ArrayList<>();
+        if (features != null) {
+            for (Feature feature : features) {
+                <%- camelize(type) %>Options option = <%- camelize(type) %>Options.fromFeature(feature);
+                if (option != null) {
+                    options.add(option);
+                }
+            }
+        }
+        return create(options);
+    }
+
+    /**
+     * Get the key of the id of the annotation.
+     *
+     * @return the key of the id of the annotation
+     */
+    @Override
+    String getAnnotationIdKey() {
+        return <%- camelize(type) %>.ID_KEY;
+    }
+
+    // Property accessors
 <% for (const property of properties) { -%>
 <% if (!supportsPropertyFunction(property) && property.name !== "line-gradient" && property.name !== "symbol-z-order") { -%>
-  /**
-   * Get the <%- camelize(property.name) %> property
-   * <p>
-   * <%- propertyFactoryMethodDoc(property) %>
-   * </p>
-   *
-   * @return property wrapper value around <%- propertyType(property) %>
-   */
-  public <%- propertyType(property) %> get<%- camelize(property.name) %>() {
-    return layer.get<%- camelize(property.name) %>().value;
-  }
+    /**
+     * Get the <%- camelize(property.name) %> property
+     * <p>
+     * <%- propertyFactoryMethodDoc(property) %>
+     * </p>
+     *
+     * @return property wrapper value around <%- propertyType(property) %>
+     */
+    public <%- propertyType(property) %> get<%- camelize(property.name) %>() {
+        return layer.get<%- camelize(property.name) %>().value;
+    }
 
-  /**
-   * Set the <%- camelize(property.name) %> property
-   * <p>
-   * <%- propertyFactoryMethodDoc(property) %>
-   * </p>
-   *
-   * @param value property wrapper value around <%- propertyType(property) %>
-   */
-  public void set<%- camelize(property.name) %>(<%- propertyTypeAnnotation(property) %><%- iff(() => propertyTypeAnnotation(property), "") %> <%- propertyType(property) %> value) {
-    PropertyValue propertyValue = <%- camelizeWithLeadingLowercase(property.name) %>(value);
-    constantPropertyUsageMap.put(PROPERTY_<%- snakeCaseUpper(property.name) %>, propertyValue);
-    layer.setProperties(propertyValue);
-  }
+    /**
+     * Set the <%- camelize(property.name) %> property
+     * <p>
+     * <%- propertyFactoryMethodDoc(property) %>
+     * </p>
+     *
+     * @param value property wrapper value around <%- propertyType(property) %>
+     */
+    public void set<%- camelize(property.name) %>(<%- propertyTypeAnnotation(property) %><%- iff(() => propertyTypeAnnotation(property), "") %> <%- propertyType(property) %> value) {
+        PropertyValue propertyValue = <%- camelizeWithLeadingLowercase(property.name) %>(value);
+        constantPropertyUsageMap.put(PROPERTY_<%- snakeCaseUpper(property.name) %>, propertyValue);
+        layer.setProperties(propertyValue);
+    }
 
 <% } -%>
 <% } -%>
-  /**
-   * Set filter on the managed <%- type %>s.
-   *
-   * @param expression expression
-   */
-   @Override
-  public void setFilter(@NonNull Expression expression) {
-    layerFilter = expression;
-    layer.setFilter(layerFilter);
-  }
+    /**
+     * Set filter on the managed <%- type %>s.
+     *
+     * @param expression expression
+     */
+     @Override
+    public void setFilter(@NonNull Expression expression) {
+        layerFilter = expression;
+        layer.setFilter(layerFilter);
+    }
 
-  /**
-   * Get filter of the managed <%- type %>s.
-   *
-   * @return expression
-   */
-  @Nullable
-  public Expression getFilter() {
-    return layer.getFilter();
-  }
+    /**
+     * Get filter of the managed <%- type %>s.
+     *
+     * @return expression
+     */
+    @Nullable
+    public Expression getFilter() {
+        return layer.getFilter();
+    }
 }

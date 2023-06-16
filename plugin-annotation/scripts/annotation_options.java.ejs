@@ -30,303 +30,303 @@ import static com.mapbox.mapboxsdk.plugins.annotation.ConvertUtils.toStringArray
  */
 public class <%- camelize(type) %>Options extends Options<<%- camelize(type) %>> {
 
-  private boolean isDraggable;
-  private JsonElement data;
-  private <%- geometryType(type) %> geometry;
+    private boolean isDraggable;
+    private JsonElement data;
+    private <%- geometryType(type) %> geometry;
 <% for (const property of properties) { -%>
 <% if (supportsPropertyFunction(property)) { -%>
-  private <%- propertyType(property) %> <%- camelizeWithLeadingLowercase(property.name) %>;
+    private <%- propertyType(property) %> <%- camelizeWithLeadingLowercase(property.name) %>;
 <% } -%>
 <% } -%>
 
 <% for (const property of properties) { -%>
 <% if (supportsPropertyFunction(property)) { -%>
-  static final String PROPERTY_<%- snakeCaseUpper(property.name) %> = "<%- property.name %>";
+    static final String PROPERTY_<%- snakeCaseUpper(property.name) %> = "<%- property.name %>";
 <% } -%>
 <% } -%>
-  private static final String PROPERTY_IS_DRAGGABLE = "is-draggable";
+    private static final String PROPERTY_IS_DRAGGABLE = "is-draggable";
 <% for (const property of properties) { -%>
 <% if (supportsPropertyFunction(property)) { -%>
 
-  /**
-   * Set <%- property.name %> to initialise the <%- type %> with.
-   * <p>
-   * <%- propertyFactoryMethodDoc(property) %>
-   * </p>
-   * @param <%- camelizeWithLeadingLowercase(property.name) %> the <%- property.name %> value
-   * @return this
-   */
-  public <%- camelize(type) %>Options with<%- camelize(property.name) %>(<%- propertyTypeAnnotation(property) %><%- iff(() => propertyTypeAnnotation(property), " ") %><%- propertyType(property) %> <%- camelizeWithLeadingLowercase(property.name) %>) {
-    this.<%- camelizeWithLeadingLowercase(property.name) %> =  <%- camelizeWithLeadingLowercase(property.name) %>;
-    return this;
-  }
+    /**
+     * Set <%- property.name %> to initialise the <%- type %> with.
+     * <p>
+     * <%- propertyFactoryMethodDoc(property) %>
+     * </p>
+     * @param <%- camelizeWithLeadingLowercase(property.name) %> the <%- property.name %> value
+     * @return this
+     */
+    public <%- camelize(type) %>Options with<%- camelize(property.name) %>(<%- propertyTypeAnnotation(property) %><%- iff(() => propertyTypeAnnotation(property), " ") %><%- propertyType(property) %> <%- camelizeWithLeadingLowercase(property.name) %>) {
+        this.<%- camelizeWithLeadingLowercase(property.name) %> =  <%- camelizeWithLeadingLowercase(property.name) %>;
+        return this;
+    }
 
-  /**
-   * Get the current configured  <%- property.name %> for the <%- type %>
-   * <p>
-   * <%- propertyFactoryMethodDoc(property) %>
-   * </p>
-   * @return <%- camelizeWithLeadingLowercase(property.name) %> value
-   */
-  public <%- propertyType(property) %> get<%- camelize(property.name) %>() {
-    return <%- camelizeWithLeadingLowercase(property.name) %>;
-  }
+    /**
+     * Get the current configured  <%- property.name %> for the <%- type %>
+     * <p>
+     * <%- propertyFactoryMethodDoc(property) %>
+     * </p>
+     * @return <%- camelizeWithLeadingLowercase(property.name) %> value
+     */
+    public <%- propertyType(property) %> get<%- camelize(property.name) %>() {
+        return <%- camelizeWithLeadingLowercase(property.name) %>;
+    }
 <% } -%>
 <% } -%>
 <% if (type === "circle" || type === "symbol") { -%>
 
-  /**
-   * Set the LatLng of the <%- type %>, which represents the location of the <%- type %> on the map
-   *
-   * @param latLng the location of the <%- type %> in a longitude and latitude pair
-   * @return this
-   */
-  public <%- camelize(type) %>Options withLatLng(LatLng latLng) {
-    geometry = Point.fromLngLat(latLng.getLongitude(), latLng.getLatitude());
-    return this;
-  }
-
-  /**
-   * Get the LatLng of the <%- type %>, which represents the location of the <%- type %> on the map
-   *
-   * @return the location of the <%- type %> in a longitude and latitude pair
-   */
-  public LatLng getLatLng() {
-    if (geometry == null) {
-      return null;
+    /**
+     * Set the LatLng of the <%- type %>, which represents the location of the <%- type %> on the map
+     *
+     * @param latLng the location of the <%- type %> in a longitude and latitude pair
+     * @return this
+     */
+    public <%- camelize(type) %>Options withLatLng(LatLng latLng) {
+        geometry = Point.fromLngLat(latLng.getLongitude(), latLng.getLatitude());
+        return this;
     }
-    return new LatLng(geometry.latitude(), geometry.longitude());
-  }
 
-  /**
-   * Set the geometry of the <%- type %>, which represents the location of the <%- type %> on the map
-   *
-   * @param geometry the location of the <%- type %>
-   * @return this
-   */
-  public <%- camelize(type) %>Options withGeometry(<%- geometryType(type) %> geometry) {
-    this.geometry = geometry;
-    return this;
-  }
-
-  /**
-   * Get the geometry of the <%- type %>, which represents the location of the <%- type %> on the map
-   *
-   * @return the location of the <%- type %>
-   */
-  public Point getGeometry() {
-    return geometry;
-  }
-<% } else if (type === "line") { -%>
-
-  /**
-   * Set a list of LatLng for the line, which represents the locations of the line on the map
-   *
-   * @param latLngs a list of the locations of the line in a longitude and latitude pairs
-   * @return this
-   */
-  public <%- camelize(type) %>Options withLatLngs(List<LatLng> latLngs) {
-    List<Point>points = new ArrayList<>();
-    for (LatLng latLng : latLngs) {
-      points.add(Point.fromLngLat(latLng.getLongitude(), latLng.getLatitude()));
-    }
-    geometry = LineString.fromLngLats(points);
-    return this;
-  }
-
-  /**
-   * Get a list of LatLng for the line, which represents the locations of the line on the map
-   *
-   * @return a list of the locations of the line in a longitude and latitude pairs
-   */
-  public List<LatLng> getLatLngs() {
-    List<LatLng>latLngs = new ArrayList<>();
-    if (geometry!=null) {
-      for (Point coordinate : geometry.coordinates()) {
-        latLngs.add(new LatLng(coordinate.latitude(), coordinate.longitude()));
-      }
-    }
-    return latLngs;
-  }
-
-  /**
-   * Set the geometry of the <%- type %>, which represents the location of the <%- type %> on the map
-   *
-   * @param geometry the location of the <%- type %>
-   * @return this
-   */
-  public <%- camelize(type) %>Options withGeometry(LineString geometry) {
-    this.geometry = geometry;
-    return this;
-  }
-
-  /**
-   * Get the geometry of the <%- type %>, which represents the location of the <%- type %> on the map
-   *
-   * @return the location of the <%- type %>
-   */
-  public LineString getGeometry() {
-    return geometry;
-  }
-<% } else { -%>
-
-  /**
-   * Set a list of lists of LatLng for the fill, which represents the locations of the fill on the map
-   *
-   * @param latLngs a list of a lists of the locations of the line in a longitude and latitude pairs
-   * @return this
-   */
-  public <%- camelize(type) %>Options withLatLngs(List<List<LatLng>> latLngs) {
-    List<List<Point>> points = new ArrayList<>();
-    for (List<LatLng> innerLatLngs : latLngs) {
-      List<Point>innerList = new ArrayList<>();
-      for (LatLng latLng : innerLatLngs) {
-        innerList.add(Point.fromLngLat(latLng.getLongitude(), latLng.getLatitude()));
-      }
-      points.add(innerList);
-    }
-    geometry = Polygon.fromLngLats(points);
-    return this;
-  }
-
-  /**
-   * Get a list of lists of LatLng for the fill, which represents the locations of the fill on the map
-   *
-   * @return a list of a lists of the locations of the line in a longitude and latitude pairs
-   */
-  public List<List<LatLng>> getLatLngs() {
-    List<List<LatLng>> points = new ArrayList<>();
-    if (geometry != null) {
-      for (List<Point> coordinates : geometry.coordinates()) {
-        List<LatLng> innerList = new ArrayList<>();
-        for (Point point : coordinates) {
-          innerList.add(new LatLng(point.latitude(), point.longitude()));
+    /**
+     * Get the LatLng of the <%- type %>, which represents the location of the <%- type %> on the map
+     *
+     * @return the location of the <%- type %> in a longitude and latitude pair
+     */
+    public LatLng getLatLng() {
+        if (geometry == null) {
+            return null;
         }
-        points.add(innerList);
-      }
+        return new LatLng(geometry.latitude(), geometry.longitude());
     }
-    return points;
-  }
 
-  /**
-   * Set the geometry of the <%- type %>, which represents the location of the <%- type %> on the map
-   *
-   * @param geometry the location of the <%- type %>
-   * @return this
-   */
-  public <%- camelize(type) %>Options withGeometry(Polygon geometry) {
-    this.geometry = geometry;
-    return this;
-  }
-
-  /**
-   * Get the geometry of the <%- type %>, which represents the location of the <%- type %> on the map
-   *
-   * @return the location of the <%- type %>
-   */
-  public Polygon getGeometry() {
-    return geometry;
-  }
-<% } -%>
-
-  /**
-   * Returns whether this <%- type %> is draggable, meaning it can be dragged across the screen when touched and moved.
-   *
-   * @return draggable when touched
-   */
-  public boolean getDraggable() {
-    return isDraggable;
-  }
-
-  /**
-   * Set whether this <%- type %> should be draggable,
-   * meaning it can be dragged across the screen when touched and moved.
-   *
-   * @param draggable should be draggable
-   */
-  public <%- camelize(type) %>Options withDraggable(boolean draggable) {
-    isDraggable = draggable;
-    return this;
-  }
-
-  /**
-   * Set the arbitrary json data of the annotation.
-   *
-   * @param jsonElement the arbitrary json element data
-   */
-  public <%- camelize(type) %>Options withData(@Nullable JsonElement jsonElement) {
-    this.data = jsonElement;
-    return this;
-  }
-
-  /**
-   * Get the arbitrary json data of the annotation.
-   *
-   * @return the arbitrary json object data if set, else null
-   */
-  @Nullable
-  public JsonElement getData() {
-    return data;
-  }
-
-  @Override
-  <%- camelize(type) %> build(long id, AnnotationManager<?, <%- camelize(type) %>, ?, ?, ?, ?> annotationManager) {
-    if (geometry == null) {
-      throw new RuntimeException("geometry field is required");
+    /**
+     * Set the geometry of the <%- type %>, which represents the location of the <%- type %> on the map
+     *
+     * @param geometry the location of the <%- type %>
+     * @return this
+     */
+    public <%- camelize(type) %>Options withGeometry(<%- geometryType(type) %> geometry) {
+        this.geometry = geometry;
+        return this;
     }
-    JsonObject jsonObject = new JsonObject();
-<% for (const property of properties) { -%>
-<% if (supportsPropertyFunction(property)) { -%>
-<% if (propertyType(property).endsWith("[]")) { -%>
-    jsonObject.add(PROPERTY_<%- snakeCaseUpper(property.name) %>, convertArray(<%- camelizeWithLeadingLowercase(property.name) %>));
-<% } else { -%>
-    jsonObject.addProperty(PROPERTY_<%- snakeCaseUpper(property.name) %>, <%- camelizeWithLeadingLowercase(property.name) %>);
-<% } -%>
-<% } -%>
-<% } -%>
-    <%- camelize(type) %> <%- type %> = new <%- camelize(type) %>(id, annotationManager, jsonObject, geometry);
-    <%- type %>.setDraggable(isDraggable);
-    <%- type %>.setData(data);
-    return <%- type %>;
-  }
 
-  /**
-   * Creates <%- camelize(type) %>Options out of a Feature.
-   *
-   * @param feature feature to be converted
-   */
-  @Nullable
-  static <%- camelize(type) %>Options fromFeature(@NonNull Feature feature) {
-    if (feature.geometry() == null) {
-      throw new RuntimeException("geometry field is required");
+    /**
+     * Get the geometry of the <%- type %>, which represents the location of the <%- type %> on the map
+     *
+     * @return the location of the <%- type %>
+     */
+    public Point getGeometry() {
+        return geometry;
     }
-<% if (type === "circle" || type === "symbol") { -%>
-    if (!(feature.geometry() instanceof Point)) {
 <% } else if (type === "line") { -%>
-    if (!(feature.geometry() instanceof LineString)) {
-<% } else { -%>
-    if (!(feature.geometry() instanceof Polygon)) {<% } -%>
-      return null;
+
+    /**
+     * Set a list of LatLng for the line, which represents the locations of the line on the map
+     *
+     * @param latLngs a list of the locations of the line in a longitude and latitude pairs
+     * @return this
+     */
+    public <%- camelize(type) %>Options withLatLngs(List<LatLng> latLngs) {
+        List<Point>points = new ArrayList<>();
+        for (LatLng latLng : latLngs) {
+            points.add(Point.fromLngLat(latLng.getLongitude(), latLng.getLatitude()));
+        }
+        geometry = LineString.fromLngLats(points);
+        return this;
     }
 
-    <%- camelize(type) %>Options options = new <%- camelize(type) %>Options();
-    options.geometry = (<%- geometryType(type) %>) feature.geometry();
+    /**
+     * Get a list of LatLng for the line, which represents the locations of the line on the map
+     *
+     * @return a list of the locations of the line in a longitude and latitude pairs
+     */
+    public List<LatLng> getLatLngs() {
+        List<LatLng>latLngs = new ArrayList<>();
+        if (geometry!=null) {
+            for (Point coordinate : geometry.coordinates()) {
+                latLngs.add(new LatLng(coordinate.latitude(), coordinate.longitude()));
+            }
+        }
+        return latLngs;
+    }
+
+    /**
+     * Set the geometry of the <%- type %>, which represents the location of the <%- type %> on the map
+     *
+     * @param geometry the location of the <%- type %>
+     * @return this
+     */
+    public <%- camelize(type) %>Options withGeometry(LineString geometry) {
+        this.geometry = geometry;
+        return this;
+    }
+
+    /**
+     * Get the geometry of the <%- type %>, which represents the location of the <%- type %> on the map
+     *
+     * @return the location of the <%- type %>
+     */
+    public LineString getGeometry() {
+        return geometry;
+    }
+<% } else { -%>
+
+    /**
+     * Set a list of lists of LatLng for the fill, which represents the locations of the fill on the map
+     *
+     * @param latLngs a list of a lists of the locations of the line in a longitude and latitude pairs
+     * @return this
+     */
+    public <%- camelize(type) %>Options withLatLngs(List<List<LatLng>> latLngs) {
+        List<List<Point>> points = new ArrayList<>();
+        for (List<LatLng> innerLatLngs : latLngs) {
+            List<Point>innerList = new ArrayList<>();
+            for (LatLng latLng : innerLatLngs) {
+                innerList.add(Point.fromLngLat(latLng.getLongitude(), latLng.getLatitude()));
+            }
+            points.add(innerList);
+        }
+        geometry = Polygon.fromLngLats(points);
+        return this;
+    }
+
+    /**
+     * Get a list of lists of LatLng for the fill, which represents the locations of the fill on the map
+     *
+     * @return a list of a lists of the locations of the line in a longitude and latitude pairs
+     */
+    public List<List<LatLng>> getLatLngs() {
+        List<List<LatLng>> points = new ArrayList<>();
+        if (geometry != null) {
+            for (List<Point> coordinates : geometry.coordinates()) {
+                List<LatLng> innerList = new ArrayList<>();
+                for (Point point : coordinates) {
+                    innerList.add(new LatLng(point.latitude(), point.longitude()));
+                }
+                points.add(innerList);
+            }
+        }
+        return points;
+    }
+
+    /**
+     * Set the geometry of the <%- type %>, which represents the location of the <%- type %> on the map
+     *
+     * @param geometry the location of the <%- type %>
+     * @return this
+     */
+    public <%- camelize(type) %>Options withGeometry(Polygon geometry) {
+        this.geometry = geometry;
+        return this;
+    }
+
+    /**
+     * Get the geometry of the <%- type %>, which represents the location of the <%- type %> on the map
+     *
+     * @return the location of the <%- type %>
+     */
+    public Polygon getGeometry() {
+        return geometry;
+    }
+<% } -%>
+
+    /**
+     * Returns whether this <%- type %> is draggable, meaning it can be dragged across the screen when touched and moved.
+     *
+     * @return draggable when touched
+     */
+    public boolean getDraggable() {
+        return isDraggable;
+    }
+
+    /**
+     * Set whether this <%- type %> should be draggable,
+     * meaning it can be dragged across the screen when touched and moved.
+     *
+     * @param draggable should be draggable
+     */
+    public <%- camelize(type) %>Options withDraggable(boolean draggable) {
+        isDraggable = draggable;
+        return this;
+    }
+
+    /**
+     * Set the arbitrary json data of the annotation.
+     *
+     * @param jsonElement the arbitrary json element data
+     */
+    public <%- camelize(type) %>Options withData(@Nullable JsonElement jsonElement) {
+        this.data = jsonElement;
+        return this;
+    }
+
+    /**
+     * Get the arbitrary json data of the annotation.
+     *
+     * @return the arbitrary json object data if set, else null
+     */
+    @Nullable
+    public JsonElement getData() {
+        return data;
+    }
+
+    @Override
+    <%- camelize(type) %> build(long id, AnnotationManager<?, <%- camelize(type) %>, ?, ?, ?, ?> annotationManager) {
+        if (geometry == null) {
+            throw new RuntimeException("geometry field is required");
+        }
+        JsonObject jsonObject = new JsonObject();
 <% for (const property of properties) { -%>
 <% if (supportsPropertyFunction(property)) { -%>
 <% if (propertyType(property).endsWith("[]")) { -%>
-    if (feature.hasProperty(PROPERTY_<%- snakeCaseUpper(property.name) %>)) {
-      options.<%- camelizeWithLeadingLowercase(property.name) %> = to<%- propertyType(property).slice(0, -2) -%>Array(feature.getProperty(PROPERTY_<%- snakeCaseUpper(property.name) %>).getAsJsonArray());
-    }
+        jsonObject.add(PROPERTY_<%- snakeCaseUpper(property.name) %>, convertArray(<%- camelizeWithLeadingLowercase(property.name) %>));
 <% } else { -%>
-    if (feature.hasProperty(PROPERTY_<%- snakeCaseUpper(property.name) %>)) {
-      options.<%- camelizeWithLeadingLowercase(property.name) %> = feature.getProperty(PROPERTY_<%- snakeCaseUpper(property.name) %>).getAs<%- propertyType(property) %>();
+        jsonObject.addProperty(PROPERTY_<%- snakeCaseUpper(property.name) %>, <%- camelizeWithLeadingLowercase(property.name) %>);
+<% } -%>
+<% } -%>
+<% } -%>
+        <%- camelize(type) %> <%- type %> = new <%- camelize(type) %>(id, annotationManager, jsonObject, geometry);
+        <%- type %>.setDraggable(isDraggable);
+        <%- type %>.setData(data);
+        return <%- type %>;
     }
+
+    /**
+     * Creates <%- camelize(type) %>Options out of a Feature.
+     *
+     * @param feature feature to be converted
+     */
+    @Nullable
+    static <%- camelize(type) %>Options fromFeature(@NonNull Feature feature) {
+        if (feature.geometry() == null) {
+            throw new RuntimeException("geometry field is required");
+        }
+<% if (type === "circle" || type === "symbol") { -%>
+        if (!(feature.geometry() instanceof Point)) {
+<% } else if (type === "line") { -%>
+        if (!(feature.geometry() instanceof LineString)) {
+<% } else { -%>
+        if (!(feature.geometry() instanceof Polygon)) {<% } -%>
+            return null;
+        }
+
+        <%- camelize(type) %>Options options = new <%- camelize(type) %>Options();
+        options.geometry = (<%- geometryType(type) %>) feature.geometry();
+<% for (const property of properties) { -%>
+<% if (supportsPropertyFunction(property)) { -%>
+<% if (propertyType(property).endsWith("[]")) { -%>
+        if (feature.hasProperty(PROPERTY_<%- snakeCaseUpper(property.name) %>)) {
+            options.<%- camelizeWithLeadingLowercase(property.name) %> = to<%- propertyType(property).slice(0, -2) -%>Array(feature.getProperty(PROPERTY_<%- snakeCaseUpper(property.name) %>).getAsJsonArray());
+        }
+<% } else { -%>
+        if (feature.hasProperty(PROPERTY_<%- snakeCaseUpper(property.name) %>)) {
+            options.<%- camelizeWithLeadingLowercase(property.name) %> = feature.getProperty(PROPERTY_<%- snakeCaseUpper(property.name) %>).getAs<%- propertyType(property) %>();
+        }
 <% } -%>
 <% } -%>
 <% } -%>
-    if (feature.hasProperty(PROPERTY_IS_DRAGGABLE)) {
-      options.isDraggable = feature.getProperty(PROPERTY_IS_DRAGGABLE).getAsBoolean();
+        if (feature.hasProperty(PROPERTY_IS_DRAGGABLE)) {
+            options.isDraggable = feature.getProperty(PROPERTY_IS_DRAGGABLE).getAsBoolean();
+        }
+        return options;
     }
-    return options;
-  }
 }
