@@ -45,7 +45,7 @@ public class <%- camelize(type) %>Manager extends AnnotationManager<<%- camelize
      * Create a <%- type %> manager, used to manage <%- type %>s.
      *
      * @param mapboxMap the map object to add <%- type %>s to
-     * @param style a valid a fully loaded style object
+     * @param style     a valid a fully loaded style object
      */
     @UiThread
     public <%- camelize(type) %>Manager(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap, @NonNull Style style) {
@@ -55,8 +55,8 @@ public class <%- camelize(type) %>Manager extends AnnotationManager<<%- camelize
     /**
      * Create a <%- type %> manager, used to manage <%- type %>s.
      *
-     * @param mapboxMap the map object to add <%- type %>s to
-     * @param style a valid a fully loaded style object
+     * @param mapboxMap    the map object to add <%- type %>s to
+     * @param style        a valid a fully loaded style object
      * @param belowLayerId the id of the layer above the circle layer
      */
     @UiThread
@@ -67,9 +67,9 @@ public class <%- camelize(type) %>Manager extends AnnotationManager<<%- camelize
     /**
      * Create a <%- type %> manager, used to manage <%- type %>s.
      *
-     * @param mapboxMap the map object to add <%- type %>s to
-     * @param style a valid a fully loaded style object
-     * @param belowLayerId the id of the layer above the circle layer
+     * @param mapboxMap      the map object to add <%- type %>s to
+     * @param style          a valid a fully loaded style object
+     * @param belowLayerId   the id of the layer above the circle layer
      * @param geoJsonOptions options for the internal source
      */
     @UiThread
@@ -81,9 +81,9 @@ public class <%- camelize(type) %>Manager extends AnnotationManager<<%- camelize
     /**
      * Create a <%- type %> manager, used to manage <%- type %>s.
      *
-     * @param mapboxMap the map object to add <%- type %>s to
-     * @param style a valid a fully loaded style object
-     * @param belowLayerId the id of the layer above the circle layer
+     * @param mapboxMap      the map object to add <%- type %>s to
+     * @param style          a valid a fully loaded style object
+     * @param belowLayerId   the id of the layer above the circle layer
      * @param clusterOptions options for the clustering configuration
      */
     @UiThread
@@ -189,6 +189,7 @@ public class <%- camelize(type) %>Manager extends AnnotationManager<<%- camelize
     }
 
     // Property accessors
+
 <% for (const property of properties) { -%>
 <% if (!supportsPropertyFunction(property) && property.name !== "line-gradient" && property.name !== "symbol-z-order") { -%>
     /**
@@ -211,7 +212,7 @@ public class <%- camelize(type) %>Manager extends AnnotationManager<<%- camelize
      *
      * @param value property wrapper value around <%- propertyType(property) %>
      */
-    public void set<%- camelize(property.name) %>(<%- propertyTypeAnnotation(property) %><%- iff(() => propertyTypeAnnotation(property), "") %> <%- propertyType(property) %> value) {
+    public void set<%- camelize(property.name) %>(<%- propertyTypeAnnotation(property) %><%- iff(() => propertyTypeAnnotation(property), " ") %><%- propertyType(property) %> value) {
         PropertyValue propertyValue = <%- camelizeWithLeadingLowercase(property.name) %>(value);
         constantPropertyUsageMap.put(PROPERTY_<%- snakeCaseUpper(property.name) %>, propertyValue);
         layer.setProperties(propertyValue);
@@ -224,7 +225,7 @@ public class <%- camelize(type) %>Manager extends AnnotationManager<<%- camelize
      *
      * @param expression expression
      */
-     @Override
+    @Override
     public void setFilter(@NonNull Expression expression) {
         layerFilter = expression;
         layer.setFilter(layerFilter);

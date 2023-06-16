@@ -10,8 +10,10 @@ package com.mapbox.mapboxsdk.plugins.annotation;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import android.graphics.PointF;
 import androidx.annotation.UiThread;
+
+import android.graphics.PointF;
+
 import com.google.gson.JsonArray;
 import com.google.gson.JsonNull;
 import com.google.gson.JsonObject;
@@ -90,7 +92,7 @@ public class <%- camelize(type) %> extends Annotation<<%- geometryType(type) %>>
      * @param latLngs a list of the locations of the line in a longitude and latitude pairs
      */
     public void setLatLngs(List<LatLng> latLngs) {
-        List<Point>points = new ArrayList<>();
+        List<Point> points = new ArrayList<>();
         for (LatLng latLng : latLngs) {
             points.add(Point.fromLngLat(latLng.getLongitude(), latLng.getLatitude()));
         }
@@ -106,7 +108,7 @@ public class <%- camelize(type) %> extends Annotation<<%- geometryType(type) %>>
     public List<LatLng> getLatLngs() {
         LineString lineString = (LineString) geometry;
         List<LatLng> latLngs = new ArrayList<>();
-        for (Point point: lineString.coordinates()) {
+        for (Point point : lineString.coordinates()) {
             latLngs.add(new LatLng(point.latitude(), point.longitude()));
         }
         return latLngs;
@@ -124,7 +126,7 @@ public class <%- camelize(type) %> extends Annotation<<%- geometryType(type) %>>
     public void setLatLngs(List<List<LatLng>> latLngs) {
         List<List<Point>> points = new ArrayList<>();
         for (List<LatLng> innerLatLngs : latLngs) {
-            List<Point>innerList = new ArrayList<>();
+            List<Point> innerList = new ArrayList<>();
             for (LatLng latLng : innerLatLngs) {
                 innerList.add(Point.fromLngLat(latLng.getLongitude(), latLng.getLatitude()));
             }
@@ -340,7 +342,7 @@ public class <%- camelize(type) %> extends Annotation<<%- geometryType(type) %>>
     @Override
     @Nullable
     Geometry getOffsetGeometry(@NonNull Projection projection, @NonNull MoveDistancesObject moveDistancesObject,
-                                                         float touchAreaShiftX, float touchAreaShiftY) {
+                               float touchAreaShiftX, float touchAreaShiftY) {
         List<Point> originalPoints = geometry.coordinates();
         List<Point> resultingPoints = new ArrayList<>(originalPoints.size());
         for (Point jsonPoint : originalPoints) {
@@ -362,7 +364,7 @@ public class <%- camelize(type) %> extends Annotation<<%- geometryType(type) %>>
     @Override
     @Nullable
     Geometry getOffsetGeometry(@NonNull Projection projection, @NonNull MoveDistancesObject moveDistancesObject,
-                                                         float touchAreaShiftX, float touchAreaShiftY) {
+                               float touchAreaShiftX, float touchAreaShiftY) {
         List<List<Point>> originalPoints = geometry.coordinates();
         if (originalPoints != null) {
             List<List<Point>> resultingPoints = new ArrayList<>(originalPoints.size());
@@ -398,7 +400,7 @@ public class <%- camelize(type) %> extends Annotation<<%- geometryType(type) %>>
 <% } else if (type === "fill")    { -%>
         return "Fill";
 <% } else if (type === "line")    { -%>
-         return "Line";
+        return "Line";
 <% } else { -%>
         return "Annotation";
 <% } -%>

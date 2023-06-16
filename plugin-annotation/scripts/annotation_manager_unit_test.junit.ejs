@@ -7,6 +7,8 @@
 
 package com.mapbox.mapboxsdk.plugins.annotation;
 
+import android.graphics.PointF;
+
 import com.google.gson.JsonPrimitive;
 import com.mapbox.geojson.*;
 import com.mapbox.mapboxsdk.geometry.LatLng;
@@ -18,6 +20,7 @@ import com.mapbox.mapboxsdk.style.layers.*;
 import com.mapbox.mapboxsdk.style.sources.GeoJsonOptions;
 import com.mapbox.mapboxsdk.style.sources.GeoJsonSource;
 import com.mapbox.mapboxsdk.utils.ColorUtils;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
@@ -25,7 +28,6 @@ import org.mockito.ArgumentCaptor;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
-import android.graphics.PointF;
 
 import static com.mapbox.mapboxsdk.plugins.annotation.ConvertUtils.convertArray;
 import static com.mapbox.mapboxsdk.style.expressions.Expression.get;
@@ -167,17 +169,17 @@ public class <%- camelize(type) %>ManagerTest {
 <% if (type === "circle" || type === "symbol") { -%>
         <%- camelize(type) %> <%- type %> = <%- type %>Manager.create(new <%- camelize(type) %>Options().withLatLng(new LatLng()));
 <% } else if (type === "line") { -%>
-        List<LatLng>latLngs = new ArrayList<>();
+        List<LatLng> latLngs = new ArrayList<>();
         latLngs.add(new LatLng());
-        latLngs.add(new LatLng(1,1));
+        latLngs.add(new LatLng(1, 1));
         <%- camelize(type) %> <%- type %> = <%- type %>Manager.create(new <%- camelize(type) %>Options().withLatLngs(latLngs));
 <% } else { -%>
-        List<LatLng>innerLatLngs = new ArrayList<>();
+        List<LatLng> innerLatLngs = new ArrayList<>();
         innerLatLngs.add(new LatLng());
-        innerLatLngs.add(new LatLng(1,1));
-        innerLatLngs.add(new LatLng(-1,-1));
+        innerLatLngs.add(new LatLng(1, 1));
+        innerLatLngs.add(new LatLng(-1, -1));
         innerLatLngs.add(new LatLng());
-        List<List<LatLng>>latLngs = new ArrayList<>();
+        List<List<LatLng>> latLngs = new ArrayList<>();
         latLngs.add(innerLatLngs);
         <%- camelize(type) %> <%- type %> = <%- type %>Manager.create(new <%- camelize(type) %>Options().withLatLngs(latLngs));
 <% } -%>
@@ -250,9 +252,9 @@ public class <%- camelize(type) %>ManagerTest {
         List<LatLng> latLngList = new ArrayList<>();
         latLngList.add(new LatLng());
         latLngList.add(new LatLng(1, 1));
-        List< <%- camelize(type) %>Options> options = new ArrayList<>();
+        List<<%- camelize(type) %>Options> options = new ArrayList<>();
         for (LatLng latLng : latLngList) {
-            options.add(new  <%- camelize(type) %>Options().withLatLng(latLng));
+            options.add(new <%- camelize(type) %>Options().withLatLng(latLng));
         }
 <% } else if (type === "line") { -%>
         List<List<LatLng>> latLngList = new ArrayList<>();
@@ -289,7 +291,7 @@ public class <%- camelize(type) %>ManagerTest {
             add(new LatLng(3, 9));
         }});
 
-        List<List<List<LatLng>>> latLngList = new ArrayList<List<List<LatLng>>>(){{
+        List<List<List<LatLng>>> latLngList = new ArrayList<List<List<LatLng>>>() {{
             add(latLngListOne);
             add(latLngListTwo);
         }};
@@ -309,16 +311,16 @@ public class <%- camelize(type) %>ManagerTest {
 <% if (type === "circle" || type === "symbol") { -%>
         <%- camelize(type) %> <%- type %> = <%- type %>Manager.create(new <%- camelize(type) %>Options().withLatLng(new LatLng()));
 <% } else if (type === "line") { -%>
-        List<LatLng>latLngs = new ArrayList<>();
+        List<LatLng> latLngs = new ArrayList<>();
         latLngs.add(new LatLng());
-        latLngs.add(new LatLng(1,1));
+        latLngs.add(new LatLng(1, 1));
         <%- camelize(type) %> <%- type %> = <%- type %>Manager.create(new <%- camelize(type) %>Options().withLatLngs(latLngs));
 <% } else { -%>
-        List<LatLng>innerLatLngs = new ArrayList<>();
+        List<LatLng> innerLatLngs = new ArrayList<>();
         innerLatLngs.add(new LatLng());
-        innerLatLngs.add(new LatLng(1,1));
-        innerLatLngs.add(new LatLng(-1,-1));
-        List<List<LatLng>>latLngs = new ArrayList<>();
+        innerLatLngs.add(new LatLng(1, 1));
+        innerLatLngs.add(new LatLng(-1, -1));
+        List<List<LatLng>> latLngs = new ArrayList<>();
         latLngs.add(innerLatLngs);
         <%- camelize(type) %> <%- type %> = <%- type %>Manager.create(new <%- camelize(type) %>Options().withLatLngs(latLngs));
 <% } -%>
@@ -338,27 +340,27 @@ public class <%- camelize(type) %>ManagerTest {
         assertEquals(options.getGeometry(), Point.fromLngLat(34, 12));
         assertEquals(<%- type  %>.getGeometry(), Point.fromLngLat(34, 12));
 <% } else if (type === "line") { -%>
-        List<LatLng>latLngs = new ArrayList<>();
+        List<LatLng> latLngs = new ArrayList<>();
         latLngs.add(new LatLng());
-        latLngs.add(new LatLng(1,1));
+        latLngs.add(new LatLng(1, 1));
         <%- camelize(type) %>Options options = new <%- camelize(type) %>Options().withLatLngs(latLngs);
         <%- camelize(type) %> <%- type %> = <%- type %>Manager.create(options);
         assertEquals(options.getLatLngs(), latLngs);
         assertEquals(line.getLatLngs(), latLngs);
         assertEquals(options.getGeometry(), LineString.fromLngLats(new ArrayList<Point>() {{
-                    add(Point.fromLngLat(0, 0));
-                    add(Point.fromLngLat(1, 1));
+            add(Point.fromLngLat(0, 0));
+            add(Point.fromLngLat(1, 1));
         }}));
         assertEquals(line.getGeometry(), LineString.fromLngLats(new ArrayList<Point>() {{
             add(Point.fromLngLat(0, 0));
             add(Point.fromLngLat(1, 1));
         }}));
 <% } else { -%>
-        List<LatLng>innerLatLngs = new ArrayList<>();
+        List<LatLng> innerLatLngs = new ArrayList<>();
         innerLatLngs.add(new LatLng());
-        innerLatLngs.add(new LatLng(1,1));
-        innerLatLngs.add(new LatLng(-1,-1));
-        List<List<LatLng>>latLngs = new ArrayList<>();
+        innerLatLngs.add(new LatLng(1, 1));
+        innerLatLngs.add(new LatLng(-1, -1));
+        List<List<LatLng>> latLngs = new ArrayList<>();
         latLngs.add(innerLatLngs);
         <%- camelize(type) %>Options options = new <%- camelize(type) %>Options().withLatLngs(latLngs);
         Fill fill = fillManager.create(options);
@@ -388,17 +390,17 @@ public class <%- camelize(type) %>ManagerTest {
         <%- camelize(type) %> <%- type %>Zero = <%- type %>Manager.create(new <%- camelize(type) %>Options().withLatLng(new LatLng()));
         <%- camelize(type) %> <%- type %>One = <%- type %>Manager.create(new <%- camelize(type) %>Options().withLatLng(new LatLng()));
 <% } else if (type === "line") { -%>
-        List<LatLng>latLngs = new ArrayList<>();
+        List<LatLng> latLngs = new ArrayList<>();
         latLngs.add(new LatLng());
-        latLngs.add(new LatLng(1,1));
+        latLngs.add(new LatLng(1, 1));
         <%- camelize(type) %> <%- type %>Zero = <%- type %>Manager.create(new <%- camelize(type) %>Options().withLatLngs(latLngs));
         <%- camelize(type) %> <%- type %>One = <%- type %>Manager.create(new <%- camelize(type) %>Options().withLatLngs(latLngs));
 <% } else { -%>
-        List<LatLng>innerLatLngs = new ArrayList<>();
+        List<LatLng> innerLatLngs = new ArrayList<>();
         innerLatLngs.add(new LatLng());
-        innerLatLngs.add(new LatLng(1,1));
-        innerLatLngs.add(new LatLng(-1,-1));
-        List<List<LatLng>>latLngs = new ArrayList<>();
+        innerLatLngs.add(new LatLng(1, 1));
+        innerLatLngs.add(new LatLng(-1, -1));
+        List<List<LatLng>> latLngs = new ArrayList<>();
         latLngs.add(innerLatLngs);
         <%- camelize(type) %> <%- type %>Zero = <%- type %>Manager.create(new <%- camelize(type) %>Options().withLatLngs(latLngs));
         <%- camelize(type) %> <%- type %>One = <%- type %>Manager.create(new <%- camelize(type) %>Options().withLatLngs(latLngs));
@@ -413,16 +415,16 @@ public class <%- camelize(type) %>ManagerTest {
 <% if (type === "circle" || type === "symbol") { -%>
         <%- camelize(type) %> <%- type %>Zero = <%- type %>Manager.create(new <%- camelize(type) %>Options().withLatLng(new LatLng()));
 <% } else if (type === "line") { -%>
-        List<LatLng>latLngs = new ArrayList<>();
+        List<LatLng> latLngs = new ArrayList<>();
         latLngs.add(new LatLng());
-        latLngs.add(new LatLng(1,1));
+        latLngs.add(new LatLng(1, 1));
         <%- camelize(type) %> <%- type %>Zero = <%- type %>Manager.create(new <%- camelize(type) %>Options().withLatLngs(latLngs));
 <% } else { -%>
-        List<LatLng>innerLatLngs = new ArrayList<>();
+        List<LatLng> innerLatLngs = new ArrayList<>();
         innerLatLngs.add(new LatLng());
-        innerLatLngs.add(new LatLng(1,1));
-        innerLatLngs.add(new LatLng(-1,-1));
-        List<List<LatLng>>latLngs = new ArrayList<>();
+        innerLatLngs.add(new LatLng(1, 1));
+        innerLatLngs.add(new LatLng(-1, -1));
+        List<List<LatLng>> latLngs = new ArrayList<>();
         latLngs.add(innerLatLngs);
         <%- camelize(type) %> <%- type %>Zero = <%- type %>Manager.create(new <%- camelize(type) %>Options().withLatLngs(latLngs));
 <% } -%>
@@ -445,16 +447,16 @@ public class <%- camelize(type) %>ManagerTest {
 <% if (type === "circle" || type === "symbol") { -%>
         <%- camelize(type) %>Options options = new <%- camelize(type) %>Options().withLatLng(new LatLng()).with<%- camelize(property.name) %>(<%- defaultValueJava(property) %>);
 <% } else if (type === "line") { -%>
-        List<LatLng>latLngs = new ArrayList<>();
+        List<LatLng> latLngs = new ArrayList<>();
         latLngs.add(new LatLng());
-        latLngs.add(new LatLng(1,1));
+        latLngs.add(new LatLng(1, 1));
         <%- camelize(type) %>Options options = new <%- camelize(type) %>Options().withLatLngs(latLngs).with<%- camelize(property.name) %>(<%- defaultValueJava(property) %>);
 <% } else { -%>
-        List<LatLng>innerLatLngs = new ArrayList<>();
+        List<LatLng> innerLatLngs = new ArrayList<>();
         innerLatLngs.add(new LatLng());
-        innerLatLngs.add(new LatLng(1,1));
-        innerLatLngs.add(new LatLng(-1,-1));
-        List<List<LatLng>>latLngs = new ArrayList<>();
+        innerLatLngs.add(new LatLng(1, 1));
+        innerLatLngs.add(new LatLng(-1, -1));
+        List<List<LatLng>> latLngs = new ArrayList<>();
         latLngs.add(innerLatLngs);
         <%- camelize(type) %>Options options = new <%- camelize(type) %>Options().withLatLngs(latLngs).with<%- camelize(property.name) %>(<%- defaultValueJava(property) %>);
 <% } -%>
@@ -484,12 +486,12 @@ public class <%- camelize(type) %>ManagerTest {
     @Test
     public void testClickListener() {
         On<%- camelize(type) %>ClickListener listener = mock(On<%- camelize(type) %>ClickListener.class);
-        <%- type  %>Manager = new  <%- camelize(type) %>Manager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+        <%- type  %>Manager = new <%- camelize(type) %>Manager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
         assertTrue(<%- type  %>Manager.getClickListeners().isEmpty());
         <%- type  %>Manager.addClickListener(listener);
         assertTrue(<%- type  %>Manager.getClickListeners().contains(listener));
         <%- type  %>Manager.removeClickListener(listener);
-        assertTrue( <%- type  %>Manager.getClickListeners().isEmpty());
+        assertTrue(<%- type  %>Manager.getClickListeners().isEmpty());
     }
 
     @Test
@@ -520,16 +522,16 @@ public class <%- camelize(type) %>ManagerTest {
 <% if (type === "circle" || type === "symbol") { -%>
         <%- camelize(type) %>Options options = new <%- camelize(type) %>Options().withLatLng(new LatLng());
 <% } else if (type === "line") { -%>
-        List<LatLng>latLngs = new ArrayList<>();
+        List<LatLng> latLngs = new ArrayList<>();
         latLngs.add(new LatLng());
-        latLngs.add(new LatLng(1,1));
+        latLngs.add(new LatLng(1, 1));
         <%- camelize(type) %>Options options = new <%- camelize(type) %>Options().withLatLngs(latLngs);
 <% } else { -%>
-        List<LatLng>innerLatLngs = new ArrayList<>();
+        List<LatLng> innerLatLngs = new ArrayList<>();
         innerLatLngs.add(new LatLng());
-        innerLatLngs.add(new LatLng(1,1));
-        innerLatLngs.add(new LatLng(-1,-1));
-        List<List<LatLng>>latLngs = new ArrayList<>();
+        innerLatLngs.add(new LatLng(1, 1));
+        innerLatLngs.add(new LatLng(-1, -1));
+        List<List<LatLng>> latLngs = new ArrayList<>();
         latLngs.add(innerLatLngs);
         <%- camelize(type) %>Options options = new <%- camelize(type) %>Options().withLatLngs(latLngs);
 <% } -%>
@@ -544,16 +546,16 @@ public class <%- camelize(type) %>ManagerTest {
 <% if (type === "circle" || type === "symbol") { -%>
         <%- camelize(type) %>Options options = new <%- camelize(type) %>Options().withLatLng(new LatLng());
 <% } else if (type === "line") { -%>
-        List<LatLng>latLngs = new ArrayList<>();
+        List<LatLng> latLngs = new ArrayList<>();
         latLngs.add(new LatLng());
-        latLngs.add(new LatLng(1,1));
+        latLngs.add(new LatLng(1, 1));
         <%- camelize(type) %>Options options = new <%- camelize(type) %>Options().withLatLngs(latLngs);
 <% } else { -%>
-        List<LatLng>innerLatLngs = new ArrayList<>();
+        List<LatLng> innerLatLngs = new ArrayList<>();
         innerLatLngs.add(new LatLng());
-        innerLatLngs.add(new LatLng(1,1));
-        innerLatLngs.add(new LatLng(-1,-1));
-        List<List<LatLng>>latLngs = new ArrayList<>();
+        innerLatLngs.add(new LatLng(1, 1));
+        innerLatLngs.add(new LatLng(-1, -1));
+        List<List<LatLng>> latLngs = new ArrayList<>();
         latLngs.add(innerLatLngs);
         <%- camelize(type) %>Options options = new <%- camelize(type) %>Options().withLatLngs(latLngs);
 <% } -%>
@@ -569,20 +571,20 @@ public class <%- camelize(type) %>ManagerTest {
 <% if (type === "circle" || type === "symbol") { -%>
         <%- camelize(type) %>Options options = new <%- camelize(type) %>Options().withLatLng(new LatLng());
 <% } else if (type === "line") { -%>
-        List<LatLng>latLngs = new ArrayList<>();
+        List<LatLng> latLngs = new ArrayList<>();
         latLngs.add(new LatLng());
-        latLngs.add(new LatLng(1,1));
+        latLngs.add(new LatLng(1, 1));
         <%- camelize(type) %>Options options = new <%- camelize(type) %>Options().withLatLngs(latLngs);
 <% } else { -%>
-        List<LatLng>innerLatLngs = new ArrayList<>();
+        List<LatLng> innerLatLngs = new ArrayList<>();
         innerLatLngs.add(new LatLng());
-        innerLatLngs.add(new LatLng(1,1));
-        innerLatLngs.add(new LatLng(-1,-1));
-        List<List<LatLng>>latLngs = new ArrayList<>();
+        innerLatLngs.add(new LatLng(1, 1));
+        innerLatLngs.add(new LatLng(-1, -1));
+        List<List<LatLng>> latLngs = new ArrayList<>();
         latLngs.add(innerLatLngs);
         <%- camelize(type) %>Options options = new <%- camelize(type) %>Options().withLatLngs(latLngs);
 <% } -%>
-         <%- camelize(type) %>  <%- type %> = <%- type  %>Manager.create(options);
+        <%- camelize(type) %> <%- type %> = <%- type  %>Manager.create(options);
         assertEquals(1, <%- type  %>Manager.annotations.size());
 
         <%- type  %>Manager.getAnnotations().clear();
