@@ -137,7 +137,11 @@ public class OfflineDownloadService extends Service {
 
                     @Override
                     public void onError(String error) {
-                        OfflineDownloadStateReceiver.dispatchErrorBroadcast(getApplicationContext(), offlineDownload, error);
+                        OfflineDownloadStateReceiver.dispatchErrorBroadcast(
+                            getApplicationContext(),
+                            offlineDownload,
+                            error
+                        );
                     }
                 });
     }
@@ -196,7 +200,11 @@ public class OfflineDownloadService extends Service {
 
                 @Override
                 public void onError(String error) {
-                    OfflineDownloadStateReceiver.dispatchErrorBroadcast(getApplicationContext(), offlineDownload, error);
+                    OfflineDownloadStateReceiver.dispatchErrorBroadcast(
+                        getApplicationContext(),
+                        offlineDownload,
+                        error
+                    );
                 }
             });
         }
