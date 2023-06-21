@@ -67,7 +67,6 @@ public class CircleManagerTest {
         verify(circleLayer).setProperties(circleManager.constantPropertyUsageMap.values().toArray(new PropertyValue[0]));
         verify(circleLayer, times(0)).setFilter(any(Expression.class));
         verify(draggableAnnotationController).onSourceUpdated();
-        verify(geoJsonSource).setGeoJson(any(FeatureCollection.class));
     }
 
     @Test
@@ -81,7 +80,6 @@ public class CircleManagerTest {
         }
         verify(circleLayer).setProperties(circleManager.constantPropertyUsageMap.values().toArray(new PropertyValue[0]));
         verify(draggableAnnotationController).onSourceUpdated();
-        verify(geoJsonSource).setGeoJson(any(FeatureCollection.class));
 
         Expression filter = Expression.literal(false);
         circleManager.setFilter(filter);
@@ -110,7 +108,6 @@ public class CircleManagerTest {
         verify(newLayer).setProperties(circleManager.constantPropertyUsageMap.values().toArray(new PropertyValue[0]));
         verify(circleLayer).setFilter(filter);
         verify(draggableAnnotationController, times(2)).onSourceUpdated();
-        verify(newSource).setGeoJson(any(FeatureCollection.class));
     }
 
     @Test
@@ -124,7 +121,6 @@ public class CircleManagerTest {
         }
         verify(circleLayer).setProperties(circleManager.constantPropertyUsageMap.values().toArray(new PropertyValue[0]));
         verify(draggableAnnotationController).onSourceUpdated();
-        verify(geoJsonSource).setGeoJson(any(FeatureCollection.class));
     }
 
     @Test
@@ -139,17 +135,6 @@ public class CircleManagerTest {
         verify(circleLayer).setProperties(circleManager.constantPropertyUsageMap.values().toArray(new PropertyValue[0]));
         verify(circleLayer, times(0)).setFilter(any(Expression.class));
         verify(draggableAnnotationController).onSourceUpdated();
-        verify(optionedGeoJsonSource).setGeoJson(any(FeatureCollection.class));
-    }
-
-    @Test
-    public void testNoUpdateOnStyleReload() {
-        circleManager = new CircleManager(mapView, mapboxMap, style, coreElementProvider, "test_layer", null, draggableAnnotationController);
-        verify(geoJsonSource, times(1)).setGeoJson(any(FeatureCollection.class));
-
-        when(style.isFullyLoaded()).thenReturn(false);
-        circleManager.updateSource();
-        verify(geoJsonSource, times(1)).setGeoJson(any(FeatureCollection.class));
     }
 
     @Test

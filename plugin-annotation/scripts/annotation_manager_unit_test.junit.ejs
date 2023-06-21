@@ -72,7 +72,6 @@ public class <%- camelize(type) %>ManagerTest {
         verify(<%- type  %>Layer).setProperties(<%- type  %>Manager.constantPropertyUsageMap.values().toArray(new PropertyValue[0]));
         verify(<%- type  %>Layer, times(0)).setFilter(any(Expression.class));
         verify(draggableAnnotationController).onSourceUpdated();
-        verify(geoJsonSource).setGeoJson(any(FeatureCollection.class));
     }
 
     @Test
@@ -86,7 +85,6 @@ public class <%- camelize(type) %>ManagerTest {
         }
         verify(<%- type  %>Layer).setProperties(<%- type  %>Manager.constantPropertyUsageMap.values().toArray(new PropertyValue[0]));
         verify(draggableAnnotationController).onSourceUpdated();
-        verify(geoJsonSource).setGeoJson(any(FeatureCollection.class));
 
         Expression filter = Expression.literal(false);
         <%- type  %>Manager.setFilter(filter);
@@ -115,7 +113,6 @@ public class <%- camelize(type) %>ManagerTest {
         verify(newLayer).setProperties(<%- type  %>Manager.constantPropertyUsageMap.values().toArray(new PropertyValue[0]));
         verify(<%- type  %>Layer).setFilter(filter);
         verify(draggableAnnotationController, times(2)).onSourceUpdated();
-        verify(newSource).setGeoJson(any(FeatureCollection.class));
     }
 
     @Test
@@ -129,7 +126,6 @@ public class <%- camelize(type) %>ManagerTest {
         }
         verify(<%- type  %>Layer).setProperties(<%- type  %>Manager.constantPropertyUsageMap.values().toArray(new PropertyValue[0]));
         verify(draggableAnnotationController).onSourceUpdated();
-        verify(geoJsonSource).setGeoJson(any(FeatureCollection.class));
     }
 
     @Test
@@ -144,17 +140,6 @@ public class <%- camelize(type) %>ManagerTest {
         verify(<%- type  %>Layer).setProperties(<%- type  %>Manager.constantPropertyUsageMap.values().toArray(new PropertyValue[0]));
         verify(<%- type  %>Layer, times(0)).setFilter(any(Expression.class));
         verify(draggableAnnotationController).onSourceUpdated();
-        verify(optionedGeoJsonSource).setGeoJson(any(FeatureCollection.class));
-    }
-
-    @Test
-    public void testNoUpdateOnStyleReload() {
-        <%- type  %>Manager = new <%- camelize(type) %>Manager(mapView, mapboxMap, style, coreElementProvider, "test_layer", null, draggableAnnotationController);
-        verify(geoJsonSource, times(1)).setGeoJson(any(FeatureCollection.class));
-
-        when(style.isFullyLoaded()).thenReturn(false);
-        <%- type  %>Manager.updateSource();
-        verify(geoJsonSource, times(1)).setGeoJson(any(FeatureCollection.class));
     }
 
     @Test
