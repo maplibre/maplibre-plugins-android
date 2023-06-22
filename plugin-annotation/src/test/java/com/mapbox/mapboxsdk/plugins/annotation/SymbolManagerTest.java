@@ -57,7 +57,7 @@ public class SymbolManagerTest {
 
     @Test
     public void testInitialization() {
-        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         verify(style).addSource(geoJsonSource);
         verify(style).addLayer(symbolLayer);
         assertTrue(symbolManager.dataDrivenPropertyUsageMap.size() > 0);
@@ -71,7 +71,7 @@ public class SymbolManagerTest {
 
     @Test
     public void testInitializationOnStyleReload() {
-        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         verify(style).addSource(geoJsonSource);
         verify(style).addLayer(symbolLayer);
         assertTrue(symbolManager.dataDrivenPropertyUsageMap.size() > 0);
@@ -112,7 +112,7 @@ public class SymbolManagerTest {
 
     @Test
     public void testLayerBelowInitialization() {
-        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, "test_layer", null, draggableAnnotationController);
+        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, "test_layer", null, null, draggableAnnotationController);
         verify(style).addSource(geoJsonSource);
         verify(style).addLayerBelow(symbolLayer, "test_layer");
         assertTrue(symbolManager.dataDrivenPropertyUsageMap.size() > 0);
@@ -125,7 +125,7 @@ public class SymbolManagerTest {
 
     @Test
     public void testGeoJsonOptionsInitialization() {
-        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, geoJsonOptions, draggableAnnotationController);
+        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, geoJsonOptions, draggableAnnotationController);
         verify(style).addSource(optionedGeoJsonSource);
         verify(style).addLayer(symbolLayer);
         assertTrue(symbolManager.dataDrivenPropertyUsageMap.size() > 0);
@@ -139,20 +139,20 @@ public class SymbolManagerTest {
 
     @Test
     public void testLayerId() {
-        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         assertEquals(layerId, symbolManager.getLayerId());
     }
 
     @Test
     public void testAddSymbol() {
-        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         Symbol symbol = symbolManager.create(new SymbolOptions().withLatLng(new LatLng()));
         assertEquals(symbolManager.getAnnotations().get(0), symbol);
     }
 
     @Test
     public void addSymbolFromFeatureCollection() {
-        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         Geometry geometry = Point.fromLngLat(10, 10);
 
         Feature feature = Feature.fromGeometry(geometry);
@@ -225,7 +225,7 @@ public class SymbolManagerTest {
 
     @Test
     public void addSymbols() {
-        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         List<LatLng> latLngList = new ArrayList<>();
         latLngList.add(new LatLng());
         latLngList.add(new LatLng(1, 1));
@@ -240,7 +240,7 @@ public class SymbolManagerTest {
 
     @Test
     public void testDeleteSymbol() {
-        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         Symbol symbol = symbolManager.create(new SymbolOptions().withLatLng(new LatLng()));
         symbolManager.delete(symbol);
         assertTrue(symbolManager.getAnnotations().size() == 0);
@@ -248,7 +248,7 @@ public class SymbolManagerTest {
 
     @Test
     public void testGeometrySymbol() {
-        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         LatLng latLng = new LatLng(12, 34);
         SymbolOptions options = new SymbolOptions().withLatLng(latLng);
         Symbol symbol = symbolManager.create(options);
@@ -260,7 +260,7 @@ public class SymbolManagerTest {
 
     @Test
     public void testFeatureIdSymbol() {
-        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         Symbol symbolZero = symbolManager.create(new SymbolOptions().withLatLng(new LatLng()));
         Symbol symbolOne = symbolManager.create(new SymbolOptions().withLatLng(new LatLng()));
         assertEquals(symbolZero.getFeature().get(Symbol.ID_KEY).getAsLong(), 0);
@@ -269,7 +269,7 @@ public class SymbolManagerTest {
 
     @Test
     public void testSymbolDraggableFlag() {
-        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         Symbol symbolZero = symbolManager.create(new SymbolOptions().withLatLng(new LatLng()));
 
         assertFalse(symbolZero.isDraggable());
@@ -282,7 +282,7 @@ public class SymbolManagerTest {
 
     @Test
     public void testSymbolSortKeyLayerProperty() {
-        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         verify(symbolLayer, times(0)).setProperties(argThat(new PropertyValueMatcher(symbolSortKey(get("symbol-sort-key")))));
 
         SymbolOptions options = new SymbolOptions().withLatLng(new LatLng()).withSymbolSortKey(2.0f);
@@ -295,7 +295,7 @@ public class SymbolManagerTest {
 
     @Test
     public void testIconSizeLayerProperty() {
-        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         verify(symbolLayer, times(0)).setProperties(argThat(new PropertyValueMatcher(iconSize(get("icon-size")))));
 
         SymbolOptions options = new SymbolOptions().withLatLng(new LatLng()).withIconSize(2.0f);
@@ -308,7 +308,7 @@ public class SymbolManagerTest {
 
     @Test
     public void testIconImageLayerProperty() {
-        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         verify(symbolLayer, times(0)).setProperties(argThat(new PropertyValueMatcher(iconImage(get("icon-image")))));
 
         SymbolOptions options = new SymbolOptions().withLatLng(new LatLng()).withIconImage("undefined");
@@ -321,7 +321,7 @@ public class SymbolManagerTest {
 
     @Test
     public void testIconRotateLayerProperty() {
-        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         verify(symbolLayer, times(0)).setProperties(argThat(new PropertyValueMatcher(iconRotate(get("icon-rotate")))));
 
         SymbolOptions options = new SymbolOptions().withLatLng(new LatLng()).withIconRotate(2.0f);
@@ -334,7 +334,7 @@ public class SymbolManagerTest {
 
     @Test
     public void testIconOffsetLayerProperty() {
-        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         verify(symbolLayer, times(0)).setProperties(argThat(new PropertyValueMatcher(iconOffset(get("icon-offset")))));
 
         SymbolOptions options = new SymbolOptions().withLatLng(new LatLng()).withIconOffset(new Float[]{0f, 0f});
@@ -347,7 +347,7 @@ public class SymbolManagerTest {
 
     @Test
     public void testIconAnchorLayerProperty() {
-        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         verify(symbolLayer, times(0)).setProperties(argThat(new PropertyValueMatcher(iconAnchor(get("icon-anchor")))));
 
         SymbolOptions options = new SymbolOptions().withLatLng(new LatLng()).withIconAnchor(ICON_ANCHOR_CENTER);
@@ -360,7 +360,7 @@ public class SymbolManagerTest {
 
     @Test
     public void testTextFieldLayerProperty() {
-        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         verify(symbolLayer, times(0)).setProperties(argThat(new PropertyValueMatcher(textField(get("text-field")))));
 
         SymbolOptions options = new SymbolOptions().withLatLng(new LatLng()).withTextField("");
@@ -373,7 +373,7 @@ public class SymbolManagerTest {
 
     @Test
     public void testTextFontLayerProperty() {
-        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         verify(symbolLayer, times(0)).setProperties(argThat(new PropertyValueMatcher(textFont(get("text-font")))));
 
         SymbolOptions options = new SymbolOptions().withLatLng(new LatLng()).withTextFont(new String[]{"Open Sans Regular", "Arial Unicode MS Regular"});
@@ -386,7 +386,7 @@ public class SymbolManagerTest {
 
     @Test
     public void testTextSizeLayerProperty() {
-        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         verify(symbolLayer, times(0)).setProperties(argThat(new PropertyValueMatcher(textSize(get("text-size")))));
 
         SymbolOptions options = new SymbolOptions().withLatLng(new LatLng()).withTextSize(2.0f);
@@ -399,7 +399,7 @@ public class SymbolManagerTest {
 
     @Test
     public void testTextMaxWidthLayerProperty() {
-        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         verify(symbolLayer, times(0)).setProperties(argThat(new PropertyValueMatcher(textMaxWidth(get("text-max-width")))));
 
         SymbolOptions options = new SymbolOptions().withLatLng(new LatLng()).withTextMaxWidth(2.0f);
@@ -412,7 +412,7 @@ public class SymbolManagerTest {
 
     @Test
     public void testTextLetterSpacingLayerProperty() {
-        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         verify(symbolLayer, times(0)).setProperties(argThat(new PropertyValueMatcher(textLetterSpacing(get("text-letter-spacing")))));
 
         SymbolOptions options = new SymbolOptions().withLatLng(new LatLng()).withTextLetterSpacing(2.0f);
@@ -425,7 +425,7 @@ public class SymbolManagerTest {
 
     @Test
     public void testTextJustifyLayerProperty() {
-        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         verify(symbolLayer, times(0)).setProperties(argThat(new PropertyValueMatcher(textJustify(get("text-justify")))));
 
         SymbolOptions options = new SymbolOptions().withLatLng(new LatLng()).withTextJustify(TEXT_JUSTIFY_AUTO);
@@ -438,7 +438,7 @@ public class SymbolManagerTest {
 
     @Test
     public void testTextRadialOffsetLayerProperty() {
-        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         verify(symbolLayer, times(0)).setProperties(argThat(new PropertyValueMatcher(textRadialOffset(get("text-radial-offset")))));
 
         SymbolOptions options = new SymbolOptions().withLatLng(new LatLng()).withTextRadialOffset(2.0f);
@@ -451,7 +451,7 @@ public class SymbolManagerTest {
 
     @Test
     public void testTextAnchorLayerProperty() {
-        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         verify(symbolLayer, times(0)).setProperties(argThat(new PropertyValueMatcher(textAnchor(get("text-anchor")))));
 
         SymbolOptions options = new SymbolOptions().withLatLng(new LatLng()).withTextAnchor(TEXT_ANCHOR_CENTER);
@@ -464,7 +464,7 @@ public class SymbolManagerTest {
 
     @Test
     public void testTextRotateLayerProperty() {
-        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         verify(symbolLayer, times(0)).setProperties(argThat(new PropertyValueMatcher(textRotate(get("text-rotate")))));
 
         SymbolOptions options = new SymbolOptions().withLatLng(new LatLng()).withTextRotate(2.0f);
@@ -477,7 +477,7 @@ public class SymbolManagerTest {
 
     @Test
     public void testTextTransformLayerProperty() {
-        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         verify(symbolLayer, times(0)).setProperties(argThat(new PropertyValueMatcher(textTransform(get("text-transform")))));
 
         SymbolOptions options = new SymbolOptions().withLatLng(new LatLng()).withTextTransform(TEXT_TRANSFORM_NONE);
@@ -490,7 +490,7 @@ public class SymbolManagerTest {
 
     @Test
     public void testTextOffsetLayerProperty() {
-        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         verify(symbolLayer, times(0)).setProperties(argThat(new PropertyValueMatcher(textOffset(get("text-offset")))));
 
         SymbolOptions options = new SymbolOptions().withLatLng(new LatLng()).withTextOffset(new Float[]{0f, 0f});
@@ -503,7 +503,7 @@ public class SymbolManagerTest {
 
     @Test
     public void testIconOpacityLayerProperty() {
-        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         verify(symbolLayer, times(0)).setProperties(argThat(new PropertyValueMatcher(iconOpacity(get("icon-opacity")))));
 
         SymbolOptions options = new SymbolOptions().withLatLng(new LatLng()).withIconOpacity(2.0f);
@@ -516,7 +516,7 @@ public class SymbolManagerTest {
 
     @Test
     public void testIconColorLayerProperty() {
-        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         verify(symbolLayer, times(0)).setProperties(argThat(new PropertyValueMatcher(iconColor(get("icon-color")))));
 
         SymbolOptions options = new SymbolOptions().withLatLng(new LatLng()).withIconColor("rgba(0, 0, 0, 1)");
@@ -529,7 +529,7 @@ public class SymbolManagerTest {
 
     @Test
     public void testIconHaloColorLayerProperty() {
-        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         verify(symbolLayer, times(0)).setProperties(argThat(new PropertyValueMatcher(iconHaloColor(get("icon-halo-color")))));
 
         SymbolOptions options = new SymbolOptions().withLatLng(new LatLng()).withIconHaloColor("rgba(0, 0, 0, 1)");
@@ -542,7 +542,7 @@ public class SymbolManagerTest {
 
     @Test
     public void testIconHaloWidthLayerProperty() {
-        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         verify(symbolLayer, times(0)).setProperties(argThat(new PropertyValueMatcher(iconHaloWidth(get("icon-halo-width")))));
 
         SymbolOptions options = new SymbolOptions().withLatLng(new LatLng()).withIconHaloWidth(2.0f);
@@ -555,7 +555,7 @@ public class SymbolManagerTest {
 
     @Test
     public void testIconHaloBlurLayerProperty() {
-        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         verify(symbolLayer, times(0)).setProperties(argThat(new PropertyValueMatcher(iconHaloBlur(get("icon-halo-blur")))));
 
         SymbolOptions options = new SymbolOptions().withLatLng(new LatLng()).withIconHaloBlur(2.0f);
@@ -568,7 +568,7 @@ public class SymbolManagerTest {
 
     @Test
     public void testTextOpacityLayerProperty() {
-        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         verify(symbolLayer, times(0)).setProperties(argThat(new PropertyValueMatcher(textOpacity(get("text-opacity")))));
 
         SymbolOptions options = new SymbolOptions().withLatLng(new LatLng()).withTextOpacity(2.0f);
@@ -581,7 +581,7 @@ public class SymbolManagerTest {
 
     @Test
     public void testTextColorLayerProperty() {
-        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         verify(symbolLayer, times(0)).setProperties(argThat(new PropertyValueMatcher(textColor(get("text-color")))));
 
         SymbolOptions options = new SymbolOptions().withLatLng(new LatLng()).withTextColor("rgba(0, 0, 0, 1)");
@@ -594,7 +594,7 @@ public class SymbolManagerTest {
 
     @Test
     public void testTextHaloColorLayerProperty() {
-        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         verify(symbolLayer, times(0)).setProperties(argThat(new PropertyValueMatcher(textHaloColor(get("text-halo-color")))));
 
         SymbolOptions options = new SymbolOptions().withLatLng(new LatLng()).withTextHaloColor("rgba(0, 0, 0, 1)");
@@ -607,7 +607,7 @@ public class SymbolManagerTest {
 
     @Test
     public void testTextHaloWidthLayerProperty() {
-        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         verify(symbolLayer, times(0)).setProperties(argThat(new PropertyValueMatcher(textHaloWidth(get("text-halo-width")))));
 
         SymbolOptions options = new SymbolOptions().withLatLng(new LatLng()).withTextHaloWidth(2.0f);
@@ -620,7 +620,7 @@ public class SymbolManagerTest {
 
     @Test
     public void testTextHaloBlurLayerProperty() {
-        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         verify(symbolLayer, times(0)).setProperties(argThat(new PropertyValueMatcher(textHaloBlur(get("text-halo-blur")))));
 
         SymbolOptions options = new SymbolOptions().withLatLng(new LatLng()).withTextHaloBlur(2.0f);
@@ -633,7 +633,7 @@ public class SymbolManagerTest {
 
     @Test
     public void testSymbolLayerFilter() {
-        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         Expression expression = Expression.eq(Expression.get("test"), "selected");
         verify(symbolLayer, times(0)).setFilter(expression);
 
@@ -648,7 +648,7 @@ public class SymbolManagerTest {
     @Test
     public void testClickListener() {
         OnSymbolClickListener listener = mock(OnSymbolClickListener.class);
-        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         assertTrue(symbolManager.getClickListeners().isEmpty());
         symbolManager.addClickListener(listener);
         assertTrue(symbolManager.getClickListeners().contains(listener));
@@ -659,7 +659,7 @@ public class SymbolManagerTest {
     @Test
     public void testLongClickListener() {
         OnSymbolLongClickListener listener = mock(OnSymbolLongClickListener.class);
-        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         assertTrue(symbolManager.getLongClickListeners().isEmpty());
         symbolManager.addLongClickListener(listener);
         assertTrue(symbolManager.getLongClickListeners().contains(listener));
@@ -670,7 +670,7 @@ public class SymbolManagerTest {
     @Test
     public void testDragListener() {
         OnSymbolDragListener listener = mock(OnSymbolDragListener.class);
-        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         assertTrue(symbolManager.getDragListeners().isEmpty());
         symbolManager.addDragListener(listener);
         assertTrue(symbolManager.getDragListeners().contains(listener));
@@ -680,7 +680,7 @@ public class SymbolManagerTest {
 
     @Test
     public void testCustomData() {
-        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         SymbolOptions options = new SymbolOptions().withLatLng(new LatLng());
         options.withData(new JsonPrimitive("hello"));
         Symbol symbol = symbolManager.create(options);
@@ -689,7 +689,7 @@ public class SymbolManagerTest {
 
     @Test
     public void testClearAll() {
-        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         SymbolOptions options = new SymbolOptions().withLatLng(new LatLng());
         symbolManager.create(options);
         assertEquals(1, symbolManager.getAnnotations().size());
@@ -699,7 +699,7 @@ public class SymbolManagerTest {
 
     @Test
     public void testIgnoreClearedAnnotations() {
-        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, draggableAnnotationController);
+        symbolManager = new SymbolManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         SymbolOptions options = new SymbolOptions().withLatLng(new LatLng());
         Symbol symbol = symbolManager.create(options);
         assertEquals(1, symbolManager.annotations.size());
