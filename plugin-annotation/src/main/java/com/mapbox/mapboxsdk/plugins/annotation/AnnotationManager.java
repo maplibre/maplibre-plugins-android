@@ -373,6 +373,11 @@ public abstract class AnnotationManager<
         geoJsonSource = coreElementProvider.getSource(geoJsonOptions);
         layer = coreElementProvider.getLayer();
         style.addSource(geoJsonSource);
+
+        if (belowLayerId != null && aboveLayerId != null) {
+            throw new IllegalArgumentException("At most one of belowLayerId and aboveLayerId can be set, not both!");
+        }
+
         if (belowLayerId != null) {
             style.addLayerBelow(layer, belowLayerId);
         } else if (aboveLayerId != null) {
