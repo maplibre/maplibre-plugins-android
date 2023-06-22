@@ -126,7 +126,6 @@ public class DraggableAnnotationControllerTest {
         when(annotation.isDraggable()).thenReturn(true);
         when(annotationManager.getDragListeners()).thenReturn(dragListenerList);
         draggableAnnotationController.startDragging(annotation, annotationManager);
-        draggableAnnotationController.onSourceUpdated();
         verify(dragListener, times(1)).onAnnotationDragFinished(annotation);
     }
 

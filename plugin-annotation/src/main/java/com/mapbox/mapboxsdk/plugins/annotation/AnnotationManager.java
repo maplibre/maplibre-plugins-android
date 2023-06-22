@@ -231,7 +231,6 @@ public abstract class AnnotationManager<
      * Trigger an update to the underlying source
      */
     public void updateSource() {
-        draggableAnnotationController.onSourceUpdated();
         postUpdateSource();
     }
 

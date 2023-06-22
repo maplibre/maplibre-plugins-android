@@ -103,9 +103,6 @@ final class DraggableAnnotationController {
         }
     }
 
-    void onSourceUpdated() {
-    }
-
     boolean onMoveBegin(MoveGestureDetector detector) {
         for (AnnotationManager annotationManager : annotationManagers) {
             if (detector.getPointersCount() == 1) {
