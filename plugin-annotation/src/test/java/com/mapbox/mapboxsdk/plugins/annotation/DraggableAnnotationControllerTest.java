@@ -265,7 +265,7 @@ public class DraggableAnnotationControllerTest {
 
         assertTrue(moved);
         verify(annotation).setGeometry(geometry);
-        verify(annotationManager).internalUpdateSource();
+        verify(annotationManager).postUpdateSource();
         verify(dragListener, times(1)).onAnnotationDrag(annotation);
     }
 
