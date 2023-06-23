@@ -96,7 +96,7 @@ class MarkerViewActivity :
     private fun createRandomLatLng(): LatLng {
         return LatLng(
             random.nextDouble() * -180.0 + 90.0,
-            random.nextDouble() * -360.0 + 180.0,
+            random.nextDouble() * -360.0 + 180.0
         )
     }
 

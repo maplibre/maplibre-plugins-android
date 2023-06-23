@@ -46,7 +46,7 @@ class ScaleBarPluginTest {
         MockKAnnotations.init(this, relaxUnitFun = true)
         displayMetrics.density = 2f
         every { mapView.width } returns 1000
-        every { projection.getMetersPerPixelAtLatitude(CameraPosition.DEFAULT.target.latitude) } returns 100_000.0
+        every { CameraPosition.DEFAULT.target?.let { projection.getMetersPerPixelAtLatitude(it.latitude) } } returns 100_000.0
         every { mapboxMap.projection } returns projection
         every { mapboxMap.cameraPosition } returns CameraPosition.DEFAULT
         every { scaleBarOptions.build() } returns scaleBarWidget

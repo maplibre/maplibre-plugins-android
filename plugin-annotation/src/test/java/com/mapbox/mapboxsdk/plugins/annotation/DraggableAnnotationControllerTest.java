@@ -122,11 +122,11 @@ public class DraggableAnnotationControllerTest {
     }
 
     @Test
-    public void annotationDragStopSourceUpdateTest() {
+    public void annotationDragStopOnDeleteTest() {
         when(annotation.isDraggable()).thenReturn(true);
         when(annotationManager.getDragListeners()).thenReturn(dragListenerList);
         draggableAnnotationController.startDragging(annotation, annotationManager);
-        draggableAnnotationController.onSourceUpdated();
+        draggableAnnotationController.onAnnotationDeleted(annotation);
         verify(dragListener, times(1)).onAnnotationDragFinished(annotation);
     }
 
@@ -265,7 +265,7 @@ public class DraggableAnnotationControllerTest {
 
         assertTrue(moved);
         verify(annotation).setGeometry(geometry);
-        verify(annotationManager).internalUpdateSource();
+        verify(annotationManager).postUpdateSource();
         verify(dragListener, times(1)).onAnnotationDrag(annotation);
     }
 

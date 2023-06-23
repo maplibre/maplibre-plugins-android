@@ -63,6 +63,7 @@ public abstract class AnnotationManager<
     private final MapClickResolver mapClickResolver;
     private Style style;
     private String belowLayerId;
+    private String aboveLayerId;
     protected CoreElementProvider<L> coreElementProvider;
     private DraggableAnnotationController draggableAnnotationController;
 
@@ -72,11 +73,12 @@ public abstract class AnnotationManager<
     protected AnnotationManager(MapView mapView, final MapboxMap mapboxMap, Style style,
                                 CoreElementProvider<L> coreElementProvider,
                                 DraggableAnnotationController draggableAnnotationController,
-                                String belowLayerId, final GeoJsonOptions geoJsonOptions) {
+                                String belowLayerId, String aboveLayerId, final GeoJsonOptions geoJsonOptions) {
         this.mapView = mapView;
         this.mapboxMap = mapboxMap;
         this.style = style;
         this.belowLayerId = belowLayerId;
+        this.aboveLayerId = aboveLayerId;
         this.coreElementProvider = coreElementProvider;
         this.draggableAnnotationController = draggableAnnotationController;
 
@@ -168,7 +170,7 @@ public abstract class AnnotationManager<
     @UiThread
     public void delete(T annotation) {
         annotations.remove(annotation.getId());
-        draggableAnnotationController.onAnnotationUpdated(annotation);
+        draggableAnnotationController.onAnnotationDeleted(annotation);
         internalUpdateSource();
     }
 
@@ -181,7 +183,7 @@ public abstract class AnnotationManager<
     public void delete(List<T> annotationList) {
         for (T annotation : annotationList) {
             annotations.remove(annotation.getId());
-            draggableAnnotationController.onAnnotationUpdated(annotation);
+            draggableAnnotationController.onAnnotationDeleted(annotation);
         }
         internalUpdateSource();
     }
@@ -204,7 +206,6 @@ public abstract class AnnotationManager<
     public void update(T annotation) {
         if (annotations.containsValue(annotation)) {
             annotations.put(annotation.getId(), annotation);
-            draggableAnnotationController.onAnnotationUpdated(annotation);
             internalUpdateSource();
         } else {
             Logger.e(TAG, "Can't update annotation: "
@@ -222,7 +223,6 @@ public abstract class AnnotationManager<
     public void update(List<T> annotationList) {
         for (T annotation : annotationList) {
             annotations.put(annotation.getId(), annotation);
-            draggableAnnotationController.onAnnotationUpdated(annotation);
         }
         internalUpdateSource();
     }
@@ -231,7 +231,6 @@ public abstract class AnnotationManager<
      * Trigger an update to the underlying source
      */
     public void updateSource() {
-        draggableAnnotationController.onSourceUpdated();
         postUpdateSource();
     }
 
@@ -370,12 +369,18 @@ public abstract class AnnotationManager<
     private void initializeSourcesAndLayers(GeoJsonOptions geoJsonOptions) {
         geoJsonSource = coreElementProvider.getSource(geoJsonOptions);
         layer = coreElementProvider.getLayer();
-
         style.addSource(geoJsonSource);
-        if (belowLayerId == null) {
-            style.addLayer(layer);
-        } else {
+
+        if (belowLayerId != null && aboveLayerId != null) {
+            throw new IllegalArgumentException("At most one of belowLayerId and aboveLayerId can be set, not both!");
+        }
+
+        if (belowLayerId != null) {
             style.addLayerBelow(layer, belowLayerId);
+        } else if (aboveLayerId != null) {
+            style.addLayerAbove(layer, aboveLayerId);
+        } else {
+            style.addLayer(layer);
         }
 
         initializeDataDrivenPropertyMap();

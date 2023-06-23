@@ -39,7 +39,7 @@ class OfflineDownloadActivity : AppCompatActivity() {
                     this,
                     "Please make sure that the Max zoom value is larger" +
                         " than the Min zoom level",
-                    Toast.LENGTH_SHORT,
+                    Toast.LENGTH_SHORT
                 ).show()
             }
         }
@@ -141,7 +141,7 @@ class OfflineDownloadActivity : AppCompatActivity() {
                 .build(),
             minZoom.toDouble(),
             maxZoom.toDouble(),
-            resources.displayMetrics.density,
+            resources.displayMetrics.density
         )
 
         // customize notification appearance
@@ -156,7 +156,7 @@ class OfflineDownloadActivity : AppCompatActivity() {
                 .definition(definition)
                 .metadata(OfflineUtils.convertRegionName(regionName))
                 .notificationOptions(notificationOptions)
-                .build(),
+                .build()
         )
     }
 
@@ -164,7 +164,7 @@ class OfflineDownloadActivity : AppCompatActivity() {
         latitudeNorth: Double,
         longitudeEast: Double,
         latitudeSouth: Double,
-        longitudeWest: Double,
+        longitudeWest: Double
     ): Boolean {
         if (latitudeNorth < -90 || latitudeNorth > 90) {
             return false

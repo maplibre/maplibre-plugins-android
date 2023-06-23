@@ -42,7 +42,7 @@ public class FillManager extends AnnotationManager<FillLayer, Fill, FillOptions,
      */
     @UiThread
     public FillManager(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap, @NonNull Style style) {
-        this(mapView, mapboxMap, style, null, (GeoJsonOptions) null);
+        this(mapView, mapboxMap, style, null, null, (GeoJsonOptions) null);
     }
 
     /**
@@ -50,11 +50,12 @@ public class FillManager extends AnnotationManager<FillLayer, Fill, FillOptions,
      *
      * @param mapboxMap    the map object to add fills to
      * @param style        a valid a fully loaded style object
-     * @param belowLayerId the id of the layer above the circle layer
+     * @param belowLayerId the id of the layer above the fill layer
+     * @param aboveLayerId the id of the layer below the fill layer
      */
     @UiThread
-    public FillManager(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap, @NonNull Style style, @Nullable String belowLayerId) {
-        this(mapView, mapboxMap, style, belowLayerId, (GeoJsonOptions) null);
+    public FillManager(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap, @NonNull Style style, @Nullable String belowLayerId, @Nullable String aboveLayerId) {
+        this(mapView, mapboxMap, style, belowLayerId, aboveLayerId, (GeoJsonOptions) null);
     }
 
     /**
@@ -62,17 +63,18 @@ public class FillManager extends AnnotationManager<FillLayer, Fill, FillOptions,
      *
      * @param mapboxMap      the map object to add fills to
      * @param style          a valid a fully loaded style object
-     * @param belowLayerId   the id of the layer above the circle layer
+     * @param belowLayerId   the id of the layer above the fill layer
+     * @param aboveLayerId   the id of the layer below the fill layer
      * @param geoJsonOptions options for the internal source
      */
     @UiThread
-    public FillManager(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap, @NonNull Style style, @Nullable String belowLayerId, @Nullable GeoJsonOptions geoJsonOptions) {
-        this(mapView, mapboxMap, style, new FillElementProvider(), belowLayerId, geoJsonOptions, DraggableAnnotationController.getInstance(mapView, mapboxMap));
+    public FillManager(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap, @NonNull Style style, @Nullable String belowLayerId, @Nullable String aboveLayerId, @Nullable GeoJsonOptions geoJsonOptions) {
+        this(mapView, mapboxMap, style, new FillElementProvider(), belowLayerId, aboveLayerId, geoJsonOptions, DraggableAnnotationController.getInstance(mapView, mapboxMap));
     }
 
-    @VisibleForTesting
-    FillManager(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap, @NonNull Style style, @NonNull CoreElementProvider<FillLayer> coreElementProvider, @Nullable String belowLayerId, @Nullable GeoJsonOptions geoJsonOptions, DraggableAnnotationController draggableAnnotationController) {
-        super(mapView, mapboxMap, style, coreElementProvider, draggableAnnotationController, belowLayerId, geoJsonOptions);
+    @UiThread
+    FillManager(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap, @NonNull Style style, @NonNull CoreElementProvider<FillLayer> coreElementProvider, @Nullable String belowLayerId, @Nullable String aboveLayerId, @Nullable GeoJsonOptions geoJsonOptions, DraggableAnnotationController draggableAnnotationController) {
+        super(mapView, mapboxMap, style, coreElementProvider, draggableAnnotationController, belowLayerId, aboveLayerId, geoJsonOptions);
     }
 
     @Override

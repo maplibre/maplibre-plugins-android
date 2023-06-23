@@ -66,11 +66,13 @@ public final class LocalizationPlugin {
             + "\"name_zh-Hant\", \\[\"coalesce\", "
             + "\\[\"get\", \"name_zh-Hant\"], "
             + "\\[\"get\", \"name_zh-Hans\"], "
-            + "\\[\"match\", \\[\"get\", \"name_script\"], \"Latin\", \\[\"get\", \"name\"], \\[\"get\", \"name_en\"]], "
+            + "\\[\"match\", \\[\"get\", \"name_script\"], \"Latin\", \\[\"get\", \"name\"], "
+            + "\\[\"get\", \"name_en\"]], "
             + "\\[\"get\", \"name\"]], "
             + "\\[\"coalesce\", "
             + "\\[\"get\", \"(name|name_.{2,7})\"], "
-            + "\\[\"match\", \\[\"get\", \"name_script\"], \"Latin\", \\[\"get\", \"name\"], \\[\"get\", \"name_en\"]], "
+            + "\\[\"match\", \\[\"get\", \"name_script\"], \"Latin\", \\[\"get\", \"name\"], "
+            + "\\[\"get\", \"name_en\"]], "
             + "\\[\"get\", \"name\"]]"
             + "]";
 
