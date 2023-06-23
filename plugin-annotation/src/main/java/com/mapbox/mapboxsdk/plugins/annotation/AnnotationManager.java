@@ -170,7 +170,7 @@ public abstract class AnnotationManager<
     @UiThread
     public void delete(T annotation) {
         annotations.remove(annotation.getId());
-        draggableAnnotationController.onAnnotationUpdated(annotation);
+        draggableAnnotationController.onAnnotationDeleted(annotation);
         internalUpdateSource();
     }
 
@@ -183,7 +183,7 @@ public abstract class AnnotationManager<
     public void delete(List<T> annotationList) {
         for (T annotation : annotationList) {
             annotations.remove(annotation.getId());
-            draggableAnnotationController.onAnnotationUpdated(annotation);
+            draggableAnnotationController.onAnnotationDeleted(annotation);
         }
         internalUpdateSource();
     }
@@ -206,7 +206,6 @@ public abstract class AnnotationManager<
     public void update(T annotation) {
         if (annotations.containsValue(annotation)) {
             annotations.put(annotation.getId(), annotation);
-            draggableAnnotationController.onAnnotationUpdated(annotation);
             internalUpdateSource();
         } else {
             Logger.e(TAG, "Can't update annotation: "
@@ -224,7 +223,6 @@ public abstract class AnnotationManager<
     public void update(List<T> annotationList) {
         for (T annotation : annotationList) {
             annotations.put(annotation.getId(), annotation);
-            draggableAnnotationController.onAnnotationUpdated(annotation);
         }
         internalUpdateSource();
     }
@@ -233,7 +231,6 @@ public abstract class AnnotationManager<
      * Trigger an update to the underlying source
      */
     public void updateSource() {
-        draggableAnnotationController.onSourceUpdated();
         postUpdateSource();
     }
 

@@ -71,7 +71,6 @@ public class <%- camelize(type) %>ManagerTest {
         }
         verify(<%- type  %>Layer).setProperties(<%- type  %>Manager.constantPropertyUsageMap.values().toArray(new PropertyValue[0]));
         verify(<%- type  %>Layer, times(0)).setFilter(any(Expression.class));
-        verify(draggableAnnotationController).onSourceUpdated();
     }
 
     @Test
@@ -84,7 +83,6 @@ public class <%- camelize(type) %>ManagerTest {
             assertFalse(value);
         }
         verify(<%- type  %>Layer).setProperties(<%- type  %>Manager.constantPropertyUsageMap.values().toArray(new PropertyValue[0]));
-        verify(draggableAnnotationController).onSourceUpdated();
 
         Expression filter = Expression.literal(false);
         <%- type  %>Manager.setFilter(filter);
@@ -112,7 +110,6 @@ public class <%- camelize(type) %>ManagerTest {
         }
         verify(newLayer).setProperties(<%- type  %>Manager.constantPropertyUsageMap.values().toArray(new PropertyValue[0]));
         verify(<%- type  %>Layer).setFilter(filter);
-        verify(draggableAnnotationController, times(2)).onSourceUpdated();
     }
 
     @Test
@@ -125,7 +122,6 @@ public class <%- camelize(type) %>ManagerTest {
             assertFalse(value);
         }
         verify(<%- type  %>Layer).setProperties(<%- type  %>Manager.constantPropertyUsageMap.values().toArray(new PropertyValue[0]));
-        verify(draggableAnnotationController).onSourceUpdated();
     }
 
     @Test
@@ -139,7 +135,6 @@ public class <%- camelize(type) %>ManagerTest {
         }
         verify(<%- type  %>Layer).setProperties(<%- type  %>Manager.constantPropertyUsageMap.values().toArray(new PropertyValue[0]));
         verify(<%- type  %>Layer, times(0)).setFilter(any(Expression.class));
-        verify(draggableAnnotationController).onSourceUpdated();
     }
 
     @Test

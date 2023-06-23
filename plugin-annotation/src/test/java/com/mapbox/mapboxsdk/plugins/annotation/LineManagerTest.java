@@ -66,7 +66,6 @@ public class LineManagerTest {
         }
         verify(lineLayer).setProperties(lineManager.constantPropertyUsageMap.values().toArray(new PropertyValue[0]));
         verify(lineLayer, times(0)).setFilter(any(Expression.class));
-        verify(draggableAnnotationController).onSourceUpdated();
     }
 
     @Test
@@ -79,7 +78,6 @@ public class LineManagerTest {
             assertFalse(value);
         }
         verify(lineLayer).setProperties(lineManager.constantPropertyUsageMap.values().toArray(new PropertyValue[0]));
-        verify(draggableAnnotationController).onSourceUpdated();
 
         Expression filter = Expression.literal(false);
         lineManager.setFilter(filter);
@@ -107,7 +105,6 @@ public class LineManagerTest {
         }
         verify(newLayer).setProperties(lineManager.constantPropertyUsageMap.values().toArray(new PropertyValue[0]));
         verify(lineLayer).setFilter(filter);
-        verify(draggableAnnotationController, times(2)).onSourceUpdated();
     }
 
     @Test
@@ -120,7 +117,6 @@ public class LineManagerTest {
             assertFalse(value);
         }
         verify(lineLayer).setProperties(lineManager.constantPropertyUsageMap.values().toArray(new PropertyValue[0]));
-        verify(draggableAnnotationController).onSourceUpdated();
     }
 
     @Test
@@ -134,7 +130,6 @@ public class LineManagerTest {
         }
         verify(lineLayer).setProperties(lineManager.constantPropertyUsageMap.values().toArray(new PropertyValue[0]));
         verify(lineLayer, times(0)).setFilter(any(Expression.class));
-        verify(draggableAnnotationController).onSourceUpdated();
     }
 
     @Test
