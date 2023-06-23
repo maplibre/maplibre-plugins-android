@@ -45,7 +45,7 @@ public class LineManager extends AnnotationManager<LineLayer, Line, LineOptions,
      */
     @UiThread
     public LineManager(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap, @NonNull Style style) {
-        this(mapView, mapboxMap, style, null, (GeoJsonOptions) null);
+        this(mapView, mapboxMap, style, null, null, (GeoJsonOptions) null);
     }
 
     /**
@@ -53,11 +53,12 @@ public class LineManager extends AnnotationManager<LineLayer, Line, LineOptions,
      *
      * @param mapboxMap    the map object to add lines to
      * @param style        a valid a fully loaded style object
-     * @param belowLayerId the id of the layer above the circle layer
+     * @param belowLayerId the id of the layer above the line layer
+     * @param aboveLayerId the id of the layer below the line layer
      */
     @UiThread
-    public LineManager(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap, @NonNull Style style, @Nullable String belowLayerId) {
-        this(mapView, mapboxMap, style, belowLayerId, (GeoJsonOptions) null);
+    public LineManager(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap, @NonNull Style style, @Nullable String belowLayerId, @Nullable String aboveLayerId) {
+        this(mapView, mapboxMap, style, belowLayerId, aboveLayerId, (GeoJsonOptions) null);
     }
 
     /**
@@ -65,17 +66,18 @@ public class LineManager extends AnnotationManager<LineLayer, Line, LineOptions,
      *
      * @param mapboxMap      the map object to add lines to
      * @param style          a valid a fully loaded style object
-     * @param belowLayerId   the id of the layer above the circle layer
+     * @param belowLayerId   the id of the layer above the line layer
+     * @param aboveLayerId   the id of the layer below the line layer
      * @param geoJsonOptions options for the internal source
      */
     @UiThread
-    public LineManager(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap, @NonNull Style style, @Nullable String belowLayerId, @Nullable GeoJsonOptions geoJsonOptions) {
-        this(mapView, mapboxMap, style, new LineElementProvider(), belowLayerId, geoJsonOptions, DraggableAnnotationController.getInstance(mapView, mapboxMap));
+    public LineManager(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap, @NonNull Style style, @Nullable String belowLayerId, @Nullable String aboveLayerId, @Nullable GeoJsonOptions geoJsonOptions) {
+        this(mapView, mapboxMap, style, new LineElementProvider(), belowLayerId, aboveLayerId, geoJsonOptions, DraggableAnnotationController.getInstance(mapView, mapboxMap));
     }
 
-    @VisibleForTesting
-    LineManager(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap, @NonNull Style style, @NonNull CoreElementProvider<LineLayer> coreElementProvider, @Nullable String belowLayerId, @Nullable GeoJsonOptions geoJsonOptions, DraggableAnnotationController draggableAnnotationController) {
-        super(mapView, mapboxMap, style, coreElementProvider, draggableAnnotationController, belowLayerId, geoJsonOptions);
+    @UiThread
+    LineManager(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap, @NonNull Style style, @NonNull CoreElementProvider<LineLayer> coreElementProvider, @Nullable String belowLayerId, @Nullable String aboveLayerId, @Nullable GeoJsonOptions geoJsonOptions, DraggableAnnotationController draggableAnnotationController) {
+        super(mapView, mapboxMap, style, coreElementProvider, draggableAnnotationController, belowLayerId, aboveLayerId, geoJsonOptions);
     }
 
     @Override

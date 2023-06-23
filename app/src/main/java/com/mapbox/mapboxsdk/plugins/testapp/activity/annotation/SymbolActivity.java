@@ -82,7 +82,7 @@ public class SymbolActivity extends AppCompatActivity {
 
             // create symbol manager
             GeoJsonOptions geoJsonOptions = new GeoJsonOptions().withTolerance(0.4f);
-            symbolManager = new SymbolManager(mapView, mapboxMap, style, null, geoJsonOptions);
+            symbolManager = new SymbolManager(mapView, mapboxMap, style, null, null, geoJsonOptions);
             symbolManager.addClickListener(symbol -> {
                 Toast.makeText(SymbolActivity.this,
                     String.format("Symbol clicked %s", symbol.getId()),

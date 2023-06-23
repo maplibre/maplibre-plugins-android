@@ -65,7 +65,7 @@ public class SymbolManager extends AnnotationManager<SymbolLayer, Symbol, Symbol
      */
     @UiThread
     public SymbolManager(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap, @NonNull Style style) {
-        this(mapView, mapboxMap, style, null, (GeoJsonOptions) null);
+        this(mapView, mapboxMap, style, null, null, (GeoJsonOptions) null);
     }
 
     /**
@@ -73,11 +73,12 @@ public class SymbolManager extends AnnotationManager<SymbolLayer, Symbol, Symbol
      *
      * @param mapboxMap    the map object to add symbols to
      * @param style        a valid a fully loaded style object
-     * @param belowLayerId the id of the layer above the circle layer
+     * @param belowLayerId the id of the layer above the symbol layer
+     * @param aboveLayerId the id of the layer below the symbol layer
      */
     @UiThread
-    public SymbolManager(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap, @NonNull Style style, @Nullable String belowLayerId) {
-        this(mapView, mapboxMap, style, belowLayerId, (GeoJsonOptions) null);
+    public SymbolManager(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap, @NonNull Style style, @Nullable String belowLayerId, @Nullable String aboveLayerId) {
+        this(mapView, mapboxMap, style, belowLayerId, aboveLayerId, (GeoJsonOptions) null);
     }
 
     /**
@@ -85,12 +86,13 @@ public class SymbolManager extends AnnotationManager<SymbolLayer, Symbol, Symbol
      *
      * @param mapboxMap      the map object to add symbols to
      * @param style          a valid a fully loaded style object
-     * @param belowLayerId   the id of the layer above the circle layer
+     * @param belowLayerId   the id of the layer above the symbol layer
+     * @param aboveLayerId   the id of the layer below the symbol layer
      * @param geoJsonOptions options for the internal source
      */
     @UiThread
-    public SymbolManager(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap, @NonNull Style style, @Nullable String belowLayerId, @Nullable GeoJsonOptions geoJsonOptions) {
-        this(mapView, mapboxMap, style, new SymbolElementProvider(), belowLayerId, geoJsonOptions, DraggableAnnotationController.getInstance(mapView, mapboxMap));
+    public SymbolManager(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap, @NonNull Style style, @Nullable String belowLayerId, @Nullable String aboveLayerId, @Nullable GeoJsonOptions geoJsonOptions) {
+        this(mapView, mapboxMap, style, new SymbolElementProvider(), belowLayerId, aboveLayerId, geoJsonOptions, DraggableAnnotationController.getInstance(mapView, mapboxMap));
     }
 
     /**
@@ -98,18 +100,19 @@ public class SymbolManager extends AnnotationManager<SymbolLayer, Symbol, Symbol
      *
      * @param mapboxMap      the map object to add symbols to
      * @param style          a valid a fully loaded style object
-     * @param belowLayerId   the id of the layer above the circle layer
+     * @param belowLayerId   the id of the layer above the symbol layer
+     * @param aboveLayerId   the id of the layer below the symbol layer
      * @param clusterOptions options for the clustering configuration
      */
     @UiThread
-    public SymbolManager(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap, @NonNull Style style, @Nullable String belowLayerId, @NonNull ClusterOptions clusterOptions) {
-        this(mapView, mapboxMap, style, new SymbolElementProvider(), belowLayerId, new GeoJsonOptions().withCluster(true).withClusterRadius(clusterOptions.getClusterRadius()).withClusterMaxZoom(clusterOptions.getClusterMaxZoom()), DraggableAnnotationController.getInstance(mapView, mapboxMap));
+    public SymbolManager(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap, @NonNull Style style, @Nullable String belowLayerId, @Nullable String aboveLayerId, @NonNull ClusterOptions clusterOptions) {
+        this(mapView, mapboxMap, style, new SymbolElementProvider(), belowLayerId, aboveLayerId, new GeoJsonOptions().withCluster(true).withClusterRadius(clusterOptions.getClusterRadius()).withClusterMaxZoom(clusterOptions.getClusterMaxZoom()), DraggableAnnotationController.getInstance(mapView, mapboxMap));
         clusterOptions.apply(style, coreElementProvider.getSourceId());
     }
 
-    @VisibleForTesting
-    SymbolManager(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap, @NonNull Style style, @NonNull CoreElementProvider<SymbolLayer> coreElementProvider, @Nullable String belowLayerId, @Nullable GeoJsonOptions geoJsonOptions, DraggableAnnotationController draggableAnnotationController) {
-        super(mapView, mapboxMap, style, coreElementProvider, draggableAnnotationController, belowLayerId, geoJsonOptions);
+    @UiThread
+    SymbolManager(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap, @NonNull Style style, @NonNull CoreElementProvider<SymbolLayer> coreElementProvider, @Nullable String belowLayerId, @Nullable String aboveLayerId, @Nullable GeoJsonOptions geoJsonOptions, DraggableAnnotationController draggableAnnotationController) {
+        super(mapView, mapboxMap, style, coreElementProvider, draggableAnnotationController, belowLayerId, aboveLayerId, geoJsonOptions);
     }
 
     @Override
