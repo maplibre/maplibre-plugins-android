@@ -308,6 +308,7 @@ public class FillManagerTest {
         latLngs.add(innerLatLngs);
         FillOptions options = new FillOptions().withLatLngs(latLngs).withFillOpacity(2.0f);
         fillManager.create(options);
+        fillManager.updateSourceNow();
         verify(fillLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(fillOpacity(get("fill-opacity")))));
 
         fillManager.create(options);
@@ -327,6 +328,7 @@ public class FillManagerTest {
         latLngs.add(innerLatLngs);
         FillOptions options = new FillOptions().withLatLngs(latLngs).withFillColor("rgba(0, 0, 0, 1)");
         fillManager.create(options);
+        fillManager.updateSourceNow();
         verify(fillLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(fillColor(get("fill-color")))));
 
         fillManager.create(options);
@@ -346,6 +348,7 @@ public class FillManagerTest {
         latLngs.add(innerLatLngs);
         FillOptions options = new FillOptions().withLatLngs(latLngs).withFillOutlineColor("rgba(0, 0, 0, 1)");
         fillManager.create(options);
+        fillManager.updateSourceNow();
         verify(fillLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(fillOutlineColor(get("fill-outline-color")))));
 
         fillManager.create(options);
@@ -365,6 +368,7 @@ public class FillManagerTest {
         latLngs.add(innerLatLngs);
         FillOptions options = new FillOptions().withLatLngs(latLngs).withFillPattern("pedestrian-polygon");
         fillManager.create(options);
+        fillManager.updateSourceNow();
         verify(fillLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(fillPattern(get("fill-pattern")))));
 
         fillManager.create(options);

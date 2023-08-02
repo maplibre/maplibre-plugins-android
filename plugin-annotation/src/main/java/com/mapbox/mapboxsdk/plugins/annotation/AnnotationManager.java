@@ -139,7 +139,7 @@ public abstract class AnnotationManager<
         T t = options.build(currentId, this);
         annotations.put(t.getId(), t);
         currentId++;
-        internalUpdateSource();
+        updateSource();
         return t;
     }
 
@@ -158,7 +158,7 @@ public abstract class AnnotationManager<
             annotations.put(annotation.getId(), annotation);
             currentId++;
         }
-        internalUpdateSource();
+        updateSource();
         return annotationList;
     }
 
@@ -171,7 +171,7 @@ public abstract class AnnotationManager<
     public void delete(T annotation) {
         annotations.remove(annotation.getId());
         draggableAnnotationController.onAnnotationDeleted(annotation);
-        internalUpdateSource();
+        updateSource();
     }
 
     /**
@@ -185,7 +185,7 @@ public abstract class AnnotationManager<
             annotations.remove(annotation.getId());
             draggableAnnotationController.onAnnotationDeleted(annotation);
         }
-        internalUpdateSource();
+        updateSource();
     }
 
     /**
@@ -206,7 +206,7 @@ public abstract class AnnotationManager<
     public void update(T annotation) {
         if (annotations.containsValue(annotation)) {
             annotations.put(annotation.getId(), annotation);
-            internalUpdateSource();
+            updateSource();
         } else {
             Logger.e(TAG, "Can't update annotation: "
                 + annotation.toString()
@@ -224,35 +224,35 @@ public abstract class AnnotationManager<
         for (T annotation : annotationList) {
             annotations.put(annotation.getId(), annotation);
         }
-        internalUpdateSource();
+        updateSource();
     }
 
     /**
-     * Trigger an update to the underlying source
+     * Trigger an update to the underlying source. The update is delayed until after
+     * the next UI draw to batch multiple actions.
      */
     public void updateSource() {
-        postUpdateSource();
-    }
 
-    void postUpdateSource() {
         // Only schedule a new refresh if not already scheduled
         if (isSourceUpToDate.compareAndSet(true, false)) {
-            mapView.post(new Runnable() {
-                @Override
-                public void run() {
-                    internalUpdateSource();
-                    isSourceUpToDate.set(true);
+            mapView.post(() -> {
+                isSourceUpToDate.set(true);
+
+                if (!style.isFullyLoaded()) {
+                    // We are in progress of loading a new style
+                    return;
                 }
+
+                updateSourceNow();
             });
         }
     }
 
-    void internalUpdateSource() {
-        if (!style.isFullyLoaded()) {
-            // We are in progress of loading a new style
-            return;
-        }
-
+    /**
+     * Undelayed source update, only used for testing and by {@link #updateSource()}.
+     */
+    @VisibleForTesting
+    void updateSourceNow() {
         List<Feature> features = new ArrayList<>();
         T t;
         for (int i = 0; i < annotations.size(); i++) {

@@ -282,6 +282,7 @@ public class SymbolManagerTest {
 
         SymbolOptions options = new SymbolOptions().withLatLng(new LatLng()).withSymbolSortKey(2.0f);
         symbolManager.create(options);
+        symbolManager.updateSourceNow();
         verify(symbolLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(symbolSortKey(get("symbol-sort-key")))));
 
         symbolManager.create(options);
@@ -295,6 +296,7 @@ public class SymbolManagerTest {
 
         SymbolOptions options = new SymbolOptions().withLatLng(new LatLng()).withIconSize(2.0f);
         symbolManager.create(options);
+        symbolManager.updateSourceNow();
         verify(symbolLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(iconSize(get("icon-size")))));
 
         symbolManager.create(options);
@@ -308,6 +310,7 @@ public class SymbolManagerTest {
 
         SymbolOptions options = new SymbolOptions().withLatLng(new LatLng()).withIconImage("undefined");
         symbolManager.create(options);
+        symbolManager.updateSourceNow();
         verify(symbolLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(iconImage(get("icon-image")))));
 
         symbolManager.create(options);
@@ -321,6 +324,7 @@ public class SymbolManagerTest {
 
         SymbolOptions options = new SymbolOptions().withLatLng(new LatLng()).withIconRotate(2.0f);
         symbolManager.create(options);
+        symbolManager.updateSourceNow();
         verify(symbolLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(iconRotate(get("icon-rotate")))));
 
         symbolManager.create(options);
@@ -334,6 +338,7 @@ public class SymbolManagerTest {
 
         SymbolOptions options = new SymbolOptions().withLatLng(new LatLng()).withIconOffset(new Float[]{0f, 0f});
         symbolManager.create(options);
+        symbolManager.updateSourceNow();
         verify(symbolLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(iconOffset(get("icon-offset")))));
 
         symbolManager.create(options);
@@ -347,6 +352,7 @@ public class SymbolManagerTest {
 
         SymbolOptions options = new SymbolOptions().withLatLng(new LatLng()).withIconAnchor(ICON_ANCHOR_CENTER);
         symbolManager.create(options);
+        symbolManager.updateSourceNow();
         verify(symbolLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(iconAnchor(get("icon-anchor")))));
 
         symbolManager.create(options);
@@ -360,6 +366,7 @@ public class SymbolManagerTest {
 
         SymbolOptions options = new SymbolOptions().withLatLng(new LatLng()).withTextField("");
         symbolManager.create(options);
+        symbolManager.updateSourceNow();
         verify(symbolLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(textField(get("text-field")))));
 
         symbolManager.create(options);
@@ -373,6 +380,7 @@ public class SymbolManagerTest {
 
         SymbolOptions options = new SymbolOptions().withLatLng(new LatLng()).withTextFont(new String[]{"Open Sans Regular", "Arial Unicode MS Regular"});
         symbolManager.create(options);
+        symbolManager.updateSourceNow();
         verify(symbolLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(textFont(get("text-font")))));
 
         symbolManager.create(options);
@@ -386,6 +394,7 @@ public class SymbolManagerTest {
 
         SymbolOptions options = new SymbolOptions().withLatLng(new LatLng()).withTextSize(2.0f);
         symbolManager.create(options);
+        symbolManager.updateSourceNow();
         verify(symbolLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(textSize(get("text-size")))));
 
         symbolManager.create(options);
@@ -399,6 +408,7 @@ public class SymbolManagerTest {
 
         SymbolOptions options = new SymbolOptions().withLatLng(new LatLng()).withTextMaxWidth(2.0f);
         symbolManager.create(options);
+        symbolManager.updateSourceNow();
         verify(symbolLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(textMaxWidth(get("text-max-width")))));
 
         symbolManager.create(options);
@@ -412,6 +422,7 @@ public class SymbolManagerTest {
 
         SymbolOptions options = new SymbolOptions().withLatLng(new LatLng()).withTextLetterSpacing(2.0f);
         symbolManager.create(options);
+        symbolManager.updateSourceNow();
         verify(symbolLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(textLetterSpacing(get("text-letter-spacing")))));
 
         symbolManager.create(options);
@@ -425,6 +436,7 @@ public class SymbolManagerTest {
 
         SymbolOptions options = new SymbolOptions().withLatLng(new LatLng()).withTextJustify(TEXT_JUSTIFY_AUTO);
         symbolManager.create(options);
+        symbolManager.updateSourceNow();
         verify(symbolLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(textJustify(get("text-justify")))));
 
         symbolManager.create(options);
@@ -438,6 +450,7 @@ public class SymbolManagerTest {
 
         SymbolOptions options = new SymbolOptions().withLatLng(new LatLng()).withTextRadialOffset(2.0f);
         symbolManager.create(options);
+        symbolManager.updateSourceNow();
         verify(symbolLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(textRadialOffset(get("text-radial-offset")))));
 
         symbolManager.create(options);
@@ -451,6 +464,7 @@ public class SymbolManagerTest {
 
         SymbolOptions options = new SymbolOptions().withLatLng(new LatLng()).withTextAnchor(TEXT_ANCHOR_CENTER);
         symbolManager.create(options);
+        symbolManager.updateSourceNow();
         verify(symbolLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(textAnchor(get("text-anchor")))));
 
         symbolManager.create(options);
@@ -464,6 +478,7 @@ public class SymbolManagerTest {
 
         SymbolOptions options = new SymbolOptions().withLatLng(new LatLng()).withTextRotate(2.0f);
         symbolManager.create(options);
+        symbolManager.updateSourceNow();
         verify(symbolLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(textRotate(get("text-rotate")))));
 
         symbolManager.create(options);
@@ -477,6 +492,7 @@ public class SymbolManagerTest {
 
         SymbolOptions options = new SymbolOptions().withLatLng(new LatLng()).withTextTransform(TEXT_TRANSFORM_NONE);
         symbolManager.create(options);
+        symbolManager.updateSourceNow();
         verify(symbolLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(textTransform(get("text-transform")))));
 
         symbolManager.create(options);
@@ -490,6 +506,7 @@ public class SymbolManagerTest {
 
         SymbolOptions options = new SymbolOptions().withLatLng(new LatLng()).withTextOffset(new Float[]{0f, 0f});
         symbolManager.create(options);
+        symbolManager.updateSourceNow();
         verify(symbolLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(textOffset(get("text-offset")))));
 
         symbolManager.create(options);
@@ -503,6 +520,7 @@ public class SymbolManagerTest {
 
         SymbolOptions options = new SymbolOptions().withLatLng(new LatLng()).withIconOpacity(2.0f);
         symbolManager.create(options);
+        symbolManager.updateSourceNow();
         verify(symbolLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(iconOpacity(get("icon-opacity")))));
 
         symbolManager.create(options);
@@ -516,6 +534,7 @@ public class SymbolManagerTest {
 
         SymbolOptions options = new SymbolOptions().withLatLng(new LatLng()).withIconColor("rgba(0, 0, 0, 1)");
         symbolManager.create(options);
+        symbolManager.updateSourceNow();
         verify(symbolLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(iconColor(get("icon-color")))));
 
         symbolManager.create(options);
@@ -529,6 +548,7 @@ public class SymbolManagerTest {
 
         SymbolOptions options = new SymbolOptions().withLatLng(new LatLng()).withIconHaloColor("rgba(0, 0, 0, 1)");
         symbolManager.create(options);
+        symbolManager.updateSourceNow();
         verify(symbolLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(iconHaloColor(get("icon-halo-color")))));
 
         symbolManager.create(options);
@@ -542,6 +562,7 @@ public class SymbolManagerTest {
 
         SymbolOptions options = new SymbolOptions().withLatLng(new LatLng()).withIconHaloWidth(2.0f);
         symbolManager.create(options);
+        symbolManager.updateSourceNow();
         verify(symbolLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(iconHaloWidth(get("icon-halo-width")))));
 
         symbolManager.create(options);
@@ -555,6 +576,7 @@ public class SymbolManagerTest {
 
         SymbolOptions options = new SymbolOptions().withLatLng(new LatLng()).withIconHaloBlur(2.0f);
         symbolManager.create(options);
+        symbolManager.updateSourceNow();
         verify(symbolLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(iconHaloBlur(get("icon-halo-blur")))));
 
         symbolManager.create(options);
@@ -568,6 +590,7 @@ public class SymbolManagerTest {
 
         SymbolOptions options = new SymbolOptions().withLatLng(new LatLng()).withTextOpacity(2.0f);
         symbolManager.create(options);
+        symbolManager.updateSourceNow();
         verify(symbolLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(textOpacity(get("text-opacity")))));
 
         symbolManager.create(options);
@@ -581,6 +604,7 @@ public class SymbolManagerTest {
 
         SymbolOptions options = new SymbolOptions().withLatLng(new LatLng()).withTextColor("rgba(0, 0, 0, 1)");
         symbolManager.create(options);
+        symbolManager.updateSourceNow();
         verify(symbolLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(textColor(get("text-color")))));
 
         symbolManager.create(options);
@@ -594,6 +618,7 @@ public class SymbolManagerTest {
 
         SymbolOptions options = new SymbolOptions().withLatLng(new LatLng()).withTextHaloColor("rgba(0, 0, 0, 1)");
         symbolManager.create(options);
+        symbolManager.updateSourceNow();
         verify(symbolLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(textHaloColor(get("text-halo-color")))));
 
         symbolManager.create(options);
@@ -607,6 +632,7 @@ public class SymbolManagerTest {
 
         SymbolOptions options = new SymbolOptions().withLatLng(new LatLng()).withTextHaloWidth(2.0f);
         symbolManager.create(options);
+        symbolManager.updateSourceNow();
         verify(symbolLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(textHaloWidth(get("text-halo-width")))));
 
         symbolManager.create(options);
@@ -620,6 +646,7 @@ public class SymbolManagerTest {
 
         SymbolOptions options = new SymbolOptions().withLatLng(new LatLng()).withTextHaloBlur(2.0f);
         symbolManager.create(options);
+        symbolManager.updateSourceNow();
         verify(symbolLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(textHaloBlur(get("text-halo-blur")))));
 
         symbolManager.create(options);

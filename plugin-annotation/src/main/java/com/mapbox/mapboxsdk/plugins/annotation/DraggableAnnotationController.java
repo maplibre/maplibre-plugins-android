@@ -144,7 +144,7 @@ final class DraggableAnnotationController {
                 draggedAnnotation.setGeometry(
                     shiftedGeometry
                 );
-                draggedAnnotationManager.postUpdateSource();
+                draggedAnnotationManager.updateSource();
                 for (OnAnnotationDragListener d : (List<OnAnnotationDragListener>) draggedAnnotationManager.getDragListeners()) {
                     d.onAnnotationDrag(draggedAnnotation);
                 }
