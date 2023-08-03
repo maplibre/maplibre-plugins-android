@@ -441,6 +441,7 @@ public class <%- camelize(type) %>ManagerTest {
         <%- camelize(type) %>Options options = new <%- camelize(type) %>Options().withLatLngs(latLngs).with<%- camelize(property.name) %>(<%- defaultValueJava(property) %>);
 <% } -%>
         <%- type  %>Manager.create(options);
+        <%- type  %>Manager.updateSourceNow();
         verify(<%- type  %>Layer, times(1)).setProperties(argThat(new PropertyValueMatcher(<%- camelizeWithLeadingLowercase(property.name) %>(get("<%- property.name %>")))));
 
         <%- type  %>Manager.create(options);

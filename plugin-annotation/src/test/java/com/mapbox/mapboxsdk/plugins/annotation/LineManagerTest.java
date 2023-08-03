@@ -272,6 +272,7 @@ public class LineManagerTest {
         latLngs.add(new LatLng(1, 1));
         LineOptions options = new LineOptions().withLatLngs(latLngs).withLineJoin(LINE_JOIN_BEVEL);
         lineManager.create(options);
+        lineManager.updateSourceNow();
         verify(lineLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(lineJoin(get("line-join")))));
 
         lineManager.create(options);
@@ -288,6 +289,7 @@ public class LineManagerTest {
         latLngs.add(new LatLng(1, 1));
         LineOptions options = new LineOptions().withLatLngs(latLngs).withLineOpacity(2.0f);
         lineManager.create(options);
+        lineManager.updateSourceNow();
         verify(lineLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(lineOpacity(get("line-opacity")))));
 
         lineManager.create(options);
@@ -304,6 +306,7 @@ public class LineManagerTest {
         latLngs.add(new LatLng(1, 1));
         LineOptions options = new LineOptions().withLatLngs(latLngs).withLineColor("rgba(0, 0, 0, 1)");
         lineManager.create(options);
+        lineManager.updateSourceNow();
         verify(lineLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(lineColor(get("line-color")))));
 
         lineManager.create(options);
@@ -320,6 +323,7 @@ public class LineManagerTest {
         latLngs.add(new LatLng(1, 1));
         LineOptions options = new LineOptions().withLatLngs(latLngs).withLineWidth(2.0f);
         lineManager.create(options);
+        lineManager.updateSourceNow();
         verify(lineLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(lineWidth(get("line-width")))));
 
         lineManager.create(options);
@@ -336,6 +340,7 @@ public class LineManagerTest {
         latLngs.add(new LatLng(1, 1));
         LineOptions options = new LineOptions().withLatLngs(latLngs).withLineGapWidth(2.0f);
         lineManager.create(options);
+        lineManager.updateSourceNow();
         verify(lineLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(lineGapWidth(get("line-gap-width")))));
 
         lineManager.create(options);
@@ -352,6 +357,7 @@ public class LineManagerTest {
         latLngs.add(new LatLng(1, 1));
         LineOptions options = new LineOptions().withLatLngs(latLngs).withLineOffset(2.0f);
         lineManager.create(options);
+        lineManager.updateSourceNow();
         verify(lineLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(lineOffset(get("line-offset")))));
 
         lineManager.create(options);
@@ -368,6 +374,7 @@ public class LineManagerTest {
         latLngs.add(new LatLng(1, 1));
         LineOptions options = new LineOptions().withLatLngs(latLngs).withLineBlur(2.0f);
         lineManager.create(options);
+        lineManager.updateSourceNow();
         verify(lineLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(lineBlur(get("line-blur")))));
 
         lineManager.create(options);
@@ -384,6 +391,7 @@ public class LineManagerTest {
         latLngs.add(new LatLng(1, 1));
         LineOptions options = new LineOptions().withLatLngs(latLngs).withLinePattern("pedestrian-polygon");
         lineManager.create(options);
+        lineManager.updateSourceNow();
         verify(lineLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(linePattern(get("line-pattern")))));
 
         lineManager.create(options);

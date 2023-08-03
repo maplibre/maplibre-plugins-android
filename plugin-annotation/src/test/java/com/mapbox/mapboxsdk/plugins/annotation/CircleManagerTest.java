@@ -238,6 +238,7 @@ public class CircleManagerTest {
 
         CircleOptions options = new CircleOptions().withLatLng(new LatLng()).withCircleRadius(2.0f);
         circleManager.create(options);
+        circleManager.updateSourceNow();
         verify(circleLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(circleRadius(get("circle-radius")))));
 
         circleManager.create(options);
@@ -251,6 +252,7 @@ public class CircleManagerTest {
 
         CircleOptions options = new CircleOptions().withLatLng(new LatLng()).withCircleColor("rgba(0, 0, 0, 1)");
         circleManager.create(options);
+        circleManager.updateSourceNow();
         verify(circleLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(circleColor(get("circle-color")))));
 
         circleManager.create(options);
@@ -264,6 +266,7 @@ public class CircleManagerTest {
 
         CircleOptions options = new CircleOptions().withLatLng(new LatLng()).withCircleBlur(2.0f);
         circleManager.create(options);
+        circleManager.updateSourceNow();
         verify(circleLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(circleBlur(get("circle-blur")))));
 
         circleManager.create(options);
@@ -277,6 +280,7 @@ public class CircleManagerTest {
 
         CircleOptions options = new CircleOptions().withLatLng(new LatLng()).withCircleOpacity(2.0f);
         circleManager.create(options);
+        circleManager.updateSourceNow();
         verify(circleLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(circleOpacity(get("circle-opacity")))));
 
         circleManager.create(options);
@@ -290,6 +294,7 @@ public class CircleManagerTest {
 
         CircleOptions options = new CircleOptions().withLatLng(new LatLng()).withCircleStrokeWidth(2.0f);
         circleManager.create(options);
+        circleManager.updateSourceNow();
         verify(circleLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(circleStrokeWidth(get("circle-stroke-width")))));
 
         circleManager.create(options);
@@ -303,6 +308,7 @@ public class CircleManagerTest {
 
         CircleOptions options = new CircleOptions().withLatLng(new LatLng()).withCircleStrokeColor("rgba(0, 0, 0, 1)");
         circleManager.create(options);
+        circleManager.updateSourceNow();
         verify(circleLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(circleStrokeColor(get("circle-stroke-color")))));
 
         circleManager.create(options);
@@ -316,6 +322,7 @@ public class CircleManagerTest {
 
         CircleOptions options = new CircleOptions().withLatLng(new LatLng()).withCircleStrokeOpacity(2.0f);
         circleManager.create(options);
+        circleManager.updateSourceNow();
         verify(circleLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(circleStrokeOpacity(get("circle-stroke-opacity")))));
 
         circleManager.create(options);
