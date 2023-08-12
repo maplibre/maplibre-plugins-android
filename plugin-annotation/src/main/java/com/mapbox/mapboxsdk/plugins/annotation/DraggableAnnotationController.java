@@ -17,7 +17,8 @@ import com.mapbox.geojson.Geometry;
 import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 @UiThread
@@ -42,7 +43,8 @@ final class DraggableAnnotationController {
 
     private MapView mapView;
     private MapboxMap mapboxMap;
-    private List<AnnotationManager> annotationManagers = new ArrayList<>();
+    private List<AnnotationManager> annotationManagers = new LinkedList<>();
+    private HashMap<String, AnnotationManager> annotationManagersById = new HashMap<>();
 
     private final int touchAreaShiftX;
     private final int touchAreaShiftY;
@@ -87,11 +89,27 @@ final class DraggableAnnotationController {
     }
 
     void addAnnotationManager(AnnotationManager annotationManager) {
-        this.annotationManagers.add(annotationManager);
+        if (annotationManager.getBelowLayerId() != null) {
+            // Insert above the corresponding id
+            AnnotationManager below = annotationManagersById.get(annotationManager.getBelowLayerId());
+            int belowIndex = annotationManagers.indexOf(below);
+            annotationManagers.add(belowIndex + 1, annotationManager);
+        } else if (annotationManager.getAboveLayerId() != null) {
+            // Insert below the corresponding id
+            AnnotationManager above = annotationManagersById.get(annotationManager.getAboveLayerId());
+            int aboveIndex = annotationManagers.indexOf(above);
+            annotationManagers.add(aboveIndex, annotationManager);
+        } else {
+            // Insert at the beginning
+            this.annotationManagers.add(0, annotationManager);
+        }
+
+        annotationManagersById.put(annotationManager.getLayerId(), annotationManager);
     }
 
     void removeAnnotationManager(AnnotationManager annotationManager) {
         this.annotationManagers.remove(annotationManager);
+        this.annotationManagersById.remove(annotationManager.getLayerId());
         if (annotationManagers.isEmpty()) {
             clearInstance();
         }
