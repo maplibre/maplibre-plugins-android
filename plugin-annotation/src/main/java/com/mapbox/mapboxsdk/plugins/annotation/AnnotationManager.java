@@ -88,9 +88,9 @@ public abstract class AnnotationManager<
 
         mapboxMap.addOnMapClickListener(mapClickResolver = new MapClickResolver());
         mapboxMap.addOnMapLongClickListener(mapClickResolver);
-        draggableAnnotationController.addAnnotationManager(this);
 
         initializeSourcesAndLayers(geoJsonOptions);
+        draggableAnnotationController.addAnnotationManager(this);
 
         mapView.addOnDidFinishLoadingStyleListener(new MapView.OnDidFinishLoadingStyleListener() {
             @Override
@@ -116,6 +116,14 @@ public abstract class AnnotationManager<
      */
     public String getLayerId() {
         return layer.getId();
+    }
+
+    public String getBelowLayerId() {
+        return belowLayerId;
+    }
+
+    public String getAboveLayerId() {
+        return aboveLayerId;
     }
 
     /**
