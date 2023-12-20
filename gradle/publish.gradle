@@ -13,12 +13,12 @@ task androidJavadocs(type: Javadoc) {
 }
 
 task androidJavadocsJar(type: Jar, dependsOn: androidJavadocs) {
-    classifier = 'dokka'
+    archiveClassifier = 'dokka'
     from androidJavadocs.destinationDir
 }
 
 task androidSourcesJar(type: Jar) {
-    classifier = 'sources'
+    archiveClassifier = 'sources'
     from android.sourceSets.main.java.sourceFiles
 }
 
