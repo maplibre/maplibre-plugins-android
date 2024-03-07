@@ -6,11 +6,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.google.gson.*;
+import com.mapbox.geojson.Geometry;
+import org.maplibre.android.style.layers.Property;
+import org.maplibre.android.style.layers.PropertyFactory;
 
 import com.mapbox.geojson.*;
 import org.maplibre.android.geometry.LatLng;
-import org.maplibre.android.style.layers.Property;
-import org.maplibre.android.style.layers.PropertyFactory;
 
 import java.util.ArrayList;
 import java.util.List;

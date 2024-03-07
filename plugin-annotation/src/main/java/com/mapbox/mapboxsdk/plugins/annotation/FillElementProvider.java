@@ -3,6 +3,7 @@
 package com.mapbox.mapboxsdk.plugins.annotation;
 
 import androidx.annotation.Nullable;
+
 import org.maplibre.android.style.layers.FillLayer;
 import org.maplibre.android.style.sources.GeoJsonOptions;
 import org.maplibre.android.style.sources.GeoJsonSource;
