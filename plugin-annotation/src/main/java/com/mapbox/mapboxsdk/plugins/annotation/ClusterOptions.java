@@ -5,26 +5,13 @@ import android.graphics.Color;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.util.Pair;
+import org.maplibre.android.maps.Style;
+import org.maplibre.android.style.expressions.Expression;
+import org.maplibre.android.style.layers.CircleLayer;
+import org.maplibre.android.style.layers.SymbolLayer;
 
-import com.mapbox.mapboxsdk.maps.Style;
-import com.mapbox.mapboxsdk.style.expressions.Expression;
-import com.mapbox.mapboxsdk.style.layers.CircleLayer;
-import com.mapbox.mapboxsdk.style.layers.SymbolLayer;
-
-import static com.mapbox.mapboxsdk.style.expressions.Expression.all;
-import static com.mapbox.mapboxsdk.style.expressions.Expression.get;
-import static com.mapbox.mapboxsdk.style.expressions.Expression.gt;
-import static com.mapbox.mapboxsdk.style.expressions.Expression.gte;
-import static com.mapbox.mapboxsdk.style.expressions.Expression.has;
-import static com.mapbox.mapboxsdk.style.expressions.Expression.literal;
-import static com.mapbox.mapboxsdk.style.expressions.Expression.lt;
-import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.circleColor;
-import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.circleRadius;
-import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.textAllowOverlap;
-import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.textColor;
-import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.textField;
-import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.textIgnorePlacement;
-import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.textSize;
+import static org.maplibre.android.style.expressions.Expression.*;
+import static org.maplibre.android.style.layers.PropertyFactory.*;
 
 /**
  * Options to show and configure symbol clustering with using SymbolManager.

@@ -6,13 +6,13 @@ import com.mapbox.android.gestures.AndroidGesturesManager;
 import com.mapbox.android.gestures.MoveDistancesObject;
 import com.mapbox.android.gestures.MoveGestureDetector;
 import com.mapbox.geojson.Geometry;
-import com.mapbox.mapboxsdk.maps.MapView;
-import com.mapbox.mapboxsdk.maps.MapboxMap;
-import com.mapbox.mapboxsdk.maps.Projection;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.maplibre.android.maps.MapLibreMap;
+import org.maplibre.android.maps.MapView;
+import org.maplibre.android.maps.Projection;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.robolectric.RobolectricTestRunner;
@@ -37,7 +37,7 @@ public class DraggableAnnotationControllerTest {
     private MapView mapView;
 
     @Mock
-    private MapboxMap mapboxMap;
+    private MapLibreMap mapboxMap;
 
     @Mock
     private Projection projection;

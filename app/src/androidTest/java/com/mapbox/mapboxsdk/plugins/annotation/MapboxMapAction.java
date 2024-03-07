@@ -2,12 +2,13 @@ package com.mapbox.mapboxsdk.plugins.annotation;
 
 import android.view.View;
 
-import com.mapbox.mapboxsdk.maps.MapboxMap;
+import org.maplibre.android.maps.MapLibreMap;
 
 import org.hamcrest.Matcher;
 
 import androidx.test.espresso.UiController;
 import androidx.test.espresso.ViewAction;
+import org.maplibre.android.maps.MapLibreMap;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
@@ -16,9 +17,9 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 public class MapboxMapAction implements ViewAction {
 
     private OnInvokeActionListener invokeViewAction;
-    private MapboxMap mapboxMap;
+    private MapLibreMap mapboxMap;
 
-    public MapboxMapAction(OnInvokeActionListener invokeViewAction, MapboxMap mapboxMap) {
+    public MapboxMapAction(OnInvokeActionListener invokeViewAction, MapLibreMap mapboxMap) {
         this.invokeViewAction = invokeViewAction;
         this.mapboxMap = mapboxMap;
     }
@@ -38,12 +39,12 @@ public class MapboxMapAction implements ViewAction {
         invokeViewAction.onInvokeAction(uiController, mapboxMap);
     }
 
-    public static void invoke(MapboxMap mapboxMap, OnInvokeActionListener invokeViewAction) {
+    public static void invoke(MapLibreMap mapboxMap, OnInvokeActionListener invokeViewAction) {
         onView(withId(android.R.id.content)).perform(new MapboxMapAction(invokeViewAction, mapboxMap));
     }
 
     public interface OnInvokeActionListener {
-        void onInvokeAction(UiController uiController, MapboxMap mapboxMap);
+        void onInvokeAction(UiController uiController, MapLibreMap mapboxMap);
     }
 }
 

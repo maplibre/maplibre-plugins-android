@@ -1,3 +1,4 @@
+
 // This file is generated.
 
 package com.mapbox.mapboxsdk.plugins.annotation;
@@ -6,7 +7,7 @@ import android.graphics.PointF;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
-import com.mapbox.mapboxsdk.geometry.LatLng;
+import org.maplibre.android.geometry.LatLng;
 import com.mapbox.mapboxsdk.plugins.BaseActivityTest;
 import com.mapbox.mapboxsdk.plugins.testapp.activity.TestActivity;
 import com.mapbox.mapboxsdk.utils.ColorUtils;
@@ -20,7 +21,7 @@ import java.util.Objects;
 
 import static com.mapbox.mapboxsdk.plugins.annotation.MapboxMapAction.invoke;
 import static org.junit.Assert.*;
-import static com.mapbox.mapboxsdk.style.layers.Property.*;
+import static org.maplibre.android.style.layers.Property.*;
 
 import java.util.ArrayList;
 import java.util.List;

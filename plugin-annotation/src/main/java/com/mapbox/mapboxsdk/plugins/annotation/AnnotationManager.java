@@ -4,16 +4,11 @@ import android.graphics.PointF;
 
 import com.mapbox.geojson.Feature;
 import com.mapbox.geojson.FeatureCollection;
-import com.mapbox.mapboxsdk.geometry.LatLng;
-import com.mapbox.mapboxsdk.log.Logger;
-import com.mapbox.mapboxsdk.maps.MapView;
-import com.mapbox.mapboxsdk.maps.MapboxMap;
-import com.mapbox.mapboxsdk.maps.Style;
-import com.mapbox.mapboxsdk.style.expressions.Expression;
-import com.mapbox.mapboxsdk.style.layers.Layer;
-import com.mapbox.mapboxsdk.style.layers.PropertyValue;
-import com.mapbox.mapboxsdk.style.sources.GeoJsonOptions;
-import com.mapbox.mapboxsdk.style.sources.GeoJsonSource;
+import org.maplibre.android.geometry.LatLng;
+import org.maplibre.android.log.Logger;
+import org.maplibre.android.maps.MapLibreMap;
+import org.maplibre.android.maps.MapView;
+import org.maplibre.android.maps.Style;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,6 +21,11 @@ import androidx.annotation.Nullable;
 import androidx.annotation.UiThread;
 import androidx.annotation.VisibleForTesting;
 import androidx.collection.LongSparseArray;
+import org.maplibre.android.style.expressions.Expression;
+import org.maplibre.android.style.layers.Layer;
+import org.maplibre.android.style.layers.PropertyValue;
+import org.maplibre.android.style.sources.GeoJsonOptions;
+import org.maplibre.android.style.sources.GeoJsonSource;
 
 /**
  * Generic AnnotationManager, can be used to create annotation specific managers.
@@ -47,7 +47,7 @@ public abstract class AnnotationManager<
     private static final String TAG = "AnnotationManager";
 
     private final MapView mapView;
-    protected final MapboxMap mapboxMap;
+    protected final MapLibreMap mapboxMap;
     protected final LongSparseArray<T> annotations = new LongSparseArray<>();
     final Map<String, Boolean> dataDrivenPropertyUsageMap = new HashMap<>();
     final Map<String, PropertyValue> constantPropertyUsageMap = new HashMap<>();
@@ -70,7 +70,7 @@ public abstract class AnnotationManager<
     private AtomicBoolean isSourceUpToDate = new AtomicBoolean(true);
 
     @UiThread
-    protected AnnotationManager(MapView mapView, final MapboxMap mapboxMap, Style style,
+    protected AnnotationManager(MapView mapView, final MapLibreMap mapboxMap, Style style,
                                 CoreElementProvider<L> coreElementProvider,
                                 DraggableAnnotationController draggableAnnotationController,
                                 String belowLayerId, String aboveLayerId, final GeoJsonOptions geoJsonOptions) {
@@ -403,7 +403,7 @@ public abstract class AnnotationManager<
     /**
      * Inner class for transforming map click events into annotation clicks
      */
-    private class MapClickResolver implements MapboxMap.OnMapClickListener, MapboxMap.OnMapLongClickListener {
+    private class MapClickResolver implements MapLibreMap.OnMapClickListener, MapLibreMap.OnMapLongClickListener {
 
         @Override
         public boolean onMapClick(@NonNull LatLng point) {
