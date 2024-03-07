@@ -6,18 +6,18 @@ import android.graphics.PointF;
 
 import com.google.gson.JsonPrimitive;
 import com.mapbox.geojson.*;
-import com.mapbox.mapboxsdk.geometry.LatLng;
-import com.mapbox.mapboxsdk.maps.MapView;
-import com.mapbox.mapboxsdk.maps.MapboxMap;
-import com.mapbox.mapboxsdk.maps.Style;
-import com.mapbox.mapboxsdk.style.expressions.Expression;
-import com.mapbox.mapboxsdk.style.layers.*;
-import com.mapbox.mapboxsdk.style.sources.GeoJsonOptions;
-import com.mapbox.mapboxsdk.style.sources.GeoJsonSource;
-import com.mapbox.mapboxsdk.utils.ColorUtils;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.maplibre.android.geometry.LatLng;
+import org.maplibre.android.maps.MapLibreMap;
+import org.maplibre.android.maps.MapView;
+import org.maplibre.android.maps.Style;
+import org.maplibre.android.style.expressions.Expression;
+import org.maplibre.android.style.layers.FillLayer;
+import org.maplibre.android.style.layers.PropertyValue;
+import org.maplibre.android.style.sources.GeoJsonOptions;
+import org.maplibre.android.style.sources.GeoJsonSource;
 import org.mockito.ArgumentCaptor;
 
 import java.util.ArrayList;
@@ -25,10 +25,9 @@ import java.util.List;
 import java.util.Arrays;
 
 import static com.mapbox.mapboxsdk.plugins.annotation.ConvertUtils.convertArray;
-import static com.mapbox.mapboxsdk.style.expressions.Expression.get;
-import static com.mapbox.mapboxsdk.style.layers.Property.*;
-import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.*;
 import static junit.framework.Assert.*;
+import static org.maplibre.android.style.expressions.Expression.get;
+import static org.maplibre.android.style.layers.PropertyFactory.*;
 import static org.mockito.ArgumentMatchers.argThat;
 import static org.mockito.Mockito.*;
 
@@ -36,7 +35,7 @@ public class FillManagerTest {
 
     private DraggableAnnotationController draggableAnnotationController = mock(DraggableAnnotationController.class);
     private MapView mapView = mock(MapView.class);
-    private MapboxMap mapboxMap = mock(MapboxMap.class);
+    private MapLibreMap mapboxMap = mock(MapLibreMap.class);
     private Style style = mock(Style.class);
     private GeoJsonSource geoJsonSource = mock(GeoJsonSource.class);
     private GeoJsonSource optionedGeoJsonSource = mock(GeoJsonSource.class);
@@ -378,7 +377,7 @@ public class FillManagerTest {
     @Test
     public void testFillLayerFilter() {
         fillManager = new FillManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
-        Expression expression = Expression.eq(Expression.get("test"), "selected");
+        Expression expression = Expression.eq(get("test"), "selected");
         verify(fillLayer, times(0)).setFilter(expression);
 
         fillManager.setFilter(expression);

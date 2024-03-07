@@ -14,8 +14,8 @@ import com.mapbox.android.gestures.AndroidGesturesManager;
 import com.mapbox.android.gestures.MoveDistancesObject;
 import com.mapbox.android.gestures.MoveGestureDetector;
 import com.mapbox.geojson.Geometry;
-import com.mapbox.mapboxsdk.maps.MapView;
-import com.mapbox.mapboxsdk.maps.MapboxMap;
+import org.maplibre.android.maps.MapLibreMap;
+import org.maplibre.android.maps.MapView;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -26,7 +26,7 @@ final class DraggableAnnotationController {
 
     private static DraggableAnnotationController INSTANCE = null;
 
-    public static DraggableAnnotationController getInstance(MapView mapView, MapboxMap mapboxMap) {
+    public static DraggableAnnotationController getInstance(MapView mapView, MapLibreMap mapboxMap) {
         if (INSTANCE == null || INSTANCE.mapView != mapView || INSTANCE.mapboxMap != mapboxMap) {
             INSTANCE = new DraggableAnnotationController(mapView, mapboxMap);
         }
@@ -42,7 +42,7 @@ final class DraggableAnnotationController {
     }
 
     private MapView mapView;
-    private MapboxMap mapboxMap;
+    private MapLibreMap mapboxMap;
     private List<AnnotationManager> annotationManagers = new LinkedList<>();
     private HashMap<String, AnnotationManager> annotationManagersById = new HashMap<>();
 
@@ -57,13 +57,13 @@ final class DraggableAnnotationController {
     private AnnotationManager draggedAnnotationManager;
 
     @SuppressLint("ClickableViewAccessibility")
-    DraggableAnnotationController(MapView mapView, MapboxMap mapboxMap) {
+    DraggableAnnotationController(MapView mapView, MapLibreMap mapboxMap) {
         this(mapView, mapboxMap, new AndroidGesturesManager(mapView.getContext(), false),
             mapView.getScrollX(), mapView.getScrollY(), mapView.getMeasuredWidth(), mapView.getMeasuredHeight());
     }
 
     @VisibleForTesting
-    public DraggableAnnotationController(MapView mapView, MapboxMap mapboxMap,
+    public DraggableAnnotationController(MapView mapView, MapLibreMap mapboxMap,
                                          final AndroidGesturesManager androidGesturesManager,
                                          int touchAreaShiftX, int touchAreaShiftY,
                                          int touchAreaMaxX, int touchAreaMaxY) {

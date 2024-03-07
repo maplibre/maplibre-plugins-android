@@ -9,21 +9,21 @@ import androidx.annotation.VisibleForTesting;
 
 import com.mapbox.geojson.Feature;
 import com.mapbox.geojson.FeatureCollection;
-import com.mapbox.mapboxsdk.maps.MapView;
-import com.mapbox.mapboxsdk.maps.MapboxMap;
-import com.mapbox.mapboxsdk.maps.Style;
-import com.mapbox.mapboxsdk.style.expressions.Expression;
-import com.mapbox.mapboxsdk.style.layers.CircleLayer;
-import com.mapbox.mapboxsdk.style.layers.PropertyValue;
-import com.mapbox.mapboxsdk.style.layers.PropertyFactory;
-import com.mapbox.mapboxsdk.style.sources.GeoJsonOptions;
-import com.mapbox.mapboxsdk.style.layers.Property;
+import org.maplibre.android.maps.MapLibreMap;
+import org.maplibre.android.maps.MapView;
+import org.maplibre.android.maps.Style;
+import org.maplibre.android.style.expressions.Expression;
+import org.maplibre.android.style.layers.CircleLayer;
+import org.maplibre.android.style.layers.Property;
+import org.maplibre.android.style.layers.PropertyFactory;
+import org.maplibre.android.style.layers.PropertyValue;
+import org.maplibre.android.style.sources.GeoJsonOptions;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.mapbox.mapboxsdk.style.expressions.Expression.get;
-import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.*;
+import static org.maplibre.android.style.expressions.Expression.get;
+import static org.maplibre.android.style.layers.PropertyFactory.*;
 
 /**
  * The circle manager allows to add circles to a map.
@@ -42,7 +42,7 @@ public class CircleManager extends AnnotationManager<CircleLayer, Circle, Circle
      * @param style     a valid a fully loaded style object
      */
     @UiThread
-    public CircleManager(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap, @NonNull Style style) {
+    public CircleManager(@NonNull MapView mapView, @NonNull MapLibreMap mapboxMap, @NonNull Style style) {
         this(mapView, mapboxMap, style, null, null, (GeoJsonOptions) null);
     }
 
@@ -55,7 +55,7 @@ public class CircleManager extends AnnotationManager<CircleLayer, Circle, Circle
      * @param aboveLayerId the id of the layer below the circle layer
      */
     @UiThread
-    public CircleManager(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap, @NonNull Style style, @Nullable String belowLayerId, @Nullable String aboveLayerId) {
+    public CircleManager(@NonNull MapView mapView, @NonNull MapLibreMap mapboxMap, @NonNull Style style, @Nullable String belowLayerId, @Nullable String aboveLayerId) {
         this(mapView, mapboxMap, style, belowLayerId, aboveLayerId, (GeoJsonOptions) null);
     }
 
@@ -69,12 +69,12 @@ public class CircleManager extends AnnotationManager<CircleLayer, Circle, Circle
      * @param geoJsonOptions options for the internal source
      */
     @UiThread
-    public CircleManager(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap, @NonNull Style style, @Nullable String belowLayerId, @Nullable String aboveLayerId, @Nullable GeoJsonOptions geoJsonOptions) {
+    public CircleManager(@NonNull MapView mapView, @NonNull MapLibreMap mapboxMap, @NonNull Style style, @Nullable String belowLayerId, @Nullable String aboveLayerId, @Nullable GeoJsonOptions geoJsonOptions) {
         this(mapView, mapboxMap, style, new CircleElementProvider(), belowLayerId, aboveLayerId, geoJsonOptions, DraggableAnnotationController.getInstance(mapView, mapboxMap));
     }
 
     @UiThread
-    CircleManager(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap, @NonNull Style style, @NonNull CoreElementProvider<CircleLayer> coreElementProvider, @Nullable String belowLayerId, @Nullable String aboveLayerId, @Nullable GeoJsonOptions geoJsonOptions, DraggableAnnotationController draggableAnnotationController) {
+    CircleManager(@NonNull MapView mapView, @NonNull MapLibreMap mapboxMap, @NonNull Style style, @NonNull CoreElementProvider<CircleLayer> coreElementProvider, @Nullable String belowLayerId, @Nullable String aboveLayerId, @Nullable GeoJsonOptions geoJsonOptions, DraggableAnnotationController draggableAnnotationController) {
         super(mapView, mapboxMap, style, coreElementProvider, draggableAnnotationController, belowLayerId, aboveLayerId, geoJsonOptions);
     }
 

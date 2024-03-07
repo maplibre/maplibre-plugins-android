@@ -4,11 +4,10 @@ package com.mapbox.mapboxsdk.plugins.annotation;
 
 import androidx.annotation.Nullable;
 
-import com.mapbox.mapboxsdk.style.layers.LineLayer;
-import com.mapbox.mapboxsdk.style.sources.GeoJsonOptions;
-import com.mapbox.mapboxsdk.style.sources.GeoJsonSource;
-
 import java.util.concurrent.atomic.AtomicLong;
+import org.maplibre.android.style.layers.LineLayer;
+import org.maplibre.android.style.sources.GeoJsonOptions;
+import org.maplibre.android.style.sources.GeoJsonSource;
 
 /**
  * Concrete instance of a core element provider for Line.

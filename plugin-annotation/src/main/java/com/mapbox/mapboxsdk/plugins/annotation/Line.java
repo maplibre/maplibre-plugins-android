@@ -13,18 +13,17 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonNull;
 import com.google.gson.JsonObject;
 import com.mapbox.geojson.*;
-import com.mapbox.mapboxsdk.geometry.LatLng;
-import com.mapbox.mapboxsdk.style.layers.Property;
-import com.mapbox.mapboxsdk.style.layers.PropertyFactory;
-import com.mapbox.mapboxsdk.utils.ColorUtils;
 import com.mapbox.android.gestures.MoveDistancesObject;
-import com.mapbox.mapboxsdk.maps.Projection;
+import org.maplibre.android.geometry.LatLng;
+import org.maplibre.android.maps.Projection;
+import org.maplibre.android.style.layers.Property;
+import org.maplibre.android.utils.ColorUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.mapbox.mapboxsdk.constants.GeometryConstants.MAX_MERCATOR_LATITUDE;
-import static com.mapbox.mapboxsdk.constants.GeometryConstants.MIN_MERCATOR_LATITUDE;
+import static org.maplibre.android.constants.GeometryConstants.MAX_MERCATOR_LATITUDE;
+import static org.maplibre.android.constants.GeometryConstants.MIN_MERCATOR_LATITUDE;
 
 @UiThread
 public class Line extends Annotation<LineString> {
