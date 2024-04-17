@@ -7,7 +7,7 @@
   ]
 
   version = [
-      mapLibreAndroidSdk : '10.0.2',
+      mapLibreAndroidSdk : '11.0.0-pre5',
       mapLibreJava       : '5.9.0',
       mapLibreTurf       : '5.9.0',
       playLocation       : '16.0.0',
@@ -42,7 +42,7 @@
   dependenciesList = [
           // MapLibre
           mapLibreAndroidSdk     : "org.maplibre.gl:android-sdk:${version.mapLibreAndroidSdk}",
-          maplibreGeoJson        : "org.maplibre.gl:android-sdk-geojson:${version.maplibreJava}",
+          maplibreGeoJson        : "org.maplibre.gl:android-sdk-geojson:${version.maplibreGeoJson}",
           maplibreGeocoding      : "org.maplibre.gl:android-sdk-services:${version.maplibreJava}",
           maplibreTurf           : "org.maplibre.gl:android-sdk-turf:${version.mapLibreTurf}",
           maplibreCore           : "org.maplibre.gl:android-sdk-core:${version.mapLibreJava}",
