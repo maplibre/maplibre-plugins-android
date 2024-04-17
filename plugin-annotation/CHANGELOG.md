@@ -1,6 +1,11 @@
-# Changelog for the Mapbox Annotation Plugin
+# Changelog for the MapLibre Annotation Plugin
 
-Mapbox welcomes participation and contributions from everyone.
+MapLibre welcomes participation and contributions from everyone.
+
+### mapbox-android-plugin-annotation-v9:2.0.3 - April 15, 20204
+#### Updates
+- should work with MapLibre
+
 
 ### mapbox-android-plugin-annotation-v9:0.9.0 - August 13, 2020
 #### Bugs
@@ -44,7 +49,7 @@ Mapbox welcomes participation and contributions from everyone.
 - Fixup remove drag listener naming [#833](https://github.com/mapbox/mapbox-plugins-android/pull/833)
 - Maps SDK v7.1.1 [#820](https://github.com/mapbox/mapbox-plugins-android/pull/820)
 
-### mapbox-android-plugin-annotation-v7:0.4.0 - January 8, 2019
+### mapbox-android-plugin-annotation- v7:0.4.0 - January 8, 2019
 - Mapbox maps SDK for Android v7.0.0 [#800](https://github.com/mapbox/mapbox-plugins-android/pull/800)
 - Save plugin's state across style changes [#800](https://github.com/mapbox/mapbox-plugins-android/pull/800/commits/cba17474e6087faf94375570700d4edfc52b6dd6)
 - Exposed filter API [#775](https://github.com/mapbox/mapbox-plugins-android/pull/775)

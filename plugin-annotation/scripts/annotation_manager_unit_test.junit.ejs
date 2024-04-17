@@ -5,21 +5,21 @@
 -%>
 // This file is generated.
 
-package com.mapbox.mapboxsdk.plugins.annotation;
+package org.maplibre.mapboxsdk.plugins.annotation;
 
 import android.graphics.PointF;
 
 import com.google.gson.JsonPrimitive;
-import com.mapbox.geojson.*;
-import com.mapbox.mapboxsdk.geometry.LatLng;
-import com.mapbox.mapboxsdk.maps.MapView;
-import com.mapbox.mapboxsdk.maps.MapboxMap;
-import com.mapbox.mapboxsdk.maps.Style;
-import com.mapbox.mapboxsdk.style.expressions.Expression;
-import com.mapbox.mapboxsdk.style.layers.*;
-import com.mapbox.mapboxsdk.style.sources.GeoJsonOptions;
-import com.mapbox.mapboxsdk.style.sources.GeoJsonSource;
-import com.mapbox.mapboxsdk.utils.ColorUtils;
+import org.maplibre.geojson.*;
+import org.maplibre.mapboxsdk.geometry.LatLng;
+import org.maplibre.mapboxsdk.maps.MapView;
+import org.maplibre.mapboxsdk.maps.MapboxMap;
+import org.maplibre.mapboxsdk.maps.Style;
+import org.maplibre.mapboxsdk.style.expressions.Expression;
+import org.maplibre.mapboxsdk.style.layers.*;
+import org.maplibre.mapboxsdk.style.sources.GeoJsonOptions;
+import org.maplibre.mapboxsdk.style.sources.GeoJsonSource;
+import org.maplibre.mapboxsdk.utils.ColorUtils;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -29,10 +29,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
 
-import static com.mapbox.mapboxsdk.plugins.annotation.ConvertUtils.convertArray;
-import static com.mapbox.mapboxsdk.style.expressions.Expression.get;
-import static com.mapbox.mapboxsdk.style.layers.Property.*;
-import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.*;
+import static org.maplibre.android.plugins.annotation.annotation.ConvertUtils.convertArray;
+import static org.maplibre.mapboxsdk.style.expressions.Expression.get;
+import static org.maplibre.mapboxsdk.style.layers.Property.*;
+import static org.maplibre.mapboxsdk.style.layers.PropertyFactory.*;
 import static junit.framework.Assert.*;
 import static org.mockito.ArgumentMatchers.argThat;
 import static org.mockito.Mockito.*;

@@ -5,30 +5,30 @@
 -%>
 // This file is generated.
 
-package com.mapbox.mapboxsdk.plugins.annotation;
+package org.maplibre.mapboxsdk.plugins.annotation;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.UiThread;
 import androidx.annotation.VisibleForTesting;
 
-import com.mapbox.geojson.Feature;
-import com.mapbox.geojson.FeatureCollection;
-import com.mapbox.mapboxsdk.maps.MapView;
-import com.mapbox.mapboxsdk.maps.MapboxMap;
-import com.mapbox.mapboxsdk.maps.Style;
-import com.mapbox.mapboxsdk.style.expressions.Expression;
-import com.mapbox.mapboxsdk.style.layers.<%- camelize(type) %>Layer;
-import com.mapbox.mapboxsdk.style.layers.PropertyValue;
-import com.mapbox.mapboxsdk.style.layers.PropertyFactory;
-import com.mapbox.mapboxsdk.style.sources.GeoJsonOptions;
-import com.mapbox.mapboxsdk.style.layers.Property;
+import org.maplibre.geojson.Feature;
+import org.maplibre.geojson.FeatureCollection;
+import org.maplibre.mapboxsdk.maps.MapView;
+import org.maplibre.mapboxsdk.maps.MapboxMap;
+import org.maplibre.mapboxsdk.maps.Style;
+import org.maplibre.mapboxsdk.style.expressions.Expression;
+import org.maplibre.mapboxsdk.style.layers.<%- camelize(type) %>Layer;
+import org.maplibre.mapboxsdk.style.layers.PropertyValue;
+import org.maplibre.mapboxsdk.style.layers.PropertyFactory;
+import org.maplibre.mapboxsdk.style.sources.GeoJsonOptions;
+import org.maplibre.mapboxsdk.style.layers.Property;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.mapbox.mapboxsdk.style.expressions.Expression.get;
-import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.*;
+import static org.maplibre.mapboxsdk.style.expressions.Expression.get;
+import static org.maplibre.mapboxsdk.style.layers.PropertyFactory.*;
 
 /**
  * The <%- type %> manager allows to add <%- type %>s to a map.
