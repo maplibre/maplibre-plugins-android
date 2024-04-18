@@ -1,23 +1,22 @@
-package com.mapbox.mapboxsdk.plugins.localization;
-
-import com.mapbox.mapboxsdk.maps.MapView;
-import com.mapbox.mapboxsdk.maps.MapboxMap;
-import com.mapbox.mapboxsdk.maps.Style;
-
-import org.junit.Ignore;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
-import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnit;
-import org.mockito.junit.MockitoRule;
-
-import java.util.Locale;
+package org.maplibre.android.plugins.localization;
 
 import static junit.framework.Assert.assertNotNull;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+
+import org.junit.Ignore;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.ExpectedException;
+import org.maplibre.android.maps.MapLibreMap;
+import org.maplibre.android.maps.MapView;
+import org.maplibre.android.maps.Style;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
+
+import java.util.Locale;
 
 public class LocalizationPluginTest {
 
@@ -34,7 +33,7 @@ public class LocalizationPluginTest {
     public void sanity() throws Exception {
         when(style.isFullyLoaded()).thenReturn(true);
         LocalizationPlugin localizationPlugin
-            = new LocalizationPlugin(mock(MapView.class), mock(MapboxMap.class), style);
+            = new LocalizationPlugin(mock(MapView.class), mock(MapLibreMap.class), style);
         assertNotNull(localizationPlugin);
     }
 
@@ -45,7 +44,7 @@ public class LocalizationPluginTest {
         thrown.expect(NullPointerException.class);
         thrown.expectMessage(containsString("has no matching MapLocale object. You need to create"));
         LocalizationPlugin localizationPlugin
-            = new LocalizationPlugin(mock(MapView.class), mock(MapboxMap.class), style);
+            = new LocalizationPlugin(mock(MapView.class), mock(MapLibreMap.class), style);
         localizationPlugin.setMapLanguage(new Locale("foo", "bar"), false);
     }
 }

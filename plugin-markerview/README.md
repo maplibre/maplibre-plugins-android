@@ -1,4 +1,4 @@
-# Mapbox MarkerView plugin
+# MapLibre MarkerView plugin
 
 ![markerview-plugin](https://user-images.githubusercontent.com/2151639/45137542-69f42f00-b1a9-11e8-854b-3335a5504337.gif)
 
@@ -20,7 +20,7 @@ repositories {
 
 // In the app build.gradle file
 dependencies {
-    implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-markerview-v9:0.4.0'
+    implementation 'org.maplibre.android:mapbox-android-plugin-markerview-v9:0.4.0'
 }
 ```
 
@@ -37,7 +37,7 @@ repositories {
 
 // In the app build.gradle file
 dependencies {
-    implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-markerview-v9:0.5.0-SNAPSHOT'
+    implementation 'org.maplibre.android:mapbox-android-plugin-markerview-v9:0.5.0-SNAPSHOT'
 }
 ```
 

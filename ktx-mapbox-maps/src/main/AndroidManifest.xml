@@ -1,2 +1,1 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.mapbox.mapboxsdk.plugins.maps"/>
+<manifest package="org.maplibre.android.plugins.maps" />

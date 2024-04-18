@@ -18,7 +18,7 @@ repositories {
 
 // In the app build.gradle file
 dependencies {
-    implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-building-v9:0.7.0'
+    implementation 'org.maplibre.android:mapbox-android-plugin-building-v9:0.7.0'
 }
 ```
 
@@ -35,7 +35,7 @@ repositories {
 
 // In the app build.gradle file
 dependencies {
-    implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-building-v9:0.8.0-SNAPSHOT'
+    implementation 'org.maplibre.android:mapbox-android-plugin-building-v9:0.8.0-SNAPSHOT'
 }
 ```
 
@@ -43,7 +43,7 @@ dependencies {
 
 - [In this repo's test app](https://github.com/mapbox/mapbox-plugins-android/blob/master/app/src/main/java/com/mapbox/mapboxsdk/plugins/testapp/activity/building/BuildingActivity.kt)
 
-- [In the Mapbox Android demo app](https://github.com/mapbox/mapbox-android-demo/blob/a411fa95cd71c1b90a30895060b319310444aebb/MapboxAndroidDemo/src/main/java/com/mapbox/mapboxandroiddemo/examples/plugins/BuildingPluginActivity.java) – (Don't have the app? [Download it on Google Play](https://play.google.com/store/apps/details?id=com.mapbox.mapboxandroiddemo).)
+- [In the Mapbox Android demo app](https://github.com/mapbox/mapbox-android-demo/blob/a411fa95cd71c1b90a30895060b319310444aebb/MapboxAndroidDemo/src/main/java/com/mapbox/mapboxandroiddemo/examples/plugins/BuildingPluginActivity.java) – (Don't have the app? [Download it on Google Play](https://play.google.com/store/apps/details?id=org.maplibre.mapboxandroiddemo).)
 
 ## Help and Usage
 
