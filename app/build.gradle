@@ -9,7 +9,7 @@ android {
   defaultConfig {
     minSdkVersion androidVersions.minSdkVersion
     targetSdkVersion androidVersions.targetSdkVersion
-    applicationId "com.mapbox.mapboxsdk.plugins.testapp"
+    applicationId "org.maplibre.android.plugins.testapp"
     testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     vectorDrawables.useSupportLibrary = true
 
@@ -64,9 +64,12 @@ dependencies {
   implementation(dependenciesList.mapLibreAndroidSdk, {
     exclude group: 'android.arch.lifecycle'
     exclude group: 'com.google.android.gms'
+
   })
   implementation dependenciesList.maplibreTurf
   implementation dependenciesList.maplibreCore
+  implementation dependenciesList.maplibreGeoJson
+
 
   // Architecture
   implementation dependenciesList.lifecycleExtensions

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools" package="com.mapbox.mapboxsdk.plugins.testapp">
+          xmlns:tools="http://schemas.android.com/tools" package="org.maplibre.android.plugins.testapp">
 
   <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
   <application
-          android:name=".PluginApplication"
+          android:name=".testapp.PluginApplication"
           android:allowBackup="true"
           android:icon="@mipmap/ic_launcher"
           android:label="@string/app_name"
@@ -14,7 +14,7 @@
           android:supportsRtl="true"
           android:theme="@style/AppTheme"
           tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-    <activity android:name=".activity.FeatureOverviewActivity"
+    <activity android:name=".testapp.activity.FeatureOverviewActivity"
         android:exported="true">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
@@ -44,7 +44,7 @@
 <!--        android:value=".activity.FeatureOverviewActivity"/>-->
 <!--    </activity>-->
     <activity
-      android:name=".activity.offline.OfflineDownloadActivity"
+      android:name=".testapp.activity.offline.OfflineDownloadActivity"
       android:description="@string/description_offline_plugin"
       android:label="@string/title_offline_plugin">
       <meta-data
@@ -52,10 +52,10 @@
         android:value="@string/category_offline"/>
       <meta-data
         android:name="android.support.PARENT_ACTIVITY"
-        android:value=".activity.FeatureOverviewActivity"/>
+        android:value=".testapp.activity.FeatureOverviewActivity"/>
     </activity>
     <activity
-      android:name=".activity.offline.OfflineUiComponentsActivity"
+      android:name=".testapp.activity.offline.OfflineUiComponentsActivity"
       android:description="@string/description_offline_ui_components"
       android:label="@string/title_offline_ui_components">
       <meta-data
@@ -63,10 +63,10 @@
         android:value="@string/category_offline"/>
       <meta-data
         android:name="android.support.PARENT_ACTIVITY"
-        android:value=".activity.FeatureOverviewActivity"/>
+        android:value=".testapp.activity.FeatureOverviewActivity"/>
     </activity>
     <activity
-      android:name=".activity.offline.OfflineRegionListActivity"
+      android:name=".testapp.activity.offline.OfflineRegionListActivity"
       android:description="@string/description_offline_regions"
       android:label="@string/title_offline_regions">
       <meta-data
@@ -74,15 +74,15 @@
         android:value="@string/category_offline"/>
       <meta-data
         android:name="android.support.PARENT_ACTIVITY"
-        android:value=".activity.FeatureOverviewActivity"/>
+        android:value=".testapp.activity.FeatureOverviewActivity"/>
     </activity>
     <activity
-      android:name=".activity.offline.OfflineRegionDetailActivity"
+      android:name=".testapp.activity.offline.OfflineRegionDetailActivity"
       android:description="@string/description_offline_regions"
       android:label="@string/title_offline_regions"
       android:theme="@style/Translucent"/>
     <activity
-      android:name=".activity.localization.LocalizationActivity"
+      android:name=".testapp.activity.localization.LocalizationActivity"
       android:description="@string/description_localization"
       android:label="@string/title_localization">
       <meta-data
@@ -90,10 +90,10 @@
         android:value="@string/category_localization"/>
       <meta-data
         android:name="android.support.PARENT_ACTIVITY"
-        android:value=".activity.FeatureOverviewActivity"/>
+        android:value=".testapp.activity.FeatureOverviewActivity"/>
     </activity>
     <activity
-            android:name=".activity.annotation.SymbolActivity"
+            android:name=".testapp.activity.annotation.SymbolActivity"
             android:description="@string/description_symbol"
             android:label="@string/title_symbol">
       <meta-data
@@ -101,10 +101,10 @@
               android:value="@string/category_annotation" />
       <meta-data
               android:name="android.support.PARENT_ACTIVITY"
-              android:value=".activity.FeatureOverviewActivity" />
+              android:value=".testapp.activity.FeatureOverviewActivity" />
     </activity>
     <activity
-            android:name=".activity.annotation.PressForSymbolActivity"
+            android:name=".testapp.activity.annotation.PressForSymbolActivity"
             android:description="@string/description_symbol_press"
             android:label="@string/title_symbol_press">
       <meta-data
@@ -112,10 +112,10 @@
               android:value="@string/category_annotation" />
       <meta-data
               android:name="android.support.PARENT_ACTIVITY"
-              android:value=".activity.FeatureOverviewActivity" />
+              android:value=".testapp.activity.FeatureOverviewActivity" />
     </activity>
     <activity
-            android:name=".activity.annotation.BulkSymbolActivity"
+            android:name=".testapp.activity.annotation.BulkSymbolActivity"
             android:description="@string/description_symbol_bulk"
             android:label="@string/title_symbol_bulk">
       <meta-data
@@ -123,10 +123,10 @@
               android:value="@string/category_annotation" />
       <meta-data
               android:name="android.support.PARENT_ACTIVITY"
-              android:value=".activity.FeatureOverviewActivity" />
+              android:value=".testapp.activity.FeatureOverviewActivity" />
     </activity>
     <activity
-        android:name=".activity.annotation.ClusterSymbolActivity"
+        android:name=".testapp.activity.annotation.ClusterSymbolActivity"
         android:description="@string/description_symbol_cluster"
         android:label="@string/title_symbol_cluster">
       <meta-data
@@ -134,10 +134,10 @@
           android:value="@string/category_annotation" />
       <meta-data
           android:name="android.support.PARENT_ACTIVITY"
-          android:value=".activity.FeatureOverviewActivity" />
+          android:value=".testapp.activity.FeatureOverviewActivity" />
     </activity>
     <activity
-            android:name=".activity.annotation.DynamicSymbolChangeActivity"
+            android:name=".testapp.activity.annotation.DynamicSymbolChangeActivity"
             android:description="@string/description_symbol_change"
             android:label="@string/title_symbol_change">
       <meta-data
@@ -145,10 +145,10 @@
               android:value="@string/category_annotation" />
       <meta-data
               android:name="android.support.PARENT_ACTIVITY"
-              android:value=".activity.FeatureOverviewActivity" />
+              android:value=".testapp.activity.FeatureOverviewActivity" />
     </activity>
     <activity
-            android:name=".activity.annotation.FillActivity"
+            android:name=".testapp.activity.annotation.FillActivity"
             android:description="@string/description_fill"
             android:label="@string/title_fill">
       <meta-data
@@ -156,10 +156,10 @@
               android:value="@string/category_annotation" />
       <meta-data
               android:name="android.support.PARENT_ACTIVITY"
-              android:value=".activity.FeatureOverviewActivity" />
+              android:value=".testapp.activity.FeatureOverviewActivity" />
     </activity>
     <activity
-            android:name=".activity.annotation.FillChangeActivity"
+            android:name=".testapp.activity.annotation.FillChangeActivity"
             android:description="@string/description_fill_change"
             android:label="@string/title_fill_change">
       <meta-data
@@ -167,10 +167,10 @@
               android:value="@string/category_annotation" />
       <meta-data
               android:name="android.support.PARENT_ACTIVITY"
-              android:value=".activity.FeatureOverviewActivity" />
+              android:value=".testapp.activity.FeatureOverviewActivity" />
     </activity>
     <activity
-            android:name=".activity.annotation.CircleActivity"
+            android:name=".testapp.activity.annotation.CircleActivity"
             android:description="@string/description_circle"
             android:label="@string/title_circle">
       <meta-data
@@ -178,10 +178,10 @@
               android:value="@string/category_annotation" />
       <meta-data
               android:name="android.support.PARENT_ACTIVITY"
-              android:value=".activity.FeatureOverviewActivity" />
+              android:value=".testapp.activity.FeatureOverviewActivity" />
     </activity>
     <activity
-            android:name=".activity.annotation.LineActivity"
+            android:name=".testapp.activity.annotation.LineActivity"
             android:description="@string/description_line"
             android:label="@string/title_line">
       <meta-data
@@ -189,10 +189,10 @@
               android:value="@string/category_annotation" />
       <meta-data
               android:name="android.support.PARENT_ACTIVITY"
-              android:value=".activity.FeatureOverviewActivity" />
+              android:value=".testapp.activity.FeatureOverviewActivity" />
     </activity>
     <activity
-            android:name=".activity.annotation.LineChangeActivity"
+            android:name=".testapp.activity.annotation.LineChangeActivity"
             android:description="@string/description_line_change"
             android:label="@string/title_line_change">
       <meta-data
@@ -200,10 +200,10 @@
               android:value="@string/category_annotation" />
       <meta-data
               android:name="android.support.PARENT_ACTIVITY"
-              android:value=".activity.FeatureOverviewActivity" />
+              android:value=".testapp.activity.FeatureOverviewActivity" />
     </activity>
     <activity
-            android:name=".activity.markerview.MarkerViewActivity"
+            android:name=".testapp.activity.markerview.MarkerViewActivity"
             android:description="@string/description_markerview"
             android:label="@string/title_markerview">
       <meta-data
@@ -211,11 +211,11 @@
               android:value="@string/category_markerview" />
       <meta-data
               android:name="android.support.PARENT_ACTIVITY"
-              android:value=".activity.FeatureOverviewActivity" />
+              android:value=".testapp.activity.FeatureOverviewActivity" />
     </activity>
 
     <activity
-            android:name=".activity.ktx.maps.MapboxKtxActivity"
+            android:name=".testapp.activity.ktx.maps.MapLibreKtxActivity"
             android:description="@string/description_ktx"
             android:label="@string/title_ktx">
       <meta-data
@@ -223,11 +223,11 @@
               android:value="@string/category_ktx" />
       <meta-data
               android:name="android.support.PARENT_ACTIVITY"
-              android:value=".activity.FeatureOverviewActivity" />
+              android:value=".testapp.activity.FeatureOverviewActivity" />
     </activity>
 
     <activity
-            android:name=".activity.scalebar.ScalebarActivity"
+            android:name=".testapp.activity.scalebar.ScalebarActivity"
             android:description="@string/description_scalebar"
             android:label="@string/title_scalebar">
       <meta-data
@@ -235,16 +235,16 @@
               android:value="@string/category_scalebar" />
       <meta-data
               android:name="android.support.PARENT_ACTIVITY"
-              android:value=".activity.FeatureOverviewActivity" />
+              android:value=".testapp.activity.FeatureOverviewActivity" />
     </activity>
 
     <service
-      android:name="com.mapbox.mapboxsdk.plugins.offline.offline.OfflineDownloadService"
+      android:name="org.maplibre.android.plugins.offline.offline.OfflineDownloadService"
       android:exported="false"/>
 
-    <receiver android:name="com.mapbox.mapboxsdk.plugins.offline.offline.OfflineDownloadStateReceiver">
+    <receiver android:name="org.maplibre.android.plugins.offline.offline.OfflineDownloadStateReceiver">
       <intent-filter>
-        <action android:name="com.mapbox.mapboxsdk.plugins.offline"/>
+        <action android:name="org.maplibre.android.plugins.offline"/>
       </intent-filter>
     </receiver>
   </application>

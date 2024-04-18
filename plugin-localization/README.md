@@ -20,7 +20,7 @@ repositories {
 
 // In the app build.gradle file
 dependencies {
-    implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-localization-v9:0.12.0'
+    implementation 'org.maplibre.android:mapbox-android-plugin-localization-v9:0.12.0'
 }
 ```
 
@@ -38,7 +38,7 @@ repositories {
 
 // In the app build.gradle file
 dependencies {
-    implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-localization-v9:0.13.0-SNAPSHOT'
+    implementation 'org.maplibre.android:mapbox-android-plugin-localization-v9:0.13.0-SNAPSHOT'
 }
 ```
 
@@ -46,7 +46,7 @@ dependencies {
 
 - [In this repo's test app](https://github.com/mapbox/mapbox-plugins-android/blob/master/app/src/main/java/com/mapbox/mapboxsdk/plugins/testapp/activity/localization/LocalizationActivity.kt)
 
-- [In the Mapbox Android demo app](https://github.com/mapbox/mapbox-android-demo/blob/master/MapboxAndroidDemo/src/main/java/com/mapbox/mapboxandroiddemo/examples/plugins/LocalizationPluginActivity.java) – (Don't have the app? [Download it on Google Play](https://play.google.com/store/apps/details?id=com.mapbox.mapboxandroiddemo).)
+- [In the Mapbox Android demo app](https://github.com/mapbox/mapbox-android-demo/blob/master/MapboxAndroidDemo/src/main/java/com/mapbox/mapboxandroiddemo/examples/plugins/LocalizationPluginActivity.java) – (Don't have the app? [Download it on Google Play](https://play.google.com/store/apps/details?id=org.maplibre.mapboxandroiddemo).)
 
 ## Help and Usage
 

@@ -18,7 +18,7 @@ repositories {
 
 // In the app build.gradle file
 dependencies {
-    implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-scalebar-v9:0.5.0'
+    implementation 'org.maplibre.android:mapbox-android-plugin-scalebar-v9:0.5.0'
 }
 ```
 
@@ -35,13 +35,13 @@ repositories {
 
 // In the app build.gradle file
 dependencies {
-    implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-scalebar-v9:0.6.0-SNAPSHOT'
+    implementation 'org.maplibre.android:mapbox-android-plugin-scalebar-v9:0.6.0-SNAPSHOT'
 }
 ```
 
 ## Scale bar plugin examples
 
-- [In this repo's test app](https://github.com/mapbox/mapbox-plugins-android/blob/master/app/src/main/java/com/mapbox/mapboxsdk/plugins/testapp/activity/scalebar/ScalebarActivity.kt)
+- [In this repo's test app](https://github.com/maplibre/maplibre-plugins-android/blob/master/app/src/main/java/org/maplibre/android/plugins/testapp/activity/scalebar/ScalebarActivity.kt)
 
 ## Help and Usage
 

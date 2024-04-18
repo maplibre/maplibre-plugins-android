@@ -1,4 +1,4 @@
-# Mapbox Plugin testapp ProGuard rules.
+# MapLibre Plugin testapp ProGuard rules.
 
 # --- GMS ---
 -keep public class com.google.android.gms.* { public *; }

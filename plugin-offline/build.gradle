@@ -32,6 +32,8 @@ dependencies {
     // MapLibre
     implementation dependenciesList.mapLibreAndroidSdk
 
+
+
     // AutoValues
     annotationProcessor dependenciesList.autoValuesParcel
     annotationProcessor dependenciesList.autoValue
