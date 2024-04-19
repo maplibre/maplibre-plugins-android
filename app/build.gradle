@@ -68,7 +68,6 @@ dependencies {
   })
   implementation dependenciesList.maplibreTurf
   implementation dependenciesList.maplibreCore
-  implementation dependenciesList.maplibreGeoJson
 
 
   // Architecture
