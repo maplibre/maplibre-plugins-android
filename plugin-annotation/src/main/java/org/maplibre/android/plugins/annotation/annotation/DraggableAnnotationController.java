@@ -27,9 +27,9 @@ final class DraggableAnnotationController {
 
     private static DraggableAnnotationController INSTANCE = null;
 
-    public static DraggableAnnotationController getInstance(MapView mapView, MapLibreMap maplibreMap) {
-        if (INSTANCE == null || INSTANCE.mapView != mapView || INSTANCE.maplibreMap != maplibreMap) {
-            INSTANCE = new DraggableAnnotationController(mapView, maplibreMap);
+    public static DraggableAnnotationController getInstance(MapView mapView, MapLibreMap mapLibreMap) {
+        if (INSTANCE == null || INSTANCE.mapView != mapView || INSTANCE.mapLibreMap != mapLibreMap) {
+            INSTANCE = new DraggableAnnotationController(mapView, mapLibreMap);
         }
         return INSTANCE;
     }
@@ -37,13 +37,13 @@ final class DraggableAnnotationController {
     private static void clearInstance() {
         if (INSTANCE != null) {
             INSTANCE.mapView = null;
-            INSTANCE.maplibreMap = null;
+            INSTANCE.mapLibreMap = null;
             INSTANCE = null;
         }
     }
 
     private MapView mapView;
-    private MapLibreMap maplibreMap;
+    private MapLibreMap mapLibreMap;
     private List<AnnotationManager> annotationManagers = new LinkedList<>();
     private HashMap<String, AnnotationManager> annotationManagersById = new HashMap<>();
 
@@ -58,18 +58,18 @@ final class DraggableAnnotationController {
     private AnnotationManager draggedAnnotationManager;
 
     @SuppressLint("ClickableViewAccessibility")
-    DraggableAnnotationController(MapView mapView, MapLibreMap maplibreMap) {
-        this(mapView, maplibreMap, new AndroidGesturesManager(mapView.getContext(), false),
+    DraggableAnnotationController(MapView mapView, MapLibreMap mapLibreMap) {
+        this(mapView, mapLibreMap, new AndroidGesturesManager(mapView.getContext(), false),
             mapView.getScrollX(), mapView.getScrollY(), mapView.getMeasuredWidth(), mapView.getMeasuredHeight());
     }
 
     @VisibleForTesting
-    public DraggableAnnotationController(MapView mapView, MapLibreMap maplibreMap,
+    public DraggableAnnotationController(MapView mapView, MapLibreMap mapLibreMap,
                                          final AndroidGesturesManager androidGesturesManager,
                                          int touchAreaShiftX, int touchAreaShiftY,
                                          int touchAreaMaxX, int touchAreaMaxY) {
         this.mapView = mapView;
-        this.maplibreMap = maplibreMap;
+        this.mapLibreMap = mapLibreMap;
         this.touchAreaShiftX = touchAreaShiftX;
         this.touchAreaShiftY = touchAreaShiftY;
         this.touchAreaMaxX = touchAreaMaxX;
@@ -156,7 +156,7 @@ final class DraggableAnnotationController {
             }
 
             Geometry shiftedGeometry = draggedAnnotation.getOffsetGeometry(
-                maplibreMap.getProjection(), moveObject, touchAreaShiftX, touchAreaShiftY
+                mapLibreMap.getProjection(), moveObject, touchAreaShiftX, touchAreaShiftY
             );
 
             if (shiftedGeometry != null) {

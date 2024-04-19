@@ -93,7 +93,7 @@ public final class LocalizationPlugin {
     private static final String STEP_TEMPLATE = "[\"zoom\"], \"\", ";
 
     // configuration
-    private final MapLibreMap maplibreMap;
+    private final MapLibreMap mapLibreMap;
     private MapLocale mapLocale;
     @NonNull
     private Style style;
@@ -102,11 +102,11 @@ public final class LocalizationPlugin {
      * Public constructor for passing in the required objects.
      *
      * @param mapView   the MapView object in which the map is displayed
-     * @param maplibreMap the Mapbox map object which your current map view is using for control
+     * @param mapLibreMap the Mapbox map object which your current map view is using for control
      * @param style     the Style object that represents a fully loaded style
      */
-    public LocalizationPlugin(@NonNull MapView mapView, @NonNull final MapLibreMap maplibreMap, @NonNull Style style) {
-        this.maplibreMap = maplibreMap;
+    public LocalizationPlugin(@NonNull MapView mapView, @NonNull final MapLibreMap mapLibreMap, @NonNull Style style) {
+        this.mapLibreMap = mapLibreMap;
         this.style = style;
         if (!style.isFullyLoaded()) {
             throw new RuntimeException("The style has to be non-null and fully loaded.");
@@ -115,7 +115,7 @@ public final class LocalizationPlugin {
         mapView.addOnDidFinishLoadingStyleListener(new MapView.OnDidFinishLoadingStyleListener() {
             @Override
             public void onDidFinishLoadingStyle() {
-                maplibreMap.getStyle(new Style.OnStyleLoaded() {
+                mapLibreMap.getStyle(new Style.OnStyleLoaded() {
                     @Override
                     public void onStyleLoaded(@NonNull Style style) {
                         LocalizationPlugin.this.style = style;
@@ -349,7 +349,7 @@ public final class LocalizationPlugin {
             throw new NullPointerException("Expected a LatLngBounds object but received null instead. Mak"
                 + "e sure your MapLocale instance also has a country bounding box defined.");
         }
-        maplibreMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, padding));
+        mapLibreMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, padding));
     }
 
     /*

@@ -39,8 +39,8 @@ public class LineTest extends BaseActivityTest {
 
     private void setupAnnotation() {
         Timber.i("Retrieving layer");
-        MapLibreMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
-            LineManager lineManager = new LineManager(idlingResource.getMapView(), maplibreMap, Objects.requireNonNull(maplibreMap.getStyle()));
+        MapLibreMapAction.invoke(mapLibreMap, (uiController, mapLibreMap) -> {
+            LineManager lineManager = new LineManager(idlingResource.getMapView(), mapLibreMap, Objects.requireNonNull(mapLibreMap.getStyle()));
             List<LatLng> latLngs = new ArrayList<>();
             latLngs.add(new LatLng());
             latLngs.add(new LatLng(1, 1));
@@ -53,7 +53,7 @@ public class LineTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("line-join");
-        MapLibreMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapLibreMapAction.invoke(mapLibreMap, (uiController, mapLibreMap) -> {
             assertNotNull(line);
 
             line.setLineJoin(LINE_JOIN_BEVEL);
@@ -66,7 +66,7 @@ public class LineTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("line-opacity");
-        MapLibreMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapLibreMapAction.invoke(mapLibreMap, (uiController, mapLibreMap) -> {
             assertNotNull(line);
 
             line.setLineOpacity(2.0f);
@@ -79,7 +79,7 @@ public class LineTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("line-color");
-        MapLibreMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapLibreMapAction.invoke(mapLibreMap, (uiController, mapLibreMap) -> {
             assertNotNull(line);
 
             line.setLineColor("rgba(0, 0, 0, 1)");
@@ -92,7 +92,7 @@ public class LineTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("line-color");
-        MapLibreMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapLibreMapAction.invoke(mapLibreMap, (uiController, mapLibreMap) -> {
             assertNotNull(line);
             line.setLineColor(ColorUtils.rgbaToColor("rgba(0, 0, 0, 1)"));
             assertEquals(line.getLineColorAsInt(), ColorUtils.rgbaToColor("rgba(0, 0, 0, 1)"));
@@ -105,7 +105,7 @@ public class LineTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("line-width");
-        MapLibreMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapLibreMapAction.invoke(mapLibreMap, (uiController, mapLibreMap) -> {
             assertNotNull(line);
 
             line.setLineWidth(2.0f);
@@ -118,7 +118,7 @@ public class LineTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("line-gap-width");
-        MapLibreMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapLibreMapAction.invoke(mapLibreMap, (uiController, mapLibreMap) -> {
             assertNotNull(line);
 
             line.setLineGapWidth(2.0f);
@@ -131,7 +131,7 @@ public class LineTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("line-offset");
-        MapLibreMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapLibreMapAction.invoke(mapLibreMap, (uiController, mapLibreMap) -> {
             assertNotNull(line);
 
             line.setLineOffset(2.0f);
@@ -144,7 +144,7 @@ public class LineTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("line-blur");
-        MapLibreMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapLibreMapAction.invoke(mapLibreMap, (uiController, mapLibreMap) -> {
             assertNotNull(line);
 
             line.setLineBlur(2.0f);
@@ -157,7 +157,7 @@ public class LineTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("line-pattern");
-        MapLibreMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapLibreMapAction.invoke(mapLibreMap, (uiController, mapLibreMap) -> {
             assertNotNull(line);
 
             line.setLinePattern("pedestrian-polygon");

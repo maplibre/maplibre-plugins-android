@@ -43,44 +43,44 @@ public class FillManager extends AnnotationManager<FillLayer, Fill, FillOptions,
     /**
      * Create a fill manager, used to manage fills.
      *
-     * @param maplibreMap the map object to add fills to
+     * @param mapLibreMap the map object to add fills to
      * @param style     a valid a fully loaded style object
      */
     @UiThread
-    public FillManager(@NonNull MapView mapView, @NonNull MapLibreMap maplibreMap, @NonNull Style style) {
-        this(mapView, maplibreMap, style, null, null, (GeoJsonOptions) null);
+    public FillManager(@NonNull MapView mapView, @NonNull MapLibreMap mapLibreMap, @NonNull Style style) {
+        this(mapView, mapLibreMap, style, null, null, (GeoJsonOptions) null);
     }
 
     /**
      * Create a fill manager, used to manage fills.
      *
-     * @param maplibreMap    the map object to add fills to
+     * @param mapLibreMap    the map object to add fills to
      * @param style        a valid a fully loaded style object
      * @param belowLayerId the id of the layer above the fill layer
      * @param aboveLayerId the id of the layer below the fill layer
      */
     @UiThread
-    public FillManager(@NonNull MapView mapView, @NonNull MapLibreMap maplibreMap, @NonNull Style style, @Nullable String belowLayerId, @Nullable String aboveLayerId) {
-        this(mapView, maplibreMap, style, belowLayerId, aboveLayerId, (GeoJsonOptions) null);
+    public FillManager(@NonNull MapView mapView, @NonNull MapLibreMap mapLibreMap, @NonNull Style style, @Nullable String belowLayerId, @Nullable String aboveLayerId) {
+        this(mapView, mapLibreMap, style, belowLayerId, aboveLayerId, (GeoJsonOptions) null);
     }
 
     /**
      * Create a fill manager, used to manage fills.
      *
-     * @param maplibreMap      the map object to add fills to
+     * @param mapLibreMap      the map object to add fills to
      * @param style          a valid a fully loaded style object
      * @param belowLayerId   the id of the layer above the fill layer
      * @param aboveLayerId   the id of the layer below the fill layer
      * @param geoJsonOptions options for the internal source
      */
     @UiThread
-    public FillManager(@NonNull MapView mapView, @NonNull MapLibreMap maplibreMap, @NonNull Style style, @Nullable String belowLayerId, @Nullable String aboveLayerId, @Nullable GeoJsonOptions geoJsonOptions) {
-        this(mapView, maplibreMap, style, new FillElementProvider(), belowLayerId, aboveLayerId, geoJsonOptions, DraggableAnnotationController.getInstance(mapView, maplibreMap));
+    public FillManager(@NonNull MapView mapView, @NonNull MapLibreMap mapLibreMap, @NonNull Style style, @Nullable String belowLayerId, @Nullable String aboveLayerId, @Nullable GeoJsonOptions geoJsonOptions) {
+        this(mapView, mapLibreMap, style, new FillElementProvider(), belowLayerId, aboveLayerId, geoJsonOptions, DraggableAnnotationController.getInstance(mapView, mapLibreMap));
     }
 
     @UiThread
-    FillManager(@NonNull MapView mapView, @NonNull MapLibreMap maplibreMap, @NonNull Style style, @NonNull CoreElementProvider<FillLayer> coreElementProvider, @Nullable String belowLayerId, @Nullable String aboveLayerId, @Nullable GeoJsonOptions geoJsonOptions, DraggableAnnotationController draggableAnnotationController) {
-        super(mapView, maplibreMap, style, coreElementProvider, draggableAnnotationController, belowLayerId, aboveLayerId, geoJsonOptions);
+    FillManager(@NonNull MapView mapView, @NonNull MapLibreMap mapLibreMap, @NonNull Style style, @NonNull CoreElementProvider<FillLayer> coreElementProvider, @Nullable String belowLayerId, @Nullable String aboveLayerId, @Nullable GeoJsonOptions geoJsonOptions, DraggableAnnotationController draggableAnnotationController) {
+        super(mapView, mapLibreMap, style, coreElementProvider, draggableAnnotationController, belowLayerId, aboveLayerId, geoJsonOptions);
     }
 
     @Override

@@ -53,44 +53,44 @@ public class LineManager extends AnnotationManager<LineLayer, Line, LineOptions,
     /**
      * Create a line manager, used to manage lines.
      *
-     * @param maplibreMap the map object to add lines to
+     * @param mapLibreMap the map object to add lines to
      * @param style     a valid a fully loaded style object
      */
     @UiThread
-    public LineManager(@NonNull MapView mapView, @NonNull MapLibreMap maplibreMap, @NonNull Style style) {
-        this(mapView, maplibreMap, style, null, null, (GeoJsonOptions) null);
+    public LineManager(@NonNull MapView mapView, @NonNull MapLibreMap mapLibreMap, @NonNull Style style) {
+        this(mapView, mapLibreMap, style, null, null, (GeoJsonOptions) null);
     }
 
     /**
      * Create a line manager, used to manage lines.
      *
-     * @param maplibreMap    the map object to add lines to
+     * @param mapLibreMap    the map object to add lines to
      * @param style        a valid a fully loaded style object
      * @param belowLayerId the id of the layer above the line layer
      * @param aboveLayerId the id of the layer below the line layer
      */
     @UiThread
-    public LineManager(@NonNull MapView mapView, @NonNull MapLibreMap maplibreMap, @NonNull Style style, @Nullable String belowLayerId, @Nullable String aboveLayerId) {
-        this(mapView, maplibreMap, style, belowLayerId, aboveLayerId, (GeoJsonOptions) null);
+    public LineManager(@NonNull MapView mapView, @NonNull MapLibreMap mapLibreMap, @NonNull Style style, @Nullable String belowLayerId, @Nullable String aboveLayerId) {
+        this(mapView, mapLibreMap, style, belowLayerId, aboveLayerId, (GeoJsonOptions) null);
     }
 
     /**
      * Create a line manager, used to manage lines.
      *
-     * @param maplibreMap      the map object to add lines to
+     * @param mapLibreMap      the map object to add lines to
      * @param style          a valid a fully loaded style object
      * @param belowLayerId   the id of the layer above the line layer
      * @param aboveLayerId   the id of the layer below the line layer
      * @param geoJsonOptions options for the internal source
      */
     @UiThread
-    public LineManager(@NonNull MapView mapView, @NonNull MapLibreMap maplibreMap, @NonNull Style style, @Nullable String belowLayerId, @Nullable String aboveLayerId, @Nullable GeoJsonOptions geoJsonOptions) {
-        this(mapView, maplibreMap, style, new LineElementProvider(), belowLayerId, aboveLayerId, geoJsonOptions, DraggableAnnotationController.getInstance(mapView, maplibreMap));
+    public LineManager(@NonNull MapView mapView, @NonNull MapLibreMap mapLibreMap, @NonNull Style style, @Nullable String belowLayerId, @Nullable String aboveLayerId, @Nullable GeoJsonOptions geoJsonOptions) {
+        this(mapView, mapLibreMap, style, new LineElementProvider(), belowLayerId, aboveLayerId, geoJsonOptions, DraggableAnnotationController.getInstance(mapView, mapLibreMap));
     }
 
     @UiThread
-    LineManager(@NonNull MapView mapView, @NonNull MapLibreMap maplibreMap, @NonNull Style style, @NonNull CoreElementProvider<LineLayer> coreElementProvider, @Nullable String belowLayerId, @Nullable String aboveLayerId, @Nullable GeoJsonOptions geoJsonOptions, DraggableAnnotationController draggableAnnotationController) {
-        super(mapView, maplibreMap, style, coreElementProvider, draggableAnnotationController, belowLayerId, aboveLayerId, geoJsonOptions);
+    LineManager(@NonNull MapView mapView, @NonNull MapLibreMap mapLibreMap, @NonNull Style style, @NonNull CoreElementProvider<LineLayer> coreElementProvider, @Nullable String belowLayerId, @Nullable String aboveLayerId, @Nullable GeoJsonOptions geoJsonOptions, DraggableAnnotationController draggableAnnotationController) {
+        super(mapView, mapLibreMap, style, coreElementProvider, draggableAnnotationController, belowLayerId, aboveLayerId, geoJsonOptions);
     }
 
     @Override

@@ -15,7 +15,7 @@ import org.maplibre.android.plugins.testapp.R;
 
 public class OnMapReadyIdlingResource implements IdlingResource, OnMapReadyCallback {
 
-    private MapLibreMap maplibreMap;
+    private MapLibreMap mapLibreMap;
     private MapView mapView;
     private IdlingResource.ResourceCallback resourceCallback;
 
@@ -35,7 +35,7 @@ public class OnMapReadyIdlingResource implements IdlingResource, OnMapReadyCallb
 
     @Override
     public boolean isIdleNow() {
-        return maplibreMap != null && maplibreMap.getStyle() != null && maplibreMap.getStyle().isFullyLoaded();
+        return mapLibreMap != null && mapLibreMap.getStyle() != null && mapLibreMap.getStyle().isFullyLoaded();
     }
 
     @Override
@@ -48,13 +48,13 @@ public class OnMapReadyIdlingResource implements IdlingResource, OnMapReadyCallb
     }
 
     public MapLibreMap getMapLibreMap() {
-        return maplibreMap;
+        return mapLibreMap;
     }
 
     @Override
-    public void onMapReady(@NonNull MapLibreMap maplibreMap) {
-        this.maplibreMap = maplibreMap;
-        maplibreMap.setStyle(Style.getPredefinedStyle("Streets"), style -> {
+    public void onMapReady(@NonNull MapLibreMap mapLibreMap) {
+        this.mapLibreMap = mapLibreMap;
+        mapLibreMap.setStyle(Style.getPredefinedStyle("Streets"), style -> {
             if (resourceCallback != null) {
                 resourceCallback.onTransitionToIdle();
             }

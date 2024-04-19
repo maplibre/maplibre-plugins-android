@@ -15,7 +15,8 @@ buildscript {
     classpath pluginDependencies.gradle
     classpath pluginDependencies.kotlin
     classpath pluginDependencies.kotlinLint
-    classpath pluginDependencies.gradleNexus    
+    classpath pluginDependencies.gradleNexus
+
   }
 }
 

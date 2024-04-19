@@ -34,8 +34,8 @@ public class LineManagerTest extends BaseActivityTest {
 
     private void setupLineManager() {
         Timber.i("Retrieving layer");
-        MapLibreMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
-            lineManager = new LineManager(idlingResource.getMapView(), maplibreMap, Objects.requireNonNull(maplibreMap.getStyle()));
+        MapLibreMapAction.invoke(mapLibreMap, (uiController, mapLibreMap) -> {
+            lineManager = new LineManager(idlingResource.getMapView(), mapLibreMap, Objects.requireNonNull(mapLibreMap.getStyle()));
         });
     }
 
@@ -44,7 +44,7 @@ public class LineManagerTest extends BaseActivityTest {
         validateTestSetup();
         setupLineManager();
         Timber.i("line-cap");
-        MapLibreMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapLibreMapAction.invoke(mapLibreMap, (uiController, mapLibreMap) -> {
             assertNotNull(lineManager);
 
             lineManager.setLineCap(LINE_CAP_BUTT);
@@ -57,7 +57,7 @@ public class LineManagerTest extends BaseActivityTest {
         validateTestSetup();
         setupLineManager();
         Timber.i("line-miter-limit");
-        MapLibreMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapLibreMapAction.invoke(mapLibreMap, (uiController, mapLibreMap) -> {
             assertNotNull(lineManager);
 
             lineManager.setLineMiterLimit(2.0f);
@@ -70,7 +70,7 @@ public class LineManagerTest extends BaseActivityTest {
         validateTestSetup();
         setupLineManager();
         Timber.i("line-round-limit");
-        MapLibreMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapLibreMapAction.invoke(mapLibreMap, (uiController, mapLibreMap) -> {
             assertNotNull(lineManager);
 
             lineManager.setLineRoundLimit(2.0f);
@@ -83,7 +83,7 @@ public class LineManagerTest extends BaseActivityTest {
         validateTestSetup();
         setupLineManager();
         Timber.i("line-translate");
-        MapLibreMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapLibreMapAction.invoke(mapLibreMap, (uiController, mapLibreMap) -> {
             assertNotNull(lineManager);
 
             lineManager.setLineTranslate(new Float[]{0f, 0f});
@@ -96,7 +96,7 @@ public class LineManagerTest extends BaseActivityTest {
         validateTestSetup();
         setupLineManager();
         Timber.i("line-translate-anchor");
-        MapLibreMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapLibreMapAction.invoke(mapLibreMap, (uiController, mapLibreMap) -> {
             assertNotNull(lineManager);
 
             lineManager.setLineTranslateAnchor(LINE_TRANSLATE_ANCHOR_MAP);
@@ -109,7 +109,7 @@ public class LineManagerTest extends BaseActivityTest {
         validateTestSetup();
         setupLineManager();
         Timber.i("line-dasharray");
-        MapLibreMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapLibreMapAction.invoke(mapLibreMap, (uiController, mapLibreMap) -> {
             assertNotNull(lineManager);
 
             lineManager.setLineDasharray(new Float[]{});

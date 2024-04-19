@@ -35,8 +35,8 @@ public class CircleManagerTest extends BaseActivityTest {
 
     private void setupCircleManager() {
         Timber.i("Retrieving layer");
-        MapLibreMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
-            circleManager = new CircleManager(idlingResource.getMapView(), maplibreMap, Objects.requireNonNull(maplibreMap.getStyle()));
+        MapLibreMapAction.invoke(mapLibreMap, (uiController, mapLibreMap) -> {
+            circleManager = new CircleManager(idlingResource.getMapView(), mapLibreMap, Objects.requireNonNull(mapLibreMap.getStyle()));
         });
     }
 
@@ -45,7 +45,7 @@ public class CircleManagerTest extends BaseActivityTest {
         validateTestSetup();
         setupCircleManager();
         Timber.i("circle-translate");
-        MapLibreMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapLibreMapAction.invoke(mapLibreMap, (uiController, mapLibreMap) -> {
             assertNotNull(circleManager);
 
             circleManager.setCircleTranslate(new Float[]{0f, 0f});
@@ -58,7 +58,7 @@ public class CircleManagerTest extends BaseActivityTest {
         validateTestSetup();
         setupCircleManager();
         Timber.i("circle-translate-anchor");
-        MapLibreMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapLibreMapAction.invoke(mapLibreMap, (uiController, mapLibreMap) -> {
             assertNotNull(circleManager);
 
             circleManager.setCircleTranslateAnchor(CIRCLE_TRANSLATE_ANCHOR_MAP);
@@ -71,7 +71,7 @@ public class CircleManagerTest extends BaseActivityTest {
         validateTestSetup();
         setupCircleManager();
         Timber.i("circle-pitch-scale");
-        MapLibreMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapLibreMapAction.invoke(mapLibreMap, (uiController, mapLibreMap) -> {
             assertNotNull(circleManager);
 
             circleManager.setCirclePitchScale(CIRCLE_PITCH_SCALE_MAP);
@@ -84,7 +84,7 @@ public class CircleManagerTest extends BaseActivityTest {
         validateTestSetup();
         setupCircleManager();
         Timber.i("circle-pitch-alignment");
-        MapLibreMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapLibreMapAction.invoke(mapLibreMap, (uiController, mapLibreMap) -> {
             assertNotNull(circleManager);
 
             circleManager.setCirclePitchAlignment(CIRCLE_PITCH_ALIGNMENT_MAP);

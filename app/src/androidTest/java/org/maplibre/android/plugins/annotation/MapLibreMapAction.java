@@ -15,11 +15,11 @@ import org.maplibre.android.maps.MapLibreMap;
 public class MapLibreMapAction implements ViewAction {
 
     private OnInvokeActionListener invokeViewAction;
-    private MapLibreMap maplibreMap;
+    private MapLibreMap mapLibreMap;
 
-    public MapLibreMapAction(OnInvokeActionListener invokeViewAction, MapLibreMap maplibreMap) {
+    public MapLibreMapAction(OnInvokeActionListener invokeViewAction, MapLibreMap mapLibreMap) {
         this.invokeViewAction = invokeViewAction;
-        this.maplibreMap = maplibreMap;
+        this.mapLibreMap = mapLibreMap;
     }
 
     @Override
@@ -34,15 +34,15 @@ public class MapLibreMapAction implements ViewAction {
 
     @Override
     public void perform(UiController uiController, View view) {
-        invokeViewAction.onInvokeAction(uiController, maplibreMap);
+        invokeViewAction.onInvokeAction(uiController, mapLibreMap);
     }
 
-    public static void invoke(MapLibreMap maplibreMap, OnInvokeActionListener invokeViewAction) {
-        onView(withId(android.R.id.content)).perform(new MapLibreMapAction(invokeViewAction, maplibreMap));
+    public static void invoke(MapLibreMap mapLibreMap, OnInvokeActionListener invokeViewAction) {
+        onView(withId(android.R.id.content)).perform(new MapLibreMapAction(invokeViewAction, mapLibreMap));
     }
 
     public interface OnInvokeActionListener {
-        void onInvokeAction(UiController uiController, MapLibreMap maplibreMap);
+        void onInvokeAction(UiController uiController, MapLibreMap mapLibreMap);
     }
 }
 

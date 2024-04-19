@@ -47,7 +47,7 @@ public class RegionSelectionFragment extends Fragment implements OnMapReadyCallb
     private RegionSelectionOptions options;
     private RegionSelectedCallback selectedCallback;
     private TextView regionNameTextView;
-    private MapLibreMap maplibreMap;
+    private MapLibreMap mapLibreMap;
     private String regionName;
     private RectF boundingBox;
     private MapView mapView;
@@ -98,18 +98,18 @@ public class RegionSelectionFragment extends Fragment implements OnMapReadyCallb
     }
 
     @Override
-    public void onMapReady(final MapLibreMap maplibreMap) {
-        this.maplibreMap = maplibreMap;
-        maplibreMap.setStyle(Style.getPredefinedStyle("Streets"), new Style.OnStyleLoaded() {
+    public void onMapReady(final MapLibreMap mapLibreMap) {
+        this.mapLibreMap = mapLibreMap;
+        mapLibreMap.setStyle(Style.getPredefinedStyle("Streets"), new Style.OnStyleLoaded() {
             @Override
             public void onStyleLoaded(@NonNull Style style) {
                 RegionSelectionFragment.this.style = style;
-                maplibreMap.addOnCameraIdleListener(RegionSelectionFragment.this);
+                mapLibreMap.addOnCameraIdleListener(RegionSelectionFragment.this);
                 if (options != null) {
                     if (options.startingBounds() != null) {
-                        maplibreMap.moveCamera(CameraUpdateFactory.newLatLngBounds(options.startingBounds(), 0));
+                        mapLibreMap.moveCamera(CameraUpdateFactory.newLatLngBounds(options.startingBounds(), 0));
                     } else if (options.statingCameraPosition() != null) {
-                        maplibreMap.moveCamera(CameraUpdateFactory.newCameraPosition(options.statingCameraPosition()));
+                        mapLibreMap.moveCamera(CameraUpdateFactory.newCameraPosition(options.statingCameraPosition()));
                     }
                 }
             }
@@ -130,8 +130,8 @@ public class RegionSelectionFragment extends Fragment implements OnMapReadyCallb
     public void onStart() {
         super.onStart();
         mapView.onStart();
-        if (maplibreMap != null) {
-            maplibreMap.addOnCameraIdleListener(this);
+        if (mapLibreMap != null) {
+            mapLibreMap.addOnCameraIdleListener(this);
         }
     }
 
@@ -157,8 +157,8 @@ public class RegionSelectionFragment extends Fragment implements OnMapReadyCallb
     public void onStop() {
         super.onStop();
         mapView.onStop();
-        if (maplibreMap != null) {
-            maplibreMap.removeOnCameraIdleListener(this);
+        if (mapLibreMap != null) {
+            mapLibreMap.removeOnCameraIdleListener(this);
         }
     }
 
@@ -185,7 +185,7 @@ public class RegionSelectionFragment extends Fragment implements OnMapReadyCallb
     }
 
     public String getOfflineRegionName() {
-        List<Feature> featureList = maplibreMap.queryRenderedFeatures(boundingBox, LAYER_IDS);
+        List<Feature> featureList = mapLibreMap.queryRenderedFeatures(boundingBox, LAYER_IDS);
         if (featureList.isEmpty() && style != null) {
             Timber.v("Rendered features empty, attempting to query vector source.");
             VectorSource source = style.getSourceAs("composite");
@@ -200,20 +200,20 @@ public class RegionSelectionFragment extends Fragment implements OnMapReadyCallb
     }
 
     OfflineRegionDefinition createRegion() {
-        if (maplibreMap == null) {
+        if (mapLibreMap == null) {
             throw new NullPointerException("MapLibreMap is null and can't be used to create Offline region"
                 + "definition.");
         }
         RectF rectF = getSelectionRegion();
-        LatLng northEast = maplibreMap.getProjection().fromScreenLocation(new PointF(rectF.right, rectF.top));
-        LatLng southWest = maplibreMap.getProjection().fromScreenLocation(new PointF(rectF.left, rectF.bottom));
+        LatLng northEast = mapLibreMap.getProjection().fromScreenLocation(new PointF(rectF.right, rectF.top));
+        LatLng southWest = mapLibreMap.getProjection().fromScreenLocation(new PointF(rectF.left, rectF.bottom));
 
         LatLngBounds bounds = new LatLngBounds.Builder().include(northEast).include(southWest).build();
-        double cameraZoom = maplibreMap.getCameraPosition().zoom;
+        double cameraZoom = mapLibreMap.getCameraPosition().zoom;
         float pixelRatio = getActivity().getResources().getDisplayMetrics().density;
 
         return new OfflineTilePyramidRegionDefinition(
-            maplibreMap.getStyle().getUrl(), bounds, cameraZoom - 2, cameraZoom + 2, pixelRatio
+            mapLibreMap.getStyle().getUrl(), bounds, cameraZoom - 2, cameraZoom + 2, pixelRatio
         );
     }
 

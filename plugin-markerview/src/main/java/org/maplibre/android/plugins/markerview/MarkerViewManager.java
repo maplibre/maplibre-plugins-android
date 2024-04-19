@@ -16,7 +16,7 @@ import java.util.List;
 public class MarkerViewManager implements MapView.OnCameraDidChangeListener, MapView.OnCameraIsChangingListener {
 
     private final MapView mapView;
-    private final MapLibreMap maplibreMap;
+    private final MapLibreMap mapLibreMap;
     private final List<MarkerView> markers = new ArrayList<>();
     private boolean initialised;
 
@@ -24,11 +24,11 @@ public class MarkerViewManager implements MapView.OnCameraDidChangeListener, Map
      * Create a MarkerViewManager.
      *
      * @param mapView   the MapView used to synchronise views on
-     * @param maplibreMap the MapLibreMap to synchronise views with
+     * @param mapLibreMap the MapLibreMap to synchronise views with
      */
-    public MarkerViewManager(MapView mapView, MapLibreMap maplibreMap) {
+    public MarkerViewManager(MapView mapView, MapLibreMap mapLibreMap) {
         this.mapView = mapView;
-        this.maplibreMap = maplibreMap;
+        this.mapLibreMap = mapLibreMap;
     }
 
     /**
@@ -61,7 +61,7 @@ public class MarkerViewManager implements MapView.OnCameraDidChangeListener, Map
             mapView.addOnCameraDidChangeListener(this);
             mapView.addOnCameraIsChangingListener(this);
         }
-        markerView.setProjection(maplibreMap.getProjection());
+        markerView.setProjection(mapLibreMap.getProjection());
         mapView.addView(markerView.getView());
         markers.add(markerView);
         markerView.update();

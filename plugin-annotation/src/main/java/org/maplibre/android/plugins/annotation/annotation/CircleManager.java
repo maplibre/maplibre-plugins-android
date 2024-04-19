@@ -48,44 +48,44 @@ public class CircleManager extends AnnotationManager<CircleLayer, Circle, Circle
     /**
      * Create a circle manager, used to manage circles.
      *
-     * @param maplibreMap the map object to add circles to
+     * @param mapLibreMap the map object to add circles to
      * @param style     a valid a fully loaded style object
      */
     @UiThread
-    public CircleManager(@NonNull MapView mapView, @NonNull MapLibreMap maplibreMap, @NonNull Style style) {
-        this(mapView, maplibreMap, style, null, null, (GeoJsonOptions) null);
+    public CircleManager(@NonNull MapView mapView, @NonNull MapLibreMap mapLibreMap, @NonNull Style style) {
+        this(mapView, mapLibreMap, style, null, null, (GeoJsonOptions) null);
     }
 
     /**
      * Create a circle manager, used to manage circles.
      *
-     * @param maplibreMap    the map object to add circles to
+     * @param mapLibreMap    the map object to add circles to
      * @param style        a valid a fully loaded style object
      * @param belowLayerId the id of the layer above the circle layer
      * @param aboveLayerId the id of the layer below the circle layer
      */
     @UiThread
-    public CircleManager(@NonNull MapView mapView, @NonNull MapLibreMap maplibreMap, @NonNull Style style, @Nullable String belowLayerId, @Nullable String aboveLayerId) {
-        this(mapView, maplibreMap, style, belowLayerId, aboveLayerId, (GeoJsonOptions) null);
+    public CircleManager(@NonNull MapView mapView, @NonNull MapLibreMap mapLibreMap, @NonNull Style style, @Nullable String belowLayerId, @Nullable String aboveLayerId) {
+        this(mapView, mapLibreMap, style, belowLayerId, aboveLayerId, (GeoJsonOptions) null);
     }
 
     /**
      * Create a circle manager, used to manage circles.
      *
-     * @param maplibreMap      the map object to add circles to
+     * @param mapLibreMap      the map object to add circles to
      * @param style          a valid a fully loaded style object
      * @param belowLayerId   the id of the layer above the circle layer
      * @param aboveLayerId   the id of the layer below the circle layer
      * @param geoJsonOptions options for the internal source
      */
     @UiThread
-    public CircleManager(@NonNull MapView mapView, @NonNull MapLibreMap maplibreMap, @NonNull Style style, @Nullable String belowLayerId, @Nullable String aboveLayerId, @Nullable GeoJsonOptions geoJsonOptions) {
-        this(mapView, maplibreMap, style, new CircleElementProvider(), belowLayerId, aboveLayerId, geoJsonOptions, DraggableAnnotationController.getInstance(mapView, maplibreMap));
+    public CircleManager(@NonNull MapView mapView, @NonNull MapLibreMap mapLibreMap, @NonNull Style style, @Nullable String belowLayerId, @Nullable String aboveLayerId, @Nullable GeoJsonOptions geoJsonOptions) {
+        this(mapView, mapLibreMap, style, new CircleElementProvider(), belowLayerId, aboveLayerId, geoJsonOptions, DraggableAnnotationController.getInstance(mapView, mapLibreMap));
     }
 
     @UiThread
-    CircleManager(@NonNull MapView mapView, @NonNull MapLibreMap maplibreMap, @NonNull Style style, @NonNull CoreElementProvider<CircleLayer> coreElementProvider, @Nullable String belowLayerId, @Nullable String aboveLayerId, @Nullable GeoJsonOptions geoJsonOptions, DraggableAnnotationController draggableAnnotationController) {
-        super(mapView, maplibreMap, style, coreElementProvider, draggableAnnotationController, belowLayerId, aboveLayerId, geoJsonOptions);
+    CircleManager(@NonNull MapView mapView, @NonNull MapLibreMap mapLibreMap, @NonNull Style style, @NonNull CoreElementProvider<CircleLayer> coreElementProvider, @Nullable String belowLayerId, @Nullable String aboveLayerId, @Nullable GeoJsonOptions geoJsonOptions, DraggableAnnotationController draggableAnnotationController) {
+        super(mapView, mapLibreMap, style, coreElementProvider, draggableAnnotationController, belowLayerId, aboveLayerId, geoJsonOptions);
     }
 
     @Override

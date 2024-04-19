@@ -42,8 +42,8 @@ public class SymbolTest extends BaseActivityTest {
 
     private void setupAnnotation() {
         Timber.i("Retrieving layer");
-        MapLibreMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
-            SymbolManager symbolManager = new SymbolManager(idlingResource.getMapView(), maplibreMap, Objects.requireNonNull(maplibreMap.getStyle()));
+        MapLibreMapAction.invoke(mapLibreMap, (uiController, mapLibreMap) -> {
+            SymbolManager symbolManager = new SymbolManager(idlingResource.getMapView(), mapLibreMap, Objects.requireNonNull(mapLibreMap.getStyle()));
             symbol = symbolManager.create(new SymbolOptions().withLatLng(new LatLng()));
         });
     }
@@ -53,7 +53,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("symbol-sort-key");
-        MapLibreMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapLibreMapAction.invoke(mapLibreMap, (uiController, mapLibreMap) -> {
             assertNotNull(symbol);
 
             symbol.setSymbolSortKey(2.0f);
@@ -66,7 +66,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("icon-size");
-        MapLibreMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapLibreMapAction.invoke(mapLibreMap, (uiController, mapLibreMap) -> {
             assertNotNull(symbol);
 
             symbol.setIconSize(2.0f);
@@ -79,7 +79,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("icon-image");
-        MapLibreMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapLibreMapAction.invoke(mapLibreMap, (uiController, mapLibreMap) -> {
             assertNotNull(symbol);
 
             symbol.setIconImage("undefined");
@@ -92,7 +92,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("icon-rotate");
-        MapLibreMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapLibreMapAction.invoke(mapLibreMap, (uiController, mapLibreMap) -> {
             assertNotNull(symbol);
 
             symbol.setIconRotate(2.0f);
@@ -105,7 +105,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("icon-offset");
-        MapLibreMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapLibreMapAction.invoke(mapLibreMap, (uiController, mapLibreMap) -> {
             assertNotNull(symbol);
 
             symbol.setIconOffset(new PointF(1.0f, 1.0f));
@@ -118,7 +118,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("icon-anchor");
-        MapLibreMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapLibreMapAction.invoke(mapLibreMap, (uiController, mapLibreMap) -> {
             assertNotNull(symbol);
 
             symbol.setIconAnchor(ICON_ANCHOR_CENTER);
@@ -131,7 +131,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("text-field");
-        MapLibreMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapLibreMapAction.invoke(mapLibreMap, (uiController, mapLibreMap) -> {
             assertNotNull(symbol);
 
             symbol.setTextField("");
@@ -144,7 +144,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("text-font");
-        MapLibreMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapLibreMapAction.invoke(mapLibreMap, (uiController, mapLibreMap) -> {
             assertNotNull(symbol);
 
             symbol.setTextFont(new String[]{"Open Sans Regular", "Arial Unicode MS Regular"});
@@ -157,7 +157,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("text-size");
-        MapLibreMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapLibreMapAction.invoke(mapLibreMap, (uiController, mapLibreMap) -> {
             assertNotNull(symbol);
 
             symbol.setTextSize(2.0f);
@@ -170,7 +170,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("text-max-width");
-        MapLibreMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapLibreMapAction.invoke(mapLibreMap, (uiController, mapLibreMap) -> {
             assertNotNull(symbol);
 
             symbol.setTextMaxWidth(2.0f);
@@ -183,7 +183,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("text-letter-spacing");
-        MapLibreMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapLibreMapAction.invoke(mapLibreMap, (uiController, mapLibreMap) -> {
             assertNotNull(symbol);
 
             symbol.setTextLetterSpacing(2.0f);
@@ -196,7 +196,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("text-justify");
-        MapLibreMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapLibreMapAction.invoke(mapLibreMap, (uiController, mapLibreMap) -> {
             assertNotNull(symbol);
 
             symbol.setTextJustify(TEXT_JUSTIFY_AUTO);
@@ -209,7 +209,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("text-radial-offset");
-        MapLibreMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapLibreMapAction.invoke(mapLibreMap, (uiController, mapLibreMap) -> {
             assertNotNull(symbol);
 
             symbol.setTextRadialOffset(2.0f);
@@ -222,7 +222,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("text-anchor");
-        MapLibreMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapLibreMapAction.invoke(mapLibreMap, (uiController, mapLibreMap) -> {
             assertNotNull(symbol);
 
             symbol.setTextAnchor(TEXT_ANCHOR_CENTER);
@@ -235,7 +235,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("text-rotate");
-        MapLibreMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapLibreMapAction.invoke(mapLibreMap, (uiController, mapLibreMap) -> {
             assertNotNull(symbol);
 
             symbol.setTextRotate(2.0f);
@@ -248,7 +248,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("text-transform");
-        MapLibreMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapLibreMapAction.invoke(mapLibreMap, (uiController, mapLibreMap) -> {
             assertNotNull(symbol);
 
             symbol.setTextTransform(TEXT_TRANSFORM_NONE);
@@ -261,7 +261,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("text-offset");
-        MapLibreMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapLibreMapAction.invoke(mapLibreMap, (uiController, mapLibreMap) -> {
             assertNotNull(symbol);
 
             symbol.setTextOffset(new PointF(1.0f, 1.0f));
@@ -274,7 +274,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("icon-opacity");
-        MapLibreMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapLibreMapAction.invoke(mapLibreMap, (uiController, mapLibreMap) -> {
             assertNotNull(symbol);
 
             symbol.setIconOpacity(2.0f);
@@ -287,7 +287,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("icon-color");
-        MapLibreMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapLibreMapAction.invoke(mapLibreMap, (uiController, mapLibreMap) -> {
             assertNotNull(symbol);
 
             symbol.setIconColor("rgba(0, 0, 0, 1)");
@@ -300,7 +300,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("icon-color");
-        MapLibreMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapLibreMapAction.invoke(mapLibreMap, (uiController, mapLibreMap) -> {
             assertNotNull(symbol);
             symbol.setIconColor(ColorUtils.rgbaToColor("rgba(0, 0, 0, 1)"));
             assertEquals(symbol.getIconColorAsInt(), ColorUtils.rgbaToColor("rgba(0, 0, 0, 1)"));
@@ -313,7 +313,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("icon-halo-color");
-        MapLibreMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapLibreMapAction.invoke(mapLibreMap, (uiController, mapLibreMap) -> {
             assertNotNull(symbol);
 
             symbol.setIconHaloColor("rgba(0, 0, 0, 1)");
@@ -326,7 +326,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("icon-halo-color");
-        MapLibreMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapLibreMapAction.invoke(mapLibreMap, (uiController, mapLibreMap) -> {
             assertNotNull(symbol);
             symbol.setIconHaloColor(ColorUtils.rgbaToColor("rgba(0, 0, 0, 1)"));
             assertEquals(symbol.getIconHaloColorAsInt(), ColorUtils.rgbaToColor("rgba(0, 0, 0, 1)"));
@@ -339,7 +339,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("icon-halo-width");
-        MapLibreMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapLibreMapAction.invoke(mapLibreMap, (uiController, mapLibreMap) -> {
             assertNotNull(symbol);
 
             symbol.setIconHaloWidth(2.0f);
@@ -352,7 +352,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("icon-halo-blur");
-        MapLibreMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapLibreMapAction.invoke(mapLibreMap, (uiController, mapLibreMap) -> {
             assertNotNull(symbol);
 
             symbol.setIconHaloBlur(2.0f);
@@ -365,7 +365,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("text-opacity");
-        MapLibreMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapLibreMapAction.invoke(mapLibreMap, (uiController, mapLibreMap) -> {
             assertNotNull(symbol);
 
             symbol.setTextOpacity(2.0f);
@@ -378,7 +378,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("text-color");
-        MapLibreMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapLibreMapAction.invoke(mapLibreMap, (uiController, mapLibreMap) -> {
             assertNotNull(symbol);
 
             symbol.setTextColor("rgba(0, 0, 0, 1)");
@@ -391,7 +391,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("text-color");
-        MapLibreMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapLibreMapAction.invoke(mapLibreMap, (uiController, mapLibreMap) -> {
             assertNotNull(symbol);
             symbol.setTextColor(ColorUtils.rgbaToColor("rgba(0, 0, 0, 1)"));
             assertEquals(symbol.getTextColorAsInt(), ColorUtils.rgbaToColor("rgba(0, 0, 0, 1)"));
@@ -404,7 +404,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("text-halo-color");
-        MapLibreMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapLibreMapAction.invoke(mapLibreMap, (uiController, mapLibreMap) -> {
             assertNotNull(symbol);
 
             symbol.setTextHaloColor("rgba(0, 0, 0, 1)");
@@ -417,7 +417,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("text-halo-color");
-        MapLibreMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapLibreMapAction.invoke(mapLibreMap, (uiController, mapLibreMap) -> {
             assertNotNull(symbol);
             symbol.setTextHaloColor(ColorUtils.rgbaToColor("rgba(0, 0, 0, 1)"));
             assertEquals(symbol.getTextHaloColorAsInt(), ColorUtils.rgbaToColor("rgba(0, 0, 0, 1)"));
@@ -430,7 +430,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("text-halo-width");
-        MapLibreMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapLibreMapAction.invoke(mapLibreMap, (uiController, mapLibreMap) -> {
             assertNotNull(symbol);
 
             symbol.setTextHaloWidth(2.0f);
@@ -443,7 +443,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("text-halo-blur");
-        MapLibreMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapLibreMapAction.invoke(mapLibreMap, (uiController, mapLibreMap) -> {
             assertNotNull(symbol);
 
             symbol.setTextHaloBlur(2.0f);

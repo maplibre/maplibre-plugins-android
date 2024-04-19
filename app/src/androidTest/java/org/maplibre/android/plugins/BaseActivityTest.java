@@ -37,7 +37,7 @@ public abstract class BaseActivityTest {
     @Rule
     public TestName testName = new TestName();
 
-    protected MapLibreMap maplibreMap;
+    protected MapLibreMap mapLibreMap;
     protected OnMapReadyIdlingResource idlingResource;
 
     @Before
@@ -46,7 +46,7 @@ public abstract class BaseActivityTest {
             Timber.e("@Before %s: register idle resource", testName.getMethodName());
             IdlingRegistry.getInstance().register(idlingResource = new OnMapReadyIdlingResource(rule.getActivity()));
             Espresso.onIdle();
-            maplibreMap = idlingResource.getMapLibreMap();
+            mapLibreMap = idlingResource.getMapLibreMap();
         } catch (IdlingResourceTimeoutException idlingResourceTimeoutException) {
             throw new RuntimeException(String.format("Could not start %s test for %s.\n  Either the ViewHierarchy doesn't "
                     + "contain a view with resource id = R.id.mapView or \n the hosting Activity wasn't in an idle state.",
@@ -59,11 +59,11 @@ public abstract class BaseActivityTest {
     protected void validateTestSetup() {
         Assert.assertTrue("Device is not connected to the Internet.", isConnected(rule.getActivity()));
         checkViewIsDisplayed(android.R.id.content);
-        Assert.assertNotNull(maplibreMap);
+        Assert.assertNotNull(mapLibreMap);
     }
 
     protected MapLibreMap getMapLibreMap() {
-        return maplibreMap;
+        return mapLibreMap;
     }
 
     protected abstract Class getActivityClass();
@@ -92,7 +92,7 @@ public abstract class BaseActivityTest {
     }
 
     protected MapLibreMapAction getMapLibreMapAction(MapLibreMapAction.OnInvokeActionListener onInvokeActionListener) {
-        return new MapLibreMapAction(onInvokeActionListener, maplibreMap);
+        return new MapLibreMapAction(onInvokeActionListener, mapLibreMap);
     }
 
     @After

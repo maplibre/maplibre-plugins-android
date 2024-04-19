@@ -60,21 +60,21 @@ public final class BuildingPlugin {
      * Create a building plugin.
      *
      * @param mapView   the MapView to apply the building plugin to
-     * @param maplibreMap the MapLibreMap to apply building plugin with
+     * @param mapLibreMap the MapLibreMap to apply building plugin with
      * @since 0.1.0
      */
-    public BuildingPlugin(@NonNull MapView mapView, @NonNull final MapLibreMap maplibreMap, @NonNull Style style) {
-        this(mapView, maplibreMap, style, null);
+    public BuildingPlugin(@NonNull MapView mapView, @NonNull final MapLibreMap mapLibreMap, @NonNull Style style) {
+        this(mapView, mapLibreMap, style, null);
     }
 
     /**
      * Create a building plugin.
      *
      * @param mapView   the MapView to apply the building plugin to
-     * @param maplibreMap the MapLibreMap to apply building plugin with
+     * @param mapLibreMap the MapLibreMap to apply building plugin with
      * @since 0.1.0
      */
-    public BuildingPlugin(@NonNull MapView mapView, @NonNull final MapLibreMap maplibreMap, @NonNull Style style,
+    public BuildingPlugin(@NonNull MapView mapView, @NonNull final MapLibreMap mapLibreMap, @NonNull Style style,
                           @Nullable final String belowLayer) {
         this.style = style;
         if (!style.isFullyLoaded()) {
@@ -86,7 +86,7 @@ public final class BuildingPlugin {
         mapView.addOnDidFinishLoadingStyleListener(new MapView.OnDidFinishLoadingStyleListener() {
             @Override
             public void onDidFinishLoadingStyle() {
-                maplibreMap.getStyle(new Style.OnStyleLoaded() {
+                mapLibreMap.getStyle(new Style.OnStyleLoaded() {
                     @Override
                     public void onStyleLoaded(@NonNull Style style) {
                         BuildingPlugin.this.style = style;
