@@ -13,9 +13,9 @@ private def verifyAnnotationCodeGeneration() {
         workingDir = "${rootDir}"
         commandLine "make", "generate-annotation-code"
     }
-    checkDirectoryForChanges("app/src/androidTest/java/com/mapbox/mapboxsdk/plugins/annotation")
-    checkDirectoryForChanges("plugin-annotation/src/test/java/com/mapbox/mapboxsdk/plugins/annotation")
-    checkDirectoryForChanges("plugin-annotation/src/main/java/com/mapbox/mapboxsdk/plugins/annotation")
+    checkDirectoryForChanges("app/src/androidTest/java/org/maplibre/android/plugins/annotation")
+    checkDirectoryForChanges("plugin-annotation/src/test/java/org/maplibre/android/plugins/annotation")
+    checkDirectoryForChanges("plugin-annotation/src/main/java/org/maplibre/android/plugins/annotation")
 }
 
 private checkDirectoryForChanges(dir) {
