@@ -3,7 +3,7 @@
 
 const fs = require('fs');
 const ejs = require('ejs');
-const spec = require('./../gl-js/src/style-spec/reference/v8');
+const spec = require('@maplibre/maplibre-gl-style-spec/src/reference/v8');
 const _ = require('lodash');
 const path = require('path');
 
