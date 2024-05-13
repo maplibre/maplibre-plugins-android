@@ -1,8 +1,10 @@
-# Mapbox Scale Bar Plugin
+# MapLibre Scale Bar Plugin
 
 The scale bar plugin adds a responsive scale bar on top of the map. The scale bar gives a visual indication of how far various map features are from one another at a certain zoom level. The scale bar can be customized with options such as the text color/size, referesh interval, margins, and border width.
 
-![ezgif com-resize (2)](https://user-images.githubusercontent.com/8577318/57837052-89416280-77f4-11e9-9d97-f164737acd46.gif)
+This plugin is currently unmaintained.
+
+<!--![ezgif com-resize (2)](https://user-images.githubusercontent.com/8577318/57837052-89416280-77f4-11e9-9d97-f164737acd46.gif) -->
 
 ## Getting Started
 
@@ -18,7 +20,7 @@ repositories {
 
 // In the app build.gradle file
 dependencies {
-    implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-scalebar-v9:0.5.0'
+    implementation 'com.maplibre.maplibresdk:maplibre-android-plugin-scalebar-v9:0.5.0'
 }
 ```
 
@@ -35,31 +37,31 @@ repositories {
 
 // In the app build.gradle file
 dependencies {
-    implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-scalebar-v9:0.6.0-SNAPSHOT'
+    implementation 'com.maplibre.maplibresdk:maplibre-android-plugin-scalebar-v9:0.6.0-SNAPSHOT'
 }
 ```
 
 ## Scale bar plugin examples
 
-- [In this repo's test app](https://github.com/mapbox/mapbox-plugins-android/blob/master/app/src/main/java/com/mapbox/mapboxsdk/plugins/testapp/activity/scalebar/ScalebarActivity.kt)
+- [In this repo's test app](https://github.com/maplibre/maplibre-plugins-android/blob/master/app/src/main/java/com/mapbox/mapboxsdk/plugins/testapp/activity/scalebar/ScalebarActivity.kt)
 
 ## Help and Usage
 
-This repository includes an app that shows how to use each plugins in this repository. [Check out its code](https://github.com/mapbox/mapbox-plugins-android/tree/master/app/src/main/java/com/mapbox/mapboxsdk/plugins/testapp/activity) for ready-to-use snippets.
+This repository includes an app that shows how to use each plugins in this repository. [Check out its code](https://github.com/maplibre/maplibre-plugins-android/tree/master/app/src/main/java/com/mapbox/mapboxsdk/plugins/testapp/activity) for ready-to-use snippets.
 
-Plugins are easy to use. A plugin is simply a library module built on top of the Mapbox Maps SDK for Android. Currently, we are not requiring plugins to register themselves or to implement any specific interfaces so that they're simple to consume.
+Plugins are easy to use. A plugin is simply a library module built on top of the MapLibre Maps SDK for Android. Currently, we are not requiring plugins to register themselves or to implement any specific interfaces so that they're simple to consume.
 
-We'd love to [hear your feedback](https://github.com/mapbox/mapbox-plugins-android/issues) as we build more plugins and learn how you use them.
+We'd love to [hear your feedback](https://github.com/maplibre/maplibre-plugins-android/issues) as we build more plugins and learn how you use them.
 
 ## Why Plugins
 
 Splitting specific functionality into plugins makes our Maps SDK lighter and nimble for you to use, and it also lets us iterate faster. We can release plugins more often than the SDK, which requires a slower pace due to its larger codebase.
 
-The Mapbox Android team creates plugins but this plugins repository is an open-source project similar to the various Mapbox SDKs for Android.
-Plugins' lightweight nature makes them much easier for you and anyone else to contribute rather than trying to add the same feature to the more robust Maps SDK. The Mapbox team can also more easily accept contributed plugins and keep the plugin list growing.
+The MapLibre Android team creates plugins but this plugins repository is an open-source project similar to the various MapLibre SDKs for Android.
+Plugins' lightweight nature makes them much easier for you and anyone else to contribute rather than trying to add the same feature to the more robust Maps SDK. The MapLibre team can also more easily accept contributed plugins and keep the plugin list growing.
 
 ## Contributing
 
 We welcome contributions to this plugin repository!
 
-If you're interested in building and sharing your own plugin, please read [the contribution guide](https://github.com/mapbox/mapbox-plugins-android/blob/master/CONTRIBUTING.md) to learn how to get started.
+If you're interested in building and sharing your own plugin, please read [the contribution guide](https://github.com/maplibre/maplibre-plugins-android/blob/master/CONTRIBUTING.md) to learn how to get started.
