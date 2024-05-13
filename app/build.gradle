@@ -9,7 +9,7 @@ android {
   defaultConfig {
     minSdkVersion androidVersions.minSdkVersion
     targetSdkVersion androidVersions.targetSdkVersion
-    applicationId "org.maplibre.android.plugins.testapp"
+    applicationId "com.mapbox.mapboxsdk.plugins.testapp"
     testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     vectorDrawables.useSupportLibrary = true
   }
@@ -111,7 +111,7 @@ dependencies {
   implementation project(':plugin-localization')
   implementation project(':plugin-annotation')
   implementation project(':plugin-markerview')
-  implementation project(':ktx-maplibre-maps')
+  implementation project(':ktx-mapbox-maps')
   implementation project(':plugin-scalebar')
 }
 
