@@ -13,7 +13,7 @@ import androidx.annotation.VisibleForTesting;
 import com.mapbox.android.gestures.AndroidGesturesManager;
 import com.mapbox.android.gestures.MoveDistancesObject;
 import com.mapbox.android.gestures.MoveGestureDetector;
-import com.mapbox.geojson.Geometry;
+import org.maplibre.geojson.Geometry;
 import org.maplibre.android.maps.MapLibreMap;
 import org.maplibre.android.maps.MapView;
 

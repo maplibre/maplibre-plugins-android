@@ -2,8 +2,8 @@ package com.mapbox.mapboxsdk.plugins.annotation;
 
 import android.graphics.PointF;
 
-import com.mapbox.geojson.Feature;
-import com.mapbox.geojson.FeatureCollection;
+import org.maplibre.geojson.Feature;
+import org.maplibre.geojson.FeatureCollection;
 import org.maplibre.android.geometry.LatLng;
 import org.maplibre.android.log.Logger;
 import org.maplibre.android.maps.MapLibreMap;

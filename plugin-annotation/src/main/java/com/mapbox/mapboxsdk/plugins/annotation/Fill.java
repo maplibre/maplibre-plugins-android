@@ -12,7 +12,7 @@ import android.graphics.PointF;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonNull;
 import com.google.gson.JsonObject;
-import com.mapbox.geojson.*;
+import org.maplibre.geojson.*;
 import org.maplibre.android.geometry.LatLng;
 import org.maplibre.android.style.layers.Property;
 import org.maplibre.android.style.layers.PropertyFactory;

@@ -3,7 +3,7 @@ package com.mapbox.mapboxsdk.plugins.annotation;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.mapbox.android.gestures.MoveDistancesObject;
-import com.mapbox.geojson.Geometry;
+import org.maplibre.geojson.Geometry;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

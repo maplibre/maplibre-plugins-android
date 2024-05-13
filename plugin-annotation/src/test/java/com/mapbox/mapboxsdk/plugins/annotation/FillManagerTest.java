@@ -5,7 +5,7 @@ package com.mapbox.mapboxsdk.plugins.annotation;
 import android.graphics.PointF;
 
 import com.google.gson.JsonPrimitive;
-import com.mapbox.geojson.*;
+import org.maplibre.geojson.*;
 import org.maplibre.android.geometry.LatLng;
 import org.maplibre.android.maps.MapView;
 import org.maplibre.android.maps.MapLibreMap;

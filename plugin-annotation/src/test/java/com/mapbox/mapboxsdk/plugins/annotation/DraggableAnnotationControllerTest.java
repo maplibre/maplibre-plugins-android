@@ -5,7 +5,7 @@ import android.graphics.PointF;
 import com.mapbox.android.gestures.AndroidGesturesManager;
 import com.mapbox.android.gestures.MoveDistancesObject;
 import com.mapbox.android.gestures.MoveGestureDetector;
-import com.mapbox.geojson.Geometry;
+import org.maplibre.geojson.Geometry;
 
 import org.junit.Before;
 import org.junit.Test;
