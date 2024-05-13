@@ -7,12 +7,12 @@ package com.mapbox.mapboxsdk.plugins.annotation;
  */
 public interface OnAnnotationLongClickListener<T extends Annotation> {
 
-  /**
-   * Called when an annotation has been long clicked
-   *
-   * @param t the annotation long clicked.
-   * @return True if this click should be consumed and not passed further to other listeners
-   * registered afterwards, false otherwise.
-   */
-  boolean onAnnotationLongClick(T t);
+    /**
+     * Called when an annotation has been long clicked
+     *
+     * @param t the annotation long clicked.
+     * @return True if this click should be consumed and not passed further to other listeners
+     * registered afterwards, false otherwise.
+     */
+    boolean onAnnotationLongClick(T t);
 }

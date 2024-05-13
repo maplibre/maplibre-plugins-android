@@ -30,240 +30,243 @@ import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.*;
  */
 public class FillManager extends AnnotationManager<FillLayer, Fill, FillOptions, OnFillDragListener, OnFillClickListener, OnFillLongClickListener> {
 
-  private static final String PROPERTY_FILL_ANTIALIAS = "fill-antialias";
-  private static final String PROPERTY_FILL_TRANSLATE = "fill-translate";
-  private static final String PROPERTY_FILL_TRANSLATE_ANCHOR = "fill-translate-anchor";
+    private static final String PROPERTY_FILL_ANTIALIAS = "fill-antialias";
+    private static final String PROPERTY_FILL_TRANSLATE = "fill-translate";
+    private static final String PROPERTY_FILL_TRANSLATE_ANCHOR = "fill-translate-anchor";
 
-  /**
-   * Create a fill manager, used to manage fills.
-   *
-   * @param mapboxMap the map object to add fills to
-   * @param style a valid a fully loaded style object
-   */
-  @UiThread
-  public FillManager(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap, @NonNull Style style) {
-    this(mapView, mapboxMap, style, null, (GeoJsonOptions) null);
-  }
-
-  /**
-   * Create a fill manager, used to manage fills.
-   *
-   * @param mapboxMap the map object to add fills to
-   * @param style a valid a fully loaded style object
-   * @param belowLayerId the id of the layer above the circle layer
-   */
-  @UiThread
-  public FillManager(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap, @NonNull Style style, @Nullable String belowLayerId) {
-    this(mapView, mapboxMap, style, belowLayerId, (GeoJsonOptions) null);
-  }
-
-  /**
-   * Create a fill manager, used to manage fills.
-   *
-   * @param mapboxMap the map object to add fills to
-   * @param style a valid a fully loaded style object
-   * @param belowLayerId the id of the layer above the circle layer
-   * @param geoJsonOptions options for the internal source
-   */
-  @UiThread
-  public FillManager(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap, @NonNull Style style, @Nullable String belowLayerId, @Nullable GeoJsonOptions geoJsonOptions) {
-    this(mapView, mapboxMap, style, new FillElementProvider(), belowLayerId, geoJsonOptions, DraggableAnnotationController.getInstance(mapView, mapboxMap));
-  }
-
-  @VisibleForTesting
-  FillManager(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap, @NonNull Style style, @NonNull CoreElementProvider<FillLayer> coreElementProvider, @Nullable String belowLayerId, @Nullable GeoJsonOptions geoJsonOptions, DraggableAnnotationController draggableAnnotationController) {
-    super(mapView, mapboxMap, style, coreElementProvider, draggableAnnotationController, belowLayerId, geoJsonOptions);
-  }
-
-  @Override
-  void initializeDataDrivenPropertyMap() {
-    dataDrivenPropertyUsageMap.put(FillOptions.PROPERTY_FILL_OPACITY, false);
-    dataDrivenPropertyUsageMap.put(FillOptions.PROPERTY_FILL_COLOR, false);
-    dataDrivenPropertyUsageMap.put(FillOptions.PROPERTY_FILL_OUTLINE_COLOR, false);
-    dataDrivenPropertyUsageMap.put(FillOptions.PROPERTY_FILL_PATTERN, false);
-  }
-
-  @Override
-  protected void setDataDrivenPropertyIsUsed(@NonNull String property) {
-    switch (property) {
-      case FillOptions.PROPERTY_FILL_OPACITY:
-        layer.setProperties(fillOpacity(get(FillOptions.PROPERTY_FILL_OPACITY)));
-        break;
-      case FillOptions.PROPERTY_FILL_COLOR:
-        layer.setProperties(fillColor(get(FillOptions.PROPERTY_FILL_COLOR)));
-        break;
-      case FillOptions.PROPERTY_FILL_OUTLINE_COLOR:
-        layer.setProperties(fillOutlineColor(get(FillOptions.PROPERTY_FILL_OUTLINE_COLOR)));
-        break;
-      case FillOptions.PROPERTY_FILL_PATTERN:
-        layer.setProperties(fillPattern(get(FillOptions.PROPERTY_FILL_PATTERN)));
-        break;
+    /**
+     * Create a fill manager, used to manage fills.
+     *
+     * @param mapboxMap the map object to add fills to
+     * @param style     a valid a fully loaded style object
+     */
+    @UiThread
+    public FillManager(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap, @NonNull Style style) {
+        this(mapView, mapboxMap, style, null, null, (GeoJsonOptions) null);
     }
-  }
 
-  /**
-   * Create a list of fills on the map.
-   * <p>
-   * Fills are going to be created only for features with a matching geometry.
-   * <p>
-   * All supported properties are:<br>
-   * FillOptions.PROPERTY_FILL_OPACITY - Float<br>
-   * FillOptions.PROPERTY_FILL_COLOR - String<br>
-   * FillOptions.PROPERTY_FILL_OUTLINE_COLOR - String<br>
-   * FillOptions.PROPERTY_FILL_PATTERN - String<br>
-   * Learn more about above properties in the <a href="https://www.mapbox.com/mapbox-gl-js/style-spec/">Style specification</a>.
-   * <p>
-   * Out of spec properties:<br>
-   * "is-draggable" - Boolean, true if the fill should be draggable, false otherwise
-   *
-   * @param json the GeoJSON defining the list of fills to build
-   * @return the list of built fills
-   */
-  @UiThread
-  public List<Fill> create(@NonNull String json) {
-    return create(FeatureCollection.fromJson(json));
-  }
+    /**
+     * Create a fill manager, used to manage fills.
+     *
+     * @param mapboxMap    the map object to add fills to
+     * @param style        a valid a fully loaded style object
+     * @param belowLayerId the id of the layer above the fill layer
+     * @param aboveLayerId the id of the layer below the fill layer
+     */
+    @UiThread
+    public FillManager(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap, @NonNull Style style, @Nullable String belowLayerId, @Nullable String aboveLayerId) {
+        this(mapView, mapboxMap, style, belowLayerId, aboveLayerId, (GeoJsonOptions) null);
+    }
 
-  /**
-   * Create a list of fills on the map.
-   * <p>
-   * Fills are going to be created only for features with a matching geometry.
-   * <p>
-   * All supported properties are:<br>
-   * FillOptions.PROPERTY_FILL_OPACITY - Float<br>
-   * FillOptions.PROPERTY_FILL_COLOR - String<br>
-   * FillOptions.PROPERTY_FILL_OUTLINE_COLOR - String<br>
-   * FillOptions.PROPERTY_FILL_PATTERN - String<br>
-   * Learn more about above properties in the <a href="https://www.mapbox.com/mapbox-gl-js/style-spec/">Style specification</a>.
-   * <p>
-   * Out of spec properties:<br>
-   * "is-draggable" - Boolean, true if the fill should be draggable, false otherwise
-   *
-   * @param featureCollection the featureCollection defining the list of fills to build
-   * @return the list of built fills
-   */
-  @UiThread
-  public List<Fill> create(@NonNull FeatureCollection featureCollection) {
-    List<Feature> features = featureCollection.features();
-    List<FillOptions> options = new ArrayList<>();
-    if (features != null) {
-      for (Feature feature : features) {
-        FillOptions option = FillOptions.fromFeature(feature);
-        if (option != null) {
-          options.add(option);
+    /**
+     * Create a fill manager, used to manage fills.
+     *
+     * @param mapboxMap      the map object to add fills to
+     * @param style          a valid a fully loaded style object
+     * @param belowLayerId   the id of the layer above the fill layer
+     * @param aboveLayerId   the id of the layer below the fill layer
+     * @param geoJsonOptions options for the internal source
+     */
+    @UiThread
+    public FillManager(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap, @NonNull Style style, @Nullable String belowLayerId, @Nullable String aboveLayerId, @Nullable GeoJsonOptions geoJsonOptions) {
+        this(mapView, mapboxMap, style, new FillElementProvider(), belowLayerId, aboveLayerId, geoJsonOptions, DraggableAnnotationController.getInstance(mapView, mapboxMap));
+    }
+
+    @UiThread
+    FillManager(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap, @NonNull Style style, @NonNull CoreElementProvider<FillLayer> coreElementProvider, @Nullable String belowLayerId, @Nullable String aboveLayerId, @Nullable GeoJsonOptions geoJsonOptions, DraggableAnnotationController draggableAnnotationController) {
+        super(mapView, mapboxMap, style, coreElementProvider, draggableAnnotationController, belowLayerId, aboveLayerId, geoJsonOptions);
+    }
+
+    @Override
+    void initializeDataDrivenPropertyMap() {
+        dataDrivenPropertyUsageMap.put(FillOptions.PROPERTY_FILL_OPACITY, false);
+        dataDrivenPropertyUsageMap.put(FillOptions.PROPERTY_FILL_COLOR, false);
+        dataDrivenPropertyUsageMap.put(FillOptions.PROPERTY_FILL_OUTLINE_COLOR, false);
+        dataDrivenPropertyUsageMap.put(FillOptions.PROPERTY_FILL_PATTERN, false);
+    }
+
+    @Override
+    protected void setDataDrivenPropertyIsUsed(@NonNull String property) {
+        switch (property) {
+            case FillOptions.PROPERTY_FILL_OPACITY:
+                layer.setProperties(fillOpacity(get(FillOptions.PROPERTY_FILL_OPACITY)));
+                break;
+            case FillOptions.PROPERTY_FILL_COLOR:
+                layer.setProperties(fillColor(get(FillOptions.PROPERTY_FILL_COLOR)));
+                break;
+            case FillOptions.PROPERTY_FILL_OUTLINE_COLOR:
+                layer.setProperties(fillOutlineColor(get(FillOptions.PROPERTY_FILL_OUTLINE_COLOR)));
+                break;
+            case FillOptions.PROPERTY_FILL_PATTERN:
+                layer.setProperties(fillPattern(get(FillOptions.PROPERTY_FILL_PATTERN)));
+                break;
         }
-      }
     }
-    return create(options);
-  }
 
-  /**
-   * Get the key of the id of the annotation.
-   *
-   * @return the key of the id of the annotation
-   */
-  @Override
-  String getAnnotationIdKey() {
-    return Fill.ID_KEY;
-  }
+    /**
+     * Create a list of fills on the map.
+     * <p>
+     * Fills are going to be created only for features with a matching geometry.
+     * <p>
+     * All supported properties are:<br>
+     * FillOptions.PROPERTY_FILL_OPACITY - Float<br>
+     * FillOptions.PROPERTY_FILL_COLOR - String<br>
+     * FillOptions.PROPERTY_FILL_OUTLINE_COLOR - String<br>
+     * FillOptions.PROPERTY_FILL_PATTERN - String<br>
+     * Learn more about above properties in the <a href="https://www.mapbox.com/mapbox-gl-js/style-spec/">Style specification</a>.
+     * <p>
+     * Out of spec properties:<br>
+     * "is-draggable" - Boolean, true if the fill should be draggable, false otherwise
+     *
+     * @param json the GeoJSON defining the list of fills to build
+     * @return the list of built fills
+     */
+    @UiThread
+    public List<Fill> create(@NonNull String json) {
+        return create(FeatureCollection.fromJson(json));
+    }
 
-  // Property accessors
-  /**
-   * Get the FillAntialias property
-   * <p>
-   * Whether or not the fill should be antialiased.
-   * </p>
-   *
-   * @return property wrapper value around Boolean
-   */
-  public Boolean getFillAntialias() {
-    return layer.getFillAntialias().value;
-  }
+    /**
+     * Create a list of fills on the map.
+     * <p>
+     * Fills are going to be created only for features with a matching geometry.
+     * <p>
+     * All supported properties are:<br>
+     * FillOptions.PROPERTY_FILL_OPACITY - Float<br>
+     * FillOptions.PROPERTY_FILL_COLOR - String<br>
+     * FillOptions.PROPERTY_FILL_OUTLINE_COLOR - String<br>
+     * FillOptions.PROPERTY_FILL_PATTERN - String<br>
+     * Learn more about above properties in the <a href="https://www.mapbox.com/mapbox-gl-js/style-spec/">Style specification</a>.
+     * <p>
+     * Out of spec properties:<br>
+     * "is-draggable" - Boolean, true if the fill should be draggable, false otherwise
+     *
+     * @param featureCollection the featureCollection defining the list of fills to build
+     * @return the list of built fills
+     */
+    @UiThread
+    public List<Fill> create(@NonNull FeatureCollection featureCollection) {
+        List<Feature> features = featureCollection.features();
+        List<FillOptions> options = new ArrayList<>();
+        if (features != null) {
+            for (Feature feature : features) {
+                FillOptions option = FillOptions.fromFeature(feature);
+                if (option != null) {
+                    options.add(option);
+                }
+            }
+        }
+        return create(options);
+    }
 
-  /**
-   * Set the FillAntialias property
-   * <p>
-   * Whether or not the fill should be antialiased.
-   * </p>
-   *
-   * @param value property wrapper value around Boolean
-   */
-  public void setFillAntialias( Boolean value) {
-    PropertyValue propertyValue = fillAntialias(value);
-    constantPropertyUsageMap.put(PROPERTY_FILL_ANTIALIAS, propertyValue);
-    layer.setProperties(propertyValue);
-  }
+    /**
+     * Get the key of the id of the annotation.
+     *
+     * @return the key of the id of the annotation
+     */
+    @Override
+    String getAnnotationIdKey() {
+        return Fill.ID_KEY;
+    }
 
-  /**
-   * Get the FillTranslate property
-   * <p>
-   * The geometry's offset. Values are [x, y] where negatives indicate left and up, respectively.
-   * </p>
-   *
-   * @return property wrapper value around Float[]
-   */
-  public Float[] getFillTranslate() {
-    return layer.getFillTranslate().value;
-  }
+    // Property accessors
 
-  /**
-   * Set the FillTranslate property
-   * <p>
-   * The geometry's offset. Values are [x, y] where negatives indicate left and up, respectively.
-   * </p>
-   *
-   * @param value property wrapper value around Float[]
-   */
-  public void setFillTranslate( Float[] value) {
-    PropertyValue propertyValue = fillTranslate(value);
-    constantPropertyUsageMap.put(PROPERTY_FILL_TRANSLATE, propertyValue);
-    layer.setProperties(propertyValue);
-  }
+    /**
+     * Get the FillAntialias property
+     * <p>
+     * Whether or not the fill should be antialiased.
+     * </p>
+     *
+     * @return property wrapper value around Boolean
+     */
+    public Boolean getFillAntialias() {
+        return layer.getFillAntialias().value;
+    }
 
-  /**
-   * Get the FillTranslateAnchor property
-   * <p>
-   * Controls the frame of reference for {@link PropertyFactory#fillTranslate}.
-   * </p>
-   *
-   * @return property wrapper value around String
-   */
-  public String getFillTranslateAnchor() {
-    return layer.getFillTranslateAnchor().value;
-  }
+    /**
+     * Set the FillAntialias property
+     * <p>
+     * Whether or not the fill should be antialiased.
+     * </p>
+     *
+     * @param value property wrapper value around Boolean
+     */
+    public void setFillAntialias(Boolean value) {
+        PropertyValue propertyValue = fillAntialias(value);
+        constantPropertyUsageMap.put(PROPERTY_FILL_ANTIALIAS, propertyValue);
+        layer.setProperties(propertyValue);
+    }
 
-  /**
-   * Set the FillTranslateAnchor property
-   * <p>
-   * Controls the frame of reference for {@link PropertyFactory#fillTranslate}.
-   * </p>
-   *
-   * @param value property wrapper value around String
-   */
-  public void setFillTranslateAnchor(@Property.FILL_TRANSLATE_ANCHOR String value) {
-    PropertyValue propertyValue = fillTranslateAnchor(value);
-    constantPropertyUsageMap.put(PROPERTY_FILL_TRANSLATE_ANCHOR, propertyValue);
-    layer.setProperties(propertyValue);
-  }
+    /**
+     * Get the FillTranslate property
+     * <p>
+     * The geometry's offset. Values are [x, y] where negatives indicate left and up, respectively.
+     * </p>
+     *
+     * @return property wrapper value around Float[]
+     */
+    public Float[] getFillTranslate() {
+        return layer.getFillTranslate().value;
+    }
 
-  /**
-   * Set filter on the managed fills.
-   *
-   * @param expression expression
-   */
-   @Override
-  public void setFilter(@NonNull Expression expression) {
-    layerFilter = expression;
-    layer.setFilter(layerFilter);
-  }
+    /**
+     * Set the FillTranslate property
+     * <p>
+     * The geometry's offset. Values are [x, y] where negatives indicate left and up, respectively.
+     * </p>
+     *
+     * @param value property wrapper value around Float[]
+     */
+    public void setFillTranslate(Float[] value) {
+        PropertyValue propertyValue = fillTranslate(value);
+        constantPropertyUsageMap.put(PROPERTY_FILL_TRANSLATE, propertyValue);
+        layer.setProperties(propertyValue);
+    }
 
-  /**
-   * Get filter of the managed fills.
-   *
-   * @return expression
-   */
-  @Nullable
-  public Expression getFilter() {
-    return layer.getFilter();
-  }
+    /**
+     * Get the FillTranslateAnchor property
+     * <p>
+     * Controls the frame of reference for {@link PropertyFactory#fillTranslate}.
+     * </p>
+     *
+     * @return property wrapper value around String
+     */
+    public String getFillTranslateAnchor() {
+        return layer.getFillTranslateAnchor().value;
+    }
+
+    /**
+     * Set the FillTranslateAnchor property
+     * <p>
+     * Controls the frame of reference for {@link PropertyFactory#fillTranslate}.
+     * </p>
+     *
+     * @param value property wrapper value around String
+     */
+    public void setFillTranslateAnchor(@Property.FILL_TRANSLATE_ANCHOR String value) {
+        PropertyValue propertyValue = fillTranslateAnchor(value);
+        constantPropertyUsageMap.put(PROPERTY_FILL_TRANSLATE_ANCHOR, propertyValue);
+        layer.setProperties(propertyValue);
+    }
+
+    /**
+     * Set filter on the managed fills.
+     *
+     * @param expression expression
+     */
+    @Override
+    public void setFilter(@NonNull Expression expression) {
+        layerFilter = expression;
+        layer.setFilter(layerFilter);
+    }
+
+    /**
+     * Get filter of the managed fills.
+     *
+     * @return expression
+     */
+    @Nullable
+    public Expression getFilter() {
+        return layer.getFilter();
+    }
 }

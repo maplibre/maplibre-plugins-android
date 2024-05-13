@@ -15,49 +15,49 @@ import androidx.test.espresso.IdlingResource;
 
 public class OnMapReadyIdlingResource implements IdlingResource, OnMapReadyCallback {
 
-  private MapboxMap mapboxMap;
-  private MapView mapView;
-  private IdlingResource.ResourceCallback resourceCallback;
+    private MapboxMap mapboxMap;
+    private MapView mapView;
+    private IdlingResource.ResourceCallback resourceCallback;
 
-  public OnMapReadyIdlingResource(Activity activity) {
-    new Handler(Looper.getMainLooper()).post(() -> {
-      mapView = activity.findViewById(R.id.mapView);
-      if (mapView != null) {
-        mapView.getMapAsync(OnMapReadyIdlingResource.this);
-      }
-    });
-  }
+    public OnMapReadyIdlingResource(Activity activity) {
+        new Handler(Looper.getMainLooper()).post(() -> {
+            mapView = activity.findViewById(R.id.mapView);
+            if (mapView != null) {
+                mapView.getMapAsync(OnMapReadyIdlingResource.this);
+            }
+        });
+    }
 
-  @Override
-  public String getName() {
-    return getClass().getSimpleName();
-  }
+    @Override
+    public String getName() {
+        return getClass().getSimpleName();
+    }
 
-  @Override
-  public boolean isIdleNow() {
-    return mapboxMap != null && mapboxMap.getStyle() != null && mapboxMap.getStyle().isFullyLoaded();
-  }
+    @Override
+    public boolean isIdleNow() {
+        return mapboxMap != null && mapboxMap.getStyle() != null && mapboxMap.getStyle().isFullyLoaded();
+    }
 
-  @Override
-  public void registerIdleTransitionCallback(ResourceCallback resourceCallback) {
-    this.resourceCallback = resourceCallback;
-  }
+    @Override
+    public void registerIdleTransitionCallback(ResourceCallback resourceCallback) {
+        this.resourceCallback = resourceCallback;
+    }
 
-  public MapView getMapView() {
-    return mapView;
-  }
+    public MapView getMapView() {
+        return mapView;
+    }
 
-  public MapboxMap getMapboxMap() {
-    return mapboxMap;
-  }
+    public MapboxMap getMapboxMap() {
+        return mapboxMap;
+    }
 
-  @Override
-  public void onMapReady(@NonNull MapboxMap mapboxMap) {
-    this.mapboxMap = mapboxMap;
-    mapboxMap.setStyle(Style.MAPBOX_STREETS, style -> {
-      if (resourceCallback != null) {
-        resourceCallback.onTransitionToIdle();
-      }
-    });
-  }
+    @Override
+    public void onMapReady(@NonNull MapboxMap mapboxMap) {
+        this.mapboxMap = mapboxMap;
+        mapboxMap.setStyle(Style.getPredefinedStyle("Streets"), style -> {
+            if (resourceCallback != null) {
+                resourceCallback.onTransitionToIdle();
+            }
+        });
+    }
 }

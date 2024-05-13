@@ -1,37 +1,43 @@
 name: ci
 
-on: 
+on:
   workflow_dispatch:
   push:
     tags-ignore:
       - '**'
     paths-ignore:
-      - ".github/**" 
+      - ".github/**"
       - "README.md"
-      - ".gitignore"      
+      - ".gitignore"
     branches:
       - main
-  
+  pull_request:
+    branches:
+      - main
+
 jobs:
   build:
-    runs-on: ubuntu-20.04
-    container:
-      image: ghcr.io/maplibre/android-ndk-r21b
+    runs-on: ubuntu-22.04
     env:
       LIBSYSCONFCPUS: 8
       JOBS: 8
       BUILDTYPE: Release
       IS_LOCAL_DEVELOPMENT: false
     steps:
-
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           submodules: recursive
           fetch-depth: 0
 
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+
       - name: Download Dependencies
         run: ./gradlew androidDependencies
-      
+
       - name: Run nitpick
         run: ./gradlew plugin-annotation:nitpick
 
@@ -39,25 +45,25 @@ jobs:
         run: make checkstyle
 
       - name: Build Plugins SDK
-        run: make build-release        
-      
+        run: make build-release
+
       - name: Run unit tests
         run: make test
-      
+
       - name: Generate Activity Sanity tests
         run: make generate-sanity-test
-      
+
       - name: Build testapp APK
         run: |
           ./gradlew accessToken
           ./gradlew app:assembleDebug
         env:
           MAPBOX_ACCESS_TOKEN: ${{ secrets.MAPBOX_ACCESS_TOKEN }}
-      
+
       - name: Build Test APK
         run: |
           ./gradlew app:assembleAndroidTest
-      
+
       - name: Build release to test ProGuard rules
         run: ./gradlew app:assembleRelease
 
