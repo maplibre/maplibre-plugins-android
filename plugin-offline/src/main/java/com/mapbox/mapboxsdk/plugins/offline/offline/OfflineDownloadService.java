@@ -12,20 +12,21 @@ import androidx.collection.LongSparseArray;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
-import com.mapbox.mapboxsdk.offline.OfflineManager;
-import com.mapbox.mapboxsdk.offline.OfflineRegion;
-import com.mapbox.mapboxsdk.offline.OfflineRegionDefinition;
-import com.mapbox.mapboxsdk.offline.OfflineRegionError;
-import com.mapbox.mapboxsdk.offline.OfflineRegionStatus;
 import com.mapbox.mapboxsdk.plugins.offline.model.OfflineDownloadOptions;
 import com.mapbox.mapboxsdk.plugins.offline.utils.NotificationUtils;
-import com.mapbox.mapboxsdk.snapshotter.MapSnapshot;
-import com.mapbox.mapboxsdk.snapshotter.MapSnapshotter;
 
 import timber.log.Timber;
 
 import static com.mapbox.mapboxsdk.plugins.offline.offline.OfflineConstants.KEY_BUNDLE;
 import static com.mapbox.mapboxsdk.plugins.offline.utils.NotificationUtils.setupNotificationChannel;
+
+import org.maplibre.android.offline.OfflineManager;
+import org.maplibre.android.offline.OfflineRegion;
+import org.maplibre.android.offline.OfflineRegionDefinition;
+import org.maplibre.android.offline.OfflineRegionError;
+import org.maplibre.android.offline.OfflineRegionStatus;
+import org.maplibre.android.snapshotter.MapSnapshot;
+import org.maplibre.android.snapshotter.MapSnapshotter;
 
 /**
  * Internal usage only, use this service indirectly by using methods found in

@@ -4,18 +4,19 @@ import android.app.Activity;
 import android.os.Handler;
 import android.os.Looper;
 
-import com.mapbox.mapboxsdk.maps.MapView;
-import com.mapbox.mapboxsdk.maps.MapboxMap;
-import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
-import com.mapbox.mapboxsdk.maps.Style;
 import com.mapbox.mapboxsdk.plugins.testapp.R;
 
 import androidx.annotation.NonNull;
 import androidx.test.espresso.IdlingResource;
 
+import org.maplibre.android.maps.MapLibreMap;
+import org.maplibre.android.maps.MapView;
+import org.maplibre.android.maps.OnMapReadyCallback;
+import org.maplibre.android.maps.Style;
+
 public class OnMapReadyIdlingResource implements IdlingResource, OnMapReadyCallback {
 
-    private MapboxMap mapboxMap;
+    private MapLibreMap mapLibreMap;
     private MapView mapView;
     private IdlingResource.ResourceCallback resourceCallback;
 
@@ -35,7 +36,7 @@ public class OnMapReadyIdlingResource implements IdlingResource, OnMapReadyCallb
 
     @Override
     public boolean isIdleNow() {
-        return mapboxMap != null && mapboxMap.getStyle() != null && mapboxMap.getStyle().isFullyLoaded();
+        return mapLibreMap != null && mapLibreMap.getStyle() != null && mapLibreMap.getStyle().isFullyLoaded();
     }
 
     @Override
@@ -47,14 +48,14 @@ public class OnMapReadyIdlingResource implements IdlingResource, OnMapReadyCallb
         return mapView;
     }
 
-    public MapboxMap getMapboxMap() {
-        return mapboxMap;
+    public MapLibreMap getMapLibreMap() {
+        return mapLibreMap;
     }
 
     @Override
-    public void onMapReady(@NonNull MapboxMap mapboxMap) {
-        this.mapboxMap = mapboxMap;
-        mapboxMap.setStyle(Style.getPredefinedStyle("Streets"), style -> {
+    public void onMapReady(@NonNull MapLibreMap mapLibreMap) {
+        this.mapLibreMap = mapLibreMap;
+        mapLibreMap.setStyle(Style.getPredefinedStyle("Streets"), style -> {
             if (resourceCallback != null) {
                 resourceCallback.onTransitionToIdle();
             }

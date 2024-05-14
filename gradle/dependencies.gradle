@@ -3,11 +3,11 @@
   androidVersions = [
       minSdkVersion    : 21,
       targetSdkVersion : 30,
-      compileSdkVersion: 31,
+      compileSdkVersion: 33,
   ]
 
   version = [
-      mapLibreAndroidSdk : '10.0.2',
+      mapLibreAndroidSdk : '11.0.0',
       mapLibreJava       : '5.9.0',
       mapLibreTurf       : '5.9.0',
       playLocation       : '16.0.0',

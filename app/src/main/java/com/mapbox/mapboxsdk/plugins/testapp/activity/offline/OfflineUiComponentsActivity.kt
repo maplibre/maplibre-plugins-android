@@ -5,14 +5,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.mapbox.mapboxsdk.camera.CameraPosition
-import com.mapbox.mapboxsdk.geometry.LatLng
 import com.mapbox.mapboxsdk.plugins.offline.OfflineRegionSelector
 import com.mapbox.mapboxsdk.plugins.offline.model.NotificationOptions
 import com.mapbox.mapboxsdk.plugins.offline.model.RegionSelectionOptions
 import com.mapbox.mapboxsdk.plugins.offline.offline.OfflinePlugin
 import com.mapbox.mapboxsdk.plugins.testapp.R
 import com.mapbox.mapboxsdk.plugins.testapp.databinding.ActivityOfflineUiComponentsBinding
+import org.maplibre.android.camera.CameraPosition
+import org.maplibre.android.geometry.LatLng
 import java.util.Locale
 
 class OfflineUiComponentsActivity : AppCompatActivity() {

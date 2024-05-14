@@ -2,8 +2,8 @@ package com.mapbox.mapboxsdk.plugins.testapp.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.mapbox.mapboxsdk.maps.MapView
 import com.mapbox.mapboxsdk.plugins.testapp.R
+import org.maplibre.android.maps.MapView
 
 class TestActivity : AppCompatActivity() {
 

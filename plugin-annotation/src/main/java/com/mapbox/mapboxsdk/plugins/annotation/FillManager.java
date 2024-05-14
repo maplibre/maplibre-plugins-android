@@ -7,23 +7,23 @@ import androidx.annotation.Nullable;
 import androidx.annotation.UiThread;
 import androidx.annotation.VisibleForTesting;
 
-import com.mapbox.geojson.Feature;
-import com.mapbox.geojson.FeatureCollection;
-import com.mapbox.mapboxsdk.maps.MapView;
-import com.mapbox.mapboxsdk.maps.MapboxMap;
-import com.mapbox.mapboxsdk.maps.Style;
-import com.mapbox.mapboxsdk.style.expressions.Expression;
-import com.mapbox.mapboxsdk.style.layers.FillLayer;
-import com.mapbox.mapboxsdk.style.layers.PropertyValue;
-import com.mapbox.mapboxsdk.style.layers.PropertyFactory;
-import com.mapbox.mapboxsdk.style.sources.GeoJsonOptions;
-import com.mapbox.mapboxsdk.style.layers.Property;
+import org.maplibre.geojson.Feature;
+import org.maplibre.geojson.FeatureCollection;
+import org.maplibre.android.maps.MapView;
+import org.maplibre.android.maps.MapLibreMap;
+import org.maplibre.android.maps.Style;
+import org.maplibre.android.style.expressions.Expression;
+import org.maplibre.android.style.layers.FillLayer;
+import org.maplibre.android.style.layers.PropertyValue;
+import org.maplibre.android.style.layers.PropertyFactory;
+import org.maplibre.android.style.sources.GeoJsonOptions;
+import org.maplibre.android.style.layers.Property;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.mapbox.mapboxsdk.style.expressions.Expression.get;
-import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.*;
+import static org.maplibre.android.style.expressions.Expression.get;
+import static org.maplibre.android.style.layers.PropertyFactory.*;
 
 /**
  * The fill manager allows to add fills to a map.
@@ -37,44 +37,44 @@ public class FillManager extends AnnotationManager<FillLayer, Fill, FillOptions,
     /**
      * Create a fill manager, used to manage fills.
      *
-     * @param mapboxMap the map object to add fills to
+     * @param maplibreMap the map object to add fills to
      * @param style     a valid a fully loaded style object
      */
     @UiThread
-    public FillManager(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap, @NonNull Style style) {
-        this(mapView, mapboxMap, style, null, null, (GeoJsonOptions) null);
+    public FillManager(@NonNull MapView mapView, @NonNull MapLibreMap maplibreMap, @NonNull Style style) {
+        this(mapView, maplibreMap, style, null, null, (GeoJsonOptions) null);
     }
 
     /**
      * Create a fill manager, used to manage fills.
      *
-     * @param mapboxMap    the map object to add fills to
+     * @param maplibreMap    the map object to add fills to
      * @param style        a valid a fully loaded style object
      * @param belowLayerId the id of the layer above the fill layer
      * @param aboveLayerId the id of the layer below the fill layer
      */
     @UiThread
-    public FillManager(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap, @NonNull Style style, @Nullable String belowLayerId, @Nullable String aboveLayerId) {
-        this(mapView, mapboxMap, style, belowLayerId, aboveLayerId, (GeoJsonOptions) null);
+    public FillManager(@NonNull MapView mapView, @NonNull MapLibreMap maplibreMap, @NonNull Style style, @Nullable String belowLayerId, @Nullable String aboveLayerId) {
+        this(mapView, maplibreMap, style, belowLayerId, aboveLayerId, (GeoJsonOptions) null);
     }
 
     /**
      * Create a fill manager, used to manage fills.
      *
-     * @param mapboxMap      the map object to add fills to
+     * @param maplibreMap      the map object to add fills to
      * @param style          a valid a fully loaded style object
      * @param belowLayerId   the id of the layer above the fill layer
      * @param aboveLayerId   the id of the layer below the fill layer
      * @param geoJsonOptions options for the internal source
      */
     @UiThread
-    public FillManager(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap, @NonNull Style style, @Nullable String belowLayerId, @Nullable String aboveLayerId, @Nullable GeoJsonOptions geoJsonOptions) {
-        this(mapView, mapboxMap, style, new FillElementProvider(), belowLayerId, aboveLayerId, geoJsonOptions, DraggableAnnotationController.getInstance(mapView, mapboxMap));
+    public FillManager(@NonNull MapView mapView, @NonNull MapLibreMap maplibreMap, @NonNull Style style, @Nullable String belowLayerId, @Nullable String aboveLayerId, @Nullable GeoJsonOptions geoJsonOptions) {
+        this(mapView, maplibreMap, style, new FillElementProvider(), belowLayerId, aboveLayerId, geoJsonOptions, DraggableAnnotationController.getInstance(mapView, maplibreMap));
     }
 
     @UiThread
-    FillManager(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap, @NonNull Style style, @NonNull CoreElementProvider<FillLayer> coreElementProvider, @Nullable String belowLayerId, @Nullable String aboveLayerId, @Nullable GeoJsonOptions geoJsonOptions, DraggableAnnotationController draggableAnnotationController) {
-        super(mapView, mapboxMap, style, coreElementProvider, draggableAnnotationController, belowLayerId, aboveLayerId, geoJsonOptions);
+    FillManager(@NonNull MapView mapView, @NonNull MapLibreMap maplibreMap, @NonNull Style style, @NonNull CoreElementProvider<FillLayer> coreElementProvider, @Nullable String belowLayerId, @Nullable String aboveLayerId, @Nullable GeoJsonOptions geoJsonOptions, DraggableAnnotationController draggableAnnotationController) {
+        super(mapView, maplibreMap, style, coreElementProvider, draggableAnnotationController, belowLayerId, aboveLayerId, geoJsonOptions);
     }
 
     @Override

@@ -1,18 +1,10 @@
 package com.mapbox.mapboxsdk.plugins.localization;
 
 
-import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
-import com.mapbox.mapboxsdk.geometry.LatLngBounds;
-import com.mapbox.mapboxsdk.maps.MapView;
-import com.mapbox.mapboxsdk.maps.MapboxMap;
-import com.mapbox.mapboxsdk.maps.Style;
+import static org.maplibre.android.style.expressions.Expression.raw;
+import static org.maplibre.android.style.layers.PropertyFactory.textField;
+
 import com.mapbox.mapboxsdk.plugins.localization.MapLocale.Languages;
-import com.mapbox.mapboxsdk.style.expressions.Expression;
-import com.mapbox.mapboxsdk.style.layers.Layer;
-import com.mapbox.mapboxsdk.style.layers.PropertyValue;
-import com.mapbox.mapboxsdk.style.layers.SymbolLayer;
-import com.mapbox.mapboxsdk.style.sources.Source;
-import com.mapbox.mapboxsdk.style.sources.VectorSource;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,10 +13,19 @@ import java.util.Locale;
 import androidx.annotation.NonNull;
 import androidx.annotation.UiThread;
 
-import timber.log.Timber;
+import org.maplibre.android.camera.CameraUpdateFactory;
+import org.maplibre.android.geometry.LatLngBounds;
+import org.maplibre.android.maps.MapLibreMap;
+import org.maplibre.android.maps.MapView;
+import org.maplibre.android.maps.Style;
+import org.maplibre.android.style.expressions.Expression;
+import org.maplibre.android.style.layers.Layer;
+import org.maplibre.android.style.layers.PropertyValue;
+import org.maplibre.android.style.layers.SymbolLayer;
+import org.maplibre.android.style.sources.Source;
+import org.maplibre.android.style.sources.VectorSource;
 
-import static com.mapbox.mapboxsdk.style.expressions.Expression.raw;
-import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.textField;
+import timber.log.Timber;
 
 /**
  * Useful class for quickly adjusting the maps language and the maps camera starting position.
@@ -94,7 +95,7 @@ public final class LocalizationPlugin {
     private static final String STEP_TEMPLATE = "[\"zoom\"], \"\", ";
 
     // configuration
-    private final MapboxMap mapboxMap;
+    private final MapLibreMap maplibreMap;
     private MapLocale mapLocale;
     @NonNull
     private Style style;
@@ -103,11 +104,11 @@ public final class LocalizationPlugin {
      * Public constructor for passing in the required objects.
      *
      * @param mapView   the MapView object in which the map is displayed
-     * @param mapboxMap the Mapbox map object which your current map view is using for control
+     * @param maplibreMap the Mapbox map object which your current map view is using for control
      * @param style     the Style object that represents a fully loaded style
      */
-    public LocalizationPlugin(@NonNull MapView mapView, @NonNull final MapboxMap mapboxMap, @NonNull Style style) {
-        this.mapboxMap = mapboxMap;
+    public LocalizationPlugin(@NonNull MapView mapView, @NonNull final MapLibreMap maplibreMap, @NonNull Style style) {
+        this.maplibreMap = maplibreMap;
         this.style = style;
         if (!style.isFullyLoaded()) {
             throw new RuntimeException("The style has to be non-null and fully loaded.");
@@ -116,7 +117,7 @@ public final class LocalizationPlugin {
         mapView.addOnDidFinishLoadingStyleListener(new MapView.OnDidFinishLoadingStyleListener() {
             @Override
             public void onDidFinishLoadingStyle() {
-                mapboxMap.getStyle(new Style.OnStyleLoaded() {
+                maplibreMap.getStyle(new Style.OnStyleLoaded() {
                     @Override
                     public void onStyleLoaded(@NonNull Style style) {
                         LocalizationPlugin.this.style = style;
@@ -350,7 +351,7 @@ public final class LocalizationPlugin {
             throw new NullPointerException("Expected a LatLngBounds object but received null instead. Mak"
                 + "e sure your MapLocale instance also has a country bounding box defined.");
         }
-        mapboxMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, padding));
+        maplibreMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, padding));
     }
 
     /*

@@ -13,9 +13,9 @@ import androidx.annotation.VisibleForTesting;
 import com.mapbox.android.gestures.AndroidGesturesManager;
 import com.mapbox.android.gestures.MoveDistancesObject;
 import com.mapbox.android.gestures.MoveGestureDetector;
-import com.mapbox.geojson.Geometry;
-import com.mapbox.mapboxsdk.maps.MapView;
-import com.mapbox.mapboxsdk.maps.MapboxMap;
+import org.maplibre.geojson.Geometry;
+import org.maplibre.android.maps.MapLibreMap;
+import org.maplibre.android.maps.MapView;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -26,9 +26,9 @@ final class DraggableAnnotationController {
 
     private static DraggableAnnotationController INSTANCE = null;
 
-    public static DraggableAnnotationController getInstance(MapView mapView, MapboxMap mapboxMap) {
-        if (INSTANCE == null || INSTANCE.mapView != mapView || INSTANCE.mapboxMap != mapboxMap) {
-            INSTANCE = new DraggableAnnotationController(mapView, mapboxMap);
+    public static DraggableAnnotationController getInstance(MapView mapView, MapLibreMap maplibreMap) {
+        if (INSTANCE == null || INSTANCE.mapView != mapView || INSTANCE.maplibreMap != maplibreMap) {
+            INSTANCE = new DraggableAnnotationController(mapView, maplibreMap);
         }
         return INSTANCE;
     }
@@ -36,13 +36,13 @@ final class DraggableAnnotationController {
     private static void clearInstance() {
         if (INSTANCE != null) {
             INSTANCE.mapView = null;
-            INSTANCE.mapboxMap = null;
+            INSTANCE.maplibreMap = null;
             INSTANCE = null;
         }
     }
 
     private MapView mapView;
-    private MapboxMap mapboxMap;
+    private MapLibreMap maplibreMap;
     private List<AnnotationManager> annotationManagers = new LinkedList<>();
     private HashMap<String, AnnotationManager> annotationManagersById = new HashMap<>();
 
@@ -57,18 +57,18 @@ final class DraggableAnnotationController {
     private AnnotationManager draggedAnnotationManager;
 
     @SuppressLint("ClickableViewAccessibility")
-    DraggableAnnotationController(MapView mapView, MapboxMap mapboxMap) {
-        this(mapView, mapboxMap, new AndroidGesturesManager(mapView.getContext(), false),
+    DraggableAnnotationController(MapView mapView, MapLibreMap maplibreMap) {
+        this(mapView, maplibreMap, new AndroidGesturesManager(mapView.getContext(), false),
             mapView.getScrollX(), mapView.getScrollY(), mapView.getMeasuredWidth(), mapView.getMeasuredHeight());
     }
 
     @VisibleForTesting
-    public DraggableAnnotationController(MapView mapView, MapboxMap mapboxMap,
+    public DraggableAnnotationController(MapView mapView, MapLibreMap maplibreMap,
                                          final AndroidGesturesManager androidGesturesManager,
                                          int touchAreaShiftX, int touchAreaShiftY,
                                          int touchAreaMaxX, int touchAreaMaxY) {
         this.mapView = mapView;
-        this.mapboxMap = mapboxMap;
+        this.maplibreMap = maplibreMap;
         this.touchAreaShiftX = touchAreaShiftX;
         this.touchAreaShiftY = touchAreaShiftY;
         this.touchAreaMaxX = touchAreaMaxX;
@@ -155,7 +155,7 @@ final class DraggableAnnotationController {
             }
 
             Geometry shiftedGeometry = draggedAnnotation.getOffsetGeometry(
-                mapboxMap.getProjection(), moveObject, touchAreaShiftX, touchAreaShiftY
+                maplibreMap.getProjection(), moveObject, touchAreaShiftX, touchAreaShiftY
             );
 
             if (shiftedGeometry != null) {

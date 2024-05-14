@@ -1,3 +1,4 @@
+
 // This file is generated.
 
 package com.mapbox.mapboxsdk.plugins.annotation;
@@ -6,10 +7,10 @@ import android.graphics.PointF;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
-import com.mapbox.mapboxsdk.geometry.LatLng;
+import org.maplibre.android.geometry.LatLng;
 import com.mapbox.mapboxsdk.plugins.BaseActivityTest;
 import com.mapbox.mapboxsdk.plugins.testapp.activity.TestActivity;
-import com.mapbox.mapboxsdk.utils.ColorUtils;
+import org.maplibre.android.utils.ColorUtils;
 
 import timber.log.Timber;
 
@@ -20,7 +21,7 @@ import java.util.Objects;
 
 import static com.mapbox.mapboxsdk.plugins.annotation.MapboxMapAction.invoke;
 import static org.junit.Assert.*;
-import static com.mapbox.mapboxsdk.style.layers.Property.*;
+import static org.maplibre.android.style.layers.Property.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,8 +41,8 @@ public class LineTest extends BaseActivityTest {
 
     private void setupAnnotation() {
         Timber.i("Retrieving layer");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
-            LineManager lineManager = new LineManager(idlingResource.getMapView(), mapboxMap, Objects.requireNonNull(mapboxMap.getStyle()));
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
+            LineManager lineManager = new LineManager(idlingResource.getMapView(), maplibreMap, Objects.requireNonNull(maplibreMap.getStyle()));
             List<LatLng> latLngs = new ArrayList<>();
             latLngs.add(new LatLng());
             latLngs.add(new LatLng(1, 1));
@@ -54,7 +55,7 @@ public class LineTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("line-join");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(line);
 
             line.setLineJoin(LINE_JOIN_BEVEL);
@@ -67,7 +68,7 @@ public class LineTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("line-opacity");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(line);
 
             line.setLineOpacity(2.0f);
@@ -80,7 +81,7 @@ public class LineTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("line-color");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(line);
 
             line.setLineColor("rgba(0, 0, 0, 1)");
@@ -93,7 +94,7 @@ public class LineTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("line-color");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(line);
             line.setLineColor(ColorUtils.rgbaToColor("rgba(0, 0, 0, 1)"));
             assertEquals(line.getLineColorAsInt(), ColorUtils.rgbaToColor("rgba(0, 0, 0, 1)"));
@@ -106,7 +107,7 @@ public class LineTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("line-width");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(line);
 
             line.setLineWidth(2.0f);
@@ -119,7 +120,7 @@ public class LineTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("line-gap-width");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(line);
 
             line.setLineGapWidth(2.0f);
@@ -132,7 +133,7 @@ public class LineTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("line-offset");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(line);
 
             line.setLineOffset(2.0f);
@@ -145,7 +146,7 @@ public class LineTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("line-blur");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(line);
 
             line.setLineBlur(2.0f);
@@ -158,7 +159,7 @@ public class LineTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("line-pattern");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(line);
 
             line.setLinePattern("pedestrian-polygon");

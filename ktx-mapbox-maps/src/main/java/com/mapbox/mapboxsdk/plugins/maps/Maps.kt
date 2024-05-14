@@ -1,11 +1,11 @@
 package com.mapbox.mapboxsdk.plugins.maps
 
 import android.graphics.RectF
-import com.mapbox.geojson.Feature
-import com.mapbox.mapboxsdk.geometry.LatLng
-import com.mapbox.mapboxsdk.geometry.LatLngBounds
-import com.mapbox.mapboxsdk.maps.MapboxMap
-import com.mapbox.mapboxsdk.style.expressions.Expression
+import org.maplibre.android.geometry.LatLng
+import org.maplibre.android.geometry.LatLngBounds
+import org.maplibre.android.maps.MapLibreMap
+import org.maplibre.android.style.expressions.Expression
+import org.maplibre.geojson.Feature
 
 /**
  * Queries the map for rendered features
@@ -14,7 +14,7 @@ import com.mapbox.mapboxsdk.style.expressions.Expression
  * @param layerIds    optionally - only query these layers
  * @return the list of feature
  */
-inline fun MapboxMap.queryRenderedFeatures(
+inline fun MapLibreMap.queryRenderedFeatures(
     latLng: LatLng,
     vararg layerIds: String,
 ): List<Feature> {
@@ -29,7 +29,7 @@ inline fun MapboxMap.queryRenderedFeatures(
  * @param layerIds    optionally - only query these layers
  * @return the list of feature
  */
-inline fun MapboxMap.queryRenderedFeatures(
+inline fun MapLibreMap.queryRenderedFeatures(
     latLng: LatLng,
     filter: Expression?,
     vararg layerIds: String,
@@ -44,7 +44,7 @@ inline fun MapboxMap.queryRenderedFeatures(
  * @param layerIds     optionally - only query these layers
  * @return the list of feature
  */
-inline fun MapboxMap.queryRenderedFeatures(
+inline fun MapLibreMap.queryRenderedFeatures(
     latLngBounds: LatLngBounds,
     vararg layerIds: String,
 ): List<Feature> {
@@ -58,7 +58,7 @@ inline fun MapboxMap.queryRenderedFeatures(
  * @param layerIds     optionally - only query these layers
  * @return the list of feature
  */
-inline fun MapboxMap.queryRenderedFeatures(
+inline fun MapLibreMap.queryRenderedFeatures(
     latLngBounds: LatLngBounds,
     filter: Expression?,
     vararg layerIds: String,

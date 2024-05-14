@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Window;
 
-import com.mapbox.mapboxsdk.offline.OfflineRegionDefinition;
 import com.mapbox.mapboxsdk.plugins.offline.OfflinePluginConstants;
 import com.mapbox.mapboxsdk.plugins.offline.R;
 import com.mapbox.mapboxsdk.plugins.offline.model.RegionSelectionOptions;
@@ -16,6 +15,8 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import static com.mapbox.mapboxsdk.plugins.offline.offline.OfflineConstants.RETURNING_DEFINITION;
 import static com.mapbox.mapboxsdk.plugins.offline.offline.OfflineConstants.RETURNING_REGION_NAME;
+
+import org.maplibre.android.offline.OfflineRegionDefinition;
 
 public class OfflineActivity extends AppCompatActivity implements RegionSelectedCallback {
 

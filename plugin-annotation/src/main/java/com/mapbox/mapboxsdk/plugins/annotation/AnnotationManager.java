@@ -2,18 +2,13 @@ package com.mapbox.mapboxsdk.plugins.annotation;
 
 import android.graphics.PointF;
 
-import com.mapbox.geojson.Feature;
-import com.mapbox.geojson.FeatureCollection;
-import com.mapbox.mapboxsdk.geometry.LatLng;
-import com.mapbox.mapboxsdk.log.Logger;
-import com.mapbox.mapboxsdk.maps.MapView;
-import com.mapbox.mapboxsdk.maps.MapboxMap;
-import com.mapbox.mapboxsdk.maps.Style;
-import com.mapbox.mapboxsdk.style.expressions.Expression;
-import com.mapbox.mapboxsdk.style.layers.Layer;
-import com.mapbox.mapboxsdk.style.layers.PropertyValue;
-import com.mapbox.mapboxsdk.style.sources.GeoJsonOptions;
-import com.mapbox.mapboxsdk.style.sources.GeoJsonSource;
+import org.maplibre.geojson.Feature;
+import org.maplibre.geojson.FeatureCollection;
+import org.maplibre.android.geometry.LatLng;
+import org.maplibre.android.log.Logger;
+import org.maplibre.android.maps.MapLibreMap;
+import org.maplibre.android.maps.MapView;
+import org.maplibre.android.maps.Style;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,6 +21,11 @@ import androidx.annotation.Nullable;
 import androidx.annotation.UiThread;
 import androidx.annotation.VisibleForTesting;
 import androidx.collection.LongSparseArray;
+import org.maplibre.android.style.expressions.Expression;
+import org.maplibre.android.style.layers.Layer;
+import org.maplibre.android.style.layers.PropertyValue;
+import org.maplibre.android.style.sources.GeoJsonOptions;
+import org.maplibre.android.style.sources.GeoJsonSource;
 
 /**
  * Generic AnnotationManager, can be used to create annotation specific managers.
@@ -47,7 +47,7 @@ public abstract class AnnotationManager<
     private static final String TAG = "AnnotationManager";
 
     private final MapView mapView;
-    protected final MapboxMap mapboxMap;
+    protected final MapLibreMap maplibreMap;
     protected final LongSparseArray<T> annotations = new LongSparseArray<>();
     final Map<String, Boolean> dataDrivenPropertyUsageMap = new HashMap<>();
     final Map<String, PropertyValue> constantPropertyUsageMap = new HashMap<>();
@@ -70,12 +70,12 @@ public abstract class AnnotationManager<
     private AtomicBoolean isSourceUpToDate = new AtomicBoolean(true);
 
     @UiThread
-    protected AnnotationManager(MapView mapView, final MapboxMap mapboxMap, Style style,
+    protected AnnotationManager(MapView mapView, final MapLibreMap maplibreMap, Style style,
                                 CoreElementProvider<L> coreElementProvider,
                                 DraggableAnnotationController draggableAnnotationController,
                                 String belowLayerId, String aboveLayerId, final GeoJsonOptions geoJsonOptions) {
         this.mapView = mapView;
-        this.mapboxMap = mapboxMap;
+        this.maplibreMap = maplibreMap;
         this.style = style;
         this.belowLayerId = belowLayerId;
         this.aboveLayerId = aboveLayerId;
@@ -86,8 +86,8 @@ public abstract class AnnotationManager<
             throw new RuntimeException("The style has to be non-null and fully loaded.");
         }
 
-        mapboxMap.addOnMapClickListener(mapClickResolver = new MapClickResolver());
-        mapboxMap.addOnMapLongClickListener(mapClickResolver);
+        maplibreMap.addOnMapClickListener(mapClickResolver = new MapClickResolver());
+        maplibreMap.addOnMapLongClickListener(mapClickResolver);
 
         initializeSourcesAndLayers(geoJsonOptions);
         draggableAnnotationController.addAnnotationManager(this);
@@ -95,7 +95,7 @@ public abstract class AnnotationManager<
         mapView.addOnDidFinishLoadingStyleListener(new MapView.OnDidFinishLoadingStyleListener() {
             @Override
             public void onDidFinishLoadingStyle() {
-                mapboxMap.getStyle(new Style.OnStyleLoaded() {
+                maplibreMap.getStyle(new Style.OnStyleLoaded() {
                     @Override
                     public void onStyleLoaded(@NonNull Style loadedStyle) {
                         AnnotationManager.this.style = loadedStyle;
@@ -360,8 +360,8 @@ public abstract class AnnotationManager<
      */
     @UiThread
     public void onDestroy() {
-        mapboxMap.removeOnMapClickListener(mapClickResolver);
-        mapboxMap.removeOnMapLongClickListener(mapClickResolver);
+        maplibreMap.removeOnMapClickListener(mapClickResolver);
+        maplibreMap.removeOnMapLongClickListener(mapClickResolver);
         draggableAnnotationController.removeAnnotationManager(this);
         dragListeners.clear();
         clickListeners.clear();
@@ -403,7 +403,7 @@ public abstract class AnnotationManager<
     /**
      * Inner class for transforming map click events into annotation clicks
      */
-    private class MapClickResolver implements MapboxMap.OnMapClickListener, MapboxMap.OnMapLongClickListener {
+    private class MapClickResolver implements MapLibreMap.OnMapClickListener, MapLibreMap.OnMapLongClickListener {
 
         @Override
         public boolean onMapClick(@NonNull LatLng point) {
@@ -442,12 +442,12 @@ public abstract class AnnotationManager<
 
     @Nullable
     private T queryMapForFeatures(@NonNull LatLng point) {
-        return queryMapForFeatures(mapboxMap.getProjection().toScreenLocation(point));
+        return queryMapForFeatures(maplibreMap.getProjection().toScreenLocation(point));
     }
 
     @Nullable
     T queryMapForFeatures(@NonNull PointF point) {
-        List<Feature> features = mapboxMap.queryRenderedFeatures(point, coreElementProvider.getLayerId());
+        List<Feature> features = maplibreMap.queryRenderedFeatures(point, coreElementProvider.getLayerId());
         if (!features.isEmpty()) {
             long id = features.get(0).getProperty(getAnnotationIdKey()).getAsLong();
             return annotations.get(id);

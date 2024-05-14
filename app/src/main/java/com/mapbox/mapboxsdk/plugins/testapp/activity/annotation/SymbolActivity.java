@@ -1,5 +1,10 @@
 package com.mapbox.mapboxsdk.plugins.testapp.activity.annotation;
 
+import static org.maplibre.android.style.expressions.Expression.eq;
+import static org.maplibre.android.style.expressions.Expression.get;
+import static org.maplibre.android.style.expressions.Expression.not;
+import static org.maplibre.android.style.expressions.Expression.toNumber;
+
 import android.animation.ValueAnimator;
 import android.graphics.Color;
 import android.graphics.PointF;
@@ -11,23 +16,12 @@ import android.view.animation.LinearInterpolator;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.mapbox.geojson.FeatureCollection;
-import com.mapbox.geojson.Point;
-import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
-import com.mapbox.mapboxsdk.geometry.LatLng;
-import com.mapbox.mapboxsdk.maps.MapView;
-import com.mapbox.mapboxsdk.maps.Style;
 import com.mapbox.mapboxsdk.plugins.annotation.OnSymbolDragListener;
 import com.mapbox.mapboxsdk.plugins.annotation.Symbol;
 import com.mapbox.mapboxsdk.plugins.annotation.SymbolManager;
 import com.mapbox.mapboxsdk.plugins.annotation.SymbolOptions;
 import com.mapbox.mapboxsdk.plugins.testapp.R;
 import com.mapbox.mapboxsdk.plugins.testapp.Utils;
-import com.mapbox.mapboxsdk.style.expressions.Expression;
-import com.mapbox.mapboxsdk.style.layers.Property;
-import com.mapbox.mapboxsdk.style.sources.GeoJsonOptions;
-import com.mapbox.mapboxsdk.utils.BitmapUtils;
-import com.mapbox.mapboxsdk.utils.ColorUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -37,12 +31,19 @@ import java.util.Random;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import timber.log.Timber;
+import org.maplibre.android.camera.CameraUpdateFactory;
+import org.maplibre.android.geometry.LatLng;
+import org.maplibre.android.maps.MapView;
+import org.maplibre.android.maps.Style;
+import org.maplibre.android.style.expressions.Expression;
+import org.maplibre.android.style.layers.Property;
+import org.maplibre.android.style.sources.GeoJsonOptions;
+import org.maplibre.android.utils.BitmapUtils;
+import org.maplibre.android.utils.ColorUtils;
+import org.maplibre.geojson.FeatureCollection;
+import org.maplibre.geojson.Point;
 
-import static com.mapbox.mapboxsdk.style.expressions.Expression.eq;
-import static com.mapbox.mapboxsdk.style.expressions.Expression.get;
-import static com.mapbox.mapboxsdk.style.expressions.Expression.not;
-import static com.mapbox.mapboxsdk.style.expressions.Expression.toNumber;
+import timber.log.Timber;
 
 /**
  * Activity showcasing adding symbols using the annotation plugin
@@ -70,19 +71,19 @@ public class SymbolActivity extends AppCompatActivity {
 
         mapView = findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
-        mapView.getMapAsync(mapboxMap -> mapboxMap.setStyle(Style.getPredefinedStyle("Streets"), style -> {
+        mapView.getMapAsync(maplibreMap -> maplibreMap.setStyle(Style.getPredefinedStyle("Streets"), style -> {
             findViewById(R.id.fabStyles).setOnClickListener(v -> {
-                mapboxMap.setStyle(Utils.INSTANCE.getNextStyle());
-                mapboxMap.getStyle(this::addAirplaneImageToStyle);
+                maplibreMap.setStyle(Utils.INSTANCE.getNextStyle());
+                maplibreMap.getStyle(this::addAirplaneImageToStyle);
             });
 
-            mapboxMap.moveCamera(CameraUpdateFactory.zoomTo(2));
+            maplibreMap.moveCamera(CameraUpdateFactory.zoomTo(2));
 
             addAirplaneImageToStyle(style);
 
             // create symbol manager
             GeoJsonOptions geoJsonOptions = new GeoJsonOptions().withTolerance(0.4f);
-            symbolManager = new SymbolManager(mapView, mapboxMap, style, null, null, geoJsonOptions);
+            symbolManager = new SymbolManager(mapView, maplibreMap, style, null, null, geoJsonOptions);
             symbolManager.addClickListener(symbol -> {
                 Toast.makeText(SymbolActivity.this,
                     String.format("Symbol clicked %s", symbol.getId()),

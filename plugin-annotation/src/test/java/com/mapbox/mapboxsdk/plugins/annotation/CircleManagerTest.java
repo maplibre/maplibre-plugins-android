@@ -5,16 +5,16 @@ package com.mapbox.mapboxsdk.plugins.annotation;
 import android.graphics.PointF;
 
 import com.google.gson.JsonPrimitive;
-import com.mapbox.geojson.*;
-import com.mapbox.mapboxsdk.geometry.LatLng;
-import com.mapbox.mapboxsdk.maps.MapView;
-import com.mapbox.mapboxsdk.maps.MapboxMap;
-import com.mapbox.mapboxsdk.maps.Style;
-import com.mapbox.mapboxsdk.style.expressions.Expression;
-import com.mapbox.mapboxsdk.style.layers.*;
-import com.mapbox.mapboxsdk.style.sources.GeoJsonOptions;
-import com.mapbox.mapboxsdk.style.sources.GeoJsonSource;
-import com.mapbox.mapboxsdk.utils.ColorUtils;
+import org.maplibre.geojson.*;
+import org.maplibre.android.geometry.LatLng;
+import org.maplibre.android.maps.MapView;
+import org.maplibre.android.maps.MapLibreMap;
+import org.maplibre.android.maps.Style;
+import org.maplibre.android.style.expressions.Expression;
+import org.maplibre.android.style.layers.*;
+import org.maplibre.android.style.sources.GeoJsonOptions;
+import org.maplibre.android.style.sources.GeoJsonSource;
+import org.maplibre.android.utils.ColorUtils;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -25,9 +25,9 @@ import java.util.List;
 import java.util.Arrays;
 
 import static com.mapbox.mapboxsdk.plugins.annotation.ConvertUtils.convertArray;
-import static com.mapbox.mapboxsdk.style.expressions.Expression.get;
-import static com.mapbox.mapboxsdk.style.layers.Property.*;
-import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.*;
+import static org.maplibre.android.style.expressions.Expression.get;
+import static org.maplibre.android.style.layers.Property.*;
+import static org.maplibre.android.style.layers.PropertyFactory.*;
 import static junit.framework.Assert.*;
 import static org.mockito.ArgumentMatchers.argThat;
 import static org.mockito.Mockito.*;
@@ -36,7 +36,7 @@ public class CircleManagerTest {
 
     private DraggableAnnotationController draggableAnnotationController = mock(DraggableAnnotationController.class);
     private MapView mapView = mock(MapView.class);
-    private MapboxMap mapboxMap = mock(MapboxMap.class);
+    private MapLibreMap maplibreMap = mock(MapLibreMap.class);
     private Style style = mock(Style.class);
     private GeoJsonSource geoJsonSource = mock(GeoJsonSource.class);
     private GeoJsonSource optionedGeoJsonSource = mock(GeoJsonSource.class);
@@ -57,7 +57,7 @@ public class CircleManagerTest {
 
     @Test
     public void testInitialization() {
-        circleManager = new CircleManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
+        circleManager = new CircleManager(mapView, maplibreMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         verify(style).addSource(geoJsonSource);
         verify(style).addLayer(circleLayer);
         assertTrue(circleManager.dataDrivenPropertyUsageMap.size() > 0);
@@ -70,7 +70,7 @@ public class CircleManagerTest {
 
     @Test
     public void testInitializationOnStyleReload() {
-        circleManager = new CircleManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
+        circleManager = new CircleManager(mapView, maplibreMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         verify(style).addSource(geoJsonSource);
         verify(style).addLayer(circleLayer);
         assertTrue(circleManager.dataDrivenPropertyUsageMap.size() > 0);
@@ -87,7 +87,7 @@ public class CircleManagerTest {
         loadingArgumentCaptor.getValue().onDidFinishLoadingStyle();
 
         ArgumentCaptor<Style.OnStyleLoaded> styleLoadedArgumentCaptor = ArgumentCaptor.forClass(Style.OnStyleLoaded.class);
-        verify(mapboxMap).getStyle(styleLoadedArgumentCaptor.capture());
+        verify(maplibreMap).getStyle(styleLoadedArgumentCaptor.capture());
 
         Style newStyle = mock(Style.class);
         when(newStyle.isFullyLoaded()).thenReturn(true);
@@ -109,7 +109,7 @@ public class CircleManagerTest {
 
     @Test
     public void testLayerBelowInitialization() {
-        circleManager = new CircleManager(mapView, mapboxMap, style, coreElementProvider, "test_layer", null, null, draggableAnnotationController);
+        circleManager = new CircleManager(mapView, maplibreMap, style, coreElementProvider, "test_layer", null, null, draggableAnnotationController);
         verify(style).addSource(geoJsonSource);
         verify(style).addLayerBelow(circleLayer, "test_layer");
         assertTrue(circleManager.dataDrivenPropertyUsageMap.size() > 0);
@@ -121,7 +121,7 @@ public class CircleManagerTest {
 
     @Test
     public void testGeoJsonOptionsInitialization() {
-        circleManager = new CircleManager(mapView, mapboxMap, style, coreElementProvider, null, null, geoJsonOptions, draggableAnnotationController);
+        circleManager = new CircleManager(mapView, maplibreMap, style, coreElementProvider, null, null, geoJsonOptions, draggableAnnotationController);
         verify(style).addSource(optionedGeoJsonSource);
         verify(style).addLayer(circleLayer);
         assertTrue(circleManager.dataDrivenPropertyUsageMap.size() > 0);
@@ -134,20 +134,20 @@ public class CircleManagerTest {
 
     @Test
     public void testLayerId() {
-        circleManager = new CircleManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
+        circleManager = new CircleManager(mapView, maplibreMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         assertEquals(layerId, circleManager.getLayerId());
     }
 
     @Test
     public void testAddCircle() {
-        circleManager = new CircleManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
+        circleManager = new CircleManager(mapView, maplibreMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         Circle circle = circleManager.create(new CircleOptions().withLatLng(new LatLng()));
         assertEquals(circleManager.getAnnotations().get(0), circle);
     }
 
     @Test
     public void addCircleFromFeatureCollection() {
-        circleManager = new CircleManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
+        circleManager = new CircleManager(mapView, maplibreMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         Geometry geometry = Point.fromLngLat(10, 10);
 
         Feature feature = Feature.fromGeometry(geometry);
@@ -176,7 +176,7 @@ public class CircleManagerTest {
 
     @Test
     public void addCircles() {
-        circleManager = new CircleManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
+        circleManager = new CircleManager(mapView, maplibreMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         List<LatLng> latLngList = new ArrayList<>();
         latLngList.add(new LatLng());
         latLngList.add(new LatLng(1, 1));
@@ -191,7 +191,7 @@ public class CircleManagerTest {
 
     @Test
     public void testDeleteCircle() {
-        circleManager = new CircleManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
+        circleManager = new CircleManager(mapView, maplibreMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         Circle circle = circleManager.create(new CircleOptions().withLatLng(new LatLng()));
         circleManager.delete(circle);
         assertTrue(circleManager.getAnnotations().size() == 0);
@@ -199,7 +199,7 @@ public class CircleManagerTest {
 
     @Test
     public void testGeometryCircle() {
-        circleManager = new CircleManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
+        circleManager = new CircleManager(mapView, maplibreMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         LatLng latLng = new LatLng(12, 34);
         CircleOptions options = new CircleOptions().withLatLng(latLng);
         Circle circle = circleManager.create(options);
@@ -211,7 +211,7 @@ public class CircleManagerTest {
 
     @Test
     public void testFeatureIdCircle() {
-        circleManager = new CircleManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
+        circleManager = new CircleManager(mapView, maplibreMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         Circle circleZero = circleManager.create(new CircleOptions().withLatLng(new LatLng()));
         Circle circleOne = circleManager.create(new CircleOptions().withLatLng(new LatLng()));
         assertEquals(circleZero.getFeature().get(Circle.ID_KEY).getAsLong(), 0);
@@ -220,7 +220,7 @@ public class CircleManagerTest {
 
     @Test
     public void testCircleDraggableFlag() {
-        circleManager = new CircleManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
+        circleManager = new CircleManager(mapView, maplibreMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         Circle circleZero = circleManager.create(new CircleOptions().withLatLng(new LatLng()));
 
         assertFalse(circleZero.isDraggable());
@@ -233,7 +233,7 @@ public class CircleManagerTest {
 
     @Test
     public void testCircleRadiusLayerProperty() {
-        circleManager = new CircleManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
+        circleManager = new CircleManager(mapView, maplibreMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         verify(circleLayer, times(0)).setProperties(argThat(new PropertyValueMatcher(circleRadius(get("circle-radius")))));
 
         CircleOptions options = new CircleOptions().withLatLng(new LatLng()).withCircleRadius(2.0f);
@@ -247,7 +247,7 @@ public class CircleManagerTest {
 
     @Test
     public void testCircleColorLayerProperty() {
-        circleManager = new CircleManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
+        circleManager = new CircleManager(mapView, maplibreMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         verify(circleLayer, times(0)).setProperties(argThat(new PropertyValueMatcher(circleColor(get("circle-color")))));
 
         CircleOptions options = new CircleOptions().withLatLng(new LatLng()).withCircleColor("rgba(0, 0, 0, 1)");
@@ -261,7 +261,7 @@ public class CircleManagerTest {
 
     @Test
     public void testCircleBlurLayerProperty() {
-        circleManager = new CircleManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
+        circleManager = new CircleManager(mapView, maplibreMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         verify(circleLayer, times(0)).setProperties(argThat(new PropertyValueMatcher(circleBlur(get("circle-blur")))));
 
         CircleOptions options = new CircleOptions().withLatLng(new LatLng()).withCircleBlur(2.0f);
@@ -275,7 +275,7 @@ public class CircleManagerTest {
 
     @Test
     public void testCircleOpacityLayerProperty() {
-        circleManager = new CircleManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
+        circleManager = new CircleManager(mapView, maplibreMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         verify(circleLayer, times(0)).setProperties(argThat(new PropertyValueMatcher(circleOpacity(get("circle-opacity")))));
 
         CircleOptions options = new CircleOptions().withLatLng(new LatLng()).withCircleOpacity(2.0f);
@@ -289,7 +289,7 @@ public class CircleManagerTest {
 
     @Test
     public void testCircleStrokeWidthLayerProperty() {
-        circleManager = new CircleManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
+        circleManager = new CircleManager(mapView, maplibreMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         verify(circleLayer, times(0)).setProperties(argThat(new PropertyValueMatcher(circleStrokeWidth(get("circle-stroke-width")))));
 
         CircleOptions options = new CircleOptions().withLatLng(new LatLng()).withCircleStrokeWidth(2.0f);
@@ -303,7 +303,7 @@ public class CircleManagerTest {
 
     @Test
     public void testCircleStrokeColorLayerProperty() {
-        circleManager = new CircleManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
+        circleManager = new CircleManager(mapView, maplibreMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         verify(circleLayer, times(0)).setProperties(argThat(new PropertyValueMatcher(circleStrokeColor(get("circle-stroke-color")))));
 
         CircleOptions options = new CircleOptions().withLatLng(new LatLng()).withCircleStrokeColor("rgba(0, 0, 0, 1)");
@@ -317,7 +317,7 @@ public class CircleManagerTest {
 
     @Test
     public void testCircleStrokeOpacityLayerProperty() {
-        circleManager = new CircleManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
+        circleManager = new CircleManager(mapView, maplibreMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         verify(circleLayer, times(0)).setProperties(argThat(new PropertyValueMatcher(circleStrokeOpacity(get("circle-stroke-opacity")))));
 
         CircleOptions options = new CircleOptions().withLatLng(new LatLng()).withCircleStrokeOpacity(2.0f);
@@ -331,7 +331,7 @@ public class CircleManagerTest {
 
     @Test
     public void testCircleLayerFilter() {
-        circleManager = new CircleManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
+        circleManager = new CircleManager(mapView, maplibreMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         Expression expression = Expression.eq(Expression.get("test"), "selected");
         verify(circleLayer, times(0)).setFilter(expression);
 
@@ -346,7 +346,7 @@ public class CircleManagerTest {
     @Test
     public void testClickListener() {
         OnCircleClickListener listener = mock(OnCircleClickListener.class);
-        circleManager = new CircleManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
+        circleManager = new CircleManager(mapView, maplibreMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         assertTrue(circleManager.getClickListeners().isEmpty());
         circleManager.addClickListener(listener);
         assertTrue(circleManager.getClickListeners().contains(listener));
@@ -357,7 +357,7 @@ public class CircleManagerTest {
     @Test
     public void testLongClickListener() {
         OnCircleLongClickListener listener = mock(OnCircleLongClickListener.class);
-        circleManager = new CircleManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
+        circleManager = new CircleManager(mapView, maplibreMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         assertTrue(circleManager.getLongClickListeners().isEmpty());
         circleManager.addLongClickListener(listener);
         assertTrue(circleManager.getLongClickListeners().contains(listener));
@@ -368,7 +368,7 @@ public class CircleManagerTest {
     @Test
     public void testDragListener() {
         OnCircleDragListener listener = mock(OnCircleDragListener.class);
-        circleManager = new CircleManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
+        circleManager = new CircleManager(mapView, maplibreMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         assertTrue(circleManager.getDragListeners().isEmpty());
         circleManager.addDragListener(listener);
         assertTrue(circleManager.getDragListeners().contains(listener));
@@ -378,7 +378,7 @@ public class CircleManagerTest {
 
     @Test
     public void testCustomData() {
-        circleManager = new CircleManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
+        circleManager = new CircleManager(mapView, maplibreMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         CircleOptions options = new CircleOptions().withLatLng(new LatLng());
         options.withData(new JsonPrimitive("hello"));
         Circle circle = circleManager.create(options);
@@ -387,7 +387,7 @@ public class CircleManagerTest {
 
     @Test
     public void testClearAll() {
-        circleManager = new CircleManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
+        circleManager = new CircleManager(mapView, maplibreMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         CircleOptions options = new CircleOptions().withLatLng(new LatLng());
         circleManager.create(options);
         assertEquals(1, circleManager.getAnnotations().size());
@@ -397,7 +397,7 @@ public class CircleManagerTest {
 
     @Test
     public void testIgnoreClearedAnnotations() {
-        circleManager = new CircleManager(mapView, mapboxMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
+        circleManager = new CircleManager(mapView, maplibreMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         CircleOptions options = new CircleOptions().withLatLng(new LatLng());
         Circle circle = circleManager.create(options);
         assertEquals(1, circleManager.annotations.size());

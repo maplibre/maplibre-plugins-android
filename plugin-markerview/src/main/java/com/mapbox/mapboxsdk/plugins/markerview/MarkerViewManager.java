@@ -1,8 +1,7 @@
 package com.mapbox.mapboxsdk.plugins.markerview;
 
-
-import com.mapbox.mapboxsdk.maps.MapView;
-import com.mapbox.mapboxsdk.maps.MapboxMap;
+import org.maplibre.android.maps.MapLibreMap;
+import org.maplibre.android.maps.MapView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +15,7 @@ import androidx.annotation.UiThread;
 public class MarkerViewManager implements MapView.OnCameraDidChangeListener, MapView.OnCameraIsChangingListener {
 
     private final MapView mapView;
-    private final MapboxMap mapboxMap;
+    private final MapLibreMap maplibreMap;
     private final List<MarkerView> markers = new ArrayList<>();
     private boolean initialised;
 
@@ -24,11 +23,11 @@ public class MarkerViewManager implements MapView.OnCameraDidChangeListener, Map
      * Create a MarkerViewManager.
      *
      * @param mapView   the MapView used to synchronise views on
-     * @param mapboxMap the MapboxMap to synchronise views with
+     * @param maplibreMap the MapboxMap to synchronise views with
      */
-    public MarkerViewManager(MapView mapView, MapboxMap mapboxMap) {
+    public MarkerViewManager(MapView mapView, MapLibreMap maplibreMap) {
         this.mapView = mapView;
-        this.mapboxMap = mapboxMap;
+        this.maplibreMap = maplibreMap;
     }
 
     /**
@@ -61,7 +60,7 @@ public class MarkerViewManager implements MapView.OnCameraDidChangeListener, Map
             mapView.addOnCameraDidChangeListener(this);
             mapView.addOnCameraIsChangingListener(this);
         }
-        markerView.setProjection(mapboxMap.getProjection());
+        markerView.setProjection(maplibreMap.getProjection());
         mapView.addView(markerView.getView());
         markers.add(markerView);
         markerView.update();

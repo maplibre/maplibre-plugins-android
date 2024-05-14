@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
-import com.mapbox.mapboxsdk.offline.OfflineRegionDefinition;
 import com.mapbox.mapboxsdk.plugins.offline.model.NotificationOptions;
 import com.mapbox.mapboxsdk.plugins.offline.model.OfflineDownloadOptions;
 import com.mapbox.mapboxsdk.plugins.offline.model.RegionSelectionOptions;
@@ -14,6 +13,8 @@ import androidx.annotation.NonNull;
 
 import static com.mapbox.mapboxsdk.plugins.offline.offline.OfflineConstants.RETURNING_DEFINITION;
 import static com.mapbox.mapboxsdk.plugins.offline.offline.OfflineConstants.RETURNING_REGION_NAME;
+
+import org.maplibre.android.offline.OfflineRegionDefinition;
 
 /**
  * While the offline plugin includes a service for optimally launching an offline download session,

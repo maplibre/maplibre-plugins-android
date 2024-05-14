@@ -4,11 +4,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.mapbox.mapboxsdk.maps.MapView
-import com.mapbox.mapboxsdk.offline.OfflineManager
-import com.mapbox.mapboxsdk.offline.OfflineRegion
-import com.mapbox.mapboxsdk.offline.OfflineRegionDefinition
-import com.mapbox.mapboxsdk.offline.OfflineRegionStatus
 import com.mapbox.mapboxsdk.plugins.offline.model.OfflineDownloadOptions
 import com.mapbox.mapboxsdk.plugins.offline.offline.OfflineConstants.KEY_BUNDLE
 import com.mapbox.mapboxsdk.plugins.offline.offline.OfflineDownloadChangeListener
@@ -16,6 +11,11 @@ import com.mapbox.mapboxsdk.plugins.offline.offline.OfflinePlugin
 import com.mapbox.mapboxsdk.plugins.offline.utils.OfflineUtils
 import com.mapbox.mapboxsdk.plugins.testapp.R
 import com.mapbox.mapboxsdk.plugins.testapp.databinding.ActivityOfflineRegionDetailBinding
+import org.maplibre.android.maps.MapView
+import org.maplibre.android.offline.OfflineManager
+import org.maplibre.android.offline.OfflineRegion
+import org.maplibre.android.offline.OfflineRegionDefinition
+import org.maplibre.android.offline.OfflineRegionStatus
 import timber.log.Timber
 
 /**
@@ -144,11 +144,11 @@ class OfflineRegionDetailActivity : AppCompatActivity(), OfflineDownloadChangeLi
 
     private fun setupUI(definition: OfflineRegionDefinition) {
         // update map
-        mapView?.getMapAsync { mapboxMap ->
+        mapView?.getMapAsync { maplibreMap ->
             // correct style
-            mapboxMap.setOfflineRegionDefinition(definition) { _ ->
+            maplibreMap.setOfflineRegionDefinition(definition) { _ ->
                 // restrict camera movement
-                mapboxMap.setLatLngBoundsForCameraTarget(definition.bounds)
+                maplibreMap.setLatLngBoundsForCameraTarget(definition.bounds)
 
                 // update textview data
                 offlineRegion?.metadata?.let {

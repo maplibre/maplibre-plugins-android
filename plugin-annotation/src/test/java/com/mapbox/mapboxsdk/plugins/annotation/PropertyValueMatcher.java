@@ -1,7 +1,6 @@
 package com.mapbox.mapboxsdk.plugins.annotation;
 
-import com.mapbox.mapboxsdk.style.layers.PropertyValue;
-
+import org.maplibre.android.style.layers.PropertyValue;
 import org.mockito.ArgumentMatcher;
 
 import java.util.Arrays;

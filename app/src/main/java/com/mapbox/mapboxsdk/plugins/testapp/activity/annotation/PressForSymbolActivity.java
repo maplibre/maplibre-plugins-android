@@ -1,21 +1,17 @@
 package com.mapbox.mapboxsdk.plugins.testapp.activity.annotation;
 
+import static org.maplibre.android.style.layers.Property.ICON_ANCHOR_BOTTOM;
+
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
-import com.mapbox.mapboxsdk.camera.CameraPosition;
-import com.mapbox.mapboxsdk.geometry.LatLng;
-import com.mapbox.mapboxsdk.maps.MapView;
-import com.mapbox.mapboxsdk.maps.MapboxMap;
-import com.mapbox.mapboxsdk.maps.Style;
 import com.mapbox.mapboxsdk.plugins.annotation.SymbolManager;
 import com.mapbox.mapboxsdk.plugins.annotation.SymbolOptions;
 import com.mapbox.mapboxsdk.plugins.testapp.R;
 import com.mapbox.mapboxsdk.plugins.testapp.Utils;
-import com.mapbox.mapboxsdk.style.layers.Property;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
@@ -23,7 +19,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
-import static com.mapbox.mapboxsdk.style.layers.Property.ICON_ANCHOR_BOTTOM;
+import org.maplibre.android.camera.CameraPosition;
+import org.maplibre.android.geometry.LatLng;
+import org.maplibre.android.maps.MapLibreMap;
+import org.maplibre.android.maps.MapView;
+import org.maplibre.android.maps.Style;
 
 /**
  * Test activity showcasing to add a Symbol on click.
@@ -36,7 +36,7 @@ public class PressForSymbolActivity extends AppCompatActivity {
     public static final String ID_ICON = "id-icon";
     private SymbolManager symbolManager;
     private MapView mapView;
-    private MapboxMap mapboxMap;
+    private MapLibreMap maplibreMap;
 
     @Override
     protected void onCreate(@Nullable final Bundle savedInstanceState) {
@@ -46,21 +46,21 @@ public class PressForSymbolActivity extends AppCompatActivity {
         mapView = findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(map -> {
-            mapboxMap = map;
-            mapboxMap.setCameraPosition(new CameraPosition.Builder()
+            maplibreMap = map;
+            maplibreMap.setCameraPosition(new CameraPosition.Builder()
                 .target(new LatLng(60.169091, 24.939876))
                 .zoom(12)
                 .tilt(20)
                 .bearing(90)
                 .build()
             );
-            mapboxMap.addOnMapLongClickListener(this::addSymbol);
-            mapboxMap.addOnMapClickListener(this::addSymbol);
-            mapboxMap.setStyle(getStyleBuilder(Style.getPredefinedStyle("Streets")), style -> {
+            maplibreMap.addOnMapLongClickListener(this::addSymbol);
+            maplibreMap.addOnMapClickListener(this::addSymbol);
+            maplibreMap.setStyle(getStyleBuilder(Style.getPredefinedStyle("Streets")), style -> {
                 findViewById(R.id.fabStyles).setOnClickListener(v ->
-                    mapboxMap.setStyle(getStyleBuilder(Utils.INSTANCE.getNextStyle())));
+                    maplibreMap.setStyle(getStyleBuilder(Utils.INSTANCE.getNextStyle())));
 
-                symbolManager = new SymbolManager(mapView, mapboxMap, style);
+                symbolManager = new SymbolManager(mapView, maplibreMap, style);
                 symbolManager.setIconAllowOverlap(true);
                 symbolManager.setTextAllowOverlap(true);
             });
@@ -118,8 +118,8 @@ public class PressForSymbolActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mapboxMap.removeOnMapClickListener(this::addSymbol);
-        mapboxMap.removeOnMapLongClickListener(this::addSymbol);
+        maplibreMap.removeOnMapClickListener(this::addSymbol);
+        maplibreMap.removeOnMapLongClickListener(this::addSymbol);
 
         if (symbolManager != null) {
             symbolManager.onDestroy();

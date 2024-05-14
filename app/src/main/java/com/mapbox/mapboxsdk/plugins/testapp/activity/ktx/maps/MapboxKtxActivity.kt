@@ -3,17 +3,17 @@ package com.mapbox.mapboxsdk.plugins.testapp.activity.ktx.maps
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.mapbox.mapboxsdk.geometry.LatLng
-import com.mapbox.mapboxsdk.maps.MapView
-import com.mapbox.mapboxsdk.maps.MapboxMap
-import com.mapbox.mapboxsdk.maps.OnMapReadyCallback
-import com.mapbox.mapboxsdk.maps.Style
 import com.mapbox.mapboxsdk.plugins.maps.queryRenderedFeatures
 import com.mapbox.mapboxsdk.plugins.testapp.databinding.ActivityMapsKtxBinding
+import org.maplibre.android.geometry.LatLng
+import org.maplibre.android.maps.MapLibreMap
+import org.maplibre.android.maps.MapView
+import org.maplibre.android.maps.OnMapReadyCallback
+import org.maplibre.android.maps.Style
 
-class MapboxKtxActivity : AppCompatActivity(), OnMapReadyCallback, MapboxMap.OnMapClickListener {
+class MapboxKtxActivity : AppCompatActivity(), OnMapReadyCallback, MapLibreMap.OnMapClickListener {
 
-    private var mapboxMap: MapboxMap? = null
+    private var maplibreMap: MapLibreMap? = null
 
     private lateinit var binding: ActivityMapsKtxBinding
     private lateinit var mapView: MapView
@@ -28,16 +28,16 @@ class MapboxKtxActivity : AppCompatActivity(), OnMapReadyCallback, MapboxMap.OnM
         mapView.getMapAsync(this)
     }
 
-    override fun onMapReady(mapboxMap: MapboxMap) {
-        this.mapboxMap = mapboxMap
-        mapboxMap.setStyle(Style.getPredefinedStyle("Streets")) {
-            mapboxMap.addOnMapClickListener(this)
+    override fun onMapReady(maplibreMap: MapLibreMap) {
+        this.maplibreMap = maplibreMap
+        maplibreMap.setStyle(Style.getPredefinedStyle("Streets")) {
+            maplibreMap.addOnMapClickListener(this)
             Toast.makeText(this, "Click on the map", Toast.LENGTH_SHORT).show()
         }
     }
 
     override fun onMapClick(point: LatLng): Boolean {
-        val features = mapboxMap?.queryRenderedFeatures(point)
+        val features = maplibreMap?.queryRenderedFeatures(point)
         features?.first().let {
             Toast.makeText(this, it.toString(), Toast.LENGTH_SHORT).show()
         }
@@ -71,7 +71,7 @@ class MapboxKtxActivity : AppCompatActivity(), OnMapReadyCallback, MapboxMap.OnM
 
     override fun onDestroy() {
         super.onDestroy()
-        mapboxMap?.removeOnMapClickListener(this)
+        maplibreMap?.removeOnMapClickListener(this)
         mapView.onDestroy()
     }
 

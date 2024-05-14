@@ -6,16 +6,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
-import com.mapbox.mapboxsdk.geometry.LatLng;
-import com.mapbox.mapboxsdk.maps.MapView;
-import com.mapbox.mapboxsdk.maps.Style;
 import com.mapbox.mapboxsdk.plugins.annotation.Line;
 import com.mapbox.mapboxsdk.plugins.annotation.LineManager;
 import com.mapbox.mapboxsdk.plugins.annotation.LineOptions;
 import com.mapbox.mapboxsdk.plugins.testapp.R;
 import com.mapbox.mapboxsdk.plugins.testapp.Utils;
-import com.mapbox.mapboxsdk.utils.ColorUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,6 +18,12 @@ import java.util.List;
 import java.util.Random;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import org.maplibre.android.camera.CameraUpdateFactory;
+import org.maplibre.android.geometry.LatLng;
+import org.maplibre.android.maps.MapView;
+import org.maplibre.android.maps.Style;
+import org.maplibre.android.utils.ColorUtils;
 
 /**
  * Activity showcasing adding lines using the annotation plugin
@@ -40,12 +41,12 @@ public class LineActivity extends AppCompatActivity {
         setContentView(R.layout.activity_annotation);
         mapView = findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
-        mapView.getMapAsync(mapboxMap -> mapboxMap.setStyle(Style.getPredefinedStyle("Streets"), style -> {
-            findViewById(R.id.fabStyles).setOnClickListener(v -> mapboxMap.setStyle(Utils.INSTANCE.getNextStyle()));
+        mapView.getMapAsync(maplibreMap -> maplibreMap.setStyle(Style.getPredefinedStyle("Streets"), style -> {
+            findViewById(R.id.fabStyles).setOnClickListener(v -> maplibreMap.setStyle(Utils.INSTANCE.getNextStyle()));
 
-            mapboxMap.moveCamera(CameraUpdateFactory.zoomTo(2));
+            maplibreMap.moveCamera(CameraUpdateFactory.zoomTo(2));
 
-            lineManager = new LineManager(mapView, mapboxMap, style);
+            lineManager = new LineManager(mapView, maplibreMap, style);
             lineManager.addClickListener(line -> {
                 Toast.makeText(LineActivity.this,
                     String.format("Line clicked %s", line.getId()),

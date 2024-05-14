@@ -7,12 +7,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.mapbox.mapboxsdk.camera.CameraPosition;
-import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
-import com.mapbox.mapboxsdk.geometry.LatLng;
-import com.mapbox.mapboxsdk.maps.MapView;
-import com.mapbox.mapboxsdk.maps.MapboxMap;
-import com.mapbox.mapboxsdk.maps.Style;
 import com.mapbox.mapboxsdk.plugins.annotation.Symbol;
 import com.mapbox.mapboxsdk.plugins.annotation.SymbolManager;
 import com.mapbox.mapboxsdk.plugins.annotation.SymbolOptions;
@@ -20,6 +14,13 @@ import com.mapbox.mapboxsdk.plugins.testapp.R;
 
 import androidx.annotation.DrawableRes;
 import androidx.appcompat.app.AppCompatActivity;
+
+import org.maplibre.android.camera.CameraPosition;
+import org.maplibre.android.camera.CameraUpdateFactory;
+import org.maplibre.android.geometry.LatLng;
+import org.maplibre.android.maps.MapLibreMap;
+import org.maplibre.android.maps.MapView;
+import org.maplibre.android.maps.Style;
 
 /**
  * Test activity showcasing updating a Marker position, title, icon and snippet.
@@ -34,7 +35,7 @@ public class DynamicSymbolChangeActivity extends AppCompatActivity {
 
     private SymbolManager symbolManager;
     private MapView mapView;
-    private MapboxMap mapboxMap;
+    private MapLibreMap maplibreMap;
     private Symbol symbol;
 
     @Override
@@ -45,12 +46,12 @@ public class DynamicSymbolChangeActivity extends AppCompatActivity {
         mapView = findViewById(R.id.mapView);
         mapView.setTag(false);
         mapView.onCreate(savedInstanceState);
-        mapView.getMapAsync(mapboxMap -> {
-            DynamicSymbolChangeActivity.this.mapboxMap = mapboxMap;
+        mapView.getMapAsync(maplibreMap -> {
+            DynamicSymbolChangeActivity.this.maplibreMap = maplibreMap;
 
             LatLng target = new LatLng(51.506675, -0.128699);
 
-            mapboxMap.moveCamera(CameraUpdateFactory.newCameraPosition(
+            maplibreMap.moveCamera(CameraUpdateFactory.newCameraPosition(
                 new CameraPosition.Builder()
                     .bearing(90)
                     .tilt(40)
@@ -59,12 +60,12 @@ public class DynamicSymbolChangeActivity extends AppCompatActivity {
                     .build()
             ));
 
-            mapboxMap.setStyle(new Style.Builder()
+            maplibreMap.setStyle(new Style.Builder()
                     .fromUri(Style.getPredefinedStyle("Streets"))
                 //.withImage(ID_ICON_1, generateBitmap(R.drawable.mapbox_ic_place), true)
                 //.withImage(ID_ICON_2, generateBitmap(R.drawable.mapbox_ic_offline), true)
                 , style -> {
-                    symbolManager = new SymbolManager(mapView, mapboxMap, style);
+                    symbolManager = new SymbolManager(mapView, maplibreMap, style);
                     symbolManager.setIconAllowOverlap(true);
                     symbolManager.setTextAllowOverlap(true);
 
@@ -82,7 +83,7 @@ public class DynamicSymbolChangeActivity extends AppCompatActivity {
         FloatingActionButton fab = findViewById(R.id.fabStyles);
         fab.setVisibility(MapView.VISIBLE);
         fab.setOnClickListener(view -> {
-            if (mapboxMap != null) {
+            if (maplibreMap != null) {
                 updateSymbol();
             }
         });

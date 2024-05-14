@@ -1,3 +1,4 @@
+
 // This file is generated.
 
 package com.mapbox.mapboxsdk.plugins.annotation;
@@ -6,10 +7,10 @@ import android.graphics.PointF;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
-import com.mapbox.mapboxsdk.geometry.LatLng;
+import org.maplibre.android.geometry.LatLng;
 import com.mapbox.mapboxsdk.plugins.BaseActivityTest;
 import com.mapbox.mapboxsdk.plugins.testapp.activity.TestActivity;
-import com.mapbox.mapboxsdk.utils.ColorUtils;
+import org.maplibre.android.utils.ColorUtils;
 
 import timber.log.Timber;
 
@@ -20,7 +21,7 @@ import java.util.Objects;
 
 import static com.mapbox.mapboxsdk.plugins.annotation.MapboxMapAction.invoke;
 import static org.junit.Assert.*;
-import static com.mapbox.mapboxsdk.style.layers.Property.*;
+import static org.maplibre.android.style.layers.Property.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,8 +41,8 @@ public class SymbolTest extends BaseActivityTest {
 
     private void setupAnnotation() {
         Timber.i("Retrieving layer");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
-            SymbolManager symbolManager = new SymbolManager(idlingResource.getMapView(), mapboxMap, Objects.requireNonNull(mapboxMap.getStyle()));
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
+            SymbolManager symbolManager = new SymbolManager(idlingResource.getMapView(), maplibreMap, Objects.requireNonNull(maplibreMap.getStyle()));
             symbol = symbolManager.create(new SymbolOptions().withLatLng(new LatLng()));
         });
     }
@@ -51,7 +52,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("symbol-sort-key");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(symbol);
 
             symbol.setSymbolSortKey(2.0f);
@@ -64,7 +65,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("icon-size");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(symbol);
 
             symbol.setIconSize(2.0f);
@@ -77,7 +78,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("icon-image");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(symbol);
 
             symbol.setIconImage("undefined");
@@ -90,7 +91,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("icon-rotate");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(symbol);
 
             symbol.setIconRotate(2.0f);
@@ -103,7 +104,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("icon-offset");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(symbol);
 
             symbol.setIconOffset(new PointF(1.0f, 1.0f));
@@ -116,7 +117,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("icon-anchor");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(symbol);
 
             symbol.setIconAnchor(ICON_ANCHOR_CENTER);
@@ -129,7 +130,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("text-field");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(symbol);
 
             symbol.setTextField("");
@@ -142,7 +143,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("text-font");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(symbol);
 
             symbol.setTextFont(new String[]{"Open Sans Regular", "Arial Unicode MS Regular"});
@@ -155,7 +156,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("text-size");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(symbol);
 
             symbol.setTextSize(2.0f);
@@ -168,7 +169,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("text-max-width");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(symbol);
 
             symbol.setTextMaxWidth(2.0f);
@@ -181,7 +182,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("text-letter-spacing");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(symbol);
 
             symbol.setTextLetterSpacing(2.0f);
@@ -194,7 +195,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("text-justify");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(symbol);
 
             symbol.setTextJustify(TEXT_JUSTIFY_AUTO);
@@ -207,7 +208,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("text-radial-offset");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(symbol);
 
             symbol.setTextRadialOffset(2.0f);
@@ -220,7 +221,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("text-anchor");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(symbol);
 
             symbol.setTextAnchor(TEXT_ANCHOR_CENTER);
@@ -233,7 +234,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("text-rotate");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(symbol);
 
             symbol.setTextRotate(2.0f);
@@ -246,7 +247,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("text-transform");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(symbol);
 
             symbol.setTextTransform(TEXT_TRANSFORM_NONE);
@@ -259,7 +260,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("text-offset");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(symbol);
 
             symbol.setTextOffset(new PointF(1.0f, 1.0f));
@@ -272,7 +273,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("icon-opacity");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(symbol);
 
             symbol.setIconOpacity(2.0f);
@@ -285,7 +286,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("icon-color");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(symbol);
 
             symbol.setIconColor("rgba(0, 0, 0, 1)");
@@ -298,7 +299,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("icon-color");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(symbol);
             symbol.setIconColor(ColorUtils.rgbaToColor("rgba(0, 0, 0, 1)"));
             assertEquals(symbol.getIconColorAsInt(), ColorUtils.rgbaToColor("rgba(0, 0, 0, 1)"));
@@ -311,7 +312,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("icon-halo-color");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(symbol);
 
             symbol.setIconHaloColor("rgba(0, 0, 0, 1)");
@@ -324,7 +325,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("icon-halo-color");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(symbol);
             symbol.setIconHaloColor(ColorUtils.rgbaToColor("rgba(0, 0, 0, 1)"));
             assertEquals(symbol.getIconHaloColorAsInt(), ColorUtils.rgbaToColor("rgba(0, 0, 0, 1)"));
@@ -337,7 +338,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("icon-halo-width");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(symbol);
 
             symbol.setIconHaloWidth(2.0f);
@@ -350,7 +351,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("icon-halo-blur");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(symbol);
 
             symbol.setIconHaloBlur(2.0f);
@@ -363,7 +364,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("text-opacity");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(symbol);
 
             symbol.setTextOpacity(2.0f);
@@ -376,7 +377,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("text-color");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(symbol);
 
             symbol.setTextColor("rgba(0, 0, 0, 1)");
@@ -389,7 +390,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("text-color");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(symbol);
             symbol.setTextColor(ColorUtils.rgbaToColor("rgba(0, 0, 0, 1)"));
             assertEquals(symbol.getTextColorAsInt(), ColorUtils.rgbaToColor("rgba(0, 0, 0, 1)"));
@@ -402,7 +403,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("text-halo-color");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(symbol);
 
             symbol.setTextHaloColor("rgba(0, 0, 0, 1)");
@@ -415,7 +416,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("text-halo-color");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(symbol);
             symbol.setTextHaloColor(ColorUtils.rgbaToColor("rgba(0, 0, 0, 1)"));
             assertEquals(symbol.getTextHaloColorAsInt(), ColorUtils.rgbaToColor("rgba(0, 0, 0, 1)"));
@@ -428,7 +429,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("text-halo-width");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(symbol);
 
             symbol.setTextHaloWidth(2.0f);
@@ -441,7 +442,7 @@ public class SymbolTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("text-halo-blur");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(symbol);
 
             symbol.setTextHaloBlur(2.0f);

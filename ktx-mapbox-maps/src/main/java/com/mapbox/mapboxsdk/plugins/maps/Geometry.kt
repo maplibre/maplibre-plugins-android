@@ -1,7 +1,7 @@
 package com.mapbox.mapboxsdk.plugins.maps
 
-import com.mapbox.geojson.Point
-import com.mapbox.mapboxsdk.geometry.LatLng
+import org.maplibre.android.geometry.LatLng
+import org.maplibre.geojson.Point
 
 /**
  * Returns a LatLng representation

@@ -5,7 +5,6 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
-import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.plugins.annotation.MapboxMapAction;
 import com.mapbox.mapboxsdk.plugins.annotation.WaitAction;
 import com.mapbox.mapboxsdk.plugins.utils.OnMapReadyIdlingResource;
@@ -16,6 +15,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.rules.TestName;
+import org.maplibre.android.maps.MapLibreMap;
 
 import androidx.test.espresso.Espresso;
 import androidx.test.espresso.IdlingRegistry;
@@ -38,7 +38,7 @@ public abstract class BaseActivityTest {
     @Rule
     public TestName testName = new TestName();
 
-    protected MapboxMap mapboxMap;
+    protected MapLibreMap maplibreMap;
     protected OnMapReadyIdlingResource idlingResource;
 
     @Before
@@ -47,7 +47,7 @@ public abstract class BaseActivityTest {
             Timber.e("@Before %s: register idle resource", testName.getMethodName());
             IdlingRegistry.getInstance().register(idlingResource = new OnMapReadyIdlingResource(rule.getActivity()));
             Espresso.onIdle();
-            mapboxMap = idlingResource.getMapboxMap();
+            maplibreMap = idlingResource.getMapLibreMap();
         } catch (IdlingResourceTimeoutException idlingResourceTimeoutException) {
             throw new RuntimeException(String.format("Could not start %s test for %s.\n  Either the ViewHierarchy doesn't "
                     + "contain a view with resource id = R.id.mapView or \n the hosting Activity wasn't in an idle state.",
@@ -60,11 +60,11 @@ public abstract class BaseActivityTest {
     protected void validateTestSetup() {
         Assert.assertTrue("Device is not connected to the Internet.", isConnected(rule.getActivity()));
         checkViewIsDisplayed(android.R.id.content);
-        Assert.assertNotNull(mapboxMap);
+        Assert.assertNotNull(maplibreMap);
     }
 
-    protected MapboxMap getMapboxMap() {
-        return mapboxMap;
+    protected MapLibreMap getMapboxMap() {
+        return maplibreMap;
     }
 
     protected abstract Class getActivityClass();
@@ -93,7 +93,7 @@ public abstract class BaseActivityTest {
     }
 
     protected MapboxMapAction getMapboxMapAction(MapboxMapAction.OnInvokeActionListener onInvokeActionListener) {
-        return new MapboxMapAction(onInvokeActionListener, mapboxMap);
+        return new MapboxMapAction(onInvokeActionListener, maplibreMap);
     }
 
     @After

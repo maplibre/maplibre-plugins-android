@@ -9,21 +9,21 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.FrameLayout
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import com.mapbox.mapboxsdk.camera.CameraUpdateFactory
-import com.mapbox.mapboxsdk.geometry.LatLng
-import com.mapbox.mapboxsdk.maps.MapView
-import com.mapbox.mapboxsdk.maps.MapboxMap
-import com.mapbox.mapboxsdk.maps.Style
 import com.mapbox.mapboxsdk.plugins.markerview.MarkerView
 import com.mapbox.mapboxsdk.plugins.markerview.MarkerViewManager
 import com.mapbox.mapboxsdk.plugins.testapp.R
 import com.mapbox.mapboxsdk.plugins.testapp.Utils
+import org.maplibre.android.camera.CameraUpdateFactory
+import org.maplibre.android.geometry.LatLng
+import org.maplibre.android.maps.MapLibreMap
+import org.maplibre.android.maps.MapView
+import org.maplibre.android.maps.Style
 import java.util.Random
 
 class MarkerViewActivity :
     AppCompatActivity(),
-    MapboxMap.OnMapLongClickListener,
-    MapboxMap.OnMapClickListener {
+    MapLibreMap.OnMapLongClickListener,
+    MapLibreMap.OnMapClickListener {
 
     private val random = Random()
     private var markerViewManager: MarkerViewManager? = null
@@ -36,18 +36,18 @@ class MarkerViewActivity :
         mapView = findViewById<View>(R.id.mapView) as MapView
 
         mapView.onCreate(savedInstanceState)
-        mapView.getMapAsync { mapboxMap ->
-            mapboxMap.setStyle(Style.getPredefinedStyle("Streets")) { _ ->
-                findViewById<View>(R.id.fabStyles).setOnClickListener { mapboxMap.setStyle(Utils.nextStyle) }
+        mapView.getMapAsync { maplibreMap ->
+            maplibreMap.setStyle(Style.getPredefinedStyle("Streets")) { _ ->
+                findViewById<View>(R.id.fabStyles).setOnClickListener { maplibreMap.setStyle(Utils.nextStyle) }
 
-                mapboxMap.moveCamera(CameraUpdateFactory.zoomTo(2.0))
+                maplibreMap.moveCamera(CameraUpdateFactory.zoomTo(2.0))
 
-                markerViewManager = MarkerViewManager(mapView, mapboxMap)
+                markerViewManager = MarkerViewManager(mapView, maplibreMap)
                 createCustomMarker()
                 createRandomMarkers()
 
-                mapboxMap.addOnMapLongClickListener(this@MarkerViewActivity)
-                mapboxMap.addOnMapClickListener(this@MarkerViewActivity)
+                maplibreMap.addOnMapLongClickListener(this@MarkerViewActivity)
+                maplibreMap.addOnMapClickListener(this@MarkerViewActivity)
             }
         }
     }

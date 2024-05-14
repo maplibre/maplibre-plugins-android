@@ -4,7 +4,7 @@ package com.mapbox.mapboxsdk.plugins.annotation;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
-import com.mapbox.mapboxsdk.geometry.LatLng;
+import org.maplibre.android.geometry.LatLng;
 import com.mapbox.mapboxsdk.plugins.testapp.activity.TestActivity;
 import com.mapbox.mapboxsdk.plugins.BaseActivityTest;
 
@@ -17,7 +17,7 @@ import java.util.Objects;
 
 import static com.mapbox.mapboxsdk.plugins.annotation.MapboxMapAction.invoke;
 import static org.junit.Assert.*;
-import static com.mapbox.mapboxsdk.style.layers.Property.*;
+import static org.maplibre.android.style.layers.Property.*;
 
 /**
  * Basic smoke tests for FillManager
@@ -34,8 +34,8 @@ public class FillManagerTest extends BaseActivityTest {
 
     private void setupFillManager() {
         Timber.i("Retrieving layer");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
-            fillManager = new FillManager(idlingResource.getMapView(), mapboxMap, Objects.requireNonNull(mapboxMap.getStyle()));
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
+            fillManager = new FillManager(idlingResource.getMapView(), maplibreMap, Objects.requireNonNull(maplibreMap.getStyle()));
         });
     }
 
@@ -44,7 +44,7 @@ public class FillManagerTest extends BaseActivityTest {
         validateTestSetup();
         setupFillManager();
         Timber.i("fill-antialias");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(fillManager);
 
             fillManager.setFillAntialias(true);
@@ -57,7 +57,7 @@ public class FillManagerTest extends BaseActivityTest {
         validateTestSetup();
         setupFillManager();
         Timber.i("fill-translate");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(fillManager);
 
             fillManager.setFillTranslate(new Float[]{0f, 0f});
@@ -70,7 +70,7 @@ public class FillManagerTest extends BaseActivityTest {
         validateTestSetup();
         setupFillManager();
         Timber.i("fill-translate-anchor");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(fillManager);
 
             fillManager.setFillTranslateAnchor(FILL_TRANSLATE_ANCHOR_MAP);
