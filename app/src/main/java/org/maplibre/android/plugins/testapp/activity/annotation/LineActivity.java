@@ -9,8 +9,7 @@ import android.widget.Toast;
 import org.maplibre.android.plugins.annotation.Line;
 import org.maplibre.android.plugins.annotation.LineManager;
 import org.maplibre.android.plugins.annotation.LineOptions;
-import com.mapbox.mapboxsdk.plugins.testapp.R;
-import org.maplibre.android.plugins.testapp.Utils;
+import org.maplibre.android.plugins.testapp.R;import org.maplibre.android.plugins.testapp.Utils;
 
 import java.io.IOException;
 import java.util.ArrayList;

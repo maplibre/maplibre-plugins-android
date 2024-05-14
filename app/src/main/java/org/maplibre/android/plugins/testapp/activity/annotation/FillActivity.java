@@ -11,8 +11,7 @@ import com.google.gson.JsonPrimitive;
 import org.maplibre.android.plugins.annotation.Fill;
 import org.maplibre.android.plugins.annotation.FillManager;
 import org.maplibre.android.plugins.annotation.FillOptions;
-import com.mapbox.mapboxsdk.plugins.testapp.R;
-import org.maplibre.android.plugins.testapp.Utils;
+import org.maplibre.android.plugins.testapp.R;import org.maplibre.android.plugins.testapp.Utils;
 
 import java.io.IOException;
 import java.util.ArrayList;

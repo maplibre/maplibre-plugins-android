@@ -12,7 +12,7 @@ import org.maplibre.android.plugins.annotation.Circle;
 import org.maplibre.android.plugins.annotation.CircleManager;
 import org.maplibre.android.plugins.annotation.CircleOptions;
 import org.maplibre.android.plugins.annotation.OnCircleDragListener;
-import com.mapbox.mapboxsdk.plugins.testapp.R;
+import org.maplibre.android.plugins.testapp.R;
 import org.maplibre.android.plugins.testapp.Utils;
 
 import java.io.IOException;

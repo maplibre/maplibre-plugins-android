@@ -9,8 +9,7 @@ import android.widget.Toast;
 import org.maplibre.android.plugins.annotation.Fill;
 import org.maplibre.android.plugins.annotation.FillManager;
 import org.maplibre.android.plugins.annotation.FillOptions;
-import com.mapbox.mapboxsdk.plugins.testapp.R;
-
+import org.maplibre.android.plugins.testapp.R;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -4,8 +4,7 @@ import android.app.Activity;
 import android.os.Handler;
 import android.os.Looper;
 
-import com.mapbox.mapboxsdk.plugins.testapp.R;
-
+import org.maplibre.android.plugins.testapp.R;
 import androidx.annotation.NonNull;
 import androidx.test.espresso.IdlingResource;
 

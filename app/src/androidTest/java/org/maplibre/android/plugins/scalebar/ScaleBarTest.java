@@ -5,8 +5,7 @@ import android.app.Activity;
 import android.view.View;
 
 import org.maplibre.android.plugins.BaseActivityTest;
-import com.mapbox.mapboxsdk.plugins.testapp.R;
-import org.maplibre.android.plugins.testapp.activity.TestActivity;
+import org.maplibre.android.plugins.testapp.R;import org.maplibre.android.plugins.testapp.activity.TestActivity;
 import com.mapbox.pluginscalebar.ScaleBarOptions;
 import com.mapbox.pluginscalebar.ScaleBarPlugin;
 import com.mapbox.pluginscalebar.ScaleBarWidget;

@@ -4,8 +4,7 @@ import android.os.Bundle;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
-import com.mapbox.mapboxsdk.plugins.testapp.R;
-
+import org.maplibre.android.plugins.testapp.R;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;

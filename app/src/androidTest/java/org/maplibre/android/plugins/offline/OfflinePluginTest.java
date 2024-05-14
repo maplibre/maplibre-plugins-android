@@ -2,8 +2,7 @@ package org.maplibre.android.plugins.offline;
 
 import com.mapbox.mapboxsdk.plugins.offline.model.OfflineDownloadOptions;
 import com.mapbox.mapboxsdk.plugins.offline.offline.OfflinePlugin;
-import com.mapbox.mapboxsdk.plugins.testapp.R;
-import org.maplibre.android.plugins.testapp.activity.offline.OfflineDownloadActivity;
+import org.maplibre.android.plugins.testapp.R;import org.maplibre.android.plugins.testapp.activity.offline.OfflineDownloadActivity;
 
 import org.junit.Before;
 import org.junit.Ignore;

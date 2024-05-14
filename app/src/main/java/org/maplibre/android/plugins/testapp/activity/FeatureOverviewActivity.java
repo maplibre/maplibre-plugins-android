@@ -21,8 +21,7 @@ import android.widget.Toast;
 
 import org.maplibre.android.core.permissions.PermissionsListener;
 import org.maplibre.android.core.permissions.PermissionsManager;
-import com.mapbox.mapboxsdk.plugins.testapp.R;
-
+import org.maplibre.android.plugins.testapp.R;
 import androidx.annotation.IdRes;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
