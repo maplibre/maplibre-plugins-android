@@ -1,10 +1,14 @@
-package com.mapbox.mapboxsdk.plugins.annotation;
+package org.maplibre.android.plugins.annotation;
 
 import android.graphics.PointF;
 
 import com.mapbox.android.gestures.AndroidGesturesManager;
 import com.mapbox.android.gestures.MoveDistancesObject;
 import com.mapbox.android.gestures.MoveGestureDetector;
+import org.maplibre.android.plugins.annotation.Annotation;
+import org.maplibre.android.plugins.annotation.AnnotationManager;
+import org.maplibre.android.plugins.annotation.DraggableAnnotationController;
+import org.maplibre.android.plugins.annotation.OnAnnotationDragListener;
 import org.maplibre.geojson.Geometry;
 
 import org.junit.Before;
