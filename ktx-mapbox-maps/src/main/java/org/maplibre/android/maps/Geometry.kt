@@ -1,4 +1,4 @@
-package com.mapbox.mapboxsdk.plugins.maps
+package org.maplibre.android.maps
 
 import org.maplibre.android.geometry.LatLng
 import org.maplibre.geojson.Point

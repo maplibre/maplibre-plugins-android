@@ -18,7 +18,8 @@ import android.widget.Spinner;
 import org.maplibre.android.plugins.annotation.Symbol;
 import org.maplibre.android.plugins.annotation.SymbolManager;
 import org.maplibre.android.plugins.annotation.SymbolOptions;
-import com.mapbox.mapboxsdk.plugins.testapp.BuildConfig;
+import org.maplibre.android.plugins.testapp.R;
+import org.maplibre.android.plugins.testapp.BuildConfig;
 import org.maplibre.android.plugins.testapp.R;import org.maplibre.android.plugins.testapp.Utils;
 
 import org.maplibre.android.MapLibre;

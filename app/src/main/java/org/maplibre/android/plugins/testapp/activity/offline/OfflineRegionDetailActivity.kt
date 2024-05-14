@@ -9,13 +9,13 @@ import com.mapbox.mapboxsdk.plugins.offline.offline.OfflineConstants.KEY_BUNDLE
 import com.mapbox.mapboxsdk.plugins.offline.offline.OfflineDownloadChangeListener
 import com.mapbox.mapboxsdk.plugins.offline.offline.OfflinePlugin
 import com.mapbox.mapboxsdk.plugins.offline.utils.OfflineUtils
-import com.mapbox.mapboxsdk.plugins.testapp.R
-import com.mapbox.mapboxsdk.plugins.testapp.databinding.ActivityOfflineRegionDetailBinding
+import org.maplibre.android.plugins.testapp.R;
 import org.maplibre.android.maps.MapView
 import org.maplibre.android.offline.OfflineManager
 import org.maplibre.android.offline.OfflineRegion
 import org.maplibre.android.offline.OfflineRegionDefinition
 import org.maplibre.android.offline.OfflineRegionStatus
+import org.maplibre.android.plugins.testapp.databinding.ActivityOfflineRegionDetailBinding
 import timber.log.Timber
 
 /**

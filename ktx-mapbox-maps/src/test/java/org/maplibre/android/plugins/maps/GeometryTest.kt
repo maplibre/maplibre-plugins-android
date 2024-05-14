@@ -1,10 +1,12 @@
-package com.mapbox.mapboxsdk.plugins.maps
+package org.maplibre.android.plugins.maps
 
 import junit.framework.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.maplibre.android.geometry.LatLng
+import org.maplibre.android.maps.toLatLng
+import org.maplibre.android.maps.toPoint
 import org.maplibre.geojson.Point
 
 @RunWith(JUnit4::class)

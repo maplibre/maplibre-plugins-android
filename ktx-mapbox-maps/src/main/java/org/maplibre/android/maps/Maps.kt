@@ -1,9 +1,8 @@
-package com.mapbox.mapboxsdk.plugins.maps
+package org.maplibre.android.maps
 
 import android.graphics.RectF
 import org.maplibre.android.geometry.LatLng
 import org.maplibre.android.geometry.LatLngBounds
-import org.maplibre.android.maps.MapLibreMap
 import org.maplibre.android.style.expressions.Expression
 import org.maplibre.geojson.Feature
 

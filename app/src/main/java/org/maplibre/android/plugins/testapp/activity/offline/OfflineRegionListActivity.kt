@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.mapbox.mapboxsdk.plugins.offline.utils.OfflineUtils
-import com.mapbox.mapboxsdk.plugins.testapp.R
+import org.maplibre.android.plugins.testapp.R;
 import org.maplibre.android.offline.OfflineManager
 import org.maplibre.android.offline.OfflineRegion
 import org.maplibre.android.offline.OfflineRegionDefinition
