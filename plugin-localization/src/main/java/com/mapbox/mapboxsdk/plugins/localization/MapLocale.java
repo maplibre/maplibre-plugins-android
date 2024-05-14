@@ -1,9 +1,6 @@
 package com.mapbox.mapboxsdk.plugins.localization;
 
 
-import com.mapbox.mapboxsdk.geometry.LatLng;
-import com.mapbox.mapboxsdk.geometry.LatLngBounds;
-
 import java.lang.annotation.Retention;
 import java.util.HashMap;
 import java.util.Locale;
@@ -14,6 +11,9 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringDef;
 
 import static java.lang.annotation.RetentionPolicy.SOURCE;
+
+import org.maplibre.android.geometry.LatLng;
+import org.maplibre.android.geometry.LatLngBounds;
 
 /**
  * A {@link MapLocale} object builds off of the {@link Locale} object and provides additional

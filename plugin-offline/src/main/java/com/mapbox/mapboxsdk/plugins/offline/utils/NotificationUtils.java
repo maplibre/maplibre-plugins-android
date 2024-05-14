@@ -1,5 +1,7 @@
 package com.mapbox.mapboxsdk.plugins.offline.utils;
 
+import static org.maplibre.android.MapLibre.getApplicationContext;
+
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -16,8 +18,6 @@ import com.mapbox.mapboxsdk.plugins.offline.R;
 import com.mapbox.mapboxsdk.plugins.offline.model.NotificationOptions;
 import com.mapbox.mapboxsdk.plugins.offline.model.OfflineDownloadOptions;
 import com.mapbox.mapboxsdk.plugins.offline.offline.OfflineConstants;
-
-import static com.mapbox.mapboxsdk.Mapbox.getApplicationContext;
 
 public class NotificationUtils {
 

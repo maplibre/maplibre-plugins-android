@@ -2,15 +2,15 @@ package com.mapbox.pluginscalebar;
 
 import android.view.View;
 
-import com.mapbox.mapboxsdk.camera.CameraPosition;
-import com.mapbox.mapboxsdk.log.Logger;
-import com.mapbox.mapboxsdk.maps.MapView;
-import com.mapbox.mapboxsdk.maps.MapboxMap;
-import com.mapbox.mapboxsdk.maps.Projection;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.UiThread;
 import androidx.annotation.VisibleForTesting;
+
+import org.maplibre.android.camera.CameraPosition;
+import org.maplibre.android.log.Logger;
+import org.maplibre.android.maps.MapLibreMap;
+import org.maplibre.android.maps.MapView;
+import org.maplibre.android.maps.Projection;
 
 /**
  * Plugin class that shows a scale bar on MapView and changes the scale corresponding to the MapView's scale.
@@ -19,13 +19,13 @@ public class ScaleBarPlugin {
     private static final String TAG = "Mbgl-ScaleBarPlugin";
 
     private final MapView mapView;
-    private final MapboxMap mapboxMap;
+    private final MapLibreMap mapLibreMap;
     private final Projection projection;
     private boolean enabled = true;
     private ScaleBarWidget scaleBarWidget;
 
     @VisibleForTesting
-    final MapboxMap.OnCameraMoveListener cameraMoveListener = new MapboxMap.OnCameraMoveListener() {
+    final MapLibreMap.OnCameraMoveListener cameraMoveListener = new MapLibreMap.OnCameraMoveListener() {
         @Override
         public void onCameraMove() {
             invalidateScaleBar();
@@ -33,16 +33,16 @@ public class ScaleBarPlugin {
     };
 
     @VisibleForTesting
-    final MapboxMap.OnCameraIdleListener cameraIdleListener = new MapboxMap.OnCameraIdleListener() {
+    final MapLibreMap.OnCameraIdleListener cameraIdleListener = new MapLibreMap.OnCameraIdleListener() {
         @Override
         public void onCameraIdle() {
             invalidateScaleBar();
         }
     };
 
-    public ScaleBarPlugin(@NonNull MapView mapView, @NonNull MapboxMap mapboxMap) {
+    public ScaleBarPlugin(@NonNull MapView mapView, @NonNull MapLibreMap mapboxMap) {
         this.mapView = mapView;
-        this.mapboxMap = mapboxMap;
+        this.mapLibreMap = mapboxMap;
         this.projection = mapboxMap.getProjection();
     }
 
@@ -80,9 +80,9 @@ public class ScaleBarPlugin {
     /**
      * Toggles the scale plugin state.
      * <p>
-     * If the scale plugin wasn enabled, a {@link com.mapbox.mapboxsdk.maps.MapboxMap.OnCameraMoveListener}
+     * If the scale plugin wasn enabled, a {@link org.maplibre.android.maps.MapLibreMap.OnCameraMoveListener}
      * will be added to the {@link MapView} to listen to scale change events to update the state of this plugin. If the
-     * plugin was disabled the {@link com.mapbox.mapboxsdk.maps.MapboxMap.OnCameraMoveListener}
+     * plugin was disabled the {@link org.maplibre.android.maps.MapLibreMap.OnCameraMoveListener}
      * will be removed from the map.
      * </p>
      */
@@ -107,18 +107,18 @@ public class ScaleBarPlugin {
     }
 
     private void invalidateScaleBar() {
-        CameraPosition cameraPosition = mapboxMap.getCameraPosition();
+        CameraPosition cameraPosition = mapLibreMap.getCameraPosition();
         scaleBarWidget.setDistancePerPixel((projection.getMetersPerPixelAtLatitude(cameraPosition.target.getLatitude()))
             / mapView.getPixelRatio());
     }
 
     private void addCameraListeners() {
-        mapboxMap.addOnCameraMoveListener(cameraMoveListener);
-        mapboxMap.addOnCameraIdleListener(cameraIdleListener);
+        mapLibreMap.addOnCameraMoveListener(cameraMoveListener);
+        mapLibreMap.addOnCameraIdleListener(cameraIdleListener);
     }
 
     private void removeCameraListeners() {
-        mapboxMap.removeOnCameraMoveListener(cameraMoveListener);
-        mapboxMap.removeOnCameraIdleListener(cameraIdleListener);
+        mapLibreMap.removeOnCameraMoveListener(cameraMoveListener);
+        mapLibreMap.removeOnCameraIdleListener(cameraIdleListener);
     }
 }

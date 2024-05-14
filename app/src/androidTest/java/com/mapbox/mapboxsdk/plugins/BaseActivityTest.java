@@ -47,7 +47,7 @@ public abstract class BaseActivityTest {
             Timber.e("@Before %s: register idle resource", testName.getMethodName());
             IdlingRegistry.getInstance().register(idlingResource = new OnMapReadyIdlingResource(rule.getActivity()));
             Espresso.onIdle();
-            mapboxMap = idlingResource.getMapboxMap();
+            mapboxMap = idlingResource.getMapLibreMap();
         } catch (IdlingResourceTimeoutException idlingResourceTimeoutException) {
             throw new RuntimeException(String.format("Could not start %s test for %s.\n  Either the ViewHierarchy doesn't "
                     + "contain a view with resource id = R.id.mapView or \n the hosting Activity wasn't in an idle state.",

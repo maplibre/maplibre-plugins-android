@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
-import com.mapbox.mapboxsdk.offline.OfflineRegion;
 import com.mapbox.mapboxsdk.plugins.offline.model.OfflineDownloadOptions;
 
 import java.util.ArrayList;
@@ -15,6 +14,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import static com.mapbox.mapboxsdk.plugins.offline.offline.OfflineConstants.KEY_BUNDLE;
+
+import org.maplibre.android.offline.OfflineRegion;
 
 /**
  * OfflinePlugin is the main entry point for integrating the offline plugin into your app.

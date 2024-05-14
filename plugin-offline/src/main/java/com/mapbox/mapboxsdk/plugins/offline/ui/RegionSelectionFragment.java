@@ -9,20 +9,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.mapbox.geojson.Feature;
-import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
-import com.mapbox.mapboxsdk.geometry.LatLng;
-import com.mapbox.mapboxsdk.geometry.LatLngBounds;
-import com.mapbox.mapboxsdk.maps.MapView;
-import com.mapbox.mapboxsdk.maps.MapboxMap;
-import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
-import com.mapbox.mapboxsdk.maps.Style;
-import com.mapbox.mapboxsdk.offline.OfflineRegionDefinition;
-import com.mapbox.mapboxsdk.offline.OfflineTilePyramidRegionDefinition;
 import com.mapbox.mapboxsdk.plugins.offline.OfflinePluginConstants;
 import com.mapbox.mapboxsdk.plugins.offline.R;
 import com.mapbox.mapboxsdk.plugins.offline.model.RegionSelectionOptions;
-import com.mapbox.mapboxsdk.style.sources.VectorSource;
 
 import java.util.List;
 
@@ -30,10 +19,22 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import org.maplibre.android.camera.CameraUpdateFactory;
+import org.maplibre.android.geometry.LatLng;
+import org.maplibre.android.geometry.LatLngBounds;
+import org.maplibre.android.maps.MapLibreMap;
+import org.maplibre.android.maps.MapView;
+import org.maplibre.android.maps.OnMapReadyCallback;
+import org.maplibre.android.maps.Style;
+import org.maplibre.android.offline.OfflineRegionDefinition;
+import org.maplibre.android.offline.OfflineTilePyramidRegionDefinition;
+import org.maplibre.android.style.sources.VectorSource;
+import org.maplibre.geojson.Feature;
+
 import timber.log.Timber;
 
 public class RegionSelectionFragment extends Fragment implements OnMapReadyCallback,
-    MapboxMap.OnCameraIdleListener {
+    MapLibreMap.OnCameraIdleListener {
 
     public static final String TAG = "OfflineRegionSelectionFragment";
     private static final String[] LAYER_IDS = new String[]{
@@ -46,7 +47,7 @@ public class RegionSelectionFragment extends Fragment implements OnMapReadyCallb
     private RegionSelectionOptions options;
     private RegionSelectedCallback selectedCallback;
     private TextView regionNameTextView;
-    private MapboxMap mapboxMap;
+    private MapLibreMap mapLibreMap;
     private String regionName;
     private RectF boundingBox;
     private MapView mapView;
@@ -97,8 +98,8 @@ public class RegionSelectionFragment extends Fragment implements OnMapReadyCallb
     }
 
     @Override
-    public void onMapReady(final MapboxMap mapboxMap) {
-        this.mapboxMap = mapboxMap;
+    public void onMapReady(final MapLibreMap mapboxMap) {
+        this.mapLibreMap = mapboxMap;
         mapboxMap.setStyle(Style.getPredefinedStyle("Streets"), new Style.OnStyleLoaded() {
             @Override
             public void onStyleLoaded(@NonNull Style style) {
@@ -129,8 +130,8 @@ public class RegionSelectionFragment extends Fragment implements OnMapReadyCallb
     public void onStart() {
         super.onStart();
         mapView.onStart();
-        if (mapboxMap != null) {
-            mapboxMap.addOnCameraIdleListener(this);
+        if (mapLibreMap != null) {
+            mapLibreMap.addOnCameraIdleListener(this);
         }
     }
 
@@ -156,8 +157,8 @@ public class RegionSelectionFragment extends Fragment implements OnMapReadyCallb
     public void onStop() {
         super.onStop();
         mapView.onStop();
-        if (mapboxMap != null) {
-            mapboxMap.removeOnCameraIdleListener(this);
+        if (mapLibreMap != null) {
+            mapLibreMap.removeOnCameraIdleListener(this);
         }
     }
 
@@ -184,7 +185,7 @@ public class RegionSelectionFragment extends Fragment implements OnMapReadyCallb
     }
 
     public String getOfflineRegionName() {
-        List<Feature> featureList = mapboxMap.queryRenderedFeatures(boundingBox, LAYER_IDS);
+        List<Feature> featureList = mapLibreMap.queryRenderedFeatures(boundingBox, LAYER_IDS);
         if (featureList.isEmpty() && style != null) {
             Timber.v("Rendered features empty, attempting to query vector source.");
             VectorSource source = style.getSourceAs("composite");
@@ -199,20 +200,20 @@ public class RegionSelectionFragment extends Fragment implements OnMapReadyCallb
     }
 
     OfflineRegionDefinition createRegion() {
-        if (mapboxMap == null) {
+        if (mapLibreMap == null) {
             throw new NullPointerException("MapboxMap is null and can't be used to create Offline region"
                 + "definition.");
         }
         RectF rectF = getSelectionRegion();
-        LatLng northEast = mapboxMap.getProjection().fromScreenLocation(new PointF(rectF.right, rectF.top));
-        LatLng southWest = mapboxMap.getProjection().fromScreenLocation(new PointF(rectF.left, rectF.bottom));
+        LatLng northEast = mapLibreMap.getProjection().fromScreenLocation(new PointF(rectF.right, rectF.top));
+        LatLng southWest = mapLibreMap.getProjection().fromScreenLocation(new PointF(rectF.left, rectF.bottom));
 
         LatLngBounds bounds = new LatLngBounds.Builder().include(northEast).include(southWest).build();
-        double cameraZoom = mapboxMap.getCameraPosition().zoom;
+        double cameraZoom = mapLibreMap.getCameraPosition().zoom;
         float pixelRatio = getActivity().getResources().getDisplayMetrics().density;
 
         return new OfflineTilePyramidRegionDefinition(
-            mapboxMap.getStyle().getUrl(), bounds, cameraZoom - 2, cameraZoom + 2, pixelRatio
+            mapLibreMap.getStyle().getUrl(), bounds, cameraZoom - 2, cameraZoom + 2, pixelRatio
         );
     }
 

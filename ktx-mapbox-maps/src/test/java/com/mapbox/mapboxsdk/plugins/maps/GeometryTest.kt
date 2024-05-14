@@ -1,11 +1,11 @@
 package com.mapbox.mapboxsdk.plugins.maps
 
-import com.mapbox.geojson.Point
-import com.mapbox.mapboxsdk.geometry.LatLng
 import junit.framework.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
+import org.maplibre.android.geometry.LatLng
+import org.maplibre.geojson.Point
 
 @RunWith(JUnit4::class)
 class GeometryTest {

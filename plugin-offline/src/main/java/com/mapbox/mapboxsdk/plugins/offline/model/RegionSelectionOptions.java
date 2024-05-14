@@ -3,12 +3,13 @@ package com.mapbox.mapboxsdk.plugins.offline.model;
 import android.os.Parcelable;
 
 import com.google.auto.value.AutoValue;
-import com.mapbox.mapboxsdk.camera.CameraPosition;
-import com.mapbox.mapboxsdk.geometry.LatLngBounds;
 import com.mapbox.mapboxsdk.plugins.offline.ui.OfflineActivity;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import org.maplibre.android.camera.CameraPosition;
+import org.maplibre.android.geometry.LatLngBounds;
 
 /**
  * Options specific to the Region Selection UI component.

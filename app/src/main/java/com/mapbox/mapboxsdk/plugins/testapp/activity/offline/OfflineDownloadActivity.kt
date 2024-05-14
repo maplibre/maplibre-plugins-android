@@ -5,17 +5,17 @@ import android.widget.ArrayAdapter
 import android.widget.SeekBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.mapbox.mapboxsdk.constants.MapboxConstants
-import com.mapbox.mapboxsdk.geometry.LatLng
-import com.mapbox.mapboxsdk.geometry.LatLngBounds
-import com.mapbox.mapboxsdk.maps.Style
-import com.mapbox.mapboxsdk.offline.OfflineTilePyramidRegionDefinition
 import com.mapbox.mapboxsdk.plugins.offline.model.NotificationOptions
 import com.mapbox.mapboxsdk.plugins.offline.model.OfflineDownloadOptions
 import com.mapbox.mapboxsdk.plugins.offline.offline.OfflinePlugin
 import com.mapbox.mapboxsdk.plugins.offline.utils.OfflineUtils
 import com.mapbox.mapboxsdk.plugins.testapp.R
 import com.mapbox.mapboxsdk.plugins.testapp.databinding.ActivityOfflineDownloadBinding
+import org.maplibre.android.constants.MapLibreConstants
+import org.maplibre.android.geometry.LatLng
+import org.maplibre.android.geometry.LatLngBounds
+import org.maplibre.android.maps.Style
+import org.maplibre.android.offline.OfflineTilePyramidRegionDefinition
 import java.util.ArrayList
 
 /**
@@ -61,7 +61,7 @@ class OfflineDownloadActivity : AppCompatActivity() {
     }
 
     private fun initSeekbars() {
-        val maxZoom = MapboxConstants.MAXIMUM_ZOOM.toInt()
+        val maxZoom = MapLibreConstants.MAXIMUM_ZOOM.toInt()
         binding.seekbarMinZoom.max = maxZoom
         binding.seekbarMinZoom.progress = 16
         binding.seekbarMaxZoom.max = maxZoom

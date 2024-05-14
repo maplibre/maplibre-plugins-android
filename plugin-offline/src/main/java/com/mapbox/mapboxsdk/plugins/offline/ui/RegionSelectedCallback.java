@@ -1,6 +1,6 @@
 package com.mapbox.mapboxsdk.plugins.offline.ui;
 
-import com.mapbox.mapboxsdk.offline.OfflineRegionDefinition;
+import org.maplibre.android.offline.OfflineRegionDefinition;
 
 public interface RegionSelectedCallback {
 

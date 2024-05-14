@@ -3,10 +3,10 @@ package com.mapbox.mapboxsdk.plugins.markerview;
 import android.graphics.PointF;
 import android.view.View;
 
-import com.mapbox.mapboxsdk.geometry.LatLng;
-import com.mapbox.mapboxsdk.maps.Projection;
-
 import androidx.annotation.NonNull;
+
+import org.maplibre.android.geometry.LatLng;
+import org.maplibre.android.maps.Projection;
 
 /**
  * MarkerView class wraps a latitude-longitude pair with a Android SDK View.

@@ -7,24 +7,25 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.mapbox.geojson.LineString;
-import com.mapbox.geojson.Point;
-import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
-import com.mapbox.mapboxsdk.geometry.LatLng;
-import com.mapbox.mapboxsdk.maps.MapView;
-import com.mapbox.mapboxsdk.maps.Style;
 import com.mapbox.mapboxsdk.plugins.annotation.Line;
 import com.mapbox.mapboxsdk.plugins.annotation.LineManager;
 import com.mapbox.mapboxsdk.plugins.annotation.LineOptions;
 import com.mapbox.mapboxsdk.plugins.testapp.R;
 import com.mapbox.mapboxsdk.plugins.testapp.Utils;
-import com.mapbox.mapboxsdk.utils.ColorUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import org.maplibre.android.camera.CameraUpdateFactory;
+import org.maplibre.android.geometry.LatLng;
+import org.maplibre.android.maps.MapView;
+import org.maplibre.android.maps.Style;
+import org.maplibre.android.utils.ColorUtils;
+import org.maplibre.geojson.LineString;
+import org.maplibre.geojson.Point;
 
 /**
  * Test activity showcasing the Polyline annotations API.

@@ -2,38 +2,38 @@ package com.mapbox.mapboxsdk.plugins.building;
 
 import android.graphics.Color;
 
-import com.mapbox.mapboxsdk.maps.MapView;
-import com.mapbox.mapboxsdk.maps.MapboxMap;
-import com.mapbox.mapboxsdk.maps.Style;
-import com.mapbox.mapboxsdk.style.layers.FillExtrusionLayer;
-import com.mapbox.mapboxsdk.style.light.Light;
+import org.maplibre.android.maps.MapView;
+import org.maplibre.android.maps.MapLibreMap;
+import org.maplibre.android.maps.Style;
+import org.maplibre.android.style.layers.FillExtrusionLayer;
+import org.maplibre.android.style.light.Light;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.FloatRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import static com.mapbox.mapboxsdk.constants.MapboxConstants.MAXIMUM_ZOOM;
-import static com.mapbox.mapboxsdk.constants.MapboxConstants.MINIMUM_ZOOM;
-import static com.mapbox.mapboxsdk.style.expressions.Expression.exponential;
-import static com.mapbox.mapboxsdk.style.expressions.Expression.get;
-import static com.mapbox.mapboxsdk.style.expressions.Expression.interpolate;
-import static com.mapbox.mapboxsdk.style.expressions.Expression.literal;
-import static com.mapbox.mapboxsdk.style.expressions.Expression.stop;
-import static com.mapbox.mapboxsdk.style.expressions.Expression.zoom;
-import static com.mapbox.mapboxsdk.style.layers.Property.NONE;
-import static com.mapbox.mapboxsdk.style.layers.Property.VISIBLE;
-import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.fillExtrusionColor;
-import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.fillExtrusionHeight;
-import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.fillExtrusionOpacity;
-import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.visibility;
+import static org.maplibre.android.constants.MapLibreConstants.MAXIMUM_ZOOM;
+import static org.maplibre.android.constants.MapLibreConstants.MINIMUM_ZOOM;
+import static org.maplibre.android.style.expressions.Expression.exponential;
+import static org.maplibre.android.style.expressions.Expression.get;
+import static org.maplibre.android.style.expressions.Expression.interpolate;
+import static org.maplibre.android.style.expressions.Expression.literal;
+import static org.maplibre.android.style.expressions.Expression.stop;
+import static org.maplibre.android.style.expressions.Expression.zoom;
+import static org.maplibre.android.style.layers.Property.NONE;
+import static org.maplibre.android.style.layers.Property.VISIBLE;
+import static org.maplibre.android.style.layers.PropertyFactory.fillExtrusionColor;
+import static org.maplibre.android.style.layers.PropertyFactory.fillExtrusionHeight;
+import static org.maplibre.android.style.layers.PropertyFactory.fillExtrusionOpacity;
+import static org.maplibre.android.style.layers.PropertyFactory.visibility;
 
 /**
  * The building plugin allows you to add 3d buildings FillExtrusionLayer to the Mapbox Maps SDK for
  * Android v5.1.0.
  * <p>
- * Initialise this plugin in the {@link com.mapbox.mapboxsdk.maps.OnMapReadyCallback#onMapReady(MapboxMap)}
- * and provide a valid instance of {@link MapView} and {@link MapboxMap}.
+ * Initialise this plugin in the {@link org.maplibre.android.maps.OnMapReadyCallback#onMapReady(MapLibreMap)}
+ * and provide a valid instance of {@link MapView} and {@link MapLibreMap}.
  * </p>
  * <ul>
  * <li>Use {@link #setVisibility(boolean)}} to show buildings from this plugin.</li>
@@ -60,21 +60,21 @@ public final class BuildingPlugin {
      * Create a building plugin.
      *
      * @param mapView   the MapView to apply the building plugin to
-     * @param mapboxMap the MapboxMap to apply building plugin with
+     * @param MapLibreMap the MapLibreMap to apply building plugin with
      * @since 0.1.0
      */
-    public BuildingPlugin(@NonNull MapView mapView, @NonNull final MapboxMap mapboxMap, @NonNull Style style) {
-        this(mapView, mapboxMap, style, null);
+    public BuildingPlugin(@NonNull MapView mapView, @NonNull final MapLibreMap MapLibreMap, @NonNull Style style) {
+        this(mapView, MapLibreMap, style, null);
     }
 
     /**
      * Create a building plugin.
      *
      * @param mapView   the MapView to apply the building plugin to
-     * @param mapboxMap the MapboxMap to apply building plugin with
+     * @param MapLibreMap the MapLibreMap to apply building plugin with
      * @since 0.1.0
      */
-    public BuildingPlugin(@NonNull MapView mapView, @NonNull final MapboxMap mapboxMap, @NonNull Style style,
+    public BuildingPlugin(@NonNull MapView mapView, @NonNull final MapLibreMap MapLibreMap, @NonNull Style style,
                           @Nullable final String belowLayer) {
         this.style = style;
         if (!style.isFullyLoaded()) {
@@ -86,7 +86,7 @@ public final class BuildingPlugin {
         mapView.addOnDidFinishLoadingStyleListener(new MapView.OnDidFinishLoadingStyleListener() {
             @Override
             public void onDidFinishLoadingStyle() {
-                mapboxMap.getStyle(new Style.OnStyleLoaded() {
+                MapLibreMap.getStyle(new Style.OnStyleLoaded() {
                     @Override
                     public void onStyleLoaded(@NonNull Style style) {
                         BuildingPlugin.this.style = style;

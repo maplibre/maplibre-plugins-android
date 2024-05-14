@@ -2,19 +2,18 @@ package com.mapbox.mapboxsdk.plugins.testapp.activity.scalebar
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.mapbox.geojson.LineString
-import com.mapbox.geojson.Point
-import com.mapbox.mapboxsdk.maps.MapView
-import com.mapbox.mapboxsdk.maps.MapboxMap
-import com.mapbox.mapboxsdk.maps.Style
-import com.mapbox.mapboxsdk.plugins.testapp.R
 import com.mapbox.mapboxsdk.plugins.testapp.databinding.ActivityScalebarBinding
-import com.mapbox.mapboxsdk.style.layers.LineLayer
-import com.mapbox.mapboxsdk.style.sources.GeoJsonSource
 import com.mapbox.pluginscalebar.ScaleBarOptions
 import com.mapbox.pluginscalebar.ScaleBarPlugin
-import com.mapbox.turf.TurfConstants
-import com.mapbox.turf.TurfMeasurement
+import org.maplibre.android.maps.MapLibreMap
+import org.maplibre.android.maps.MapView
+import org.maplibre.android.maps.Style
+import org.maplibre.android.style.layers.LineLayer
+import org.maplibre.android.style.sources.GeoJsonSource
+import org.maplibre.geojson.LineString
+import org.maplibre.geojson.Point
+import org.maplibre.turf.TurfConstants
+import org.maplibre.turf.TurfMeasurement
 
 /**
  * Activity showing a scalebar used on a MapView.
@@ -37,8 +36,8 @@ class ScalebarActivity : AppCompatActivity() {
         }
     }
 
-    private fun addScalebar(mapboxMap: MapboxMap) {
-        val scaleBarPlugin = ScaleBarPlugin(mapView, mapboxMap)
+    private fun addScalebar(maplibreMap: MapLibreMap) {
+        val scaleBarPlugin = ScaleBarPlugin(mapView, maplibreMap)
         val scaleBarOptions = ScaleBarOptions(this)
         scaleBarOptions
             .setTextColor(android.R.color.black)

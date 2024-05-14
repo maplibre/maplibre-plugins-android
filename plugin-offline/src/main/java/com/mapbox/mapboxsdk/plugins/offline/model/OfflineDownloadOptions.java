@@ -3,8 +3,6 @@ package com.mapbox.mapboxsdk.plugins.offline.model;
 import android.os.Parcelable;
 
 import com.google.auto.value.AutoValue;
-import com.mapbox.mapboxsdk.offline.OfflineRegion;
-import com.mapbox.mapboxsdk.offline.OfflineRegionDefinition;
 import com.mapbox.mapboxsdk.plugins.offline.offline.OfflineDownloadService;
 import com.mapbox.mapboxsdk.plugins.offline.offline.OfflinePlugin;
 
@@ -12,6 +10,8 @@ import java.util.UUID;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import org.maplibre.android.offline.OfflineRegionDefinition;
 
 /**
  * This model class wraps the offline region definition with notifications options and the offline

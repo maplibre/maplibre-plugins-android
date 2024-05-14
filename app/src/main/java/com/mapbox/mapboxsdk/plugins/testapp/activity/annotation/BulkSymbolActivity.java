@@ -15,22 +15,23 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
-import com.mapbox.geojson.Feature;
-import com.mapbox.geojson.FeatureCollection;
-import com.mapbox.geojson.Point;
-import com.mapbox.mapboxsdk.Mapbox;
-import com.mapbox.mapboxsdk.WellKnownTileServer;
-import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
-import com.mapbox.mapboxsdk.geometry.LatLng;
-import com.mapbox.mapboxsdk.maps.MapView;
-import com.mapbox.mapboxsdk.maps.MapboxMap;
-import com.mapbox.mapboxsdk.maps.Style;
 import com.mapbox.mapboxsdk.plugins.annotation.Symbol;
 import com.mapbox.mapboxsdk.plugins.annotation.SymbolManager;
 import com.mapbox.mapboxsdk.plugins.annotation.SymbolOptions;
 import com.mapbox.mapboxsdk.plugins.testapp.BuildConfig;
 import com.mapbox.mapboxsdk.plugins.testapp.R;
 import com.mapbox.mapboxsdk.plugins.testapp.Utils;
+
+import org.maplibre.android.MapLibre;
+import org.maplibre.android.WellKnownTileServer;
+import org.maplibre.android.camera.CameraUpdateFactory;
+import org.maplibre.android.geometry.LatLng;
+import org.maplibre.android.maps.MapLibreMap;
+import org.maplibre.android.maps.MapView;
+import org.maplibre.android.maps.Style;
+import org.maplibre.geojson.Feature;
+import org.maplibre.geojson.FeatureCollection;
+import org.maplibre.geojson.Point;
 
 import timber.log.Timber;
 
@@ -51,7 +52,7 @@ public class BulkSymbolActivity extends AppCompatActivity implements AdapterView
     private SymbolManager symbolManager;
     private List<Symbol> symbols = new ArrayList<>();
 
-    private MapboxMap mapboxMap;
+    private MapLibreMap mapLibreMap;
     private MapView mapView;
     private FeatureCollection locations;
     private ProgressDialog progressDialog;
@@ -60,26 +61,26 @@ public class BulkSymbolActivity extends AppCompatActivity implements AdapterView
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_annotation);
-        Mapbox.getInstance(this, BuildConfig.MAPTILER_API_KEY, WellKnownTileServer.MapTiler);
+        MapLibre.getInstance(this, BuildConfig.MAPTILER_API_KEY, WellKnownTileServer.MapTiler);
         mapView = findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this::initMap);
     }
 
-    private void initMap(MapboxMap mapboxMap) {
-        this.mapboxMap = mapboxMap;
-        mapboxMap.moveCamera(
+    private void initMap(MapLibreMap mapLibreMap) {
+        this.mapLibreMap = mapLibreMap;
+        mapLibreMap.moveCamera(
             CameraUpdateFactory.newLatLngZoom(
                 new LatLng(38.87031, -77.00897), 10
             )
         );
 
-        mapboxMap.setStyle(new Style.Builder()
+        mapLibreMap.setStyle(new Style.Builder()
                 .fromUri(Style.getPredefinedStyle("Streets"))
                 .withImage(IMAGE_ID_FIRE_HYDRANT, getDrawable(R.drawable.ic_fire_hydrant)),
             style -> {
-                findViewById(R.id.fabStyles).setOnClickListener(v -> mapboxMap.setStyle(Utils.INSTANCE.getNextStyle()));
-                symbolManager = new SymbolManager(mapView, mapboxMap, style);
+                findViewById(R.id.fabStyles).setOnClickListener(v -> mapLibreMap.setStyle(Utils.INSTANCE.getNextStyle()));
+                symbolManager = new SymbolManager(mapView, mapLibreMap, style);
                 symbolManager.setIconAllowOverlap(true);
                 loadData(0);
             });
@@ -101,7 +102,7 @@ public class BulkSymbolActivity extends AppCompatActivity implements AdapterView
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        if (mapboxMap.getStyle() == null || !mapboxMap.getStyle().isFullyLoaded()) {
+        if (mapLibreMap.getStyle() == null || !mapLibreMap.getStyle().isFullyLoaded()) {
             return;
         }
 
@@ -131,7 +132,7 @@ public class BulkSymbolActivity extends AppCompatActivity implements AdapterView
 
     private void showMarkers(int amount) {
         Timber.i("Showing markers");
-        if (mapboxMap == null || locations == null || locations.features() == null || mapView.isDestroyed()) {
+        if (mapLibreMap == null || locations == null || locations.features() == null || mapView.isDestroyed()) {
             Timber.i("Not showing markers");
             return;
         }

@@ -4,7 +4,6 @@ package com.mapbox.mapboxsdk.plugins.scalebar;
 import android.app.Activity;
 import android.view.View;
 
-import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.plugins.BaseActivityTest;
 import com.mapbox.mapboxsdk.plugins.testapp.R;
 import com.mapbox.mapboxsdk.plugins.testapp.activity.TestActivity;
@@ -14,6 +13,7 @@ import com.mapbox.pluginscalebar.ScaleBarWidget;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.maplibre.android.maps.MapView;
 
 import androidx.core.content.ContextCompat;
 import androidx.test.ext.junit.runners.AndroidJUnit4;

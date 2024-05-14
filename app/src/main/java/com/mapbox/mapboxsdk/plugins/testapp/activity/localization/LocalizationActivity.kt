@@ -6,20 +6,20 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.mapbox.mapboxsdk.maps.MapView
-import com.mapbox.mapboxsdk.maps.MapboxMap
-import com.mapbox.mapboxsdk.maps.OnMapReadyCallback
-import com.mapbox.mapboxsdk.maps.Style
 import com.mapbox.mapboxsdk.plugins.localization.LocalizationPlugin
 import com.mapbox.mapboxsdk.plugins.localization.MapLocale
 import com.mapbox.mapboxsdk.plugins.testapp.R
 import com.mapbox.mapboxsdk.plugins.testapp.Utils
 import com.mapbox.mapboxsdk.plugins.testapp.databinding.ActivityLocalizationBinding
+import org.maplibre.android.maps.MapLibreMap
+import org.maplibre.android.maps.MapView
+import org.maplibre.android.maps.OnMapReadyCallback
+import org.maplibre.android.maps.Style
 
 class LocalizationActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private var localizationPlugin: LocalizationPlugin? = null
-    private var mapboxMap: MapboxMap? = null
+    private var maplibreMap: MapLibreMap? = null
     private var mapIsLocalized: Boolean = false
     private lateinit var mapView: MapView
     private lateinit var binding: ActivityLocalizationBinding
@@ -34,11 +34,11 @@ class LocalizationActivity : AppCompatActivity(), OnMapReadyCallback {
         mapView.onCreate(savedInstanceState)
     }
 
-    override fun onMapReady(mapboxMap: MapboxMap) {
-        mapboxMap.setStyle(Style.getPredefinedStyle("Streets")) { style ->
-            this.mapboxMap = mapboxMap
+    override fun onMapReady(maplibreMap: MapLibreMap) {
+        maplibreMap?.setStyle(Style.getPredefinedStyle("Streets")) { style ->
+            this.maplibreMap = maplibreMap
             localizationPlugin =
-                LocalizationPlugin(mapView, mapboxMap, style).also { localizationPlugin ->
+                LocalizationPlugin(mapView, maplibreMap, style).also { localizationPlugin ->
                     localizationPlugin.matchMapLanguageWithDeviceDefault()
                 }
 
@@ -63,7 +63,7 @@ class LocalizationActivity : AppCompatActivity(), OnMapReadyCallback {
             }
 
             binding.fabStyles.setOnClickListener {
-                mapboxMap.setStyle(Style.Builder().fromUri(Utils.nextStyle))
+                maplibreMap.setStyle(Style.Builder().fromUri(Utils.nextStyle))
             }
         }
     }

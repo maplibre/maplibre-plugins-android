@@ -6,18 +6,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.mapbox.mapboxsdk.camera.CameraPosition;
-import com.mapbox.mapboxsdk.geometry.LatLng;
-import com.mapbox.mapboxsdk.maps.MapView;
-import com.mapbox.mapboxsdk.maps.MapboxMap;
-import com.mapbox.mapboxsdk.maps.MapboxMapOptions;
-import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
-import com.mapbox.mapboxsdk.maps.Style;
 import com.mapbox.mapboxsdk.plugins.annotation.Fill;
 import com.mapbox.mapboxsdk.plugins.annotation.FillManager;
 import com.mapbox.mapboxsdk.plugins.annotation.FillOptions;
 import com.mapbox.mapboxsdk.plugins.testapp.R;
-import com.mapbox.mapboxsdk.utils.ColorUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +25,15 @@ import static com.mapbox.mapboxsdk.plugins.testapp.activity.annotation.FillChang
 import static com.mapbox.mapboxsdk.plugins.testapp.activity.annotation.FillChangeActivity.Config.RED_COLOR;
 import static com.mapbox.mapboxsdk.plugins.testapp.activity.annotation.FillChangeActivity.Config.STAR_SHAPE_HOLES;
 import static com.mapbox.mapboxsdk.plugins.testapp.activity.annotation.FillChangeActivity.Config.STAR_SHAPE_POINTS;
+
+import org.maplibre.android.camera.CameraPosition;
+import org.maplibre.android.geometry.LatLng;
+import org.maplibre.android.maps.MapLibreMap;
+import org.maplibre.android.maps.MapLibreMapOptions;
+import org.maplibre.android.maps.MapView;
+import org.maplibre.android.maps.OnMapReadyCallback;
+import org.maplibre.android.maps.Style;
+import org.maplibre.android.utils.ColorUtils;
 
 /**
  * Test activity to showcase the Polygon annotation API & programmatically creating a MapView.
@@ -58,7 +59,7 @@ public class FillChangeActivity extends AppCompatActivity implements OnMapReadyC
         super.onCreate(savedInstanceState);
 
         // configure initial map state
-        MapboxMapOptions options = new MapboxMapOptions()
+        MapLibreMapOptions options = new MapLibreMapOptions()
             .attributionTintColor(RED_COLOR)
             .compassFadesWhenFacingNorth(false)
             .camera(new CameraPosition.Builder()
@@ -77,7 +78,7 @@ public class FillChangeActivity extends AppCompatActivity implements OnMapReadyC
     }
 
     @Override
-    public void onMapReady(@NonNull MapboxMap map) {
+    public void onMapReady(@NonNull MapLibreMap map) {
         map.setStyle(new Style.Builder().fromUri(Style.getPredefinedStyle("Streets")), style -> {
             fillManager = new FillManager(mapView, map, style, "aerialway", null);
             fillManager.addClickListener(fill -> {

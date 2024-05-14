@@ -4,10 +4,6 @@ import android.content.Context
 import android.content.res.Resources
 import android.util.DisplayMetrics
 import android.view.View
-import com.mapbox.mapboxsdk.camera.CameraPosition
-import com.mapbox.mapboxsdk.maps.MapView
-import com.mapbox.mapboxsdk.maps.MapboxMap
-import com.mapbox.mapboxsdk.maps.Projection
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
@@ -15,6 +11,10 @@ import io.mockk.verify
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
+import org.maplibre.android.camera.CameraPosition
+import org.maplibre.android.maps.MapLibreMap
+import org.maplibre.android.maps.MapView
+import org.maplibre.android.maps.Projection
 
 class ScaleBarPluginTest {
     @MockK
@@ -24,7 +24,7 @@ class ScaleBarPluginTest {
     lateinit var projection: Projection
 
     @MockK
-    lateinit var mapboxMap: MapboxMap
+    lateinit var mapboxMap: MapLibreMap
 
     @MockK
     lateinit var scaleBarOptions: ScaleBarOptions

@@ -8,19 +8,20 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.util.Pair;
 
-import com.mapbox.geojson.Feature;
-import com.mapbox.geojson.FeatureCollection;
-import com.mapbox.geojson.Point;
-import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
-import com.mapbox.mapboxsdk.geometry.LatLng;
-import com.mapbox.mapboxsdk.maps.MapView;
-import com.mapbox.mapboxsdk.maps.MapboxMap;
-import com.mapbox.mapboxsdk.maps.Style;
 import com.mapbox.mapboxsdk.plugins.annotation.ClusterOptions;
 import com.mapbox.mapboxsdk.plugins.annotation.Symbol;
 import com.mapbox.mapboxsdk.plugins.annotation.SymbolManager;
 import com.mapbox.mapboxsdk.plugins.annotation.SymbolOptions;
 import com.mapbox.mapboxsdk.plugins.testapp.R;
+
+import org.maplibre.android.camera.CameraUpdateFactory;
+import org.maplibre.android.geometry.LatLng;
+import org.maplibre.android.maps.MapLibreMap;
+import org.maplibre.android.maps.MapView;
+import org.maplibre.android.maps.Style;
+import org.maplibre.geojson.Feature;
+import org.maplibre.geojson.FeatureCollection;
+import org.maplibre.geojson.Point;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -43,7 +44,7 @@ public class ClusterSymbolActivity extends AppCompatActivity {
     private SymbolManager symbolManager;
     private List<Symbol> symbols = new ArrayList<>();
 
-    private MapboxMap mapboxMap;
+    private MapLibreMap maplibreMap;
     private MapView mapView;
     private FeatureCollection locations;
 
@@ -57,8 +58,8 @@ public class ClusterSymbolActivity extends AppCompatActivity {
         mapView.getMapAsync(this::initMap);
     }
 
-    private void initMap(MapboxMap mapboxMap) {
-        this.mapboxMap = mapboxMap;
+    private void initMap(MapLibreMap mapboxMap) {
+        this.maplibreMap = mapboxMap;
         mapboxMap.moveCamera(
             CameraUpdateFactory.newLatLngZoom(
                 new LatLng(38.87031, -77.00897), 10
@@ -94,7 +95,7 @@ public class ClusterSymbolActivity extends AppCompatActivity {
     }
 
     private void showMarkers(int amount) {
-        if (mapboxMap == null || locations == null || locations.features() == null || mapView.isDestroyed()) {
+        if (maplibreMap == null || locations == null || locations.features() == null || mapView.isDestroyed()) {
             return;
         }
         // delete old symbols
