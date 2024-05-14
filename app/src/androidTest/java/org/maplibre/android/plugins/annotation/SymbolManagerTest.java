@@ -1,12 +1,12 @@
 // This file is generated.
 
-package org.maplibre.androidk.plugins.annotation;
+package org.maplibre.android.plugins.annotation;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import com.mapbox.mapboxsdk.plugins.annotation.SymbolManager;
+import org.maplibre.android.plugins.BaseActivityTest;
 import org.maplibre.android.plugins.testapp.activity.TestActivity;
-import org.maplibre.androidk.plugins.BaseActivityTest;
 
 import timber.log.Timber;
 

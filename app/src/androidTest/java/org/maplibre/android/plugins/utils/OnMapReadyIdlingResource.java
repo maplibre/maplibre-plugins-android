@@ -1,4 +1,4 @@
-package org.maplibre.androidk.plugins.utils;
+package org.maplibre.android.plugins.utils;
 
 import android.app.Activity;
 import android.os.Handler;

@@ -1,12 +1,12 @@
 // This file is generated.
 
-package org.maplibre.androidk.plugins.annotation;
+package org.maplibre.android.plugins.annotation;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import com.mapbox.mapboxsdk.plugins.annotation.CircleManager;
 import org.maplibre.android.plugins.testapp.activity.TestActivity;
-import org.maplibre.androidk.plugins.BaseActivityTest;
+import org.maplibre.android.plugins.BaseActivityTest;
 
 import timber.log.Timber;
 
@@ -15,7 +15,7 @@ import org.junit.runner.RunWith;
 
 import java.util.Objects;
 
-import static org.maplibre.androidk.plugins.annotation.MapboxMapAction.invoke;
+import static org.maplibre.android.plugins.annotation.MapboxMapAction.invoke;
 import static org.junit.Assert.*;
 import static org.maplibre.android.style.layers.Property.*;
 

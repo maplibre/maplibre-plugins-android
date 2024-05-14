@@ -1,4 +1,4 @@
-package org.maplibre.androidk.plugins.offline;
+package org.maplibre.android.plugins.offline;
 
 import com.mapbox.mapboxsdk.plugins.offline.model.OfflineDownloadOptions;
 import com.mapbox.mapboxsdk.plugins.offline.offline.OfflinePlugin;

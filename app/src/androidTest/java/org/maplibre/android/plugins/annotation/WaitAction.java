@@ -1,4 +1,4 @@
-package org.maplibre.androidk.plugins.annotation;
+package org.maplibre.android.plugins.annotation;
 
 import android.view.View;
 

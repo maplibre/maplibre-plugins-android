@@ -1,7 +1,7 @@
 
 // This file is generated.
 
-package org.maplibre.androidk.plugins.annotation;
+package org.maplibre.android.plugins.annotation;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
@@ -9,7 +9,7 @@ import com.mapbox.mapboxsdk.plugins.annotation.Line;
 import com.mapbox.mapboxsdk.plugins.annotation.LineManager;
 import com.mapbox.mapboxsdk.plugins.annotation.LineOptions;
 import org.maplibre.android.geometry.LatLng;
-import org.maplibre.androidk.plugins.BaseActivityTest;
+import org.maplibre.android.plugins.BaseActivityTest;
 import org.maplibre.android.plugins.testapp.activity.TestActivity;
 import org.maplibre.android.utils.ColorUtils;
 
