@@ -1,4 +1,4 @@
-package com.mapbox.mapboxsdk.plugins.annotation;
+package org.maplibre.androidk.plugins.annotation;
 
 import android.view.View;
 

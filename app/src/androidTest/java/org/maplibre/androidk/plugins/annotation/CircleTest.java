@@ -1,15 +1,16 @@
 
 // This file is generated.
 
-package com.mapbox.mapboxsdk.plugins.annotation;
-
-import android.graphics.PointF;
+package org.maplibre.androidk.plugins.annotation;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
+import com.mapbox.mapboxsdk.plugins.annotation.Circle;
+import com.mapbox.mapboxsdk.plugins.annotation.CircleManager;
+import com.mapbox.mapboxsdk.plugins.annotation.CircleOptions;
 import org.maplibre.android.geometry.LatLng;
-import com.mapbox.mapboxsdk.plugins.BaseActivityTest;
-import com.mapbox.mapboxsdk.plugins.testapp.activity.TestActivity;
+import org.maplibre.androidk.plugins.BaseActivityTest;
+import org.maplibre.android.plugins.testapp.activity.TestActivity;
 import org.maplibre.android.utils.ColorUtils;
 
 import timber.log.Timber;
@@ -19,12 +20,8 @@ import org.junit.runner.RunWith;
 
 import java.util.Objects;
 
-import static com.mapbox.mapboxsdk.plugins.annotation.MapboxMapAction.invoke;
+import static org.maplibre.androidk.plugins.annotation.MapboxMapAction.invoke;
 import static org.junit.Assert.*;
-import static org.maplibre.android.style.layers.Property.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Basic smoke tests for Circle

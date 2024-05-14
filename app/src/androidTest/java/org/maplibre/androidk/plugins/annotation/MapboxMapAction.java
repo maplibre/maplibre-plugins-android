@@ -1,4 +1,4 @@
-package com.mapbox.mapboxsdk.plugins.annotation;
+package org.maplibre.androidk.plugins.annotation;
 
 import android.view.View;
 
@@ -8,7 +8,6 @@ import org.hamcrest.Matcher;
 
 import androidx.test.espresso.UiController;
 import androidx.test.espresso.ViewAction;
-import org.maplibre.android.maps.MapLibreMap;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;

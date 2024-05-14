@@ -1,12 +1,12 @@
 // This file is generated.
 
-package com.mapbox.mapboxsdk.plugins.annotation;
+package org.maplibre.androidk.plugins.annotation;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
-import org.maplibre.android.geometry.LatLng;
-import com.mapbox.mapboxsdk.plugins.testapp.activity.TestActivity;
-import com.mapbox.mapboxsdk.plugins.BaseActivityTest;
+import com.mapbox.mapboxsdk.plugins.annotation.SymbolManager;
+import org.maplibre.android.plugins.testapp.activity.TestActivity;
+import org.maplibre.androidk.plugins.BaseActivityTest;
 
 import timber.log.Timber;
 
@@ -15,7 +15,6 @@ import org.junit.runner.RunWith;
 
 import java.util.Objects;
 
-import static com.mapbox.mapboxsdk.plugins.annotation.MapboxMapAction.invoke;
 import static org.junit.Assert.*;
 import static org.maplibre.android.style.layers.Property.*;
 
@@ -34,7 +33,7 @@ public class SymbolManagerTest extends BaseActivityTest {
 
     private void setupSymbolManager() {
         Timber.i("Retrieving layer");
-        invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
             symbolManager = new SymbolManager(idlingResource.getMapView(), maplibreMap, Objects.requireNonNull(maplibreMap.getStyle()));
         });
     }
@@ -44,7 +43,7 @@ public class SymbolManagerTest extends BaseActivityTest {
         validateTestSetup();
         setupSymbolManager();
         Timber.i("symbol-placement");
-        invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(symbolManager);
 
             symbolManager.setSymbolPlacement(SYMBOL_PLACEMENT_POINT);
@@ -57,7 +56,7 @@ public class SymbolManagerTest extends BaseActivityTest {
         validateTestSetup();
         setupSymbolManager();
         Timber.i("symbol-spacing");
-        invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(symbolManager);
 
             symbolManager.setSymbolSpacing(2.0f);
@@ -70,7 +69,7 @@ public class SymbolManagerTest extends BaseActivityTest {
         validateTestSetup();
         setupSymbolManager();
         Timber.i("symbol-avoid-edges");
-        invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(symbolManager);
 
             symbolManager.setSymbolAvoidEdges(true);
@@ -83,7 +82,7 @@ public class SymbolManagerTest extends BaseActivityTest {
         validateTestSetup();
         setupSymbolManager();
         Timber.i("icon-allow-overlap");
-        invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(symbolManager);
 
             symbolManager.setIconAllowOverlap(true);
@@ -96,7 +95,7 @@ public class SymbolManagerTest extends BaseActivityTest {
         validateTestSetup();
         setupSymbolManager();
         Timber.i("icon-ignore-placement");
-        invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(symbolManager);
 
             symbolManager.setIconIgnorePlacement(true);
@@ -109,7 +108,7 @@ public class SymbolManagerTest extends BaseActivityTest {
         validateTestSetup();
         setupSymbolManager();
         Timber.i("icon-optional");
-        invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(symbolManager);
 
             symbolManager.setIconOptional(true);
@@ -122,7 +121,7 @@ public class SymbolManagerTest extends BaseActivityTest {
         validateTestSetup();
         setupSymbolManager();
         Timber.i("icon-rotation-alignment");
-        invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(symbolManager);
 
             symbolManager.setIconRotationAlignment(ICON_ROTATION_ALIGNMENT_MAP);
@@ -135,7 +134,7 @@ public class SymbolManagerTest extends BaseActivityTest {
         validateTestSetup();
         setupSymbolManager();
         Timber.i("icon-text-fit");
-        invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(symbolManager);
 
             symbolManager.setIconTextFit(ICON_TEXT_FIT_NONE);
@@ -148,7 +147,7 @@ public class SymbolManagerTest extends BaseActivityTest {
         validateTestSetup();
         setupSymbolManager();
         Timber.i("icon-text-fit-padding");
-        invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(symbolManager);
 
             symbolManager.setIconTextFitPadding(new Float[]{0f, 0f, 0f, 0f});
@@ -161,7 +160,7 @@ public class SymbolManagerTest extends BaseActivityTest {
         validateTestSetup();
         setupSymbolManager();
         Timber.i("icon-padding");
-        invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(symbolManager);
 
             symbolManager.setIconPadding(2.0f);
@@ -174,7 +173,7 @@ public class SymbolManagerTest extends BaseActivityTest {
         validateTestSetup();
         setupSymbolManager();
         Timber.i("icon-keep-upright");
-        invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(symbolManager);
 
             symbolManager.setIconKeepUpright(true);
@@ -187,7 +186,7 @@ public class SymbolManagerTest extends BaseActivityTest {
         validateTestSetup();
         setupSymbolManager();
         Timber.i("icon-pitch-alignment");
-        invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(symbolManager);
 
             symbolManager.setIconPitchAlignment(ICON_PITCH_ALIGNMENT_MAP);
@@ -200,7 +199,7 @@ public class SymbolManagerTest extends BaseActivityTest {
         validateTestSetup();
         setupSymbolManager();
         Timber.i("text-pitch-alignment");
-        invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(symbolManager);
 
             symbolManager.setTextPitchAlignment(TEXT_PITCH_ALIGNMENT_MAP);
@@ -213,7 +212,7 @@ public class SymbolManagerTest extends BaseActivityTest {
         validateTestSetup();
         setupSymbolManager();
         Timber.i("text-rotation-alignment");
-        invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(symbolManager);
 
             symbolManager.setTextRotationAlignment(TEXT_ROTATION_ALIGNMENT_MAP);
@@ -226,7 +225,7 @@ public class SymbolManagerTest extends BaseActivityTest {
         validateTestSetup();
         setupSymbolManager();
         Timber.i("text-line-height");
-        invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(symbolManager);
 
             symbolManager.setTextLineHeight(2.0f);
@@ -239,7 +238,7 @@ public class SymbolManagerTest extends BaseActivityTest {
         validateTestSetup();
         setupSymbolManager();
         Timber.i("text-variable-anchor");
-        invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(symbolManager);
 
             symbolManager.setTextVariableAnchor(new String[]{TEXT_ANCHOR_RIGHT, TEXT_ANCHOR_TOP});
@@ -252,7 +251,7 @@ public class SymbolManagerTest extends BaseActivityTest {
         validateTestSetup();
         setupSymbolManager();
         Timber.i("text-max-angle");
-        invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(symbolManager);
 
             symbolManager.setTextMaxAngle(2.0f);
@@ -265,7 +264,7 @@ public class SymbolManagerTest extends BaseActivityTest {
         validateTestSetup();
         setupSymbolManager();
         Timber.i("text-padding");
-        invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(symbolManager);
 
             symbolManager.setTextPadding(2.0f);
@@ -278,7 +277,7 @@ public class SymbolManagerTest extends BaseActivityTest {
         validateTestSetup();
         setupSymbolManager();
         Timber.i("text-keep-upright");
-        invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(symbolManager);
 
             symbolManager.setTextKeepUpright(true);
@@ -291,7 +290,7 @@ public class SymbolManagerTest extends BaseActivityTest {
         validateTestSetup();
         setupSymbolManager();
         Timber.i("text-allow-overlap");
-        invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(symbolManager);
 
             symbolManager.setTextAllowOverlap(true);
@@ -304,7 +303,7 @@ public class SymbolManagerTest extends BaseActivityTest {
         validateTestSetup();
         setupSymbolManager();
         Timber.i("text-ignore-placement");
-        invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(symbolManager);
 
             symbolManager.setTextIgnorePlacement(true);
@@ -317,7 +316,7 @@ public class SymbolManagerTest extends BaseActivityTest {
         validateTestSetup();
         setupSymbolManager();
         Timber.i("text-optional");
-        invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(symbolManager);
 
             symbolManager.setTextOptional(true);
@@ -330,7 +329,7 @@ public class SymbolManagerTest extends BaseActivityTest {
         validateTestSetup();
         setupSymbolManager();
         Timber.i("icon-translate");
-        invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(symbolManager);
 
             symbolManager.setIconTranslate(new Float[]{0f, 0f});
@@ -343,7 +342,7 @@ public class SymbolManagerTest extends BaseActivityTest {
         validateTestSetup();
         setupSymbolManager();
         Timber.i("icon-translate-anchor");
-        invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(symbolManager);
 
             symbolManager.setIconTranslateAnchor(ICON_TRANSLATE_ANCHOR_MAP);
@@ -356,7 +355,7 @@ public class SymbolManagerTest extends BaseActivityTest {
         validateTestSetup();
         setupSymbolManager();
         Timber.i("text-translate");
-        invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(symbolManager);
 
             symbolManager.setTextTranslate(new Float[]{0f, 0f});
@@ -369,7 +368,7 @@ public class SymbolManagerTest extends BaseActivityTest {
         validateTestSetup();
         setupSymbolManager();
         Timber.i("text-translate-anchor");
-        invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(symbolManager);
 
             symbolManager.setTextTranslateAnchor(TEXT_TRANSLATE_ANCHOR_MAP);

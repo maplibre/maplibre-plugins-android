@@ -1,4 +1,4 @@
-package com.mapbox.mapboxsdk.plugins.utils;
+package org.maplibre.androidk.plugins.utils;
 
 import android.app.Activity;
 import android.os.Handler;

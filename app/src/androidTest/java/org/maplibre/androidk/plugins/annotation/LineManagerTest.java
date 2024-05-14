@@ -1,12 +1,12 @@
 // This file is generated.
 
-package com.mapbox.mapboxsdk.plugins.annotation;
+package org.maplibre.androidk.plugins.annotation;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
-import org.maplibre.android.geometry.LatLng;
-import com.mapbox.mapboxsdk.plugins.testapp.activity.TestActivity;
-import com.mapbox.mapboxsdk.plugins.BaseActivityTest;
+import com.mapbox.mapboxsdk.plugins.annotation.LineManager;
+import org.maplibre.android.plugins.testapp.activity.TestActivity;
+import org.maplibre.androidk.plugins.BaseActivityTest;
 
 import timber.log.Timber;
 
@@ -15,7 +15,6 @@ import org.junit.runner.RunWith;
 
 import java.util.Objects;
 
-import static com.mapbox.mapboxsdk.plugins.annotation.MapboxMapAction.invoke;
 import static org.junit.Assert.*;
 import static org.maplibre.android.style.layers.Property.*;
 
@@ -34,7 +33,7 @@ public class LineManagerTest extends BaseActivityTest {
 
     private void setupLineManager() {
         Timber.i("Retrieving layer");
-        invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
             lineManager = new LineManager(idlingResource.getMapView(), maplibreMap, Objects.requireNonNull(maplibreMap.getStyle()));
         });
     }
@@ -44,7 +43,7 @@ public class LineManagerTest extends BaseActivityTest {
         validateTestSetup();
         setupLineManager();
         Timber.i("line-cap");
-        invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(lineManager);
 
             lineManager.setLineCap(LINE_CAP_BUTT);
@@ -57,7 +56,7 @@ public class LineManagerTest extends BaseActivityTest {
         validateTestSetup();
         setupLineManager();
         Timber.i("line-miter-limit");
-        invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(lineManager);
 
             lineManager.setLineMiterLimit(2.0f);
@@ -70,7 +69,7 @@ public class LineManagerTest extends BaseActivityTest {
         validateTestSetup();
         setupLineManager();
         Timber.i("line-round-limit");
-        invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(lineManager);
 
             lineManager.setLineRoundLimit(2.0f);
@@ -83,7 +82,7 @@ public class LineManagerTest extends BaseActivityTest {
         validateTestSetup();
         setupLineManager();
         Timber.i("line-translate");
-        invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(lineManager);
 
             lineManager.setLineTranslate(new Float[]{0f, 0f});
@@ -96,7 +95,7 @@ public class LineManagerTest extends BaseActivityTest {
         validateTestSetup();
         setupLineManager();
         Timber.i("line-translate-anchor");
-        invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(lineManager);
 
             lineManager.setLineTranslateAnchor(LINE_TRANSLATE_ANCHOR_MAP);
@@ -109,7 +108,7 @@ public class LineManagerTest extends BaseActivityTest {
         validateTestSetup();
         setupLineManager();
         Timber.i("line-dasharray");
-        invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(lineManager);
 
             lineManager.setLineDasharray(new Float[]{});

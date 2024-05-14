@@ -1,12 +1,12 @@
-package com.mapbox.mapboxsdk.plugins.scalebar;
+package org.maplibre.androidk.plugins.scalebar;
 
 
 import android.app.Activity;
 import android.view.View;
 
-import com.mapbox.mapboxsdk.plugins.BaseActivityTest;
+import org.maplibre.androidk.plugins.BaseActivityTest;
 import com.mapbox.mapboxsdk.plugins.testapp.R;
-import com.mapbox.mapboxsdk.plugins.testapp.activity.TestActivity;
+import org.maplibre.android.plugins.testapp.activity.TestActivity;
 import com.mapbox.pluginscalebar.ScaleBarOptions;
 import com.mapbox.pluginscalebar.ScaleBarPlugin;
 import com.mapbox.pluginscalebar.ScaleBarWidget;
@@ -18,9 +18,9 @@ import org.maplibre.android.maps.MapView;
 import androidx.core.content.ContextCompat;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
+import org.maplibre.androidk.plugins.annotation.MapboxMapAction;
 import timber.log.Timber;
 
-import static com.mapbox.mapboxsdk.plugins.annotation.MapboxMapAction.invoke;
 import static junit.framework.TestCase.assertFalse;
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
@@ -42,7 +42,7 @@ public class ScaleBarTest extends BaseActivityTest {
 
     private void setupScaleBar() {
         Timber.i("Retrieving layer");
-        invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
             scaleBarPlugin = new ScaleBarPlugin(idlingResource.getMapView(), maplibreMap);
             activity = rule.getActivity();
             scaleBarWidget = scaleBarPlugin.create(new ScaleBarOptions(activity));
@@ -55,7 +55,7 @@ public class ScaleBarTest extends BaseActivityTest {
     public void testScaleBarEnable() {
         validateTestSetup();
         setupScaleBar();
-        invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertEquals(View.VISIBLE, scaleBarWidget.getVisibility());
             assertTrue(scaleBarPlugin.isEnabled());
             scaleBarPlugin.setEnabled(false);
@@ -68,7 +68,7 @@ public class ScaleBarTest extends BaseActivityTest {
     public void testScaleBarColor() {
         validateTestSetup();
         setupScaleBar();
-        invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertEquals(ContextCompat.getColor(activity, android.R.color.black), scaleBarWidget.getTextColor());
             assertEquals(ContextCompat.getColor(activity, android.R.color.black), scaleBarWidget.getPrimaryColor());
             assertEquals(ContextCompat.getColor(activity, android.R.color.white), scaleBarWidget.getSecondaryColor());
@@ -94,7 +94,7 @@ public class ScaleBarTest extends BaseActivityTest {
     public void testTextBorder() {
         validateTestSetup();
         setupScaleBar();
-        invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertEquals(activity.getResources().getDimension(R.dimen.mapbox_scale_bar_text_border_width),
                 scaleBarWidget.getTextBorderWidth(), 0);
             assertTrue(scaleBarWidget.isShowTextBorder());
@@ -125,7 +125,7 @@ public class ScaleBarTest extends BaseActivityTest {
     public void testScaleBarWidth() {
         validateTestSetup();
         setupScaleBar();
-        invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertEquals(MapView.class, scaleBarWidget.getParent().getClass());
             MapView parent = (MapView) scaleBarWidget.getParent();
             assertEquals(parent.getWidth(), scaleBarWidget.getMapViewWidth());
@@ -136,7 +136,7 @@ public class ScaleBarTest extends BaseActivityTest {
     public void testMargin() {
         validateTestSetup();
         setupScaleBar();
-        invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertEquals(activity.getResources().getDimension(R.dimen.mapbox_scale_bar_margin_left),
                 scaleBarWidget.getMarginLeft(), 0);
             assertEquals(activity.getResources().getDimension(R.dimen.mapbox_scale_bar_margin_top),
@@ -174,7 +174,7 @@ public class ScaleBarTest extends BaseActivityTest {
     public void testBarHeight() {
         validateTestSetup();
         setupScaleBar();
-        invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertEquals(activity.getResources().getDimension(R.dimen.mapbox_scale_bar_height),
                 scaleBarWidget.getBarHeight(), 0);
 
@@ -198,7 +198,7 @@ public class ScaleBarTest extends BaseActivityTest {
     public void testTextSize() {
         validateTestSetup();
         setupScaleBar();
-        invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertEquals(activity.getResources().getDimension(R.dimen.mapbox_scale_bar_text_size),
                 scaleBarWidget.getTextSize(), 0);
 
@@ -222,7 +222,7 @@ public class ScaleBarTest extends BaseActivityTest {
     public void testBorderWidth() {
         validateTestSetup();
         setupScaleBar();
-        invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertEquals(activity.getResources().getDimension(R.dimen.mapbox_scale_bar_border_width),
                 scaleBarWidget.getBorderWidth(), 0);
 
@@ -247,7 +247,7 @@ public class ScaleBarTest extends BaseActivityTest {
     public void testRefreshInterval() {
         validateTestSetup();
         setupScaleBar();
-        invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertEquals(ScaleBarOptions.REFRESH_INTERVAL_DEFAULT, scaleBarWidget.getRefreshInterval(), 0);
 
             ScaleBarOptions option = new ScaleBarOptions(activity);
@@ -263,7 +263,7 @@ public class ScaleBarTest extends BaseActivityTest {
     public void testMetrics() {
         validateTestSetup();
         setupScaleBar();
-        invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertEquals(ScaleBarOptions.LocaleUnitResolver.isMetricSystem(), scaleBarWidget.isMetricUnit());
 
             ScaleBarOptions option = new ScaleBarOptions(activity);
@@ -285,14 +285,14 @@ public class ScaleBarTest extends BaseActivityTest {
         validateTestSetup();
         setupScaleBar();
         assertEquals(0.5f, scaleBarWidget.getRatio(), 0f);
-        invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
             ScaleBarOptions option = new ScaleBarOptions(activity);
             option.setMaxWidthRatio(0.1f);
             scaleBarWidget = scaleBarPlugin.create(option);
             assertNotNull(scaleBarWidget);
             assertEquals(0.1f, scaleBarWidget.getRatio(), 0f);
         });
-        invoke(maplibreMap, (uiController, maplibreMap) -> {
+        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
             ScaleBarOptions option = new ScaleBarOptions(activity);
             option.setMaxWidthRatio(1.0f);
             scaleBarWidget = scaleBarPlugin.create(option);

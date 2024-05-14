@@ -1,13 +1,13 @@
-package com.mapbox.mapboxsdk.plugins;
+package org.maplibre.androidk.plugins;
 
 import android.app.Activity;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
-import com.mapbox.mapboxsdk.plugins.annotation.MapboxMapAction;
-import com.mapbox.mapboxsdk.plugins.annotation.WaitAction;
-import com.mapbox.mapboxsdk.plugins.utils.OnMapReadyIdlingResource;
+import org.maplibre.androidk.plugins.annotation.MapboxMapAction;
+import org.maplibre.androidk.plugins.annotation.WaitAction;
+import org.maplibre.androidk.plugins.utils.OnMapReadyIdlingResource;
 
 import junit.framework.Assert;
 
