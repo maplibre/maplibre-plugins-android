@@ -8,10 +8,10 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.mapbox.mapboxsdk.plugins.annotation.Circle;
-import com.mapbox.mapboxsdk.plugins.annotation.CircleManager;
-import com.mapbox.mapboxsdk.plugins.annotation.CircleOptions;
-import com.mapbox.mapboxsdk.plugins.annotation.OnCircleDragListener;
+import org.maplibre.android.plugins.annotation.Circle;
+import org.maplibre.android.plugins.annotation.CircleManager;
+import org.maplibre.android.plugins.annotation.CircleOptions;
+import org.maplibre.android.plugins.annotation.OnCircleDragListener;
 import com.mapbox.mapboxsdk.plugins.testapp.R;
 import org.maplibre.android.plugins.testapp.Utils;
 

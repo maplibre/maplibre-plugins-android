@@ -3,11 +3,10 @@
 
 package org.maplibre.android.plugins.annotation;
 
+import android.graphics.PointF;
+
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
-import com.mapbox.mapboxsdk.plugins.annotation.Fill;
-import com.mapbox.mapboxsdk.plugins.annotation.FillManager;
-import com.mapbox.mapboxsdk.plugins.annotation.FillOptions;
 import org.maplibre.android.geometry.LatLng;
 import org.maplibre.android.plugins.BaseActivityTest;
 import org.maplibre.android.plugins.testapp.activity.TestActivity;
@@ -20,7 +19,9 @@ import org.junit.runner.RunWith;
 
 import java.util.Objects;
 
+import static org.maplibre.android.plugins.annotation.MapboxMapAction.invoke;
 import static org.junit.Assert.*;
+import static org.maplibre.android.style.layers.Property.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +41,7 @@ public class FillTest extends BaseActivityTest {
 
     private void setupAnnotation() {
         Timber.i("Retrieving layer");
-        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             FillManager fillManager = new FillManager(idlingResource.getMapView(), maplibreMap, Objects.requireNonNull(maplibreMap.getStyle()));
             List<LatLng> innerLatLngs = new ArrayList<>();
             innerLatLngs.add(new LatLng());
@@ -57,7 +58,7 @@ public class FillTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("fill-opacity");
-        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(fill);
 
             fill.setFillOpacity(2.0f);
@@ -70,7 +71,7 @@ public class FillTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("fill-color");
-        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(fill);
 
             fill.setFillColor("rgba(0, 0, 0, 1)");
@@ -83,7 +84,7 @@ public class FillTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("fill-color");
-        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(fill);
             fill.setFillColor(ColorUtils.rgbaToColor("rgba(0, 0, 0, 1)"));
             assertEquals(fill.getFillColorAsInt(), ColorUtils.rgbaToColor("rgba(0, 0, 0, 1)"));
@@ -96,7 +97,7 @@ public class FillTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("fill-outline-color");
-        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(fill);
 
             fill.setFillOutlineColor("rgba(0, 0, 0, 1)");
@@ -109,7 +110,7 @@ public class FillTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("fill-outline-color");
-        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(fill);
             fill.setFillOutlineColor(ColorUtils.rgbaToColor("rgba(0, 0, 0, 1)"));
             assertEquals(fill.getFillOutlineColorAsInt(), ColorUtils.rgbaToColor("rgba(0, 0, 0, 1)"));
@@ -122,7 +123,7 @@ public class FillTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("fill-pattern");
-        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(fill);
 
             fill.setFillPattern("pedestrian-polygon");

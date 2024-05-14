@@ -4,7 +4,7 @@ package org.maplibre.android.plugins.annotation;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
-import com.mapbox.mapboxsdk.plugins.annotation.CircleManager;
+import org.maplibre.android.geometry.LatLng;
 import org.maplibre.android.plugins.testapp.activity.TestActivity;
 import org.maplibre.android.plugins.BaseActivityTest;
 

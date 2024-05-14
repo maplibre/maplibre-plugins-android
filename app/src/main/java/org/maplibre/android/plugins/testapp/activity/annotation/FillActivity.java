@@ -8,9 +8,9 @@ import android.widget.Toast;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonPrimitive;
-import com.mapbox.mapboxsdk.plugins.annotation.Fill;
-import com.mapbox.mapboxsdk.plugins.annotation.FillManager;
-import com.mapbox.mapboxsdk.plugins.annotation.FillOptions;
+import org.maplibre.android.plugins.annotation.Fill;
+import org.maplibre.android.plugins.annotation.FillManager;
+import org.maplibre.android.plugins.annotation.FillOptions;
 import com.mapbox.mapboxsdk.plugins.testapp.R;
 import org.maplibre.android.plugins.testapp.Utils;
 

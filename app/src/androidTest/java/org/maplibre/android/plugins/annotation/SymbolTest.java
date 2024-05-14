@@ -7,9 +7,6 @@ import android.graphics.PointF;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
-import com.mapbox.mapboxsdk.plugins.annotation.Symbol;
-import com.mapbox.mapboxsdk.plugins.annotation.SymbolManager;
-import com.mapbox.mapboxsdk.plugins.annotation.SymbolOptions;
 import org.maplibre.android.geometry.LatLng;
 import org.maplibre.android.plugins.BaseActivityTest;
 import org.maplibre.android.plugins.testapp.activity.TestActivity;
@@ -25,6 +22,9 @@ import java.util.Objects;
 import static org.maplibre.android.plugins.annotation.MapboxMapAction.invoke;
 import static org.junit.Assert.*;
 import static org.maplibre.android.style.layers.Property.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Basic smoke tests for Symbol

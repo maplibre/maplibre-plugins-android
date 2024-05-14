@@ -6,9 +6,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.mapbox.mapboxsdk.plugins.annotation.Fill;
-import com.mapbox.mapboxsdk.plugins.annotation.FillManager;
-import com.mapbox.mapboxsdk.plugins.annotation.FillOptions;
+import org.maplibre.android.plugins.annotation.Fill;
+import org.maplibre.android.plugins.annotation.FillManager;
+import org.maplibre.android.plugins.annotation.FillOptions;
 import com.mapbox.mapboxsdk.plugins.testapp.R;
 
 import java.util.ArrayList;

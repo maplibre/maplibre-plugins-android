@@ -3,11 +3,10 @@
 
 package org.maplibre.android.plugins.annotation;
 
+import android.graphics.PointF;
+
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
-import com.mapbox.mapboxsdk.plugins.annotation.Circle;
-import com.mapbox.mapboxsdk.plugins.annotation.CircleManager;
-import com.mapbox.mapboxsdk.plugins.annotation.CircleOptions;
 import org.maplibre.android.geometry.LatLng;
 import org.maplibre.android.plugins.BaseActivityTest;
 import org.maplibre.android.plugins.testapp.activity.TestActivity;
@@ -20,7 +19,12 @@ import org.junit.runner.RunWith;
 
 import java.util.Objects;
 
+import static org.maplibre.android.plugins.annotation.MapboxMapAction.invoke;
 import static org.junit.Assert.*;
+import static org.maplibre.android.style.layers.Property.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Basic smoke tests for Circle
@@ -37,7 +41,7 @@ public class CircleTest extends BaseActivityTest {
 
     private void setupAnnotation() {
         Timber.i("Retrieving layer");
-        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             CircleManager circleManager = new CircleManager(idlingResource.getMapView(), maplibreMap, Objects.requireNonNull(maplibreMap.getStyle()));
             circle = circleManager.create(new CircleOptions().withLatLng(new LatLng()));
         });
@@ -48,7 +52,7 @@ public class CircleTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("circle-radius");
-        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(circle);
 
             circle.setCircleRadius(2.0f);
@@ -61,7 +65,7 @@ public class CircleTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("circle-color");
-        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(circle);
 
             circle.setCircleColor("rgba(0, 0, 0, 1)");
@@ -74,7 +78,7 @@ public class CircleTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("circle-color");
-        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(circle);
             circle.setCircleColor(ColorUtils.rgbaToColor("rgba(0, 0, 0, 1)"));
             assertEquals(circle.getCircleColorAsInt(), ColorUtils.rgbaToColor("rgba(0, 0, 0, 1)"));
@@ -87,7 +91,7 @@ public class CircleTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("circle-blur");
-        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(circle);
 
             circle.setCircleBlur(2.0f);
@@ -100,7 +104,7 @@ public class CircleTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("circle-opacity");
-        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(circle);
 
             circle.setCircleOpacity(2.0f);
@@ -113,7 +117,7 @@ public class CircleTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("circle-stroke-width");
-        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(circle);
 
             circle.setCircleStrokeWidth(2.0f);
@@ -126,7 +130,7 @@ public class CircleTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("circle-stroke-color");
-        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(circle);
 
             circle.setCircleStrokeColor("rgba(0, 0, 0, 1)");
@@ -139,7 +143,7 @@ public class CircleTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("circle-stroke-color");
-        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(circle);
             circle.setCircleStrokeColor(ColorUtils.rgbaToColor("rgba(0, 0, 0, 1)"));
             assertEquals(circle.getCircleStrokeColorAsInt(), ColorUtils.rgbaToColor("rgba(0, 0, 0, 1)"));
@@ -152,7 +156,7 @@ public class CircleTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("circle-stroke-opacity");
-        MapboxMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(circle);
 
             circle.setCircleStrokeOpacity(2.0f);
