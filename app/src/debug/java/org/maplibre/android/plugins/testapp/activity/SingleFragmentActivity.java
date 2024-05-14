@@ -1,4 +1,4 @@
-package com.mapbox.mapboxsdk.plugins.testapp.activity;
+package org.maplibre.android.plugins.testapp.activity;
 
 import android.os.Bundle;
 import android.view.ViewGroup;
