@@ -5,6 +5,7 @@ package org.maplibre.android.plugins.annotation;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.UiThread;
+import androidx.annotation.VisibleForTesting;
 
 import org.maplibre.geojson.Feature;
 import org.maplibre.geojson.FeatureCollection;

@@ -20,6 +20,9 @@ import org.maplibre.android.utils.ColorUtils;
 import com.mapbox.android.gestures.MoveDistancesObject;
 import org.maplibre.android.maps.Projection;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.maplibre.android.constants.GeometryConstants.MAX_MERCATOR_LATITUDE;
 import static org.maplibre.android.constants.GeometryConstants.MIN_MERCATOR_LATITUDE;
 

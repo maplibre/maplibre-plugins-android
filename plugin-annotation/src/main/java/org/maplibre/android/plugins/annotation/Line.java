@@ -9,11 +9,13 @@ import androidx.annotation.UiThread;
 
 import android.graphics.PointF;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonNull;
 import com.google.gson.JsonObject;
 import org.maplibre.geojson.*;
 import org.maplibre.android.geometry.LatLng;
 import org.maplibre.android.style.layers.Property;
+import org.maplibre.android.style.layers.PropertyFactory;
 import org.maplibre.android.utils.ColorUtils;
 import com.mapbox.android.gestures.MoveDistancesObject;
 import org.maplibre.android.maps.Projection;
