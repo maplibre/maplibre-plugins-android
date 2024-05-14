@@ -17,11 +17,11 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 public class MapboxMapAction implements ViewAction {
 
     private OnInvokeActionListener invokeViewAction;
-    private MapLibreMap mapboxMap;
+    private MapLibreMap maplibreMap;
 
-    public MapboxMapAction(OnInvokeActionListener invokeViewAction, MapLibreMap mapboxMap) {
+    public MapboxMapAction(OnInvokeActionListener invokeViewAction, MapLibreMap maplibreMap) {
         this.invokeViewAction = invokeViewAction;
-        this.mapboxMap = mapboxMap;
+        this.maplibreMap = maplibreMap;
     }
 
     @Override
@@ -36,15 +36,15 @@ public class MapboxMapAction implements ViewAction {
 
     @Override
     public void perform(UiController uiController, View view) {
-        invokeViewAction.onInvokeAction(uiController, mapboxMap);
+        invokeViewAction.onInvokeAction(uiController, maplibreMap);
     }
 
-    public static void invoke(MapLibreMap mapboxMap, OnInvokeActionListener invokeViewAction) {
-        onView(withId(android.R.id.content)).perform(new MapboxMapAction(invokeViewAction, mapboxMap));
+    public static void invoke(MapLibreMap maplibreMap, OnInvokeActionListener invokeViewAction) {
+        onView(withId(android.R.id.content)).perform(new MapboxMapAction(invokeViewAction, maplibreMap));
     }
 
     public interface OnInvokeActionListener {
-        void onInvokeAction(UiController uiController, MapLibreMap mapboxMap);
+        void onInvokeAction(UiController uiController, MapLibreMap maplibreMap);
     }
 }
 

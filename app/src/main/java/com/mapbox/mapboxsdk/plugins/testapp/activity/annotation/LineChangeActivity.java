@@ -63,17 +63,17 @@ public class LineChangeActivity extends AppCompatActivity {
 
         mapView = findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
-        mapView.getMapAsync(mapboxMap -> {
-            mapboxMap.moveCamera(
+        mapView.getMapAsync(maplibreMap -> {
+            maplibreMap.moveCamera(
                 CameraUpdateFactory.newLatLngZoom(
                     new LatLng(47.798202, 7.573781),
                     4)
             );
 
-            mapboxMap.setStyle(new Style.Builder().fromUri(Style.getPredefinedStyle("Streets")), style -> {
-                findViewById(R.id.fabStyles).setOnClickListener(v -> mapboxMap.setStyle(Utils.INSTANCE.getNextStyle()));
+            maplibreMap.setStyle(new Style.Builder().fromUri(Style.getPredefinedStyle("Streets")), style -> {
+                findViewById(R.id.fabStyles).setOnClickListener(v -> maplibreMap.setStyle(Utils.INSTANCE.getNextStyle()));
 
-                lineManager = new LineManager(mapView, mapboxMap, style);
+                lineManager = new LineManager(mapView, maplibreMap, style);
                 lines = lineManager.create(getAllPolylines());
                 lineManager.addClickListener(line -> {
                     Toast.makeText(
@@ -83,7 +83,7 @@ public class LineChangeActivity extends AppCompatActivity {
                     return false;
                 });
 
-                LineManager dottedLineManger = new LineManager(mapView, mapboxMap, style);
+                LineManager dottedLineManger = new LineManager(mapView, maplibreMap, style);
                 dottedLineManger.create(new LineOptions()
                     .withLinePattern("airfield-11")
                     .withLineWidth(5.0f)

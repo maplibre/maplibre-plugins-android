@@ -34,8 +34,8 @@ public class FillManagerTest extends BaseActivityTest {
 
     private void setupFillManager() {
         Timber.i("Retrieving layer");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
-            fillManager = new FillManager(idlingResource.getMapView(), mapboxMap, Objects.requireNonNull(mapboxMap.getStyle()));
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
+            fillManager = new FillManager(idlingResource.getMapView(), maplibreMap, Objects.requireNonNull(maplibreMap.getStyle()));
         });
     }
 
@@ -44,7 +44,7 @@ public class FillManagerTest extends BaseActivityTest {
         validateTestSetup();
         setupFillManager();
         Timber.i("fill-antialias");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(fillManager);
 
             fillManager.setFillAntialias(true);
@@ -57,7 +57,7 @@ public class FillManagerTest extends BaseActivityTest {
         validateTestSetup();
         setupFillManager();
         Timber.i("fill-translate");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(fillManager);
 
             fillManager.setFillTranslate(new Float[]{0f, 0f});
@@ -70,7 +70,7 @@ public class FillManagerTest extends BaseActivityTest {
         validateTestSetup();
         setupFillManager();
         Timber.i("fill-translate-anchor");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(fillManager);
 
             fillManager.setFillTranslateAnchor(FILL_TRANSLATE_ANCHOR_MAP);

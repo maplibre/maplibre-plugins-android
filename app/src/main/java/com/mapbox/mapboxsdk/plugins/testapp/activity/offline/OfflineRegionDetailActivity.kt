@@ -144,11 +144,11 @@ class OfflineRegionDetailActivity : AppCompatActivity(), OfflineDownloadChangeLi
 
     private fun setupUI(definition: OfflineRegionDefinition) {
         // update map
-        mapView?.getMapAsync { mapboxMap ->
+        mapView?.getMapAsync { maplibreMap ->
             // correct style
-            mapboxMap.setOfflineRegionDefinition(definition) { _ ->
+            maplibreMap.setOfflineRegionDefinition(definition) { _ ->
                 // restrict camera movement
-                mapboxMap.setLatLngBoundsForCameraTarget(definition.bounds)
+                maplibreMap.setLatLngBoundsForCameraTarget(definition.bounds)
 
                 // update textview data
                 offlineRegion?.metadata?.let {

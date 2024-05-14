@@ -41,8 +41,8 @@ public class FillTest extends BaseActivityTest {
 
     private void setupAnnotation() {
         Timber.i("Retrieving layer");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
-            FillManager fillManager = new FillManager(idlingResource.getMapView(), mapboxMap, Objects.requireNonNull(mapboxMap.getStyle()));
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
+            FillManager fillManager = new FillManager(idlingResource.getMapView(), maplibreMap, Objects.requireNonNull(maplibreMap.getStyle()));
             List<LatLng> innerLatLngs = new ArrayList<>();
             innerLatLngs.add(new LatLng());
             innerLatLngs.add(new LatLng(1, 1));
@@ -58,7 +58,7 @@ public class FillTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("fill-opacity");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(fill);
 
             fill.setFillOpacity(2.0f);
@@ -71,7 +71,7 @@ public class FillTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("fill-color");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(fill);
 
             fill.setFillColor("rgba(0, 0, 0, 1)");
@@ -84,7 +84,7 @@ public class FillTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("fill-color");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(fill);
             fill.setFillColor(ColorUtils.rgbaToColor("rgba(0, 0, 0, 1)"));
             assertEquals(fill.getFillColorAsInt(), ColorUtils.rgbaToColor("rgba(0, 0, 0, 1)"));
@@ -97,7 +97,7 @@ public class FillTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("fill-outline-color");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(fill);
 
             fill.setFillOutlineColor("rgba(0, 0, 0, 1)");
@@ -110,7 +110,7 @@ public class FillTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("fill-outline-color");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(fill);
             fill.setFillOutlineColor(ColorUtils.rgbaToColor("rgba(0, 0, 0, 1)"));
             assertEquals(fill.getFillOutlineColorAsInt(), ColorUtils.rgbaToColor("rgba(0, 0, 0, 1)"));
@@ -123,7 +123,7 @@ public class FillTest extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("fill-pattern");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(fill);
 
             fill.setFillPattern("pedestrian-polygon");

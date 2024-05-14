@@ -28,10 +28,10 @@ class MapboxKtxActivity : AppCompatActivity(), OnMapReadyCallback, MapLibreMap.O
         mapView.getMapAsync(this)
     }
 
-    override fun onMapReady(mapboxMap: MapLibreMap) {
-        this.maplibreMap = mapboxMap
-        mapboxMap.setStyle(Style.getPredefinedStyle("Streets")) {
-            mapboxMap.addOnMapClickListener(this)
+    override fun onMapReady(maplibreMap: MapLibreMap) {
+        this.maplibreMap = maplibreMap
+        maplibreMap.setStyle(Style.getPredefinedStyle("Streets")) {
+            maplibreMap.addOnMapClickListener(this)
             Toast.makeText(this, "Click on the map", Toast.LENGTH_SHORT).show()
         }
     }

@@ -40,10 +40,10 @@ public class ScaleBarPlugin {
         }
     };
 
-    public ScaleBarPlugin(@NonNull MapView mapView, @NonNull MapLibreMap mapboxMap) {
+    public ScaleBarPlugin(@NonNull MapView mapView, @NonNull MapLibreMap maplibreMap) {
         this.mapView = mapView;
-        this.mapLibreMap = mapboxMap;
-        this.projection = mapboxMap.getProjection();
+        this.mapLibreMap = maplibreMap;
+        this.projection = maplibreMap.getProjection();
     }
 
     /**

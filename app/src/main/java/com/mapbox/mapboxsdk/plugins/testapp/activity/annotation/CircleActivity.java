@@ -48,13 +48,13 @@ public class CircleActivity extends AppCompatActivity {
 
         mapView = findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
-        mapView.getMapAsync(mapboxMap -> mapboxMap.setStyle(Style.getPredefinedStyle("Streets"), style -> {
-            findViewById(R.id.fabStyles).setOnClickListener(v -> mapboxMap.setStyle(Utils.INSTANCE.getNextStyle()));
+        mapView.getMapAsync(maplibreMap -> maplibreMap.setStyle(Style.getPredefinedStyle("Streets"), style -> {
+            findViewById(R.id.fabStyles).setOnClickListener(v -> maplibreMap.setStyle(Utils.INSTANCE.getNextStyle()));
 
-            mapboxMap.moveCamera(CameraUpdateFactory.zoomTo(2));
+            maplibreMap.moveCamera(CameraUpdateFactory.zoomTo(2));
 
             // create circle manager
-            circleManager = new CircleManager(mapView, mapboxMap, style);
+            circleManager = new CircleManager(mapView, maplibreMap, style);
             circleManager.addClickListener(circle -> {
                 Toast.makeText(CircleActivity.this,
                     String.format("Circle clicked %s", circle.getId()),

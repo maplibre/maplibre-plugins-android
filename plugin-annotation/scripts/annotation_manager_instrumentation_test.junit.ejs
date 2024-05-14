@@ -38,8 +38,8 @@ public class <%- camelize(type) %>ManagerTest extends BaseActivityTest {
 
     private void setup<%- camelize(type) %>Manager() {
         Timber.i("Retrieving layer");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
-            <%- type %>Manager = new <%- camelize(type) %>Manager(idlingResource.getMapView(), mapboxMap, Objects.requireNonNull(mapboxMap.getStyle()));
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
+            <%- type %>Manager = new <%- camelize(type) %>Manager(idlingResource.getMapView(), maplibreMap, Objects.requireNonNull(maplibreMap.getStyle()));
         });
     }
 <% for (const property of properties) { -%>
@@ -50,7 +50,7 @@ public class <%- camelize(type) %>ManagerTest extends BaseActivityTest {
         validateTestSetup();
         setup<%- camelize(type) %>Manager();
         Timber.i("<%- property.name %>");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(<%- type %>Manager);
 
             <%- type %>Manager.set<%- camelize(property.name) %>(<%- defaultValueJava(property) %>);

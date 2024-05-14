@@ -37,7 +37,7 @@ public class DraggableAnnotationControllerTest {
     private MapView mapView;
 
     @Mock
-    private MapLibreMap mapboxMap;
+    private MapLibreMap maplibreMap;
 
     @Mock
     private Projection projection;
@@ -70,7 +70,7 @@ public class DraggableAnnotationControllerTest {
     @Before
     public void before() {
         MockitoAnnotations.initMocks(this);
-        draggableAnnotationController = new DraggableAnnotationController(mapView, mapboxMap, androidGesturesManager,
+        draggableAnnotationController = new DraggableAnnotationController(mapView, maplibreMap, androidGesturesManager,
             0, 0, touchAreaMaxX, touchAreaMaxY);
         draggableAnnotationController.addAnnotationManager(annotationManager);
         dragListenerList = new ArrayList<>();
@@ -237,7 +237,7 @@ public class DraggableAnnotationControllerTest {
         when(moveObject.getCurrentX()).thenReturn(10f);
         when(moveObject.getCurrentY()).thenReturn(10f);
 
-        when(mapboxMap.getProjection()).thenReturn(projection);
+        when(maplibreMap.getProjection()).thenReturn(projection);
         when(annotation.getOffsetGeometry(projection, moveObject, 0, 0)).thenReturn(null);
 
         boolean moved = draggableAnnotationController.onMove(moveGestureDetector);
@@ -258,7 +258,7 @@ public class DraggableAnnotationControllerTest {
         when(moveObject.getCurrentX()).thenReturn(10f);
         when(moveObject.getCurrentY()).thenReturn(10f);
 
-        when(mapboxMap.getProjection()).thenReturn(projection);
+        when(maplibreMap.getProjection()).thenReturn(projection);
         when(annotation.getOffsetGeometry(projection, moveObject, 0, 0)).thenReturn(geometry);
 
         boolean moved = draggableAnnotationController.onMove(moveGestureDetector);
@@ -291,7 +291,7 @@ public class DraggableAnnotationControllerTest {
         when(moveObject.getCurrentX()).thenReturn(10f);
         when(moveObject.getCurrentY()).thenReturn(10f);
 
-        when(mapboxMap.getProjection()).thenReturn(projection);
+        when(maplibreMap.getProjection()).thenReturn(projection);
         when(annotation.getOffsetGeometry(projection, moveObject, 0, 0)).thenReturn(geometry);
 
         boolean moved = draggableAnnotationController.onMove(moveGestureDetector);
@@ -312,7 +312,7 @@ public class DraggableAnnotationControllerTest {
         when(moveObject.getCurrentX()).thenReturn(10f);
         when(moveObject.getCurrentY()).thenReturn(10f);
 
-        when(mapboxMap.getProjection()).thenReturn(projection);
+        when(maplibreMap.getProjection()).thenReturn(projection);
         when(annotation.getOffsetGeometry(projection, moveObject, 0, 0)).thenReturn(geometry);
 
         when(annotation.isDraggable()).thenReturn(false);

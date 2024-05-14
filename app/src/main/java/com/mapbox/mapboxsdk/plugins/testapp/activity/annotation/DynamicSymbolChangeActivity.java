@@ -46,12 +46,12 @@ public class DynamicSymbolChangeActivity extends AppCompatActivity {
         mapView = findViewById(R.id.mapView);
         mapView.setTag(false);
         mapView.onCreate(savedInstanceState);
-        mapView.getMapAsync(mapboxMap -> {
-            DynamicSymbolChangeActivity.this.maplibreMap = mapboxMap;
+        mapView.getMapAsync(maplibreMap -> {
+            DynamicSymbolChangeActivity.this.maplibreMap = maplibreMap;
 
             LatLng target = new LatLng(51.506675, -0.128699);
 
-            mapboxMap.moveCamera(CameraUpdateFactory.newCameraPosition(
+            maplibreMap.moveCamera(CameraUpdateFactory.newCameraPosition(
                 new CameraPosition.Builder()
                     .bearing(90)
                     .tilt(40)
@@ -60,12 +60,12 @@ public class DynamicSymbolChangeActivity extends AppCompatActivity {
                     .build()
             ));
 
-            mapboxMap.setStyle(new Style.Builder()
+            maplibreMap.setStyle(new Style.Builder()
                     .fromUri(Style.getPredefinedStyle("Streets"))
                 //.withImage(ID_ICON_1, generateBitmap(R.drawable.mapbox_ic_place), true)
                 //.withImage(ID_ICON_2, generateBitmap(R.drawable.mapbox_ic_offline), true)
                 , style -> {
-                    symbolManager = new SymbolManager(mapView, mapboxMap, style);
+                    symbolManager = new SymbolManager(mapView, maplibreMap, style);
                     symbolManager.setIconAllowOverlap(true);
                     symbolManager.setTextAllowOverlap(true);
 

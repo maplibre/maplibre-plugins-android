@@ -34,8 +34,8 @@ public class CircleManagerTest extends BaseActivityTest {
 
     private void setupCircleManager() {
         Timber.i("Retrieving layer");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
-            circleManager = new CircleManager(idlingResource.getMapView(), mapboxMap, Objects.requireNonNull(mapboxMap.getStyle()));
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
+            circleManager = new CircleManager(idlingResource.getMapView(), maplibreMap, Objects.requireNonNull(maplibreMap.getStyle()));
         });
     }
 
@@ -44,7 +44,7 @@ public class CircleManagerTest extends BaseActivityTest {
         validateTestSetup();
         setupCircleManager();
         Timber.i("circle-translate");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(circleManager);
 
             circleManager.setCircleTranslate(new Float[]{0f, 0f});
@@ -57,7 +57,7 @@ public class CircleManagerTest extends BaseActivityTest {
         validateTestSetup();
         setupCircleManager();
         Timber.i("circle-translate-anchor");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(circleManager);
 
             circleManager.setCircleTranslateAnchor(CIRCLE_TRANSLATE_ANCHOR_MAP);
@@ -70,7 +70,7 @@ public class CircleManagerTest extends BaseActivityTest {
         validateTestSetup();
         setupCircleManager();
         Timber.i("circle-pitch-scale");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(circleManager);
 
             circleManager.setCirclePitchScale(CIRCLE_PITCH_SCALE_MAP);
@@ -83,7 +83,7 @@ public class CircleManagerTest extends BaseActivityTest {
         validateTestSetup();
         setupCircleManager();
         Timber.i("circle-pitch-alignment");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(circleManager);
 
             circleManager.setCirclePitchAlignment(CIRCLE_PITCH_ALIGNMENT_MAP);

@@ -71,19 +71,19 @@ public class SymbolActivity extends AppCompatActivity {
 
         mapView = findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
-        mapView.getMapAsync(mapboxMap -> mapboxMap.setStyle(Style.getPredefinedStyle("Streets"), style -> {
+        mapView.getMapAsync(maplibreMap -> maplibreMap.setStyle(Style.getPredefinedStyle("Streets"), style -> {
             findViewById(R.id.fabStyles).setOnClickListener(v -> {
-                mapboxMap.setStyle(Utils.INSTANCE.getNextStyle());
-                mapboxMap.getStyle(this::addAirplaneImageToStyle);
+                maplibreMap.setStyle(Utils.INSTANCE.getNextStyle());
+                maplibreMap.getStyle(this::addAirplaneImageToStyle);
             });
 
-            mapboxMap.moveCamera(CameraUpdateFactory.zoomTo(2));
+            maplibreMap.moveCamera(CameraUpdateFactory.zoomTo(2));
 
             addAirplaneImageToStyle(style);
 
             // create symbol manager
             GeoJsonOptions geoJsonOptions = new GeoJsonOptions().withTolerance(0.4f);
-            symbolManager = new SymbolManager(mapView, mapboxMap, style, null, null, geoJsonOptions);
+            symbolManager = new SymbolManager(mapView, maplibreMap, style, null, null, geoJsonOptions);
             symbolManager.addClickListener(symbol -> {
                 Toast.makeText(SymbolActivity.this,
                     String.format("Symbol clicked %s", symbol.getId()),

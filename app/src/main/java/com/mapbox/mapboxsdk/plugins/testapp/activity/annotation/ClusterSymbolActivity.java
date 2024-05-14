@@ -58,9 +58,9 @@ public class ClusterSymbolActivity extends AppCompatActivity {
         mapView.getMapAsync(this::initMap);
     }
 
-    private void initMap(MapLibreMap mapboxMap) {
-        this.maplibreMap = mapboxMap;
-        mapboxMap.moveCamera(
+    private void initMap(MapLibreMap maplibreMap) {
+        this.maplibreMap = maplibreMap;
+        maplibreMap.moveCamera(
             CameraUpdateFactory.newLatLngZoom(
                 new LatLng(38.87031, -77.00897), 10
             )
@@ -73,8 +73,8 @@ public class ClusterSymbolActivity extends AppCompatActivity {
                 new Pair(0, Color.GREEN)
             });
 
-        mapboxMap.setStyle(new Style.Builder().fromUri(Style.getPredefinedStyle("Streets")), style -> {
-            symbolManager = new SymbolManager(mapView, mapboxMap, style, null, null, clusterOptions);
+        maplibreMap.setStyle(new Style.Builder().fromUri(Style.getPredefinedStyle("Streets")), style -> {
+            symbolManager = new SymbolManager(mapView, maplibreMap, style, null, null, clusterOptions);
             symbolManager.setIconAllowOverlap(true);
             loadData();
         });

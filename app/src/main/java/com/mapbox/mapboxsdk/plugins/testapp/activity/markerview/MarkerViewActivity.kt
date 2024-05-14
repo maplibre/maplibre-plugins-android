@@ -36,18 +36,18 @@ class MarkerViewActivity :
         mapView = findViewById<View>(R.id.mapView) as MapView
 
         mapView.onCreate(savedInstanceState)
-        mapView.getMapAsync { mapboxMap ->
-            mapboxMap.setStyle(Style.getPredefinedStyle("Streets")) { _ ->
-                findViewById<View>(R.id.fabStyles).setOnClickListener { mapboxMap.setStyle(Utils.nextStyle) }
+        mapView.getMapAsync { maplibreMap ->
+            maplibreMap.setStyle(Style.getPredefinedStyle("Streets")) { _ ->
+                findViewById<View>(R.id.fabStyles).setOnClickListener { maplibreMap.setStyle(Utils.nextStyle) }
 
-                mapboxMap.moveCamera(CameraUpdateFactory.zoomTo(2.0))
+                maplibreMap.moveCamera(CameraUpdateFactory.zoomTo(2.0))
 
-                markerViewManager = MarkerViewManager(mapView, mapboxMap)
+                markerViewManager = MarkerViewManager(mapView, maplibreMap)
                 createCustomMarker()
                 createRandomMarkers()
 
-                mapboxMap.addOnMapLongClickListener(this@MarkerViewActivity)
-                mapboxMap.addOnMapClickListener(this@MarkerViewActivity)
+                maplibreMap.addOnMapLongClickListener(this@MarkerViewActivity)
+                maplibreMap.addOnMapClickListener(this@MarkerViewActivity)
             }
         }
     }

@@ -44,12 +44,12 @@ public class FillActivity extends AppCompatActivity {
         setContentView(R.layout.activity_annotation);
         mapView = findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
-        mapView.getMapAsync(mapboxMap -> mapboxMap.setStyle(Style.getPredefinedStyle("Streets"), style -> {
-            findViewById(R.id.fabStyles).setOnClickListener(v -> mapboxMap.setStyle(Utils.INSTANCE.getNextStyle()));
+        mapView.getMapAsync(maplibreMap -> maplibreMap.setStyle(Style.getPredefinedStyle("Streets"), style -> {
+            findViewById(R.id.fabStyles).setOnClickListener(v -> maplibreMap.setStyle(Utils.INSTANCE.getNextStyle()));
 
-            mapboxMap.moveCamera(CameraUpdateFactory.zoomTo(2));
+            maplibreMap.moveCamera(CameraUpdateFactory.zoomTo(2));
 
-            fillManager = new FillManager(mapView, mapboxMap, style);
+            fillManager = new FillManager(mapView, maplibreMap, style);
             fillManager.addClickListener(fill -> {
                 Toast.makeText(FillActivity.this,
                     String.format("Fill clicked %s with title: %s", fill.getId(), getTitleFromFill(fill)),

@@ -47,7 +47,7 @@ public abstract class AnnotationManager<
     private static final String TAG = "AnnotationManager";
 
     private final MapView mapView;
-    protected final MapLibreMap mapboxMap;
+    protected final MapLibreMap maplibreMap;
     protected final LongSparseArray<T> annotations = new LongSparseArray<>();
     final Map<String, Boolean> dataDrivenPropertyUsageMap = new HashMap<>();
     final Map<String, PropertyValue> constantPropertyUsageMap = new HashMap<>();
@@ -70,12 +70,12 @@ public abstract class AnnotationManager<
     private AtomicBoolean isSourceUpToDate = new AtomicBoolean(true);
 
     @UiThread
-    protected AnnotationManager(MapView mapView, final MapLibreMap mapboxMap, Style style,
+    protected AnnotationManager(MapView mapView, final MapLibreMap maplibreMap, Style style,
                                 CoreElementProvider<L> coreElementProvider,
                                 DraggableAnnotationController draggableAnnotationController,
                                 String belowLayerId, String aboveLayerId, final GeoJsonOptions geoJsonOptions) {
         this.mapView = mapView;
-        this.mapboxMap = mapboxMap;
+        this.maplibreMap = maplibreMap;
         this.style = style;
         this.belowLayerId = belowLayerId;
         this.aboveLayerId = aboveLayerId;
@@ -86,8 +86,8 @@ public abstract class AnnotationManager<
             throw new RuntimeException("The style has to be non-null and fully loaded.");
         }
 
-        mapboxMap.addOnMapClickListener(mapClickResolver = new MapClickResolver());
-        mapboxMap.addOnMapLongClickListener(mapClickResolver);
+        maplibreMap.addOnMapClickListener(mapClickResolver = new MapClickResolver());
+        maplibreMap.addOnMapLongClickListener(mapClickResolver);
 
         initializeSourcesAndLayers(geoJsonOptions);
         draggableAnnotationController.addAnnotationManager(this);
@@ -95,7 +95,7 @@ public abstract class AnnotationManager<
         mapView.addOnDidFinishLoadingStyleListener(new MapView.OnDidFinishLoadingStyleListener() {
             @Override
             public void onDidFinishLoadingStyle() {
-                mapboxMap.getStyle(new Style.OnStyleLoaded() {
+                maplibreMap.getStyle(new Style.OnStyleLoaded() {
                     @Override
                     public void onStyleLoaded(@NonNull Style loadedStyle) {
                         AnnotationManager.this.style = loadedStyle;
@@ -360,8 +360,8 @@ public abstract class AnnotationManager<
      */
     @UiThread
     public void onDestroy() {
-        mapboxMap.removeOnMapClickListener(mapClickResolver);
-        mapboxMap.removeOnMapLongClickListener(mapClickResolver);
+        maplibreMap.removeOnMapClickListener(mapClickResolver);
+        maplibreMap.removeOnMapLongClickListener(mapClickResolver);
         draggableAnnotationController.removeAnnotationManager(this);
         dragListeners.clear();
         clickListeners.clear();
@@ -442,12 +442,12 @@ public abstract class AnnotationManager<
 
     @Nullable
     private T queryMapForFeatures(@NonNull LatLng point) {
-        return queryMapForFeatures(mapboxMap.getProjection().toScreenLocation(point));
+        return queryMapForFeatures(maplibreMap.getProjection().toScreenLocation(point));
     }
 
     @Nullable
     T queryMapForFeatures(@NonNull PointF point) {
-        List<Feature> features = mapboxMap.queryRenderedFeatures(point, coreElementProvider.getLayerId());
+        List<Feature> features = maplibreMap.queryRenderedFeatures(point, coreElementProvider.getLayerId());
         if (!features.isEmpty()) {
             long id = features.get(0).getProperty(getAnnotationIdKey()).getAsLong();
             return annotations.get(id);

@@ -104,11 +104,11 @@ public final class LocalizationPlugin {
      * Public constructor for passing in the required objects.
      *
      * @param mapView   the MapView object in which the map is displayed
-     * @param mapboxMap the Mapbox map object which your current map view is using for control
+     * @param maplibreMap the Mapbox map object which your current map view is using for control
      * @param style     the Style object that represents a fully loaded style
      */
-    public LocalizationPlugin(@NonNull MapView mapView, @NonNull final MapLibreMap mapboxMap, @NonNull Style style) {
-        this.maplibreMap = mapboxMap;
+    public LocalizationPlugin(@NonNull MapView mapView, @NonNull final MapLibreMap maplibreMap, @NonNull Style style) {
+        this.maplibreMap = maplibreMap;
         this.style = style;
         if (!style.isFullyLoaded()) {
             throw new RuntimeException("The style has to be non-null and fully loaded.");
@@ -117,7 +117,7 @@ public final class LocalizationPlugin {
         mapView.addOnDidFinishLoadingStyleListener(new MapView.OnDidFinishLoadingStyleListener() {
             @Override
             public void onDidFinishLoadingStyle() {
-                mapboxMap.getStyle(new Style.OnStyleLoaded() {
+                maplibreMap.getStyle(new Style.OnStyleLoaded() {
                     @Override
                     public void onStyleLoaded(@NonNull Style style) {
                         LocalizationPlugin.this.style = style;

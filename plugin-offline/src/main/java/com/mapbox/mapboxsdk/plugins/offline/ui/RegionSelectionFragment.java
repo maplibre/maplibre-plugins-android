@@ -98,18 +98,18 @@ public class RegionSelectionFragment extends Fragment implements OnMapReadyCallb
     }
 
     @Override
-    public void onMapReady(final MapLibreMap mapboxMap) {
-        this.mapLibreMap = mapboxMap;
-        mapboxMap.setStyle(Style.getPredefinedStyle("Streets"), new Style.OnStyleLoaded() {
+    public void onMapReady(final MapLibreMap maplibreMap) {
+        this.mapLibreMap = maplibreMap;
+        maplibreMap.setStyle(Style.getPredefinedStyle("Streets"), new Style.OnStyleLoaded() {
             @Override
             public void onStyleLoaded(@NonNull Style style) {
                 RegionSelectionFragment.this.style = style;
-                mapboxMap.addOnCameraIdleListener(RegionSelectionFragment.this);
+                maplibreMap.addOnCameraIdleListener(RegionSelectionFragment.this);
                 if (options != null) {
                     if (options.startingBounds() != null) {
-                        mapboxMap.moveCamera(CameraUpdateFactory.newLatLngBounds(options.startingBounds(), 0));
+                        maplibreMap.moveCamera(CameraUpdateFactory.newLatLngBounds(options.startingBounds(), 0));
                     } else if (options.statingCameraPosition() != null) {
-                        mapboxMap.moveCamera(CameraUpdateFactory.newCameraPosition(options.statingCameraPosition()));
+                        maplibreMap.moveCamera(CameraUpdateFactory.newCameraPosition(options.statingCameraPosition()));
                     }
                 }
             }

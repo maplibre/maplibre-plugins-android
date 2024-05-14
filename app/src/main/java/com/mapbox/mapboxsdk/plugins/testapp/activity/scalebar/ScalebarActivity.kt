@@ -28,9 +28,9 @@ class ScalebarActivity : AppCompatActivity() {
 
         mapView = binding.mapView
         mapView.onCreate(savedInstanceState)
-        mapView.getMapAsync { mapboxMap ->
-            mapboxMap.setStyle("https://api.maptiler.com/maps/basic-v2/style.json?key=FTNrjsa7Nahw874tmMi7") {
-                addScalebar(mapboxMap)
+        mapView.getMapAsync { maplibreMap ->
+            maplibreMap.setStyle("https://api.maptiler.com/maps/basic-v2/style.json?key=FTNrjsa7Nahw874tmMi7") {
+                addScalebar(maplibreMap)
                 setupTestLine(it)
             }
         }

@@ -45,8 +45,8 @@ public class <%- camelize(type) %>Test extends BaseActivityTest {
 
     private void setupAnnotation() {
         Timber.i("Retrieving layer");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
-            <%- camelize(type) %>Manager <%- type %>Manager = new <%- camelize(type) %>Manager(idlingResource.getMapView(), mapboxMap, Objects.requireNonNull(mapboxMap.getStyle()));
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
+            <%- camelize(type) %>Manager <%- type %>Manager = new <%- camelize(type) %>Manager(idlingResource.getMapView(), maplibreMap, Objects.requireNonNull(maplibreMap.getStyle()));
 <% if (type === "circle" || type === "symbol") { -%>
             <%- type %> = <%- type %>Manager.create(new <%- camelize(type) %>Options().withLatLng(new LatLng()));
 <% } else if (type === "line") { -%>
@@ -74,7 +74,7 @@ public class <%- camelize(type) %>Test extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("<%- property.name %>");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(<%- type %>);
 
             <%- type %>.set<%- camelize(property.name) %>(new PointF(1.0f, 1.0f));
@@ -88,7 +88,7 @@ public class <%- camelize(type) %>Test extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("<%- property.name %>");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(<%- type %>);
 
             <%- type %>.set<%- camelize(property.name) %>(<%- defaultValueJava(property) %>);
@@ -101,7 +101,7 @@ public class <%- camelize(type) %>Test extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("<%- property.name %>");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(<%- type %>);
             <%- type %>.set<%- camelize(property.name) %>(ColorUtils.rgbaToColor(<%- defaultValueJava(property) %>));
             assertEquals(<%- type %>.get<%- camelize(property.name) %>AsInt(), ColorUtils.rgbaToColor(<%- defaultValueJava(property) %>));
@@ -115,7 +115,7 @@ public class <%- camelize(type) %>Test extends BaseActivityTest {
         validateTestSetup();
         setupAnnotation();
         Timber.i("<%- property.name %>");
-        invoke(mapboxMap, (uiController, mapboxMap) -> {
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
             assertNotNull(<%- type %>);
 
             <%- type %>.set<%- camelize(property.name) %>(<%- defaultValueJava(property) %>);

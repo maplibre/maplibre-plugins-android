@@ -23,11 +23,11 @@ public class MarkerViewManager implements MapView.OnCameraDidChangeListener, Map
      * Create a MarkerViewManager.
      *
      * @param mapView   the MapView used to synchronise views on
-     * @param mapboxMap the MapboxMap to synchronise views with
+     * @param maplibreMap the MapboxMap to synchronise views with
      */
-    public MarkerViewManager(MapView mapView, MapLibreMap mapboxMap) {
+    public MarkerViewManager(MapView mapView, MapLibreMap maplibreMap) {
         this.mapView = mapView;
-        this.maplibreMap = mapboxMap;
+        this.maplibreMap = maplibreMap;
     }
 
     /**
