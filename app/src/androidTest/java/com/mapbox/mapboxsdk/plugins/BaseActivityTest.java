@@ -5,7 +5,6 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
-import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.plugins.annotation.MapboxMapAction;
 import com.mapbox.mapboxsdk.plugins.annotation.WaitAction;
 import com.mapbox.mapboxsdk.plugins.utils.OnMapReadyIdlingResource;
@@ -16,6 +15,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.rules.TestName;
+import org.maplibre.android.maps.MapLibreMap;
 
 import androidx.test.espresso.Espresso;
 import androidx.test.espresso.IdlingRegistry;
@@ -38,7 +38,7 @@ public abstract class BaseActivityTest {
     @Rule
     public TestName testName = new TestName();
 
-    protected MapboxMap mapboxMap;
+    protected MapLibreMap mapboxMap;
     protected OnMapReadyIdlingResource idlingResource;
 
     @Before
@@ -63,7 +63,7 @@ public abstract class BaseActivityTest {
         Assert.assertNotNull(mapboxMap);
     }
 
-    protected MapboxMap getMapboxMap() {
+    protected MapLibreMap getMapboxMap() {
         return mapboxMap;
     }
 

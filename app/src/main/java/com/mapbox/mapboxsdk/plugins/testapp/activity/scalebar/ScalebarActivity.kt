@@ -29,7 +29,7 @@ class ScalebarActivity : AppCompatActivity() {
         mapView = binding.mapView
         mapView.onCreate(savedInstanceState)
         mapView.getMapAsync { mapboxMap ->
-            mapboxMap.setStyle(Style.getPredefinedStyle("Streets")) {
+            mapboxMap.setStyle("https://api.maptiler.com/maps/basic-v2/style.json?key=FTNrjsa7Nahw874tmMi7") {
                 addScalebar(mapboxMap)
                 setupTestLine(it)
             }
