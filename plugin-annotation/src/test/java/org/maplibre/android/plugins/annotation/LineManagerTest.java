@@ -2,6 +2,8 @@
 
 package org.maplibre.android.plugins.annotation;
 
+import android.graphics.PointF;
+
 import com.google.gson.JsonPrimitive;
 import org.maplibre.geojson.*;
 import org.maplibre.android.geometry.LatLng;
@@ -12,6 +14,7 @@ import org.maplibre.android.style.expressions.Expression;
 import org.maplibre.android.style.layers.*;
 import org.maplibre.android.style.sources.GeoJsonOptions;
 import org.maplibre.android.style.sources.GeoJsonSource;
+import org.maplibre.android.utils.ColorUtils;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -19,6 +22,7 @@ import org.mockito.ArgumentCaptor;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Arrays;
 
 import static org.maplibre.android.plugins.annotation.ConvertUtils.convertArray;
 import static org.maplibre.android.style.expressions.Expression.get;

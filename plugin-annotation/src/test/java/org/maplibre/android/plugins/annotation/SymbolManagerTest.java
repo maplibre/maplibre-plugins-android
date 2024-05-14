@@ -14,6 +14,7 @@ import org.maplibre.android.style.expressions.Expression;
 import org.maplibre.android.style.layers.*;
 import org.maplibre.android.style.sources.GeoJsonOptions;
 import org.maplibre.android.style.sources.GeoJsonSource;
+import org.maplibre.android.utils.ColorUtils;
 
 import org.junit.Before;
 import org.junit.Test;
