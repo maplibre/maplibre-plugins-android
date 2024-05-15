@@ -1,4 +1,4 @@
-package com.mapbox.mapboxsdk.plugins.offline.ui;
+package org.maplibre.android.plugins.offline.ui;
 
 import org.maplibre.android.offline.OfflineRegionDefinition;
 

@@ -1,19 +1,17 @@
-package com.mapbox.mapboxsdk.plugins.offline.offline;
+package org.maplibre.android.plugins.offline.offline;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
-import com.mapbox.mapboxsdk.plugins.offline.model.OfflineDownloadOptions;
+import org.maplibre.android.plugins.offline.model.OfflineDownloadOptions;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
-import static com.mapbox.mapboxsdk.plugins.offline.offline.OfflineConstants.KEY_BUNDLE;
 
 import org.maplibre.android.offline.OfflineRegion;
 
@@ -83,7 +81,7 @@ public class OfflinePlugin {
     public void startDownload(OfflineDownloadOptions options) {
         Intent intent = new Intent(context, OfflineDownloadService.class);
         intent.setAction(OfflineConstants.ACTION_START_DOWNLOAD);
-        intent.putExtra(KEY_BUNDLE, options);
+        intent.putExtra(OfflineConstants.KEY_BUNDLE, options);
         context.startService(intent);
     }
 
@@ -96,7 +94,7 @@ public class OfflinePlugin {
     public void cancelDownload(OfflineDownloadOptions offlineDownload) {
         Intent intent = new Intent(context, OfflineDownloadService.class);
         intent.setAction(OfflineConstants.ACTION_CANCEL_DOWNLOAD);
-        intent.putExtra(KEY_BUNDLE, offlineDownload);
+        intent.putExtra(OfflineConstants.KEY_BUNDLE, offlineDownload);
         context.startService(intent);
     }
 

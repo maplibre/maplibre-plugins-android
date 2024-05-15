@@ -1,12 +1,13 @@
-package com.mapbox.mapboxsdk.plugins.offline.model;
+package org.maplibre.android.plugins.offline.model;
 
 import android.content.Context;
 import android.os.Parcelable;
 
 import com.google.auto.value.AutoValue;
-import com.mapbox.mapboxsdk.plugins.offline.R;
+import org.maplibre.android.plugins.offline.R;
 
 import androidx.annotation.DrawableRes;
+import org.maplibre.android.plugins.offline.model.$AutoValue_NotificationOptions;
 
 @AutoValue
 public abstract class NotificationOptions implements Parcelable {
@@ -34,11 +35,11 @@ public abstract class NotificationOptions implements Parcelable {
     public abstract boolean requestMapSnapshot();
 
     public static Builder builder(Context context) {
-        return new AutoValue_NotificationOptions.Builder()
+        return new $AutoValue_NotificationOptions.Builder()
             .smallIconRes(android.R.drawable.stat_sys_download)
-            .contentTitle(context.getString(R.string.mapbox_offline_notification_default_content_title))
-            .contentText(context.getString(R.string.mapbox_offline_notification_default_content_text))
-            .cancelText(context.getString(R.string.mapbox_offline_notification_action_cancel))
+            .contentTitle(context.getString(R.string.maplibre_offline_notification_default_content_title))
+            .contentText(context.getString(R.string.maplibre_offline_notification_default_content_text))
+            .cancelText(context.getString(R.string.maplibre_offline_notification_action_cancel))
             .requestMapSnapshot(true);
     }
 

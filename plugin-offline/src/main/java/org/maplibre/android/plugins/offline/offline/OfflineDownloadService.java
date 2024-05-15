@@ -1,4 +1,4 @@
-package com.mapbox.mapboxsdk.plugins.offline.offline;
+package org.maplibre.android.plugins.offline.offline;
 
 import android.app.Service;
 import android.content.Intent;
@@ -12,13 +12,12 @@ import androidx.collection.LongSparseArray;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
-import com.mapbox.mapboxsdk.plugins.offline.model.OfflineDownloadOptions;
-import com.mapbox.mapboxsdk.plugins.offline.utils.NotificationUtils;
+import org.maplibre.android.plugins.offline.model.OfflineDownloadOptions;
+import org.maplibre.android.plugins.offline.utils.NotificationUtils;
 
 import timber.log.Timber;
 
-import static com.mapbox.mapboxsdk.plugins.offline.offline.OfflineConstants.KEY_BUNDLE;
-import static com.mapbox.mapboxsdk.plugins.offline.utils.NotificationUtils.setupNotificationChannel;
+import static org.maplibre.android.plugins.offline.utils.NotificationUtils.setupNotificationChannel;
 
 import org.maplibre.android.offline.OfflineManager;
 import org.maplibre.android.offline.OfflineRegion;
@@ -86,7 +85,7 @@ public class OfflineDownloadService extends Service {
     public int onStartCommand(final Intent intent, int flags, final int startId) {
         Timber.v("onStartCommand called.");
         if (intent != null) {
-            final OfflineDownloadOptions offlineDownload = intent.getParcelableExtra(KEY_BUNDLE);
+            final OfflineDownloadOptions offlineDownload = intent.getParcelableExtra(OfflineConstants.KEY_BUNDLE);
             if (offlineDownload != null) {
                 onResolveCommand(intent.getAction(), offlineDownload);
             } else {

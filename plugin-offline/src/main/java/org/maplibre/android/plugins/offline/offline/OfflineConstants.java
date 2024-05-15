@@ -1,4 +1,4 @@
-package com.mapbox.mapboxsdk.plugins.offline.offline;
+package org.maplibre.android.plugins.offline.offline;
 
 public class OfflineConstants {
 

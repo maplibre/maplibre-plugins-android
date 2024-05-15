@@ -1,9 +1,10 @@
-package com.mapbox.mapboxsdk.plugins.offline.model;
+package org.maplibre.android.plugins.offline.model;
 
 import android.os.Parcelable;
 
 import com.google.auto.value.AutoValue;
-import com.mapbox.mapboxsdk.plugins.offline.ui.OfflineActivity;
+import org.maplibre.android.plugins.offline.model.$AutoValue_RegionSelectionOptions;
+import org.maplibre.android.plugins.offline.ui.OfflineActivity;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -55,7 +56,7 @@ public abstract class RegionSelectionOptions implements Parcelable {
      * @since 0.2.0
      */
     public static Builder builder() {
-        return new AutoValue_RegionSelectionOptions.Builder();
+        return new $AutoValue_RegionSelectionOptions.Builder();
     }
 
     /**

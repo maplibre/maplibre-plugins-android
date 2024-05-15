@@ -1,4 +1,4 @@
-package com.mapbox.mapboxsdk.plugins.offline.ui;
+package org.maplibre.android.plugins.offline.ui;
 
 import android.graphics.PointF;
 import android.graphics.RectF;
@@ -9,9 +9,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.mapbox.mapboxsdk.plugins.offline.OfflinePluginConstants;
-import com.mapbox.mapboxsdk.plugins.offline.R;
-import com.mapbox.mapboxsdk.plugins.offline.model.RegionSelectionOptions;
+import org.maplibre.android.plugins.offline.R;
+import org.maplibre.android.plugins.offline.OfflinePluginConstants;
+import org.maplibre.android.plugins.offline.model.RegionSelectionOptions;
 
 import java.util.List;
 
@@ -70,9 +70,9 @@ public class RegionSelectionFragment extends Fragment implements OnMapReadyCallb
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.mapbox_offline_region_selection_fragment, container, false);
-        mapView = rootView.findViewById(R.id.mapbox_offline_region_selection_map_view);
-        regionNameTextView = rootView.findViewById(R.id.mapbox_offline_region_name_text_view);
+        rootView = inflater.inflate(R.layout.maplibre_offline_region_selection_fragment, container, false);
+        mapView = rootView.findViewById(R.id.maplibre_offline_region_selection_map_view);
+        regionNameTextView = rootView.findViewById(R.id.maplibre_offline_region_name_text_view);
 
         Bundle bundle = getArguments();
         // Get the regionSelectionOptions
@@ -175,8 +175,8 @@ public class RegionSelectionFragment extends Fragment implements OnMapReadyCallb
     }
 
     private RectF getSelectionRegion() {
-        View selectionBoxView = rootView.findViewById(R.id.mapbox_offline_scrim_view);
-        int paddingInPixels = (int) getResources().getDimension(R.dimen.mapbox_offline_scrim_padding);
+        View selectionBoxView = rootView.findViewById(R.id.maplibre_offline_scrim_view);
+        int paddingInPixels = (int) getResources().getDimension(R.dimen.maplibre_offline_scrim_padding);
 
         float top = selectionBoxView.getY() + paddingInPixels;
         float left = selectionBoxView.getX() + paddingInPixels;
@@ -196,12 +196,12 @@ public class RegionSelectionFragment extends Fragment implements OnMapReadyCallb
         if (!featureList.isEmpty() && featureList.get(0).properties().has("name")) {
             return featureList.get(0).getStringProperty("name");
         }
-        return getString(R.string.mapbox_offline_default_region_name);
+        return getString(R.string.maplibre_offline_default_region_name);
     }
 
     OfflineRegionDefinition createRegion() {
         if (mapLibreMap == null) {
-            throw new NullPointerException("MapboxMap is null and can't be used to create Offline region"
+            throw new NullPointerException("maplibreMap is null and can't be used to create Offline region"
                 + "definition.");
         }
         RectF rectF = getSelectionRegion();
@@ -218,7 +218,7 @@ public class RegionSelectionFragment extends Fragment implements OnMapReadyCallb
     }
 
     private void bindClickListeners() {
-        FloatingActionButton button = rootView.findViewById(R.id.mapbox_offline_select_region_button);
+        FloatingActionButton button = rootView.findViewById(R.id.maplibre_offline_select_region_button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

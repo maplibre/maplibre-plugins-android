@@ -1,4 +1,4 @@
-package com.mapbox.mapboxsdk.plugins.offline.utils;
+package org.maplibre.android.plugins.offline.utils;
 
 import android.util.Log;
 

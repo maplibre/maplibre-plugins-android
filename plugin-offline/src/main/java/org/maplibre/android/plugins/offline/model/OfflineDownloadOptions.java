@@ -1,10 +1,11 @@
-package com.mapbox.mapboxsdk.plugins.offline.model;
+package org.maplibre.android.plugins.offline.model;
 
 import android.os.Parcelable;
 
 import com.google.auto.value.AutoValue;
-import com.mapbox.mapboxsdk.plugins.offline.offline.OfflineDownloadService;
-import com.mapbox.mapboxsdk.plugins.offline.offline.OfflinePlugin;
+import org.maplibre.android.plugins.offline.model.$AutoValue_OfflineDownloadOptions;
+import org.maplibre.android.plugins.offline.offline.OfflineDownloadService;
+import org.maplibre.android.plugins.offline.offline.OfflinePlugin;
 
 import java.util.UUID;
 
@@ -93,7 +94,7 @@ public abstract class OfflineDownloadOptions implements Parcelable {
      * @since 0.1.0
      */
     public static Builder builder() {
-        return new AutoValue_OfflineDownloadOptions.Builder()
+        return new $AutoValue_OfflineDownloadOptions.Builder()
             .uuid(UUID.randomUUID().getMostSignificantBits())
             .metadata(new byte[]{})
             .progress(0);
