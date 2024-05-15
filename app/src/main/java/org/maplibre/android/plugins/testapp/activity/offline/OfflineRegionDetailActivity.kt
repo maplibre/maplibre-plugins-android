@@ -4,11 +4,11 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.mapbox.mapboxsdk.plugins.offline.model.OfflineDownloadOptions
-import com.mapbox.mapboxsdk.plugins.offline.offline.OfflineConstants.KEY_BUNDLE
-import com.mapbox.mapboxsdk.plugins.offline.offline.OfflineDownloadChangeListener
-import com.mapbox.mapboxsdk.plugins.offline.offline.OfflinePlugin
-import com.mapbox.mapboxsdk.plugins.offline.utils.OfflineUtils
+import org.maplibre.android.plugins.offline.model.OfflineDownloadOptions
+import org.maplibre.android.plugins.offline.offline.OfflineConstants.KEY_BUNDLE
+import org.maplibre.android.plugins.offline.offline.OfflineDownloadChangeListener
+import org.maplibre.android.plugins.offline.offline.OfflinePlugin
+import org.maplibre.android.plugins.offline.utils.OfflineUtils
 import org.maplibre.android.plugins.testapp.R;
 import org.maplibre.android.maps.MapView
 import org.maplibre.android.offline.OfflineManager
@@ -29,7 +29,8 @@ import timber.log.Timber
  * This Activity listens to broadcast events related to successful, canceled and errored download.
  *
  */
-class OfflineRegionDetailActivity : AppCompatActivity(), OfflineDownloadChangeListener {
+class OfflineRegionDetailActivity : AppCompatActivity(),
+    OfflineDownloadChangeListener {
 
     private var offlinePlugin: OfflinePlugin? = null
     private var offlineRegion: OfflineRegion? = null
@@ -254,6 +255,6 @@ class OfflineRegionDetailActivity : AppCompatActivity(), OfflineDownloadChangeLi
 
     companion object {
 
-        val KEY_REGION_ID_BUNDLE = "com.mapbox.mapboxsdk.plugins.offline.bundle.id"
+        val KEY_REGION_ID_BUNDLE = "org.maplibre.android.plugins.offline.bundle.id"
     }
 }

@@ -6,11 +6,11 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.mapbox.mapboxsdk.plugins.localization.LocalizationPlugin
-import com.mapbox.mapboxsdk.plugins.localization.MapLocale
-import com.mapbox.mapboxsdk.plugins.testapp.R
+import org.maplibre.android.plugins.localization.LocalizationPlugin
+import org.maplibre.android.plugins.localization.MapLocale
+import org.maplibre.android.plugins.testapp.R
 import org.maplibre.android.plugins.testapp.Utils
-import com.mapbox.mapboxsdk.plugins.testapp.databinding.ActivityLocalizationBinding
+import org.maplibre.android.plugins.testapp.databinding.ActivityLocalizationBinding
 import org.maplibre.android.maps.MapLibreMap
 import org.maplibre.android.maps.MapView
 import org.maplibre.android.maps.OnMapReadyCallback
@@ -38,13 +38,21 @@ class LocalizationActivity : AppCompatActivity(), OnMapReadyCallback {
         maplibreMap?.setStyle(Style.getPredefinedStyle("Streets")) { style ->
             this.maplibreMap = maplibreMap
             localizationPlugin =
-                LocalizationPlugin(mapView, maplibreMap, style).also { localizationPlugin ->
+                LocalizationPlugin(
+                    mapView,
+                    maplibreMap,
+                    style
+                ).also { localizationPlugin ->
                     localizationPlugin.matchMapLanguageWithDeviceDefault()
                 }
 
             binding.fabLocalize.setOnClickListener {
                 mapIsLocalized = if (mapIsLocalized) {
-                    localizationPlugin?.setMapLanguage(MapLocale(MapLocale.FRENCH))
+                    localizationPlugin?.setMapLanguage(
+                        MapLocale(
+                            MapLocale.FRENCH
+                        )
+                    )
                     Toast.makeText(this, R.string.map_not_localized, Toast.LENGTH_SHORT).show()
                     false
                 } else {

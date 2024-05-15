@@ -2,8 +2,8 @@ package org.maplibre.android.plugins.testapp.activity.scalebar
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.mapbox.pluginscalebar.ScaleBarOptions
-import com.mapbox.pluginscalebar.ScaleBarPlugin
+import org.maplibre.android.plugins.scalebar.ScaleBarOptions
+import org.maplibre.android.plugins.scalebar.ScaleBarPlugin
 import org.maplibre.android.maps.MapLibreMap
 import org.maplibre.android.maps.MapView
 import org.maplibre.android.maps.Style
@@ -37,7 +37,8 @@ class ScalebarActivity : AppCompatActivity() {
     }
 
     private fun addScalebar(maplibreMap: MapLibreMap) {
-        val scaleBarPlugin = ScaleBarPlugin(mapView, maplibreMap)
+        val scaleBarPlugin =
+            ScaleBarPlugin(mapView, maplibreMap)
         val scaleBarOptions = ScaleBarOptions(this)
         scaleBarOptions
             .setTextColor(android.R.color.black)

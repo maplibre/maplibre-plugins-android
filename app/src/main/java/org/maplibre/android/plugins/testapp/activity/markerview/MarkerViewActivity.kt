@@ -9,9 +9,9 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.FrameLayout
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import com.mapbox.mapboxsdk.plugins.markerview.MarkerView
-import com.mapbox.mapboxsdk.plugins.markerview.MarkerViewManager
-import com.mapbox.mapboxsdk.plugins.testapp.R
+import org.maplibre.android.plugins.markerview.MarkerView
+import org.maplibre.android.plugins.markerview.MarkerViewManager
+import org.maplibre.android.plugins.testapp.R
 import org.maplibre.android.plugins.testapp.Utils
 import org.maplibre.android.camera.CameraUpdateFactory
 import org.maplibre.android.geometry.LatLng
@@ -42,7 +42,8 @@ class MarkerViewActivity :
 
                 maplibreMap.moveCamera(CameraUpdateFactory.zoomTo(2.0))
 
-                markerViewManager = MarkerViewManager(mapView, maplibreMap)
+                markerViewManager =
+                    MarkerViewManager(mapView, maplibreMap)
                 createCustomMarker()
                 createRandomMarkers()
 
@@ -87,7 +88,10 @@ class MarkerViewActivity :
                 val imageView = ImageView(this@MarkerViewActivity)
                 imageView.setImageResource(R.drawable.ic_car)
                 imageView.layoutParams = FrameLayout.LayoutParams(56, 56)
-                val markerView = MarkerView(createRandomLatLng(), imageView)
+                val markerView = MarkerView(
+                    createRandomLatLng(),
+                    imageView
+                )
                 it.addMarker(markerView)
             }
         }

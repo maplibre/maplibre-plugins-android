@@ -2,7 +2,7 @@ package org.maplibre.android.plugins.testapp
 
 import android.content.Context
 import android.location.Location
-import com.mapbox.core.utils.TextUtils
+import android.text.TextUtils
 import org.maplibre.android.maps.Style
 import timber.log.Timber
 import java.io.BufferedReader
