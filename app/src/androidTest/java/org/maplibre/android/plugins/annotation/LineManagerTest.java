@@ -4,7 +4,6 @@ package org.maplibre.android.plugins.annotation;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
-import org.maplibre.android.geometry.LatLng;
 import org.maplibre.android.plugins.testapp.activity.TestActivity;
 import org.maplibre.android.plugins.BaseActivityTest;
 
@@ -15,7 +14,7 @@ import org.junit.runner.RunWith;
 
 import java.util.Objects;
 
-import static org.maplibre.android.plugins.annotation.MapboxMapAction.invoke;
+import static org.maplibre.android.plugins.annotation.MapLibreMapAction.invoke;
 import static org.junit.Assert.*;
 import static org.maplibre.android.style.layers.Property.*;
 

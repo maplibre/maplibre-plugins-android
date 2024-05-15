@@ -19,12 +19,9 @@ import org.junit.runner.RunWith;
 
 import java.util.Objects;
 
-import static org.maplibre.android.plugins.annotation.MapboxMapAction.invoke;
+import static org.maplibre.android.plugins.annotation.MapLibreMapAction.invoke;
 import static org.junit.Assert.*;
 import static org.maplibre.android.style.layers.Property.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Basic smoke tests for Symbol

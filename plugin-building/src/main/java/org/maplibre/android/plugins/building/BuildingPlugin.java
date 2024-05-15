@@ -1,4 +1,4 @@
-package com.mapbox.mapboxsdk.plugins.building;
+package org.maplibre.android.plugins.building;
 
 import android.graphics.Color;
 

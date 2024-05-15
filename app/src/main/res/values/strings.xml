@@ -35,12 +35,12 @@
   <string name="title_line">Line</string>
   <string name="title_line_change">Change Line</string>
   <string name="title_markerview">MarkerView plugin</string>
-  <string name="title_ktx">Mapbox Maps KTX</string>
+  <string name="title_ktx">MapLibre Maps KTX</string>
   <string name="title_scalebar">Scale bar</string>
 
   <!-- Descriptions -->
-  <string name="description_traffic">Add Traffic layers to any Mapbox basemap.</string>
-  <string name="description_building">Add 3D Building layer to a Mapbox map.</string>
+  <string name="description_traffic">Add Traffic layers to any MapLibre basemap.</string>
+  <string name="description_building">Add 3D Building layer to a MapLibre map.</string>
   <string name="description_autocomplete">Launch the autocomplete activity.</string>
   <string name="description_autocomplete_fragment">Launch the autocomplete fragment inside an activity</string>
   <string name="description_offline_plugin">Use a form to create an offline region.</string>
@@ -59,7 +59,7 @@
   <string name="description_fill_change">Show changing a fill on a map</string>
   <string name="description_circle">Show circles on a map</string>
   <string name="description_markerview">Synchronise a view on a map</string>
-  <string name="description_ktx">Test Mapbox Maps SDK for Android Kotlin extension functions</string>
+  <string name="description_ktx">Test MapLibre Maps SDK for Android Kotlin extension functions</string>
   <string name="description_scalebar">Show scale bar on a map</string>
 
   <!-- Place picker -->

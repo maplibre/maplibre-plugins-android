@@ -37,13 +37,13 @@ public class ScaleBarOptions {
     public ScaleBarOptions(@NonNull Context context) {
         this.context = context;
         refreshInterval = REFRESH_INTERVAL_DEFAULT;
-        setBarHeight(R.dimen.mapbox_scale_bar_height);
-        setBorderWidth(R.dimen.mapbox_scale_bar_border_width);
-        setTextSize(R.dimen.mapbox_scale_bar_text_size);
-        setMarginTop(R.dimen.mapbox_scale_bar_margin_top);
-        setMarginLeft(R.dimen.mapbox_scale_bar_margin_left);
-        setTextBarMargin(R.dimen.mapbox_scale_bar_text_margin);
-        setTextBorderWidth(R.dimen.mapbox_scale_bar_text_border_width);
+        setBarHeight(R.dimen.maplibre_scale_bar_height);
+        setBorderWidth(R.dimen.maplibre_scale_bar_border_width);
+        setTextSize(R.dimen.maplibre_scale_bar_text_size);
+        setMarginTop(R.dimen.maplibre_scale_bar_margin_top);
+        setMarginLeft(R.dimen.maplibre_scale_bar_margin_left);
+        setTextBarMargin(R.dimen.maplibre_scale_bar_text_margin);
+        setTextBorderWidth(R.dimen.maplibre_scale_bar_text_border_width);
         setShowTextBorder(true);
         isMetricUnit = LocaleUnitResolver.isMetricSystem();
         setTextColor(android.R.color.black);

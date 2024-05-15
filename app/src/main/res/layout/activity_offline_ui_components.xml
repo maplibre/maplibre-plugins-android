@@ -11,7 +11,7 @@
     android:layout_height="wrap_content"
     android:layout_marginBottom="16dp"
     android:layout_marginEnd="16dp"
-    android:tint="@color/mapbox_offline_white"
+    android:tint="@color/maplibre_offline_white"
     app:fabSize="normal"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"

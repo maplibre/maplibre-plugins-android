@@ -3,4 +3,4 @@
  *
  * @since 0.1.0
  */
-package com.mapbox.mapboxsdk.plugins.building;
+package org.maplibre.android.plugins.building;

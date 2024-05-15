@@ -6,7 +6,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 import org.maplibre.android.plugins.utils.OnMapReadyIdlingResource;
-import org.maplibre.android.plugins.annotation.MapboxMapAction;
+import org.maplibre.android.plugins.annotation.MapLibreMapAction;
 import org.maplibre.android.plugins.annotation.WaitAction;
 
 import junit.framework.Assert;
@@ -92,8 +92,8 @@ public abstract class BaseActivityTest {
         return onView(withId(android.R.id.content));
     }
 
-    protected MapboxMapAction getMapboxMapAction(MapboxMapAction.OnInvokeActionListener onInvokeActionListener) {
-        return new MapboxMapAction(onInvokeActionListener, maplibreMap);
+    protected MapLibreMapAction getMapboxMapAction(MapLibreMapAction.OnInvokeActionListener onInvokeActionListener) {
+        return new MapLibreMapAction(onInvokeActionListener, maplibreMap);
     }
 
     @After
