@@ -1,7 +1,8 @@
-package com.mapbox.mapboxsdk.plugins.localization;
+package org.maplibre.android.plugins.localization;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.maplibre.android.plugins.localization.MapLocale;
 
 import java.util.Locale;
 

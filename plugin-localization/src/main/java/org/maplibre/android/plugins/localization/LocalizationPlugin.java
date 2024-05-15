@@ -1,10 +1,8 @@
-package com.mapbox.mapboxsdk.plugins.localization;
+package org.maplibre.android.plugins.localization;
 
 
 import static org.maplibre.android.style.expressions.Expression.raw;
 import static org.maplibre.android.style.layers.PropertyFactory.textField;
-
-import com.mapbox.mapboxsdk.plugins.localization.MapLocale.Languages;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -174,12 +172,12 @@ public final class LocalizationPlugin {
 
     /**
      * Set the map language directly by using one of the supported map languages found in
-     * {@link Languages}.
+     * {@link MapLocale.Languages}.
      *
      * @param language one of the support languages Mapbox uses
      * @since 0.1.0
      */
-    public void setMapLanguage(@Languages String language) {
+    public void setMapLanguage(@MapLocale.Languages String language) {
         setMapLanguage(new MapLocale(language));
     }
 

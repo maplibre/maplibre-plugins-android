@@ -1,4 +1,4 @@
-package com.mapbox.mapboxsdk.plugins.localization;
+package org.maplibre.android.plugins.localization;
 
 
 import java.lang.annotation.Retention;
