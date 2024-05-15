@@ -196,7 +196,7 @@ public class ScaleBarTest extends BaseActivityTest {
         validateTestSetup();
         setupScaleBar();
         MapLibreMapAction.invoke(maplibreMap, (uiController, maplibreMap) -> {
-            assertEquals(activity.getResources().getDimension(R.dimen.mapbox_scale_bar_text_border_width),
+            assertEquals(activity.getResources().getDimension(R.dimen.maplibre_scale_bar_text_border_width),
                 scaleBarWidget.getTextSize(), 0);
 
             ScaleBarOptions option = new ScaleBarOptions(activity);
