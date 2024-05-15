@@ -19,7 +19,8 @@ android {
     }
 
     // Avoid naming conflicts
-    resourcePrefix 'mapbox_'
+//    resourcePrefix 'mapbox_'
+    resourcePrefix 'maplibre_'
 }
 
 dependencies {
