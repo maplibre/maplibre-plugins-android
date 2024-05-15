@@ -1,4 +1,4 @@
-package com.mapbox.pluginscalebar;
+package org.maplibre.android.plugins.scalebar;
 
 import android.content.Context;
 
@@ -8,6 +8,7 @@ import androidx.annotation.FloatRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
 import androidx.core.content.ContextCompat;
+import org.maplibre.android.plugins.scalebar.R;
 
 import java.util.Locale;
 

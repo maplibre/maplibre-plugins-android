@@ -1,4 +1,4 @@
-package com.mapbox.pluginscalebar;
+package org.maplibre.android.plugins.scalebar;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -16,11 +16,6 @@ import java.util.ArrayList;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
-
-import static com.mapbox.pluginscalebar.ScaleBarConstants.FEET_PER_MILE;
-import static com.mapbox.pluginscalebar.ScaleBarConstants.KILOMETER;
-import static com.mapbox.pluginscalebar.ScaleBarConstants.KILOMETER_UNIT;
-import static com.mapbox.pluginscalebar.ScaleBarConstants.MILE_UNIT;
 
 /**
  * The scale widget is a visual representation of the scale bar plugin.
@@ -379,11 +374,11 @@ public class ScaleBarWidget extends View {
      */
     private String getDistanceText(int distance) {
         if (ScaleBarConstants.METER_UNIT.equals(unit)) {
-            return distance < KILOMETER ? distance + unit
-                : decimalFormat.format(distance * 1.0 / KILOMETER) + KILOMETER_UNIT;
+            return distance < ScaleBarConstants.KILOMETER ? distance + unit
+                : decimalFormat.format(distance * 1.0 / ScaleBarConstants.KILOMETER) + ScaleBarConstants.KILOMETER_UNIT;
         } else {
-            return distance < FEET_PER_MILE ? distance + unit
-                : decimalFormat.format(distance * 1.0 / FEET_PER_MILE) + MILE_UNIT;
+            return distance < ScaleBarConstants.FEET_PER_MILE ? distance + unit
+                : decimalFormat.format(distance * 1.0 / ScaleBarConstants.FEET_PER_MILE) + ScaleBarConstants.MILE_UNIT;
         }
     }
 

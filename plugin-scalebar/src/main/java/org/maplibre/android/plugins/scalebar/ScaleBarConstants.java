@@ -1,4 +1,4 @@
-package com.mapbox.pluginscalebar;
+package org.maplibre.android.plugins.scalebar;
 
 import android.util.Pair;
 

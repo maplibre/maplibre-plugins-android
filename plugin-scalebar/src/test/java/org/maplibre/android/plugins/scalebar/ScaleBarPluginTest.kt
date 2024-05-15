@@ -1,4 +1,4 @@
-package com.mapbox.pluginscalebar
+package org.maplibre.android.plugins.scalebar
 
 import android.content.Context
 import android.content.res.Resources
@@ -66,7 +66,8 @@ class ScaleBarPluginTest {
 
     @Test
     fun create_isEnabled() {
-        val scaleBarPlugin = ScaleBarPlugin(mapView, maplibreMap)
+        val scaleBarPlugin =
+            ScaleBarPlugin(mapView, maplibreMap)
         scaleBarPlugin.create(scaleBarOptions)
 
         assertTrue(scaleBarPlugin.isEnabled)
@@ -77,7 +78,8 @@ class ScaleBarPluginTest {
 
     @Test
     fun disable() {
-        val scaleBarPlugin = ScaleBarPlugin(mapView, maplibreMap)
+        val scaleBarPlugin =
+            ScaleBarPlugin(mapView, maplibreMap)
         scaleBarPlugin.create(scaleBarOptions)
         scaleBarPlugin.isEnabled = false
 
@@ -89,7 +91,8 @@ class ScaleBarPluginTest {
 
     @Test
     fun enable() {
-        val scaleBarPlugin = ScaleBarPlugin(mapView, maplibreMap)
+        val scaleBarPlugin =
+            ScaleBarPlugin(mapView, maplibreMap)
         scaleBarPlugin.create(scaleBarOptions)
         verify(exactly = 1) { maplibreMap.addOnCameraMoveListener(scaleBarPlugin.cameraMoveListener) }
         verify(exactly = 1) { maplibreMap.addOnCameraIdleListener(scaleBarPlugin.cameraIdleListener) }
@@ -105,7 +108,8 @@ class ScaleBarPluginTest {
 
     @Test
     fun disable_enable_widgetIsNull() {
-        val scaleBarPlugin = ScaleBarPlugin(mapView, maplibreMap)
+        val scaleBarPlugin =
+            ScaleBarPlugin(mapView, maplibreMap)
         scaleBarPlugin.isEnabled = false
         scaleBarPlugin.isEnabled = true
 
@@ -115,7 +119,8 @@ class ScaleBarPluginTest {
 
     @Test
     fun disableBeforeCreate_ignoreResults() {
-        val scaleBarPlugin = ScaleBarPlugin(mapView, maplibreMap)
+        val scaleBarPlugin =
+            ScaleBarPlugin(mapView, maplibreMap)
         scaleBarPlugin.isEnabled = false
         scaleBarPlugin.create(scaleBarOptions)
 
@@ -127,7 +132,8 @@ class ScaleBarPluginTest {
 
     @Test
     fun toggled_invalidateWidget() {
-        val scaleBarPlugin = ScaleBarPlugin(mapView, maplibreMap)
+        val scaleBarPlugin =
+            ScaleBarPlugin(mapView, maplibreMap)
         scaleBarPlugin.create(scaleBarOptions)
         verify(exactly = 1) { maplibreMap.cameraPosition }
         verify(exactly = 1) { scaleBarWidget.setDistancePerPixel(50_000.0) }
