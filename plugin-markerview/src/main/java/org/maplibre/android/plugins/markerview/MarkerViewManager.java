@@ -1,4 +1,4 @@
-package com.mapbox.mapboxsdk.plugins.markerview;
+package org.maplibre.android.plugins.markerview;
 
 import org.maplibre.android.maps.MapLibreMap;
 import org.maplibre.android.maps.MapView;

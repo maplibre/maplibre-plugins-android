@@ -1,4 +1,4 @@
-package com.mapbox.mapboxsdk.plugins.markerview;
+package org.maplibre.android.plugins.markerview;
 
 import android.graphics.PointF;
 import android.view.View;
