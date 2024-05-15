@@ -239,10 +239,10 @@
     </activity>
 
     <service
-      android:name="com.mapbox.mapboxsdk.plugins.offline.offline.OfflineDownloadService"
+      android:name="org.maplibre.android.plugins.offline.offline.OfflineDownloadService"
       android:exported="false"/>
 
-    <receiver android:name="com.mapbox.mapboxsdk.plugins.offline.offline.OfflineDownloadStateReceiver">
+    <receiver android:name="org.maplibre.android.plugins.offline.offline.OfflineDownloadStateReceiver">
       <intent-filter>
         <action android:name="com.mapbox.mapboxsdk.plugins.offline"/>
       </intent-filter>
