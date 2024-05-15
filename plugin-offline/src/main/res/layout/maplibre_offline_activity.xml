@@ -5,11 +5,11 @@
     android:layout_height="match_parent">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/mapbox_offline_app_bar_layout"
+        android:id="@+id/maplibre_offline_app_bar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <include layout="@layout/mapbox_offline_toolbar" />
+        <include layout="@layout/maplibre_offline_toolbar" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -20,6 +20,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mapbox_offline_app_bar_layout" />
+        app:layout_constraintTop_toBottomOf="@id/maplibre_offline_app_bar_layout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
