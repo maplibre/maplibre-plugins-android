@@ -1,8 +1,7 @@
 package org.maplibre.android.plugins.annotation;
 
-import com.google.gson.JsonArray;
-
 import androidx.annotation.Nullable;
+import com.google.gson.JsonArray;
 
 class ConvertUtils {
 

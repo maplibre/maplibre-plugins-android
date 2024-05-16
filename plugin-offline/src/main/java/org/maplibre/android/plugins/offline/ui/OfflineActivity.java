@@ -3,18 +3,15 @@ package org.maplibre.android.plugins.offline.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Window;
-
-import org.maplibre.android.plugins.offline.OfflinePluginConstants;
-import org.maplibre.android.plugins.offline.R;
-import org.maplibre.android.plugins.offline.model.RegionSelectionOptions;
-import org.maplibre.android.plugins.offline.utils.ColorUtils;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-
 import org.maplibre.android.offline.OfflineRegionDefinition;
+import org.maplibre.android.plugins.offline.OfflinePluginConstants;
+import org.maplibre.android.plugins.offline.R;
+import org.maplibre.android.plugins.offline.model.RegionSelectionOptions;
 import org.maplibre.android.plugins.offline.offline.OfflineConstants;
+import org.maplibre.android.plugins.offline.utils.ColorUtils;
 
 public class OfflineActivity extends AppCompatActivity implements RegionSelectedCallback {
 

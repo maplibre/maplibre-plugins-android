@@ -6,25 +6,23 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
-
-import org.maplibre.android.plugins.annotation.Line;
-import org.maplibre.android.plugins.annotation.LineManager;
-import org.maplibre.android.plugins.annotation.LineOptions;
-import org.maplibre.android.plugins.testapp.R;import org.maplibre.android.plugins.testapp.Utils;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import org.maplibre.android.camera.CameraUpdateFactory;
 import org.maplibre.android.geometry.LatLng;
 import org.maplibre.android.maps.MapView;
 import org.maplibre.android.maps.Style;
+import org.maplibre.android.plugins.annotation.Line;
+import org.maplibre.android.plugins.annotation.LineManager;
+import org.maplibre.android.plugins.annotation.LineOptions;
+import org.maplibre.android.plugins.testapp.R;
+import org.maplibre.android.plugins.testapp.Utils;
 import org.maplibre.android.utils.ColorUtils;
 import org.maplibre.geojson.LineString;
 import org.maplibre.geojson.Point;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Test activity showcasing the Polyline annotations API.

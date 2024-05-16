@@ -7,18 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import org.maplibre.android.plugins.offline.R;
-import org.maplibre.android.plugins.offline.OfflinePluginConstants;
-import org.maplibre.android.plugins.offline.model.RegionSelectionOptions;
-
-import java.util.List;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import org.maplibre.android.camera.CameraUpdateFactory;
 import org.maplibre.android.geometry.LatLng;
 import org.maplibre.android.geometry.LatLngBounds;
@@ -28,10 +20,14 @@ import org.maplibre.android.maps.OnMapReadyCallback;
 import org.maplibre.android.maps.Style;
 import org.maplibre.android.offline.OfflineRegionDefinition;
 import org.maplibre.android.offline.OfflineTilePyramidRegionDefinition;
+import org.maplibre.android.plugins.offline.OfflinePluginConstants;
+import org.maplibre.android.plugins.offline.R;
+import org.maplibre.android.plugins.offline.model.RegionSelectionOptions;
 import org.maplibre.android.style.sources.VectorSource;
 import org.maplibre.geojson.Feature;
-
 import timber.log.Timber;
+
+import java.util.List;
 
 public class RegionSelectionFragment extends Fragment implements OnMapReadyCallback,
     MapLibreMap.OnCameraIdleListener {

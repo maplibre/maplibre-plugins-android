@@ -7,27 +7,24 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import androidx.appcompat.app.AppCompatActivity;
+import org.maplibre.android.camera.CameraUpdateFactory;
+import org.maplibre.android.geometry.LatLng;
+import org.maplibre.android.maps.MapView;
+import org.maplibre.android.maps.Style;
 import org.maplibre.android.plugins.annotation.Circle;
 import org.maplibre.android.plugins.annotation.CircleManager;
 import org.maplibre.android.plugins.annotation.CircleOptions;
 import org.maplibre.android.plugins.annotation.OnCircleDragListener;
 import org.maplibre.android.plugins.testapp.R;
 import org.maplibre.android.plugins.testapp.Utils;
+import org.maplibre.android.utils.ColorUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import org.maplibre.android.camera.CameraUpdateFactory;
-import org.maplibre.android.geometry.LatLng;
-import org.maplibre.android.maps.MapView;
-import org.maplibre.android.maps.Style;
-import org.maplibre.android.utils.ColorUtils;
 
 /**
  * Activity showcasing adding circles using the annotation plugin

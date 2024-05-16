@@ -3,17 +3,14 @@ package org.maplibre.android.plugins.offline;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-
+import androidx.annotation.NonNull;
+import org.maplibre.android.offline.OfflineRegionDefinition;
 import org.maplibre.android.plugins.offline.model.NotificationOptions;
 import org.maplibre.android.plugins.offline.model.OfflineDownloadOptions;
 import org.maplibre.android.plugins.offline.model.RegionSelectionOptions;
-import org.maplibre.android.plugins.offline.ui.OfflineActivity;
-
-import androidx.annotation.NonNull;
-
-import org.maplibre.android.offline.OfflineRegionDefinition;
 import org.maplibre.android.plugins.offline.offline.OfflineConstants;
 import org.maplibre.android.plugins.offline.offline.OfflinePlugin;
+import org.maplibre.android.plugins.offline.ui.OfflineActivity;
 
 /**
  * While the offline plugin includes a service for optimally launching an offline download session,

@@ -1,11 +1,9 @@
 package org.maplibre.android.plugins.scalebar;
 
 import android.view.View;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.UiThread;
 import androidx.annotation.VisibleForTesting;
-
 import org.maplibre.android.camera.CameraPosition;
 import org.maplibre.android.log.Logger;
 import org.maplibre.android.maps.MapLibreMap;

@@ -3,7 +3,6 @@
 package org.maplibre.android.plugins.annotation;
 
 import androidx.annotation.Nullable;
-
 import org.maplibre.android.style.layers.SymbolLayer;
 import org.maplibre.android.style.sources.GeoJsonOptions;
 import org.maplibre.android.style.sources.GeoJsonSource;

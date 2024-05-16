@@ -1,16 +1,12 @@
 package org.maplibre.android.plugins.offline.model;
 
 import android.os.Parcelable;
-
-import com.google.auto.value.AutoValue;
-import org.maplibre.android.plugins.offline.model.$AutoValue_RegionSelectionOptions;
-import org.maplibre.android.plugins.offline.ui.OfflineActivity;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
+import com.google.auto.value.AutoValue;
 import org.maplibre.android.camera.CameraPosition;
 import org.maplibre.android.geometry.LatLngBounds;
+import org.maplibre.android.plugins.offline.ui.OfflineActivity;
 
 /**
  * Options specific to the Region Selection UI component.

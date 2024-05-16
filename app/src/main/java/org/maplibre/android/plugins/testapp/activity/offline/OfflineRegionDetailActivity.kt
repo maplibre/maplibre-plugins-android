@@ -4,17 +4,17 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import org.maplibre.android.plugins.offline.model.OfflineDownloadOptions
-import org.maplibre.android.plugins.offline.offline.OfflineConstants.KEY_BUNDLE
-import org.maplibre.android.plugins.offline.offline.OfflineDownloadChangeListener
-import org.maplibre.android.plugins.offline.offline.OfflinePlugin
-import org.maplibre.android.plugins.offline.utils.OfflineUtils
-import org.maplibre.android.plugins.testapp.R;
 import org.maplibre.android.maps.MapView
 import org.maplibre.android.offline.OfflineManager
 import org.maplibre.android.offline.OfflineRegion
 import org.maplibre.android.offline.OfflineRegionDefinition
 import org.maplibre.android.offline.OfflineRegionStatus
+import org.maplibre.android.plugins.offline.model.OfflineDownloadOptions
+import org.maplibre.android.plugins.offline.offline.OfflineConstants.KEY_BUNDLE
+import org.maplibre.android.plugins.offline.offline.OfflineDownloadChangeListener
+import org.maplibre.android.plugins.offline.offline.OfflinePlugin
+import org.maplibre.android.plugins.offline.utils.OfflineUtils
+import org.maplibre.android.plugins.testapp.R
 import org.maplibre.android.plugins.testapp.databinding.ActivityOfflineRegionDetailBinding
 import timber.log.Timber
 

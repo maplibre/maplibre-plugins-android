@@ -5,27 +5,25 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
-
+import androidx.appcompat.app.AppCompatActivity;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonPrimitive;
+import org.maplibre.android.camera.CameraUpdateFactory;
+import org.maplibre.android.geometry.LatLng;
+import org.maplibre.android.maps.MapView;
+import org.maplibre.android.maps.Style;
 import org.maplibre.android.plugins.annotation.Fill;
 import org.maplibre.android.plugins.annotation.FillManager;
 import org.maplibre.android.plugins.annotation.FillOptions;
-import org.maplibre.android.plugins.testapp.R;import org.maplibre.android.plugins.testapp.Utils;
+import org.maplibre.android.plugins.testapp.R;
+import org.maplibre.android.plugins.testapp.Utils;
+import org.maplibre.android.utils.ColorUtils;
+import org.maplibre.geojson.FeatureCollection;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import org.maplibre.android.camera.CameraUpdateFactory;
-import org.maplibre.android.geometry.LatLng;
-import org.maplibre.android.maps.MapView;
-import org.maplibre.android.maps.Style;
-import org.maplibre.android.utils.ColorUtils;
-import org.maplibre.geojson.FeatureCollection;
 
 /**
  * Activity showcasing adding fills using the annotation plugin

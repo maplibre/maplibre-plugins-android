@@ -1,28 +1,26 @@
 package org.maplibre.android.plugins.testapp.activity.annotation;
 
-import static org.maplibre.android.style.layers.Property.ICON_ANCHOR_BOTTOM;
-
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-
-import org.maplibre.android.plugins.annotation.SymbolManager;
-import org.maplibre.android.plugins.annotation.SymbolOptions;
-import org.maplibre.android.plugins.testapp.R;import org.maplibre.android.plugins.testapp.Utils;
-
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
-
 import org.maplibre.android.camera.CameraPosition;
 import org.maplibre.android.geometry.LatLng;
 import org.maplibre.android.maps.MapLibreMap;
 import org.maplibre.android.maps.MapView;
 import org.maplibre.android.maps.Style;
+import org.maplibre.android.plugins.annotation.SymbolManager;
+import org.maplibre.android.plugins.annotation.SymbolOptions;
+import org.maplibre.android.plugins.testapp.R;
+import org.maplibre.android.plugins.testapp.Utils;
+
+import static org.maplibre.android.style.layers.Property.ICON_ANCHOR_BOTTOM;
 
 /**
  * Test activity showcasing to add a Symbol on click.

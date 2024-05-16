@@ -3,15 +3,13 @@ package org.maplibre.android.plugins.utils;
 import android.app.Activity;
 import android.os.Handler;
 import android.os.Looper;
-
-import org.maplibre.android.plugins.testapp.R;
 import androidx.annotation.NonNull;
 import androidx.test.espresso.IdlingResource;
-
 import org.maplibre.android.maps.MapLibreMap;
 import org.maplibre.android.maps.MapView;
 import org.maplibre.android.maps.OnMapReadyCallback;
 import org.maplibre.android.maps.Style;
+import org.maplibre.android.plugins.testapp.R;
 
 public class OnMapReadyIdlingResource implements IdlingResource, OnMapReadyCallback {
 

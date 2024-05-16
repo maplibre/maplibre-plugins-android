@@ -4,21 +4,12 @@ package org.maplibre.android.plugins.annotation;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
-import com.google.gson.*;
-import org.maplibre.geojson.Geometry;
-import org.maplibre.android.style.layers.Property;
-import org.maplibre.android.style.layers.PropertyFactory;
-
-import org.maplibre.geojson.*;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import org.maplibre.android.geometry.LatLng;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.maplibre.android.plugins.annotation.ConvertUtils.convertArray;
-import static org.maplibre.android.plugins.annotation.ConvertUtils.toFloatArray;
-import static org.maplibre.android.plugins.annotation.ConvertUtils.toStringArray;
+import org.maplibre.android.style.layers.PropertyFactory;
+import org.maplibre.geojson.Feature;
+import org.maplibre.geojson.Point;
 
 /**
  * Builder class from which a circle is created.

@@ -4,7 +4,6 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-
 import org.maplibre.android.plugins.offline.model.OfflineDownloadOptions;
 
 public class OfflineDownloadStateReceiver extends BroadcastReceiver {

@@ -1,26 +1,24 @@
 package org.maplibre.android.plugins.building;
 
 import android.graphics.Color;
-
-import org.maplibre.android.maps.MapView;
-import org.maplibre.android.maps.MapLibreMap;
-import org.maplibre.android.maps.Style;
-import org.maplibre.android.style.layers.FillExtrusionLayer;
-import org.maplibre.android.style.light.Light;
-
 import androidx.annotation.ColorInt;
 import androidx.annotation.FloatRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import org.maplibre.android.maps.MapLibreMap;
+import org.maplibre.android.maps.MapView;
+import org.maplibre.android.maps.Style;
+import org.maplibre.android.style.layers.FillExtrusionLayer;
+import org.maplibre.android.style.light.Light;
 
 import static org.maplibre.android.constants.MapLibreConstants.MAXIMUM_ZOOM;
 import static org.maplibre.android.constants.MapLibreConstants.MINIMUM_ZOOM;
 import static org.maplibre.android.style.expressions.Expression.exponential;
-import static org.maplibre.android.style.expressions.Expression.get;
 import static org.maplibre.android.style.expressions.Expression.interpolate;
-import static org.maplibre.android.style.expressions.Expression.literal;
-import static org.maplibre.android.style.expressions.Expression.stop;
 import static org.maplibre.android.style.expressions.Expression.zoom;
+import static org.maplibre.android.style.expressions.Expression.stop;
+import static org.maplibre.android.style.expressions.Expression.get;
+import static org.maplibre.android.style.expressions.Expression.literal;
 import static org.maplibre.android.style.layers.Property.NONE;
 import static org.maplibre.android.style.layers.Property.VISIBLE;
 import static org.maplibre.android.style.layers.PropertyFactory.fillExtrusionColor;

@@ -4,16 +4,13 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import org.maplibre.android.offline.OfflineRegion;
 import org.maplibre.android.plugins.offline.model.OfflineDownloadOptions;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
-import org.maplibre.android.offline.OfflineRegion;
 
 /**
  * OfflinePlugin is the main entry point for integrating the offline plugin into your app.

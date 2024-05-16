@@ -4,25 +4,20 @@ import android.app.Activity;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-
-import org.maplibre.android.plugins.utils.OnMapReadyIdlingResource;
-import org.maplibre.android.plugins.annotation.MapLibreMapAction;
-import org.maplibre.android.plugins.annotation.WaitAction;
-
-import junit.framework.Assert;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.rules.TestName;
-import org.maplibre.android.maps.MapLibreMap;
-
 import androidx.test.espresso.Espresso;
 import androidx.test.espresso.IdlingRegistry;
 import androidx.test.espresso.IdlingResourceTimeoutException;
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.rule.ActivityTestRule;
-
+import junit.framework.Assert;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.rules.TestName;
+import org.maplibre.android.maps.MapLibreMap;
+import org.maplibre.android.plugins.annotation.MapLibreMapAction;
+import org.maplibre.android.plugins.annotation.WaitAction;
+import org.maplibre.android.plugins.utils.OnMapReadyIdlingResource;
 import timber.log.Timber;
 
 import static androidx.test.espresso.Espresso.onView;

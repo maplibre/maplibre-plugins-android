@@ -1,7 +1,6 @@
 package org.maplibre.android.plugins.annotation;
 
 import android.graphics.Color;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.util.Pair;

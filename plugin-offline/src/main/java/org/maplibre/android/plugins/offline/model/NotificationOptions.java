@@ -2,12 +2,9 @@ package org.maplibre.android.plugins.offline.model;
 
 import android.content.Context;
 import android.os.Parcelable;
-
+import androidx.annotation.DrawableRes;
 import com.google.auto.value.AutoValue;
 import org.maplibre.android.plugins.offline.R;
-
-import androidx.annotation.DrawableRes;
-import org.maplibre.android.plugins.offline.model.$AutoValue_NotificationOptions;
 
 @AutoValue
 public abstract class NotificationOptions implements Parcelable {

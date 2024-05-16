@@ -5,34 +5,21 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
-
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import org.maplibre.android.camera.CameraPosition;
+import org.maplibre.android.geometry.LatLng;
+import org.maplibre.android.maps.*;
 import org.maplibre.android.plugins.annotation.Fill;
 import org.maplibre.android.plugins.annotation.FillManager;
 import org.maplibre.android.plugins.annotation.FillOptions;
 import org.maplibre.android.plugins.testapp.R;
+import org.maplibre.android.utils.ColorUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import static org.maplibre.android.plugins.testapp.activity.annotation.FillChangeActivity.Config.BLUE_COLOR;
-import static org.maplibre.android.plugins.testapp.activity.annotation.FillChangeActivity.Config.BROKEN_SHAPE_POINTS;
-import static org.maplibre.android.plugins.testapp.activity.annotation.FillChangeActivity.Config.FULL_ALPHA;
-import static org.maplibre.android.plugins.testapp.activity.annotation.FillChangeActivity.Config.NO_ALPHA;
-import static org.maplibre.android.plugins.testapp.activity.annotation.FillChangeActivity.Config.PARTIAL_ALPHA;
-import static org.maplibre.android.plugins.testapp.activity.annotation.FillChangeActivity.Config.RED_COLOR;
-import static org.maplibre.android.plugins.testapp.activity.annotation.FillChangeActivity.Config.STAR_SHAPE_HOLES;
-import static org.maplibre.android.plugins.testapp.activity.annotation.FillChangeActivity.Config.STAR_SHAPE_POINTS;
-
-import org.maplibre.android.camera.CameraPosition;
-import org.maplibre.android.geometry.LatLng;
-import org.maplibre.android.maps.MapLibreMap;
-import org.maplibre.android.maps.MapLibreMapOptions;
-import org.maplibre.android.maps.MapView;
-import org.maplibre.android.maps.OnMapReadyCallback;
-import org.maplibre.android.maps.Style;
-import org.maplibre.android.utils.ColorUtils;
+import static org.maplibre.android.plugins.testapp.activity.annotation.FillChangeActivity.Config.*;
 
 /**
  * Test activity to showcase the Polygon annotation API & programmatically creating a MapView.

@@ -5,15 +5,15 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import org.maplibre.android.camera.CameraPosition
+import org.maplibre.android.geometry.LatLng
 import org.maplibre.android.plugins.offline.OfflineRegionSelector
 import org.maplibre.android.plugins.offline.model.NotificationOptions
 import org.maplibre.android.plugins.offline.model.RegionSelectionOptions
 import org.maplibre.android.plugins.offline.offline.OfflinePlugin
 import org.maplibre.android.plugins.testapp.R
 import org.maplibre.android.plugins.testapp.databinding.ActivityOfflineUiComponentsBinding
-import org.maplibre.android.camera.CameraPosition
-import org.maplibre.android.geometry.LatLng
-import java.util.Locale
+import java.util.*
 
 class OfflineUiComponentsActivity : AppCompatActivity() {
 

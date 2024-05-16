@@ -2,23 +2,21 @@
 
 package org.maplibre.android.plugins.annotation;
 
+import android.graphics.PointF;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.UiThread;
-
-import android.graphics.PointF;
-
-import com.google.gson.JsonArray;
 import com.google.gson.JsonNull;
 import com.google.gson.JsonObject;
-import org.maplibre.geojson.*;
-import org.maplibre.android.geometry.LatLng;
-import org.maplibre.android.style.layers.Property;
-import org.maplibre.android.style.layers.PropertyFactory;
-import org.maplibre.android.utils.ColorUtils;
 import com.mapbox.android.gestures.MoveDistancesObject;
+import org.maplibre.android.geometry.LatLng;
 import org.maplibre.android.maps.Projection;
+import org.maplibre.android.style.layers.Property;
+import org.maplibre.android.utils.ColorUtils;
+import org.maplibre.geojson.Geometry;
+import org.maplibre.geojson.LineString;
+import org.maplibre.geojson.Point;
 
 import java.util.ArrayList;
 import java.util.List;

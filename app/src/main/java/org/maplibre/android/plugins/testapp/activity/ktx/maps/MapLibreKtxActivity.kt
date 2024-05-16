@@ -3,12 +3,8 @@ package org.maplibre.android.plugins.testapp.activity.ktx.maps
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import org.maplibre.android.maps.queryRenderedFeatures
 import org.maplibre.android.geometry.LatLng
-import org.maplibre.android.maps.MapLibreMap
-import org.maplibre.android.maps.MapView
-import org.maplibre.android.maps.OnMapReadyCallback
-import org.maplibre.android.maps.Style
+import org.maplibre.android.maps.*
 import org.maplibre.android.plugins.testapp.databinding.ActivityMapsKtxBinding
 
 class MapboxKtxActivity : AppCompatActivity(), OnMapReadyCallback, MapLibreMap.OnMapClickListener {

@@ -3,21 +3,19 @@
 package org.maplibre.android.plugins.annotation;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
-
-import org.maplibre.android.geometry.LatLng;
-import org.maplibre.android.plugins.testapp.activity.TestActivity;
-import org.maplibre.android.plugins.BaseActivityTest;
-
-import timber.log.Timber;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.maplibre.android.plugins.BaseActivityTest;
+import org.maplibre.android.plugins.testapp.activity.TestActivity;
+import timber.log.Timber;
 
 import java.util.Objects;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.maplibre.android.plugins.annotation.MapLibreMapAction.invoke;
-import static org.junit.Assert.*;
-import static org.maplibre.android.style.layers.Property.*;
+import static org.maplibre.android.style.layers.Property.LINE_CAP_BUTT;
+import static org.maplibre.android.style.layers.Property.LINE_TRANSLATE_ANCHOR_MAP;
 
 /**
  * Basic smoke tests for LineManager

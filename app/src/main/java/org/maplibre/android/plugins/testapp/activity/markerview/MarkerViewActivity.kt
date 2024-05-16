@@ -9,16 +9,16 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.FrameLayout
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import org.maplibre.android.plugins.markerview.MarkerView
-import org.maplibre.android.plugins.markerview.MarkerViewManager
-import org.maplibre.android.plugins.testapp.R
-import org.maplibre.android.plugins.testapp.Utils
 import org.maplibre.android.camera.CameraUpdateFactory
 import org.maplibre.android.geometry.LatLng
 import org.maplibre.android.maps.MapLibreMap
 import org.maplibre.android.maps.MapView
 import org.maplibre.android.maps.Style
-import java.util.Random
+import org.maplibre.android.plugins.markerview.MarkerView
+import org.maplibre.android.plugins.markerview.MarkerViewManager
+import org.maplibre.android.plugins.testapp.R
+import org.maplibre.android.plugins.testapp.Utils
+import java.util.*
 
 class MarkerViewActivity :
     AppCompatActivity(),

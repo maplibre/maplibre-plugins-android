@@ -1,18 +1,14 @@
 package org.maplibre.android.plugins.offline.model;
 
 import android.os.Parcelable;
-
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import com.google.auto.value.AutoValue;
-import org.maplibre.android.plugins.offline.model.$AutoValue_OfflineDownloadOptions;
+import org.maplibre.android.offline.OfflineRegionDefinition;
 import org.maplibre.android.plugins.offline.offline.OfflineDownloadService;
 import org.maplibre.android.plugins.offline.offline.OfflinePlugin;
 
 import java.util.UUID;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
-import org.maplibre.android.offline.OfflineRegionDefinition;
 
 /**
  * This model class wraps the offline region definition with notifications options and the offline

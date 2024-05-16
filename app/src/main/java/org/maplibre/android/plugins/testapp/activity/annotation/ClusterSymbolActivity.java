@@ -4,36 +4,29 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.util.Pair;
-
-import org.maplibre.android.plugins.annotation.ClusterOptions;
-import org.maplibre.android.plugins.annotation.Symbol;
-import org.maplibre.android.plugins.annotation.SymbolManager;
-import org.maplibre.android.plugins.annotation.SymbolOptions;
-import org.maplibre.android.plugins.testapp.R;
 import org.maplibre.android.camera.CameraUpdateFactory;
 import org.maplibre.android.geometry.LatLng;
 import org.maplibre.android.maps.MapLibreMap;
 import org.maplibre.android.maps.MapView;
 import org.maplibre.android.maps.Style;
+import org.maplibre.android.plugins.annotation.ClusterOptions;
+import org.maplibre.android.plugins.annotation.Symbol;
+import org.maplibre.android.plugins.annotation.SymbolManager;
+import org.maplibre.android.plugins.annotation.SymbolOptions;
+import org.maplibre.android.plugins.testapp.R;
 import org.maplibre.geojson.Feature;
 import org.maplibre.geojson.FeatureCollection;
 import org.maplibre.geojson.Point;
+import timber.log.Timber;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
+import java.io.*;
 import java.lang.ref.WeakReference;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-import timber.log.Timber;
 
 /**
  * Test activity showcasing adding a large amount of Symbols with a cluster configuration.

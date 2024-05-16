@@ -1,11 +1,9 @@
 package org.maplibre.android.plugins.annotation;
 
 import android.view.View;
-
-import org.hamcrest.Matcher;
-
 import androidx.test.espresso.UiController;
 import androidx.test.espresso.ViewAction;
+import org.hamcrest.Matcher;
 
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 

@@ -18,10 +18,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import org.maplibre.android.core.permissions.PermissionsListener;
-import org.maplibre.android.core.permissions.PermissionsManager;
-import org.maplibre.android.plugins.testapp.R;
 import androidx.annotation.IdRes;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
@@ -29,16 +25,13 @@ import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
+import org.maplibre.android.core.permissions.PermissionsListener;
+import org.maplibre.android.core.permissions.PermissionsManager;
+import org.maplibre.android.plugins.testapp.R;
 import timber.log.Timber;
 
 import java.lang.ref.WeakReference;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Hashtable;
-import java.util.List;
+import java.util.*;
 
 /**
  * Activity showing a RecyclerView with Activities generated from AndroidManifest.xml

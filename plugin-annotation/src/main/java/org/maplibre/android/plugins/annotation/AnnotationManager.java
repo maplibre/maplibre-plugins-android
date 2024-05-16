@@ -1,31 +1,29 @@
 package org.maplibre.android.plugins.annotation;
 
 import android.graphics.PointF;
-
-import org.maplibre.geojson.Feature;
-import org.maplibre.geojson.FeatureCollection;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.UiThread;
+import androidx.annotation.VisibleForTesting;
+import androidx.collection.LongSparseArray;
 import org.maplibre.android.geometry.LatLng;
 import org.maplibre.android.log.Logger;
 import org.maplibre.android.maps.MapLibreMap;
 import org.maplibre.android.maps.MapView;
 import org.maplibre.android.maps.Style;
+import org.maplibre.android.style.expressions.Expression;
+import org.maplibre.android.style.layers.Layer;
+import org.maplibre.android.style.layers.PropertyValue;
+import org.maplibre.android.style.sources.GeoJsonOptions;
+import org.maplibre.android.style.sources.GeoJsonSource;
+import org.maplibre.geojson.Feature;
+import org.maplibre.geojson.FeatureCollection;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.UiThread;
-import androidx.annotation.VisibleForTesting;
-import androidx.collection.LongSparseArray;
-import org.maplibre.android.style.expressions.Expression;
-import org.maplibre.android.style.layers.Layer;
-import org.maplibre.android.style.layers.PropertyValue;
-import org.maplibre.android.style.sources.GeoJsonOptions;
-import org.maplibre.android.style.sources.GeoJsonSource;
 
 /**
  * Generic AnnotationManager, can be used to create annotation specific managers.

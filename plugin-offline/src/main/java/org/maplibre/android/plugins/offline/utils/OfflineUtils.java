@@ -1,12 +1,10 @@
 package org.maplibre.android.plugins.offline.utils;
 
 import android.util.Log;
-
+import androidx.annotation.NonNull;
 import org.json.JSONObject;
 import org.maplibre.android.camera.CameraPosition;
 import org.maplibre.android.offline.OfflineRegionDefinition;
-
-import androidx.annotation.NonNull;
 
 public class OfflineUtils {
 

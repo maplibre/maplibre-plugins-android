@@ -1,7 +1,5 @@
 package org.maplibre.android.plugins.offline.utils;
 
-import static org.maplibre.android.MapLibre.getApplicationContext;
-
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -10,14 +8,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
-
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
-
 import org.maplibre.android.plugins.offline.R;
 import org.maplibre.android.plugins.offline.model.NotificationOptions;
 import org.maplibre.android.plugins.offline.model.OfflineDownloadOptions;
 import org.maplibre.android.plugins.offline.offline.OfflineConstants;
+
+import static org.maplibre.android.MapLibre.getApplicationContext;
 
 public class NotificationUtils {
 

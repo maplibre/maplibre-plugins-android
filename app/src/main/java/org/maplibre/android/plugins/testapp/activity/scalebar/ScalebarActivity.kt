@@ -2,11 +2,11 @@ package org.maplibre.android.plugins.testapp.activity.scalebar
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import org.maplibre.android.plugins.scalebar.ScaleBarOptions
-import org.maplibre.android.plugins.scalebar.ScaleBarPlugin
 import org.maplibre.android.maps.MapLibreMap
 import org.maplibre.android.maps.MapView
 import org.maplibre.android.maps.Style
+import org.maplibre.android.plugins.scalebar.ScaleBarOptions
+import org.maplibre.android.plugins.scalebar.ScaleBarPlugin
 import org.maplibre.android.plugins.testapp.databinding.ActivityScalebarBinding
 import org.maplibre.android.style.layers.LineLayer
 import org.maplibre.android.style.sources.GeoJsonSource

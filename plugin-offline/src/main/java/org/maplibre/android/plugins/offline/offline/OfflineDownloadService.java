@@ -6,26 +6,22 @@ import android.content.IntentFilter;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.IBinder;
-
 import androidx.annotation.Nullable;
 import androidx.collection.LongSparseArray;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
-
+import org.maplibre.android.offline.OfflineRegion;
+import org.maplibre.android.offline.OfflineRegionDefinition;
+import org.maplibre.android.offline.OfflineManager;
+import org.maplibre.android.offline.OfflineRegionError;
+import org.maplibre.android.offline.OfflineRegionStatus;
 import org.maplibre.android.plugins.offline.model.OfflineDownloadOptions;
 import org.maplibre.android.plugins.offline.utils.NotificationUtils;
-
+import org.maplibre.android.snapshotter.MapSnapshot;
+import org.maplibre.android.snapshotter.MapSnapshotter;
 import timber.log.Timber;
 
 import static org.maplibre.android.plugins.offline.utils.NotificationUtils.setupNotificationChannel;
-
-import org.maplibre.android.offline.OfflineManager;
-import org.maplibre.android.offline.OfflineRegion;
-import org.maplibre.android.offline.OfflineRegionDefinition;
-import org.maplibre.android.offline.OfflineRegionError;
-import org.maplibre.android.offline.OfflineRegionStatus;
-import org.maplibre.android.snapshotter.MapSnapshot;
-import org.maplibre.android.snapshotter.MapSnapshotter;
 
 /**
  * Internal usage only, use this service indirectly by using methods found in

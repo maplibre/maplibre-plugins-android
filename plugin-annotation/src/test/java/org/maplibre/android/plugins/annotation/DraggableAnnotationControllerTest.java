@@ -1,22 +1,16 @@
 package org.maplibre.android.plugins.annotation;
 
 import android.graphics.PointF;
-
 import com.mapbox.android.gestures.AndroidGesturesManager;
 import com.mapbox.android.gestures.MoveDistancesObject;
 import com.mapbox.android.gestures.MoveGestureDetector;
-import org.maplibre.android.plugins.annotation.Annotation;
-import org.maplibre.android.plugins.annotation.AnnotationManager;
-import org.maplibre.android.plugins.annotation.DraggableAnnotationController;
-import org.maplibre.android.plugins.annotation.OnAnnotationDragListener;
-import org.maplibre.geojson.Geometry;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.maplibre.android.maps.MapLibreMap;
 import org.maplibre.android.maps.MapView;
 import org.maplibre.android.maps.Projection;
+import org.maplibre.geojson.Geometry;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.robolectric.RobolectricTestRunner;
@@ -26,10 +20,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.*;
 
 @RunWith(RobolectricTestRunner.class)
 public class DraggableAnnotationControllerTest {

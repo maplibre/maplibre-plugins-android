@@ -5,18 +5,17 @@ import android.widget.ArrayAdapter
 import android.widget.SeekBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import org.maplibre.android.constants.MapLibreConstants
+import org.maplibre.android.geometry.LatLng
+import org.maplibre.android.geometry.LatLngBounds
+import org.maplibre.android.maps.Style
+import org.maplibre.android.offline.OfflineTilePyramidRegionDefinition
 import org.maplibre.android.plugins.offline.model.NotificationOptions
 import org.maplibre.android.plugins.offline.model.OfflineDownloadOptions
 import org.maplibre.android.plugins.offline.offline.OfflinePlugin
 import org.maplibre.android.plugins.offline.utils.OfflineUtils
 import org.maplibre.android.plugins.testapp.R
 import org.maplibre.android.plugins.testapp.databinding.ActivityOfflineDownloadBinding
-import org.maplibre.android.constants.MapLibreConstants
-import org.maplibre.android.geometry.LatLng
-import org.maplibre.android.geometry.LatLngBounds
-import org.maplibre.android.maps.Style
-import org.maplibre.android.offline.OfflineTilePyramidRegionDefinition
-import java.util.ArrayList
 
 /**
  * Activity showing a form to configure the download of an offline region.

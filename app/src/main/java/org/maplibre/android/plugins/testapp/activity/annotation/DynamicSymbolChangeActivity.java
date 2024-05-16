@@ -5,21 +5,19 @@ import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import org.maplibre.android.plugins.annotation.Symbol;
-import org.maplibre.android.plugins.annotation.SymbolManager;
-import org.maplibre.android.plugins.annotation.SymbolOptions;
-import org.maplibre.android.plugins.testapp.R;
 import androidx.annotation.DrawableRes;
 import androidx.appcompat.app.AppCompatActivity;
-
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import org.maplibre.android.camera.CameraPosition;
 import org.maplibre.android.camera.CameraUpdateFactory;
 import org.maplibre.android.geometry.LatLng;
 import org.maplibre.android.maps.MapLibreMap;
 import org.maplibre.android.maps.MapView;
 import org.maplibre.android.maps.Style;
+import org.maplibre.android.plugins.annotation.Symbol;
+import org.maplibre.android.plugins.annotation.SymbolManager;
+import org.maplibre.android.plugins.annotation.SymbolOptions;
+import org.maplibre.android.plugins.testapp.R;
 
 /**
  * Test activity showcasing updating a Marker position, title, icon and snippet.

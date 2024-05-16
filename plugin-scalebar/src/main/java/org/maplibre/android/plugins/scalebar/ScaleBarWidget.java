@@ -9,13 +9,12 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Pair;
 import android.view.View;
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
 
 import java.lang.ref.WeakReference;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-
-import androidx.annotation.ColorInt;
-import androidx.annotation.NonNull;
 
 /**
  * The scale widget is a visual representation of the scale bar plugin.

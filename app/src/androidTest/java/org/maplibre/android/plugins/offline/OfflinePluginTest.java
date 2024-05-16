@@ -1,19 +1,18 @@
 package org.maplibre.android.plugins.offline;
 
-import org.maplibre.android.plugins.offline.model.OfflineDownloadOptions;
-import org.maplibre.android.plugins.offline.offline.OfflinePlugin;
-import org.maplibre.android.plugins.testapp.R;import org.maplibre.android.plugins.testapp.activity.offline.OfflineDownloadActivity;
-
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.rule.ActivityTestRule;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.maplibre.android.plugins.offline.model.OfflineDownloadOptions;
+import org.maplibre.android.plugins.offline.offline.OfflinePlugin;
+import org.maplibre.android.plugins.testapp.R;
+import org.maplibre.android.plugins.testapp.activity.offline.OfflineDownloadActivity;
 
 import java.util.List;
-
-import androidx.test.ext.junit.runners.AndroidJUnit4;
-import androidx.test.rule.ActivityTestRule;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;

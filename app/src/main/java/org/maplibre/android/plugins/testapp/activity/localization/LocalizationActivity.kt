@@ -6,15 +6,15 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import org.maplibre.android.maps.MapLibreMap
+import org.maplibre.android.maps.MapView
+import org.maplibre.android.maps.OnMapReadyCallback
+import org.maplibre.android.maps.Style
 import org.maplibre.android.plugins.localization.LocalizationPlugin
 import org.maplibre.android.plugins.localization.MapLocale
 import org.maplibre.android.plugins.testapp.R
 import org.maplibre.android.plugins.testapp.Utils
 import org.maplibre.android.plugins.testapp.databinding.ActivityLocalizationBinding
-import org.maplibre.android.maps.MapLibreMap
-import org.maplibre.android.maps.MapView
-import org.maplibre.android.maps.OnMapReadyCallback
-import org.maplibre.android.maps.Style
 
 class LocalizationActivity : AppCompatActivity(), OnMapReadyCallback {
 

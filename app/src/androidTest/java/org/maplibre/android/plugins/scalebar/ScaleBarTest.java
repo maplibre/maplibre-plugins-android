@@ -3,19 +3,15 @@ package org.maplibre.android.plugins.scalebar;
 
 import android.app.Activity;
 import android.view.View;
-
-import org.maplibre.android.plugins.BaseActivityTest;
-import org.maplibre.android.plugins.testapp.R;
-import org.maplibre.android.plugins.testapp.activity.TestActivity;
-
+import androidx.core.content.ContextCompat;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.maplibre.android.maps.MapView;
-
-import androidx.core.content.ContextCompat;
-import androidx.test.ext.junit.runners.AndroidJUnit4;
-
+import org.maplibre.android.plugins.BaseActivityTest;
 import org.maplibre.android.plugins.annotation.MapLibreMapAction;
+import org.maplibre.android.plugins.testapp.R;
+import org.maplibre.android.plugins.testapp.activity.TestActivity;
 import timber.log.Timber;
 
 import static junit.framework.TestCase.assertFalse;

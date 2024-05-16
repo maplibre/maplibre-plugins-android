@@ -1,10 +1,5 @@
 package org.maplibre.android.plugins.testapp.activity.annotation;
 
-import static org.maplibre.android.style.expressions.Expression.eq;
-import static org.maplibre.android.style.expressions.Expression.get;
-import static org.maplibre.android.style.expressions.Expression.not;
-import static org.maplibre.android.style.expressions.Expression.toNumber;
-
 import android.animation.ValueAnimator;
 import android.graphics.Color;
 import android.graphics.PointF;
@@ -15,25 +10,17 @@ import android.view.View;
 import android.view.animation.LinearInterpolator;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import org.maplibre.android.plugins.annotation.OnSymbolDragListener;
-import org.maplibre.android.plugins.annotation.Symbol;
-import org.maplibre.android.plugins.annotation.SymbolManager;
-import org.maplibre.android.plugins.annotation.SymbolOptions;
-import org.maplibre.android.plugins.testapp.R;import org.maplibre.android.plugins.testapp.Utils;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Random;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import org.maplibre.android.camera.CameraUpdateFactory;
 import org.maplibre.android.geometry.LatLng;
 import org.maplibre.android.maps.MapView;
 import org.maplibre.android.maps.Style;
+import org.maplibre.android.plugins.annotation.OnSymbolDragListener;
+import org.maplibre.android.plugins.annotation.Symbol;
+import org.maplibre.android.plugins.annotation.SymbolManager;
+import org.maplibre.android.plugins.annotation.SymbolOptions;
+import org.maplibre.android.plugins.testapp.R;
+import org.maplibre.android.plugins.testapp.Utils;
 import org.maplibre.android.style.expressions.Expression;
 import org.maplibre.android.style.layers.Property;
 import org.maplibre.android.style.sources.GeoJsonOptions;
@@ -41,8 +28,15 @@ import org.maplibre.android.utils.BitmapUtils;
 import org.maplibre.android.utils.ColorUtils;
 import org.maplibre.geojson.FeatureCollection;
 import org.maplibre.geojson.Point;
-
 import timber.log.Timber;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Random;
+
+import static org.maplibre.android.style.expressions.Expression.*;
 
 /**
  * Activity showcasing adding symbols using the annotation plugin

@@ -7,11 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import org.maplibre.android.plugins.offline.utils.OfflineUtils
-import org.maplibre.android.plugins.testapp.R;
 import org.maplibre.android.offline.OfflineManager
 import org.maplibre.android.offline.OfflineRegion
 import org.maplibre.android.offline.OfflineRegionDefinition
+import org.maplibre.android.plugins.offline.utils.OfflineUtils
+import org.maplibre.android.plugins.testapp.R
 import java.util.*
 
 /**

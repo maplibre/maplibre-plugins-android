@@ -4,18 +4,16 @@ import android.annotation.SuppressLint;
 import android.graphics.PointF;
 import android.view.MotionEvent;
 import android.view.View;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.UiThread;
 import androidx.annotation.VisibleForTesting;
-
 import com.mapbox.android.gestures.AndroidGesturesManager;
 import com.mapbox.android.gestures.MoveDistancesObject;
 import com.mapbox.android.gestures.MoveGestureDetector;
-import org.maplibre.geojson.Geometry;
 import org.maplibre.android.maps.MapLibreMap;
 import org.maplibre.android.maps.MapView;
+import org.maplibre.geojson.Geometry;
 
 import java.util.HashMap;
 import java.util.LinkedList;

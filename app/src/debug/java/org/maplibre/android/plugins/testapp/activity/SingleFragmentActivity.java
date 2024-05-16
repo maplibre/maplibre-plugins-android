@@ -3,11 +3,10 @@ package org.maplibre.android.plugins.testapp.activity;
 import android.os.Bundle;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-
-import org.maplibre.android.plugins.testapp.R;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import org.maplibre.android.plugins.testapp.R;
 
 /**
  * Used for testing fragments inside a fake activity.

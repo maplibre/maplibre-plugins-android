@@ -4,24 +4,14 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.MenuItemCompat;
-
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-
-import org.maplibre.android.plugins.annotation.Symbol;
-import org.maplibre.android.plugins.annotation.SymbolManager;
-import org.maplibre.android.plugins.annotation.SymbolOptions;
-import org.maplibre.android.plugins.testapp.R;
-import org.maplibre.android.plugins.testapp.BuildConfig;
-import org.maplibre.android.plugins.testapp.R;import org.maplibre.android.plugins.testapp.Utils;
-
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.MenuItemCompat;
 import org.maplibre.android.MapLibre;
 import org.maplibre.android.WellKnownTileServer;
 import org.maplibre.android.camera.CameraUpdateFactory;
@@ -29,10 +19,15 @@ import org.maplibre.android.geometry.LatLng;
 import org.maplibre.android.maps.MapLibreMap;
 import org.maplibre.android.maps.MapView;
 import org.maplibre.android.maps.Style;
+import org.maplibre.android.plugins.annotation.Symbol;
+import org.maplibre.android.plugins.annotation.SymbolManager;
+import org.maplibre.android.plugins.annotation.SymbolOptions;
+import org.maplibre.android.plugins.testapp.BuildConfig;
+import org.maplibre.android.plugins.testapp.R;
+import org.maplibre.android.plugins.testapp.Utils;
 import org.maplibre.geojson.Feature;
 import org.maplibre.geojson.FeatureCollection;
 import org.maplibre.geojson.Point;
-
 import timber.log.Timber;
 
 import java.io.*;
