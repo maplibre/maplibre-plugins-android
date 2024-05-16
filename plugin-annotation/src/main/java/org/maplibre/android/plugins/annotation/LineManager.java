@@ -5,17 +5,19 @@ package org.maplibre.android.plugins.annotation;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.UiThread;
-import org.maplibre.android.maps.MapLibreMap;
+import androidx.annotation.VisibleForTesting;
+
+import org.maplibre.geojson.Feature;
+import org.maplibre.geojson.FeatureCollection;
 import org.maplibre.android.maps.MapView;
+import org.maplibre.android.maps.MapLibreMap;
 import org.maplibre.android.maps.Style;
 import org.maplibre.android.style.expressions.Expression;
 import org.maplibre.android.style.layers.LineLayer;
-import org.maplibre.android.style.layers.Property;
-import org.maplibre.android.style.layers.PropertyFactory;
 import org.maplibre.android.style.layers.PropertyValue;
+import org.maplibre.android.style.layers.PropertyFactory;
 import org.maplibre.android.style.sources.GeoJsonOptions;
-import org.maplibre.geojson.Feature;
-import org.maplibre.geojson.FeatureCollection;
+import org.maplibre.android.style.layers.Property;
 
 import java.util.ArrayList;
 import java.util.List;

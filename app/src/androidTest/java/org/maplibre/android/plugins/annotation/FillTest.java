@@ -3,22 +3,28 @@
 
 package org.maplibre.android.plugins.annotation;
 
+import android.graphics.PointF;
+
 import androidx.test.ext.junit.runners.AndroidJUnit4;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+
 import org.maplibre.android.geometry.LatLng;
 import org.maplibre.android.plugins.BaseActivityTest;
 import org.maplibre.android.plugins.testapp.activity.TestActivity;
 import org.maplibre.android.utils.ColorUtils;
+
 import timber.log.Timber;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import java.util.Objects;
+
+import static org.maplibre.android.plugins.annotation.MapLibreMapAction.invoke;
+import static org.junit.Assert.*;
+import static org.maplibre.android.style.layers.Property.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.maplibre.android.plugins.annotation.MapLibreMapAction.invoke;
 
 /**
  * Basic smoke tests for Fill
