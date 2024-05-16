@@ -3,6 +3,8 @@
 
 package org.maplibre.android.plugins.annotation;
 
+import android.graphics.PointF;
+
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import org.maplibre.android.geometry.LatLng;
@@ -19,6 +21,7 @@ import java.util.Objects;
 
 import static org.maplibre.android.plugins.annotation.MapLibreMapAction.invoke;
 import static org.junit.Assert.*;
+import static org.maplibre.android.style.layers.Property.*;
 
 import java.util.ArrayList;
 import java.util.List;

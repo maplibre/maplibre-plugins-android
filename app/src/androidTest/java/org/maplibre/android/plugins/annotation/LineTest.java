@@ -3,6 +3,8 @@
 
 package org.maplibre.android.plugins.annotation;
 
+import android.graphics.PointF;
+
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import org.maplibre.android.geometry.LatLng;
