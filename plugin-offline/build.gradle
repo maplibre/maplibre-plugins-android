@@ -19,7 +19,6 @@ android {
     }
 
     // Avoid naming conflicts
-//    resourcePrefix 'mapbox_'
     resourcePrefix 'maplibre_'
 }
 
