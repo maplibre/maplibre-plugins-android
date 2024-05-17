@@ -7,7 +7,7 @@ import org.maplibre.android.geometry.LatLng
 import org.maplibre.android.maps.*
 import org.maplibre.android.plugins.testapp.databinding.ActivityMapsKtxBinding
 
-class MapboxKtxActivity : AppCompatActivity(), OnMapReadyCallback, MapLibreMap.OnMapClickListener {
+class MapLibreKtxActivity : AppCompatActivity(), OnMapReadyCallback, MapLibreMap.OnMapClickListener {
 
     private var maplibreMap: MapLibreMap? = null
 

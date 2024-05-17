@@ -215,7 +215,7 @@
     </activity>
 
     <activity
-            android:name="org.maplibre.android.plugins.testapp.activity.ktx.maps.MapboxKtxActivity"
+            android:name="org.maplibre.android.plugins.testapp.activity.ktx.maps.MapLibreKtxActivity"
             android:description="@string/description_ktx"
             android:label="@string/title_ktx">
       <meta-data
