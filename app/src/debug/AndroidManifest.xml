@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.mapbox.mapboxsdk.plugins.testapp">
+          package="org.maplibre.android.plugins.testapp">
 
   <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
@@ -12,7 +12,7 @@
 
   <application>
     <activity
-        android:name=".activity.TestActivity"
+        android:name="org.maplibre.android.plugins.testapp.activity.TestActivity"
         android:label="@string/title_activity_test"
         android:theme="@style/AppTheme.NoActionBar"/>
   </application>

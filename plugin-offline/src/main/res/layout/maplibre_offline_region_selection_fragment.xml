@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <org.maplibre.android.maps.MapView
+        android:id="@+id/maplibre_offline_region_selection_map_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="@dimen/maplibre_offline_region_name_snackbar_height"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:maplibre_uiRotateGestures="false"
+        app:maplibre_uiTiltGestures="false" />
+
+    <View
+        android:id="@+id/maplibre_offline_scrim_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="@dimen/maplibre_offline_region_name_snackbar_height"
+        android:background="@drawable/maplibre_region_selection_scrim"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/maplibre_offline_select_region_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:tint="@color/maplibre_offline_white"
+        app:backgroundTint="@color/maplibre_offline_green"
+        app:elevation="3dp"
+        app:layout_constraintBottom_toBottomOf="@+id/maplibre_offline_region_selection_map_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/maplibre_offline_scrim_view"
+        app:srcCompat="@drawable/maplibre_ic_check" />
+
+    <TextView
+        android:id="@+id/maplibre_offline_region_name_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="72dp"
+        android:layout_marginStart="72dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="@string/maplibre_offline_default_region_name"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/maplibre_offline_scrim_view"
+        tools:text="Washington D.C." />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
