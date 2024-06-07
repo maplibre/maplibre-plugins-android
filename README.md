@@ -6,13 +6,14 @@
 <h4 align="center">Plugins are single-purpose libraries built on top of the <a href="https://maplibre.org/maplibre-gl-native/android/api/">MapLibre Maps SDK for Android</a> that you can include in your apps like any other Android dependency</h4>
 
 <p align="center">
-  [![ci](https://github.com/maplibre/maplibre-plugins-android/actions/workflows/ci.yml/badge.svg)](https://github.com/maplibre/maplibre-plugins-android/actions/workflows/ci.yml)
+  <a href="https://github.com/maplibre/maplibre-plugins-android/actions/workflows/ci.yml"><img src="https://github.com/maplibre/maplibre-plugins-android/actions/workflows/ci.yml/badge.svg" /></a>&nbsp;<a href="https://github.com/maplibre/maplibre-plugins-android/actions/workflows/release.yml"><img src="https://github.com/maplibre/maplibre-plugins-android/actions/workflows/release.yml/badge.svg" /></a>
+
 </p>
 <br>
 
 # MapLibre Plugins for Android
 
-Plugins are single-purpose libraries built on top of the [MapLibre GL Native for Android](https://maplibre.org/maplibre-gl-native/android/api/) that you can include in your apps like any other Android dependency. A full list of the current plugins is available below.
+Plugins are single-purpose libraries built on top of the [MapLibre Native Android](https://maplibre.org/maplibre-native/android/api/) that you can include in your apps like any other Android dependency. A full list of the current plugins is available below.
 
 We are looking for maintainers for these plugins! Please reach out to the Maplibre team and take a look at [the contribution guide](https://github.com/maplibre/maplibre-plugins-android/blob/main/CONTRIBUTING.md).
 
