@@ -16,8 +16,7 @@ ext {
 def getVersionName() {
     def cmd = "git describe --tag --abbrev=0"
     def version = cmd.execute().text.trim()
-    return isSnapshot() ? getSnapshotVersion(version) : getReleaseVersion(version)
-}
+    return (version == null || version.isBlank()) ? "0.0.1" : isSnapshot() ? getSnapshotVersion(version) : getReleaseVersion(version)}
 
 def isSnapshot() {
     return project.hasProperty("snapshot")
