@@ -47,7 +47,7 @@
 
           // support
           supportAnnotation      : 'androidx.annotation:annotation:1.0.0',
-          supportAppcompatV7     : 'androidx.appcompat:appcompat:1.0.0',
+          supportAppcompatV7     : 'androidx.appcompat:appcompat:1.7.0',
           supportV4              : 'androidx.legacy:legacy-support-v4:1.0.0',
           supportDesign          : 'com.google.android.material:material:1.0.0',
           supportRecyclerView    : 'androidx.recyclerview:recyclerview:1.0.0',

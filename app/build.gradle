@@ -35,6 +35,7 @@ android {
 
   buildFeatures {
     viewBinding true
+    buildConfig true
   }
   namespace 'org.maplibre.android.plugins.testapp'
 }
@@ -72,14 +73,14 @@ dependencies {
   testImplementation dependenciesList.mockito
 
   // Instrumentation testing
-  androidTestImplementation dependenciesList.mockitoAndroid
+  androidTestImplementation "org.mockito:mockito-android:5.13.0"
   androidTestImplementation dependenciesList.supportAppcompatV7
   androidTestImplementation dependenciesList.testRunner
   androidTestImplementation dependenciesList.testRules
   androidTestImplementation dependenciesList.testEspressoCore
   androidTestImplementation dependenciesList.testRoom
   androidTestImplementation dependenciesList.testArchCore
-  androidTestImplementation(dependenciesList.mockitoCore, {
+  androidTestImplementation("org.mockito:mockito-core:5.13.0", {
     exclude group: 'net.bytebuddy'
   })
 

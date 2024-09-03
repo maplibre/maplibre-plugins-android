@@ -25,12 +25,16 @@ android {
     namespace 'org.maplibre.android.plugins.scalebar'
 }
 
+kotlin {
+    jvmToolchain(17)
+}
+
 dependencies {
-    implementation dependenciesList.supportAppcompatV7
     implementation dependenciesList.supportAnnotation
     implementation dependenciesList.mapLibreAndroidSdk
+    implementation 'androidx.core:core:1.13.1'
     javadocDeps dependenciesList.mapLibreAndroidSdk
-    testImplementation dependenciesList.mockk
+    testImplementation 'io.mockk:mockk:1.13.12'
     testImplementation dependenciesList.junit
 }
 
