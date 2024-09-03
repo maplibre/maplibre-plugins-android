@@ -20,6 +20,7 @@ android {
     testOptions {
         unitTests.returnDefaultValues true
     }
+    namespace 'org.maplibre.android.plugins.annotation'
 }
 
 dependencies {

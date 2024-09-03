@@ -13,12 +13,12 @@ task androidJavadocs(type: Javadoc) {
 }
 
 task androidJavadocsJar(type: Jar, dependsOn: androidJavadocs) {
-    classifier = 'dokka'
+    archiveClassifier = 'dokka'
     from androidJavadocs.destinationDir
 }
 
 task androidSourcesJar(type: Jar) {
-    classifier = 'sources'
+    archiveClassifier = 'sources'
     from android.sourceSets.main.java.sourceFiles
 }
 
@@ -35,7 +35,7 @@ afterEvaluate {
                 groupId this.group
                 artifactId project.ext.mapLibreArtifactId
                 
-                from components.release
+                from components.findByName('release')
 
                 artifact androidSourcesJar
                 artifact androidJavadocsJar  

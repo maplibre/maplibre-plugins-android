@@ -1,5 +1,7 @@
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+}
 
 android {
     compileSdkVersion androidVersions.compileSdkVersion
@@ -21,20 +23,23 @@ android {
     testOptions {
         unitTests.returnDefaultValues true
     }
+    namespace 'org.maplibre.android.plugins.maps'
 
     tasks.withType(Javadoc).all {
         enabled = false
     }
 }
 
+kotlin {
+    jvmToolchain(17)
+}
+
 dependencies {
-    implementation dependenciesList.kotlin
     implementation dependenciesList.mapLibreAndroidSdk
     javadocDeps dependenciesList.mapLibreAndroidSdk
     testImplementation dependenciesList.junit
     testImplementation dependenciesList.mockito
     testImplementation dependenciesList.robolectric
-    testImplementation dependenciesList.kotlin
 }
 
 apply from: "${rootDir}/gradle/javadoc.gradle"

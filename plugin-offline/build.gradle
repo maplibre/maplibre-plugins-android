@@ -20,6 +20,7 @@ android {
 
     // Avoid naming conflicts
     resourcePrefix 'maplibre_'
+    namespace 'org.maplibre.android.plugins.offline'
 }
 
 dependencies {
