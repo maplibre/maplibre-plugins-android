@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.mapbox.android.gestures.MoveDistancesObject;
+import org.maplibre.android.gestures.MoveDistancesObject;
 import org.maplibre.android.maps.Projection;
 import org.maplibre.geojson.Geometry;
 

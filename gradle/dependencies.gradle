@@ -7,7 +7,7 @@
   ]
 
   version = [
-      mapLibreAndroidSdk : '11.0.0',
+      mapLibreAndroidSdk : '11.2.0',
       mapLibreJava       : '5.9.0',
       mapLibreTurf       : '5.9.0',
       playLocation       : '16.0.0',
