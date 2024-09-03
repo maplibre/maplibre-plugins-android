@@ -20,16 +20,6 @@ repositories {
 In the app-level `build.gradle` file:
 
 ```groovy
-android {
-
-	// The Annotation Plugin requires Java 8 usage
-	compileOptions {
-	    sourceCompatibility JavaVersion.VERSION_1_8
-	    targetCompatibility JavaVersion.VERSION_1_8
-	}
-
-}
-
 dependencies {
     implementation 'com.maplibre.maplibresdk:maplibre-android-plugin-annotation-v9:0.9.0'
 }
