@@ -33,33 +33,18 @@ android {
     abortOnError false
   }
 
-  compileOptions {
-    sourceCompatibility JavaVersion.VERSION_1_8
-    targetCompatibility JavaVersion.VERSION_1_8
-  }
-
   buildFeatures {
     viewBinding true
+    buildConfig true
   }
+  namespace 'org.maplibre.android.plugins.testapp'
 }
 
-// Disable Leak Canary for UI and unit test.
-configurations.all { config ->
-  if (config.name.contains('UnitTest') || config.name.contains('AndroidTest')) {
-    config.resolutionStrategy.eachDependency { details ->
-      if (details.requested.group == 'com.squareup.leakcanary'
-          && details.requested.name == 'leakcanary-android') {
-        details.useTarget(group: details.requested.group, name: 'leakcanary-android-no-op',
-            version: details.requested.version)
-      }
-    }
-  }
+kotlin {
+  jvmToolchain(11)
 }
 
 dependencies {
-  // Kotlin
-  implementation dependenciesList.kotlin
-
   // MapLibre
   implementation(dependenciesList.mapLibreAndroidSdk, {
     exclude group: 'android.arch.lifecycle'
@@ -88,14 +73,14 @@ dependencies {
   testImplementation dependenciesList.mockito
 
   // Instrumentation testing
-  androidTestImplementation dependenciesList.mockitoAndroid
+  androidTestImplementation "org.mockito:mockito-android:5.13.0"
   androidTestImplementation dependenciesList.supportAppcompatV7
   androidTestImplementation dependenciesList.testRunner
   androidTestImplementation dependenciesList.testRules
   androidTestImplementation dependenciesList.testEspressoCore
   androidTestImplementation dependenciesList.testRoom
   androidTestImplementation dependenciesList.testArchCore
-  androidTestImplementation(dependenciesList.mockitoCore, {
+  androidTestImplementation("org.mockito:mockito-core:5.13.0", {
     exclude group: 'net.bytebuddy'
   })
 
@@ -103,9 +88,7 @@ dependencies {
   implementation dependenciesList.timber
 
   // Leak canary
-  debugImplementation dependenciesList.leakCanaryDebug
-  releaseImplementation dependenciesList.leakCanaryRelease
-  testImplementation dependenciesList.leakCanaryTest
+  debugImplementation "com.squareup.leakcanary:leakcanary-android:2.14"
 
   // Plugin modules
   implementation project(':plugin-offline')

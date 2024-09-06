@@ -1,9 +1,9 @@
 package org.maplibre.android.plugins.annotation;
 
 import android.graphics.PointF;
-import com.mapbox.android.gestures.AndroidGesturesManager;
-import com.mapbox.android.gestures.MoveDistancesObject;
-import com.mapbox.android.gestures.MoveGestureDetector;
+import org.maplibre.android.gestures.AndroidGesturesManager;
+import org.maplibre.android.gestures.MoveDistancesObject;
+import org.maplibre.android.gestures.MoveGestureDetector;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
