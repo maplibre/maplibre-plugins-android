@@ -24,7 +24,7 @@ javadoc:
 	./gradlew javadocrelease
 
 publish:
-	./gradlew publishReleasePublicationToSonatypeRepository closeAndReleaseSonatypeStagingRepositories
+	./gradlew publishReleasePublicationToSonatypeRepository closeAndReleaseSonatypeStagingRepository
 
 generate-sanity-test:
 	npm install && node scripts/generate-activity-test.js
