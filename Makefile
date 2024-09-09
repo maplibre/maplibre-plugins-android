@@ -24,7 +24,7 @@ javadoc:
 	./gradlew javadocrelease
 
 publish:
-	./gradlew publishReleasePublicationToSonatypeRepository closeAndReleaseSonatypeStagingRepository
+	./gradlew publishReleasePublicationToSonatypeRepository closeAndReleaseSonatypeStagingRepositories
 
 generate-sanity-test:
 	npm install && node scripts/generate-activity-test.js
@@ -48,9 +48,6 @@ javadoc-$1:
 	# Android modules
 	# Output is ./mapbox/*/build/docs/javadoc/release
 	./gradlew :$2:javadocrelease
-
-publish-$1:
-	./gradlew :$2:mapboxSDKRegistryUpload
 
 endef
 
