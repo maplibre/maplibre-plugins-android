@@ -6,27 +6,6 @@ apply from: '../gradle/publish-root.gradle'
 version = project.ext.versionName
 group = project.ext.mapLibreArtifactGroupId
 
-task androidJavadocs(type: Javadoc) {
-  source = android.sourceSets.main.java.sourceFiles
-  classpath = files(android.bootClasspath)
-  failOnError = false
-}
-
-task androidJavadocsJar(type: Jar, dependsOn: androidJavadocs) {
-    archiveClassifier = 'dokka'
-    from androidJavadocs.destinationDir
-}
-
-task androidSourcesJar(type: Jar) {
-    archiveClassifier = 'sources'
-    from android.sourceSets.main.java.sourceFiles
-}
-
-artifacts {
-    archives androidSourcesJar
-    archives androidJavadocsJar
-}
-
 afterEvaluate {
     publishing {
         publications {
@@ -34,11 +13,8 @@ afterEvaluate {
                             
                 groupId this.group
                 artifactId project.ext.mapLibreArtifactId
-                
-                from components.findByName('release')
 
-                artifact androidSourcesJar
-                artifact androidJavadocsJar  
+                from components.findByName('release')
 
                 version this.version
 
@@ -66,17 +42,6 @@ afterEvaluate {
                     }
                 }            
             }
-        }
-    }
-}
-
-
-// See: https://github.com/chrisbanes/gradle-mvn-push/issues/43#issuecomment-84140513
-afterEvaluate { project ->
-    android.libraryVariants.all { variant ->
-        tasks.androidJavadocs.doFirst {
-            classpath += files(variant.javaCompile.classpath.files)
-            classpath += configurations.javadocDeps
         }
     }
 }

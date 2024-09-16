@@ -29,6 +29,17 @@ allprojects {
 subprojects {
   apply plugin: 'idea'
   apply from: "${rootDir}/gradle/dependencies.gradle"
+
+  plugins.withId('com.android.library') {
+    android {
+        publishing {
+            singleVariant("release") {
+                withJavadocJar()
+                withSourcesJar()
+            }
+        }
+    }
+  }
 }
 
 task clean(type: Delete) {
