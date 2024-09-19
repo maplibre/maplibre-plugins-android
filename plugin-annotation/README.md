@@ -21,7 +21,13 @@ In the app-level `build.gradle` file:
 
 ```groovy
 dependencies {
-    implementation 'com.maplibre.maplibresdk:maplibre-android-plugin-annotation-v9:0.9.0'
+    implementation 'org.maplibre.gl:android-plugin-annotation-v9:3.0.1'
+}
+```
+
+```kotlin
+dependencies {
+    implementation("org.maplibre.gl:android-plugin-annotation-v9:3.0.1")
 }
 ```
 
