@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Path;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Pair;
@@ -45,7 +44,6 @@ public class ScaleBarWidget extends View {
     private String unit;
     private final RefreshHandler refreshHandler;
     private DecimalFormat decimalFormat = new DecimalFormat("0.#");
-    private Path path = new Path();
 
     ScaleBarWidget(@NonNull Context context) {
         super(context);
@@ -107,11 +105,7 @@ public class ScaleBarWidget extends View {
             barPaint.setColor(i % 2 == 0 ? primaryColor : secondaryColor);
             String text = i == 0 ? String.valueOf(unitDistance * i) : getDistanceText(unitDistance * i);
 
-            textPaint.getTextPath(text, 0, text.length(), marginLeft + unitBarWidth * i, textSize + marginTop, path);
-            if (showTextBorder) {
-                canvas.drawPath(path, strokePaint);
-            }
-            canvas.drawPath(path, textPaint);
+            drawText(canvas, text, marginLeft + unitBarWidth * i, textSize + marginTop);
 
             canvas.drawRect(marginLeft + unitBarWidth * i,
                 textBarMargin + textSize + marginTop,
@@ -121,13 +115,15 @@ public class ScaleBarWidget extends View {
         }
 
         String distanceText = getDistanceText(unitDistance * i);
-        textPaint.getTextPath(distanceText, 0, distanceText.length(), marginLeft + unitBarWidth * i,
-            textSize + marginTop, path);
-        if (showTextBorder) {
-            canvas.drawPath(path, strokePaint);
-        }
-        canvas.drawPath(path, textPaint);
+        drawText(canvas, distanceText, marginLeft + unitBarWidth * i, textSize + marginTop);
 
+    }
+
+    private void drawText(Canvas canvas, String text, Float x, Float y) {
+        if (showTextBorder) {
+            canvas.drawText(text, x, y, strokePaint);
+        }
+        canvas.drawText(text, x, y, textPaint);
     }
 
     /**
