@@ -53,7 +53,7 @@ repositories {
 }
 
 dependencies {
-  implementation 'org.maplibre.android:{PLUGIN_NAME}-v{MAJOR_MAPS_SDK_VERSION_NUMBER}:PLUGIN_VERSION_NUMBER'
+  implementation 'org.maplibre.gl:android-{PLUGIN_NAME}-v{MAJOR_MAPS_SDK_VERSION_NUMBER}:PLUGIN_VERSION_NUMBER'
 }
 ```
 

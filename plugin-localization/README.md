@@ -10,36 +10,28 @@ This plugin is currently unmaintained.
 
 To use the localization plugin, you include it in your `build.gradle` file.
 
-```gradle
-// In the root build.gradle file
+In the root `build.gradle` file:
+
+```groovy
 repositories {
     mavenCentral()
-    google()
 }
 
-...
+```
 
-// In the app build.gradle file
+Add [the latest version](https://central.sonatype.com/artifact/org.maplibre.gl/android-plugin-localization-v9/versions) as a dependency to your project.
+
+In the app-level `build.gradle` file:
+
+```groovy
 dependencies {
-    implementation 'com.maplibre.maplibresdk:maplibre-android-plugin-localization-v9:0.12.0'
+    implementation 'org.maplibre.gl:android-plugin-localization-v9:3.0.2'
 }
 ```
 
-The location layer plugin is published to Maven Central and nightly SNAPSHOTs are available on Sonatype:
-
-```gradle
-// In the root build.gradle file
-repositories {
-    mavenCentral()
-    google()
-    maven { url "http://oss.sonatype.org/content/repositories/snapshots/" }
-}
-
-...
-
-// In the app build.gradle file
+```kotlin
 dependencies {
-    implementation 'com.maplibre.maplibresdk:maplibre-android-plugin-localization-v9:0.13.0-SNAPSHOT'
+    implementation("org.maplibre.gl:android-plugin-localization-v9:3.0.2")
 }
 ```
 
