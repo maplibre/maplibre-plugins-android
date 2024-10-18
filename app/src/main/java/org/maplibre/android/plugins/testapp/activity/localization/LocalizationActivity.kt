@@ -12,6 +12,7 @@ import org.maplibre.android.maps.OnMapReadyCallback
 import org.maplibre.android.maps.Style
 import org.maplibre.android.plugins.localization.LocalizationPlugin
 import org.maplibre.android.plugins.localization.MapLocale
+import org.maplibre.android.plugins.testapp.TestStyles
 import org.maplibre.android.plugins.testapp.R
 import org.maplibre.android.plugins.testapp.Utils
 import org.maplibre.android.plugins.testapp.databinding.ActivityLocalizationBinding
@@ -35,7 +36,7 @@ class LocalizationActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     override fun onMapReady(maplibreMap: MapLibreMap) {
-        maplibreMap?.setStyle(Style.getPredefinedStyle("Streets")) { style ->
+        maplibreMap?.setStyle(TestStyles.BRIGHT.url) { style ->
             this.maplibreMap = maplibreMap
             localizationPlugin =
                 LocalizationPlugin(

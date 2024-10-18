@@ -17,6 +17,7 @@ import org.maplibre.android.maps.MapView;
 import org.maplibre.android.maps.Style;
 import org.maplibre.android.plugins.annotation.SymbolManager;
 import org.maplibre.android.plugins.annotation.SymbolOptions;
+import org.maplibre.android.plugins.testapp.TestStyles;
 import org.maplibre.android.plugins.testapp.R;
 import org.maplibre.android.plugins.testapp.Utils;
 
@@ -53,7 +54,7 @@ public class PressForSymbolActivity extends AppCompatActivity {
             );
             maplibreMap.addOnMapLongClickListener(this::addSymbol);
             maplibreMap.addOnMapClickListener(this::addSymbol);
-            maplibreMap.setStyle(getStyleBuilder(Style.getPredefinedStyle("Streets")), style -> {
+            maplibreMap.setStyle(getStyleBuilder(TestStyles.BRIGHT.getUrl()), style -> {
                 findViewById(R.id.fabStyles).setOnClickListener(v ->
                     maplibreMap.setStyle(getStyleBuilder(Utils.INSTANCE.getNextStyle())));
 

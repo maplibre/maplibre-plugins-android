@@ -14,6 +14,7 @@ import org.maplibre.android.maps.Style;
 import org.maplibre.android.plugins.annotation.Line;
 import org.maplibre.android.plugins.annotation.LineManager;
 import org.maplibre.android.plugins.annotation.LineOptions;
+import org.maplibre.android.plugins.testapp.TestStyles;
 import org.maplibre.android.plugins.testapp.R;
 import org.maplibre.android.plugins.testapp.Utils;
 import org.maplibre.android.utils.ColorUtils;
@@ -67,7 +68,7 @@ public class LineChangeActivity extends AppCompatActivity {
                     4)
             );
 
-            maplibreMap.setStyle(new Style.Builder().fromUri(Style.getPredefinedStyle("Streets")), style -> {
+            maplibreMap.setStyle(new Style.Builder().fromUri(TestStyles.BRIGHT.getUrl()), style -> {
                 findViewById(R.id.fabStyles).setOnClickListener(v -> maplibreMap.setStyle(Utils.INSTANCE.getNextStyle()));
 
                 lineManager = new LineManager(mapView, maplibreMap, style);

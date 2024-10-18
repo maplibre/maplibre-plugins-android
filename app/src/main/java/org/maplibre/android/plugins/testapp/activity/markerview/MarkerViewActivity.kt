@@ -13,12 +13,12 @@ import org.maplibre.android.camera.CameraUpdateFactory
 import org.maplibre.android.geometry.LatLng
 import org.maplibre.android.maps.MapLibreMap
 import org.maplibre.android.maps.MapView
-import org.maplibre.android.maps.Style
 import org.maplibre.android.plugins.markerview.MarkerView
 import org.maplibre.android.plugins.markerview.MarkerViewManager
+import org.maplibre.android.plugins.testapp.TestStyles
 import org.maplibre.android.plugins.testapp.R
 import org.maplibre.android.plugins.testapp.Utils
-import java.util.*
+import java.util.Random
 
 class MarkerViewActivity :
     AppCompatActivity(),
@@ -37,7 +37,7 @@ class MarkerViewActivity :
 
         mapView.onCreate(savedInstanceState)
         mapView.getMapAsync { maplibreMap ->
-            maplibreMap.setStyle(Style.getPredefinedStyle("Streets")) { _ ->
+            maplibreMap.setStyle(TestStyles.BRIGHT.url) { _ ->
                 findViewById<View>(R.id.fabStyles).setOnClickListener { maplibreMap.setStyle(Utils.nextStyle) }
 
                 maplibreMap.moveCamera(CameraUpdateFactory.zoomTo(2.0))

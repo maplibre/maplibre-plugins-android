@@ -12,8 +12,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.MenuItemCompat;
-import org.maplibre.android.MapLibre;
-import org.maplibre.android.WellKnownTileServer;
 import org.maplibre.android.camera.CameraUpdateFactory;
 import org.maplibre.android.geometry.LatLng;
 import org.maplibre.android.maps.MapLibreMap;
@@ -22,7 +20,7 @@ import org.maplibre.android.maps.Style;
 import org.maplibre.android.plugins.annotation.Symbol;
 import org.maplibre.android.plugins.annotation.SymbolManager;
 import org.maplibre.android.plugins.annotation.SymbolOptions;
-import org.maplibre.android.plugins.testapp.BuildConfig;
+import org.maplibre.android.plugins.testapp.TestStyles;
 import org.maplibre.android.plugins.testapp.R;
 import org.maplibre.android.plugins.testapp.Utils;
 import org.maplibre.geojson.Feature;
@@ -56,7 +54,6 @@ public class BulkSymbolActivity extends AppCompatActivity implements AdapterView
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_annotation);
-        MapLibre.getInstance(this, BuildConfig.MAPTILER_API_KEY, WellKnownTileServer.MapTiler);
         mapView = findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this::initMap);
@@ -71,7 +68,7 @@ public class BulkSymbolActivity extends AppCompatActivity implements AdapterView
         );
 
         mapLibreMap.setStyle(new Style.Builder()
-                .fromUri(Style.getPredefinedStyle("Streets"))
+                .fromUri(TestStyles.LIBERTY.getUrl())
                 .withImage(IMAGE_ID_FIRE_HYDRANT, getDrawable(R.drawable.ic_fire_hydrant)),
             style -> {
                 findViewById(R.id.fabStyles).setOnClickListener(v -> mapLibreMap.setStyle(Utils.INSTANCE.getNextStyle()));

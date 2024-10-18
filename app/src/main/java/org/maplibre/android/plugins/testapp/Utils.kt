@@ -3,7 +3,6 @@ package org.maplibre.android.plugins.testapp
 import android.content.Context
 import android.location.Location
 import android.text.TextUtils
-import org.maplibre.android.maps.Style
 import timber.log.Timber
 import java.io.BufferedReader
 import java.io.IOException
@@ -17,12 +16,7 @@ import java.util.*
  */
 object Utils {
 
-    private val STYLES = arrayOf(
-        Style.getPredefinedStyle("Streets"),
-        Style.getPredefinedStyle("Outdoors"),
-        Style.getPredefinedStyle("Light"),
-        Style.getPredefinedStyle("Dark")
-    )
+    private val STYLES = TestStyles.entries.toTypedArray()
 
     private var index: Int = 0
 
@@ -38,7 +32,7 @@ object Utils {
             if (index == STYLES.size) {
                 index = 0
             }
-            return STYLES[index]
+            return STYLES[index].url
         }
 
     /**
