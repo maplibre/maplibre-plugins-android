@@ -17,34 +17,19 @@ repositories {
 
 ```
 
+Add [the latest version](https://central.sonatype.com/artifact/org.maplibre.gl/android-plugin-annotation-v9/versions) as a dependency to your project.
+
 In the app-level `build.gradle` file:
 
 ```groovy
 dependencies {
-    implementation 'org.maplibre.gl:android-plugin-annotation-v9:3.0.1'
+    implementation 'org.maplibre.gl:android-plugin-annotation-v9:3.0.2'
 }
 ```
 
 ```kotlin
 dependencies {
-    implementation("org.maplibre.gl:android-plugin-annotation-v9:3.0.1")
-}
-```
-
-The annotation plugin is published to Maven Central and nightly SNAPSHOTs are available on Sonatype:
-
-```
-// In the root build.gradle file
-repositories {
-    mavenCentral()
-    maven { url "http://oss.sonatype.org/content/repositories/snapshots/" }
-}
-
-...
-
-// In the app build.gradle file
-dependencies {
-    implementation 'com.maplibre.maplibresdk:maplibre-android-plugin-annotation-v9:0.10.0-SNAPSHOT'
+    implementation("org.maplibre.gl:android-plugin-annotation-v9:3.0.2")
 }
 ```
 

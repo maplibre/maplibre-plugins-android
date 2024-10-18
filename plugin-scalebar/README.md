@@ -10,34 +10,28 @@ This plugin is currently unmaintained.
 
 To use the scale bar plugin, you include it in your `build.gradle` file.
 
-```
-// In the root build.gradle file
+In the root `build.gradle` file:
+
+```groovy
 repositories {
     mavenCentral()
 }
 
-...
+```
 
-// In the app build.gradle file
+Add [the latest version](https://central.sonatype.com/artifact/org.maplibre.gl/android-plugin-scalebar-v9/versions) as a dependency to your project.
+
+In the app-level `build.gradle` file:
+
+```groovy
 dependencies {
-    implementation 'com.maplibre.maplibresdk:maplibre-android-plugin-scalebar-v9:0.5.0'
+    implementation 'org.maplibre.gl:android-plugin-scalebar-v9:3.0.2'
 }
 ```
 
-The scale bar plugin is published to Maven Central and nightly SNAPSHOTs are available on Sonatype:
-
-```
-// In the root build.gradle file
-repositories {
-    mavenCentral()
-    maven { url "http://oss.sonatype.org/content/repositories/snapshots/" }
-}
-
-...
-
-// In the app build.gradle file
+```kotlin
 dependencies {
-    implementation 'com.maplibre.maplibresdk:maplibre-android-plugin-scalebar-v9:0.6.0-SNAPSHOT'
+    implementation("org.maplibre.gl:android-plugin-scalebar-v9:3.0.2")
 }
 ```
 
