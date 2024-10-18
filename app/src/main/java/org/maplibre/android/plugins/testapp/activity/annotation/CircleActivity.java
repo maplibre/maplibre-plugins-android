@@ -11,11 +11,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import org.maplibre.android.camera.CameraUpdateFactory;
 import org.maplibre.android.geometry.LatLng;
 import org.maplibre.android.maps.MapView;
-import org.maplibre.android.maps.Style;
 import org.maplibre.android.plugins.annotation.Circle;
 import org.maplibre.android.plugins.annotation.CircleManager;
 import org.maplibre.android.plugins.annotation.CircleOptions;
 import org.maplibre.android.plugins.annotation.OnCircleDragListener;
+import org.maplibre.android.plugins.testapp.TestStyles;
 import org.maplibre.android.plugins.testapp.R;
 import org.maplibre.android.plugins.testapp.Utils;
 import org.maplibre.android.utils.ColorUtils;
@@ -45,7 +45,7 @@ public class CircleActivity extends AppCompatActivity {
 
         mapView = findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
-        mapView.getMapAsync(maplibreMap -> maplibreMap.setStyle(Style.getPredefinedStyle("Streets"), style -> {
+        mapView.getMapAsync(maplibreMap -> maplibreMap.setStyle(TestStyles.BRIGHT.getUrl(), style -> {
             findViewById(R.id.fabStyles).setOnClickListener(v -> maplibreMap.setStyle(Utils.INSTANCE.getNextStyle()));
 
             maplibreMap.moveCamera(CameraUpdateFactory.zoomTo(2));

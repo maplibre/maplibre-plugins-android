@@ -4,7 +4,11 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import org.maplibre.android.geometry.LatLng
-import org.maplibre.android.maps.*
+import org.maplibre.android.maps.MapLibreMap
+import org.maplibre.android.maps.MapView
+import org.maplibre.android.maps.OnMapReadyCallback
+import org.maplibre.android.maps.queryRenderedFeatures
+import org.maplibre.android.plugins.testapp.TestStyles
 import org.maplibre.android.plugins.testapp.databinding.ActivityMapsKtxBinding
 
 class MapLibreKtxActivity : AppCompatActivity(), OnMapReadyCallback, MapLibreMap.OnMapClickListener {
@@ -26,7 +30,7 @@ class MapLibreKtxActivity : AppCompatActivity(), OnMapReadyCallback, MapLibreMap
 
     override fun onMapReady(maplibreMap: MapLibreMap) {
         this.maplibreMap = maplibreMap
-        maplibreMap.setStyle(Style.getPredefinedStyle("Streets")) {
+        maplibreMap.setStyle(TestStyles.BRIGHT.url) {
             maplibreMap.addOnMapClickListener(this)
             Toast.makeText(this, "Click on the map", Toast.LENGTH_SHORT).show()
         }

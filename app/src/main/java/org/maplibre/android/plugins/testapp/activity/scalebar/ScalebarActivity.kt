@@ -7,7 +7,7 @@ import org.maplibre.android.maps.MapView
 import org.maplibre.android.maps.Style
 import org.maplibre.android.plugins.scalebar.ScaleBarOptions
 import org.maplibre.android.plugins.scalebar.ScaleBarPlugin
-import org.maplibre.android.plugins.testapp.BuildConfig
+import org.maplibre.android.plugins.testapp.TestStyles
 import org.maplibre.android.plugins.testapp.databinding.ActivityScalebarBinding
 import org.maplibre.android.style.layers.LineLayer
 import org.maplibre.android.style.sources.GeoJsonSource
@@ -30,7 +30,7 @@ class ScalebarActivity : AppCompatActivity() {
         mapView = binding.mapView
         mapView.onCreate(savedInstanceState)
         mapView.getMapAsync { maplibreMap ->
-            maplibreMap.setStyle("https://api.maptiler.com/maps/basic-v2/style.json?key=" + BuildConfig.MAPTILER_API_KEY) {
+            maplibreMap.setStyle(TestStyles.BRIGHT.url) {
                 addScalebar(maplibreMap)
                 setupTestLine(it)
             }
