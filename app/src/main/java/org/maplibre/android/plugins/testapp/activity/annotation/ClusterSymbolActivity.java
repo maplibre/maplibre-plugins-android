@@ -15,6 +15,7 @@ import org.maplibre.android.plugins.annotation.ClusterOptions;
 import org.maplibre.android.plugins.annotation.Symbol;
 import org.maplibre.android.plugins.annotation.SymbolManager;
 import org.maplibre.android.plugins.annotation.SymbolOptions;
+import org.maplibre.android.plugins.testapp.TestStyles;
 import org.maplibre.android.plugins.testapp.R;
 import org.maplibre.geojson.Feature;
 import org.maplibre.geojson.FeatureCollection;
@@ -65,7 +66,7 @@ public class ClusterSymbolActivity extends AppCompatActivity {
                 new Pair(0, Color.GREEN)
             });
 
-        maplibreMap.setStyle(new Style.Builder().fromUri(Style.getPredefinedStyle("Streets")), style -> {
+        maplibreMap.setStyle(new Style.Builder().fromUri(TestStyles.BRIGHT.getUrl()), style -> {
             symbolManager = new SymbolManager(mapView, maplibreMap, style, null, null, clusterOptions);
             symbolManager.setIconAllowOverlap(true);
             loadData();

@@ -17,6 +17,7 @@ import org.maplibre.android.maps.Style;
 import org.maplibre.android.plugins.annotation.Symbol;
 import org.maplibre.android.plugins.annotation.SymbolManager;
 import org.maplibre.android.plugins.annotation.SymbolOptions;
+import org.maplibre.android.plugins.testapp.TestStyles;
 import org.maplibre.android.plugins.testapp.R;
 
 /**
@@ -58,7 +59,7 @@ public class DynamicSymbolChangeActivity extends AppCompatActivity {
             ));
 
             maplibreMap.setStyle(new Style.Builder()
-                    .fromUri(Style.getPredefinedStyle("Streets"))
+                    .fromUri(TestStyles.BRIGHT.getUrl())
                 //.withImage(ID_ICON_1, generateBitmap(R.drawable.mapbox_ic_place), true)
                 //.withImage(ID_ICON_2, generateBitmap(R.drawable.mapbox_ic_offline), true)
                 , style -> {

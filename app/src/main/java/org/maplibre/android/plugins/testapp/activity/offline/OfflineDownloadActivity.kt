@@ -8,12 +8,12 @@ import androidx.appcompat.app.AppCompatActivity
 import org.maplibre.android.constants.MapLibreConstants
 import org.maplibre.android.geometry.LatLng
 import org.maplibre.android.geometry.LatLngBounds
-import org.maplibre.android.maps.Style
 import org.maplibre.android.offline.OfflineTilePyramidRegionDefinition
 import org.maplibre.android.plugins.offline.model.NotificationOptions
 import org.maplibre.android.plugins.offline.model.OfflineDownloadOptions
 import org.maplibre.android.plugins.offline.offline.OfflinePlugin
 import org.maplibre.android.plugins.offline.utils.OfflineUtils
+import org.maplibre.android.plugins.testapp.TestStyles
 import org.maplibre.android.plugins.testapp.R
 import org.maplibre.android.plugins.testapp.databinding.ActivityOfflineDownloadBinding
 
@@ -69,10 +69,9 @@ class OfflineDownloadActivity : AppCompatActivity() {
 
     private fun initSpinner() {
         val styles = ArrayList<String>()
-        styles.add(Style.getPredefinedStyle("Streets"))
-        styles.add(Style.getPredefinedStyle("Dark"))
-        styles.add(Style.getPredefinedStyle("Light"))
-        styles.add(Style.getPredefinedStyle("Outdoors"))
+        styles.add(TestStyles.BRIGHT.url)
+        styles.add(TestStyles.POSITRON.url)
+        styles.add(TestStyles.LIBERTY.url)
         val spinnerArrayAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, styles)
         spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spinnerStyleUrl.adapter = spinnerArrayAdapter

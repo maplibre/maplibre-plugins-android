@@ -13,6 +13,7 @@ import org.maplibre.android.maps.*;
 import org.maplibre.android.plugins.annotation.Fill;
 import org.maplibre.android.plugins.annotation.FillManager;
 import org.maplibre.android.plugins.annotation.FillOptions;
+import org.maplibre.android.plugins.testapp.TestStyles;
 import org.maplibre.android.plugins.testapp.R;
 import org.maplibre.android.utils.ColorUtils;
 
@@ -65,7 +66,7 @@ public class FillChangeActivity extends AppCompatActivity implements OnMapReadyC
 
     @Override
     public void onMapReady(@NonNull MapLibreMap map) {
-        map.setStyle(new Style.Builder().fromUri(Style.getPredefinedStyle("Streets")), style -> {
+        map.setStyle(new Style.Builder().fromUri(TestStyles.BRIGHT.getUrl()), style -> {
             fillManager = new FillManager(mapView, map, style, "aerialway", null);
             fillManager.addClickListener(fill -> {
                 Toast.makeText(

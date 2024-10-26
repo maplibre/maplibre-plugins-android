@@ -19,6 +19,7 @@ import org.maplibre.android.plugins.annotation.OnSymbolDragListener;
 import org.maplibre.android.plugins.annotation.Symbol;
 import org.maplibre.android.plugins.annotation.SymbolManager;
 import org.maplibre.android.plugins.annotation.SymbolOptions;
+import org.maplibre.android.plugins.testapp.TestStyles;
 import org.maplibre.android.plugins.testapp.R;
 import org.maplibre.android.plugins.testapp.Utils;
 import org.maplibre.android.style.expressions.Expression;
@@ -64,7 +65,7 @@ public class SymbolActivity extends AppCompatActivity {
 
         mapView = findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
-        mapView.getMapAsync(maplibreMap -> maplibreMap.setStyle(Style.getPredefinedStyle("Streets"), style -> {
+        mapView.getMapAsync(maplibreMap -> maplibreMap.setStyle(TestStyles.BRIGHT.getUrl(), style -> {
             findViewById(R.id.fabStyles).setOnClickListener(v -> {
                 maplibreMap.setStyle(Utils.INSTANCE.getNextStyle());
                 maplibreMap.getStyle(this::addAirplaneImageToStyle);
