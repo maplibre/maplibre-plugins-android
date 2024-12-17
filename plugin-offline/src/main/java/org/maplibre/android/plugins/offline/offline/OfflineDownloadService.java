@@ -2,6 +2,7 @@ package org.maplibre.android.plugins.offline.offline;
 
 import android.annotation.SuppressLint;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Resources;
