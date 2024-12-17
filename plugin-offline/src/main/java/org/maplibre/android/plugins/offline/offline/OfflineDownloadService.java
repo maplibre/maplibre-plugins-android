@@ -1,6 +1,8 @@
 package org.maplibre.android.plugins.offline.offline;
 
+import android.annotation.SuppressLint;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Resources;
@@ -49,6 +51,7 @@ public class OfflineDownloadService extends Service {
     // in OfflineDownloadOptions
     final LongSparseArray<OfflineRegion> regionLongSparseArray = new LongSparseArray<>();
 
+    @SuppressLint("UnspecifiedRegisterReceiverFlag")
     @Override
     public void onCreate() {
         super.onCreate();
@@ -62,7 +65,11 @@ public class OfflineDownloadService extends Service {
         // Register the broadcast receiver needed for updating APIs in the OfflinePlugin class.
         broadcastReceiver = new OfflineDownloadStateReceiver();
         IntentFilter filter = new IntentFilter(OfflineConstants.ACTION_OFFLINE);
-        getApplicationContext().registerReceiver(broadcastReceiver, filter);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            getApplicationContext().registerReceiver(broadcastReceiver, filter, Context.RECEIVER_NOT_EXPORTED);
+        } else {
+            getApplicationContext().registerReceiver(broadcastReceiver, filter);
+        }
     }
 
     /**
