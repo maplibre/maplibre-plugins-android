@@ -2,12 +2,12 @@ package org.maplibre.android.plugins.annotation;
 
 import android.annotation.SuppressLint;
 import android.graphics.PointF;
-import android.view.MotionEvent;
-import android.view.View;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.UiThread;
 import androidx.annotation.VisibleForTesting;
+
 import org.maplibre.android.gestures.AndroidGesturesManager;
 import org.maplibre.android.gestures.MoveDistancesObject;
 import org.maplibre.android.gestures.MoveGestureDetector;
@@ -54,6 +54,8 @@ final class DraggableAnnotationController {
     @Nullable
     private AnnotationManager draggedAnnotationManager;
 
+    private AndroidGesturesManager androidGesturesManager;
+
     @SuppressLint("ClickableViewAccessibility")
     DraggableAnnotationController(MapView mapView, MapLibreMap maplibreMap) {
         this(mapView, maplibreMap, new AndroidGesturesManager(mapView.getContext(), false),
@@ -72,18 +74,25 @@ final class DraggableAnnotationController {
         this.touchAreaMaxX = touchAreaMaxX;
         this.touchAreaMaxY = touchAreaMaxY;
 
-        androidGesturesManager.setMoveGestureListener(new AnnotationMoveGestureListener());
+        this.androidGesturesManager = androidGesturesManager;
+    }
 
-        mapView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
+    void setEnable(boolean enable) {
+        if (enable) {
+            androidGesturesManager.setMoveGestureListener(new AnnotationMoveGestureListener());
+
+            mapView.setOnTouchListener((v, event) -> {
                 // Using active gesture manager
                 Annotation oldAnnotation = draggedAnnotation;
                 androidGesturesManager.onTouchEvent(event);
                 // if drag is started or drag is finished, don't pass motion events further
-                return draggedAnnotation != null || oldAnnotation != null;
-            }
-        });
+                boolean t = draggedAnnotation != null || oldAnnotation != null;
+                return t;
+            });
+        } else {
+            androidGesturesManager.removeMoveGestureListener();
+            mapView.setOnTouchListener(null);
+        }
     }
 
     void addAnnotationManager(AnnotationManager annotationManager) {

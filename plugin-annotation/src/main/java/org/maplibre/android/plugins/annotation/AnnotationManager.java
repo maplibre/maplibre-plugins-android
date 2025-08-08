@@ -244,6 +244,8 @@ public abstract class AnnotationManager<
             mapView.post(() -> {
                 isSourceUpToDate.set(true);
 
+                enableDragIfNeeded();
+
                 if (!style.isFullyLoaded()) {
                     // We are in progress of loading a new style
                     return;
@@ -396,6 +398,19 @@ public abstract class AnnotationManager<
         }
 
         updateSource();
+    }
+
+    private void enableDragIfNeeded(){
+        boolean hasDraggableAnnotation = false;
+        for (int i = 0, size = annotations.size(); i < size; i++) {
+            Annotation annotation = annotations.valueAt(i);
+
+            if (annotation.isDraggable()) {
+                hasDraggableAnnotation=true;
+                break;
+            }
+        }
+        draggableAnnotationController.setEnable(hasDraggableAnnotation);
     }
 
     /**
