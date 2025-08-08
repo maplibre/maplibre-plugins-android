@@ -51,7 +51,6 @@ dependencies {
     exclude group: 'com.google.android.gms'
   })
   implementation dependenciesList.maplibreTurf
-  implementation dependenciesList.maplibreCore
 
   // Architecture
   implementation dependenciesList.lifecycleExtensions

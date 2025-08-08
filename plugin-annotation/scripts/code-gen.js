@@ -112,6 +112,8 @@ global.propertyType = function propertyType(property) {
         return 'String';
       case 'color':
         return 'String';
+      case 'number[]':
+              return 'Float[]';
       case 'array':
         return `${propertyType({type:property.value})}[]`;
       default:
@@ -132,6 +134,8 @@ global.propertyJavaType = function propertyType(property) {
          return 'String';
        case 'color':
          return 'String';
+       case 'number[]':
+             return 'Float[]';
        case 'array':
          return `${propertyJavaType({type:property.value})}[]`;
        default:
