@@ -590,7 +590,8 @@ public class SymbolManager extends AnnotationManager<SymbolLayer, Symbol, Symbol
      * @return property wrapper value around Float
      */
     public Float getIconPadding() {
-        return layer.getIconPadding().value;
+        Float[] values = layer.getIconPadding().value;
+        return (values != null && values.length > 0) ? values[0] : null;
     }
 
     /**
