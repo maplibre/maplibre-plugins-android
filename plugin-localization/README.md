@@ -19,19 +19,19 @@ repositories {
 
 ```
 
-Add [the latest version](https://central.sonatype.com/artifact/org.maplibre.gl/android-plugin-localization-v9/versions) as a dependency to your project.
+Add [the latest version](https://central.sonatype.com/artifact/org.maplibre.gl/android-plugin-localization/versions) as a dependency to your project.
 
 In the app-level `build.gradle` file:
 
 ```groovy
 dependencies {
-    implementation 'org.maplibre.gl:android-plugin-localization-v9:3.0.2'
+    implementation 'org.maplibre.gl:android-plugin-localization:4.0.0'
 }
 ```
 
 ```kotlin
 dependencies {
-    implementation("org.maplibre.gl:android-plugin-localization-v9:3.0.2")
+    implementation("org.maplibre.gl:android-plugin-localization:4.0.0")
 }
 ```
 
