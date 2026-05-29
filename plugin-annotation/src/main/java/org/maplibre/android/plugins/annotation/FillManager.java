@@ -79,6 +79,7 @@ public class FillManager extends AnnotationManager<FillLayer, Fill, FillOptions,
 
     @Override
     void initializeDataDrivenPropertyMap() {
+        dataDrivenPropertyUsageMap.put(FillOptions.PROPERTY_FILL_SORT_KEY, false);
         dataDrivenPropertyUsageMap.put(FillOptions.PROPERTY_FILL_OPACITY, false);
         dataDrivenPropertyUsageMap.put(FillOptions.PROPERTY_FILL_COLOR, false);
         dataDrivenPropertyUsageMap.put(FillOptions.PROPERTY_FILL_OUTLINE_COLOR, false);
@@ -88,6 +89,9 @@ public class FillManager extends AnnotationManager<FillLayer, Fill, FillOptions,
     @Override
     protected void setDataDrivenPropertyIsUsed(@NonNull String property) {
         switch (property) {
+            case FillOptions.PROPERTY_FILL_SORT_KEY:
+                layer.setProperties(fillSortKey(get(FillOptions.PROPERTY_FILL_SORT_KEY)));
+                break;
             case FillOptions.PROPERTY_FILL_OPACITY:
                 layer.setProperties(fillOpacity(get(FillOptions.PROPERTY_FILL_OPACITY)));
                 break;
@@ -109,6 +113,7 @@ public class FillManager extends AnnotationManager<FillLayer, Fill, FillOptions,
      * Fills are going to be created only for features with a matching geometry.
      * <p>
      * All supported properties are:<br>
+     * FillOptions.PROPERTY_FILL_SORT_KEY - Float<br>
      * FillOptions.PROPERTY_FILL_OPACITY - Float<br>
      * FillOptions.PROPERTY_FILL_COLOR - String<br>
      * FillOptions.PROPERTY_FILL_OUTLINE_COLOR - String<br>
@@ -132,6 +137,7 @@ public class FillManager extends AnnotationManager<FillLayer, Fill, FillOptions,
      * Fills are going to be created only for features with a matching geometry.
      * <p>
      * All supported properties are:<br>
+     * FillOptions.PROPERTY_FILL_SORT_KEY - Float<br>
      * FillOptions.PROPERTY_FILL_OPACITY - Float<br>
      * FillOptions.PROPERTY_FILL_COLOR - String<br>
      * FillOptions.PROPERTY_FILL_OUTLINE_COLOR - String<br>

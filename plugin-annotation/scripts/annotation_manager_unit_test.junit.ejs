@@ -208,7 +208,7 @@ public class <%- camelize(type) %>ManagerTest {
 <% for (const property of properties) { -%>
 <% if (supportsPropertyFunction(property)) { -%>
 <% if (propertyType(property).endsWith("[]")) { -%>
-<% if (propertyType(property).endsWith("Float[]")) { -%>
+<% if (isPointFProperty(property)) { -%>
         PointF <%- camelizeWithLeadingLowercase(property.name) %>Expected = new PointF(<%- defaultValueJava(property) %>[0], <%- defaultValueJava(property) %>[1]);
         assertEquals(<%- camelizeWithLeadingLowercase(property.name) %>Expected.x, <%- type %>.get<%- camelize(property.name) %>().x);
         assertEquals(<%- camelizeWithLeadingLowercase(property.name) %>Expected.y, <%- type %>.get<%- camelize(property.name) %>().y);

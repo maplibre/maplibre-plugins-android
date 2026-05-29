@@ -103,17 +103,4 @@ public class LineManagerTest extends BaseActivityTest {
             assertEquals((String) lineManager.getLineTranslateAnchor(), (String) LINE_TRANSLATE_ANCHOR_MAP);
         });
     }
-
-    @Test
-    public void testLineDasharrayAsConstant() {
-        validateTestSetup();
-        setupLineManager();
-        Timber.i("line-dasharray");
-        invoke(maplibreMap, (uiController, maplibreMap) -> {
-            assertNotNull(lineManager);
-
-            lineManager.setLineDasharray(new Float[]{});
-            assertEquals((Float[]) lineManager.getLineDasharray(), (Float[]) new Float[]{});
-        });
-    }
 }

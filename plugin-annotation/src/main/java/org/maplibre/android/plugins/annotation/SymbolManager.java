@@ -39,7 +39,6 @@ public class SymbolManager extends AnnotationManager<SymbolLayer, Symbol, Symbol
     private static final String PROPERTY_ICON_ROTATION_ALIGNMENT = "icon-rotation-alignment";
     private static final String PROPERTY_ICON_TEXT_FIT = "icon-text-fit";
     private static final String PROPERTY_ICON_TEXT_FIT_PADDING = "icon-text-fit-padding";
-    private static final String PROPERTY_ICON_PADDING = "icon-padding";
     private static final String PROPERTY_ICON_KEEP_UPRIGHT = "icon-keep-upright";
     private static final String PROPERTY_ICON_PITCH_ALIGNMENT = "icon-pitch-alignment";
     private static final String PROPERTY_TEXT_PITCH_ALIGNMENT = "text-pitch-alignment";
@@ -47,6 +46,7 @@ public class SymbolManager extends AnnotationManager<SymbolLayer, Symbol, Symbol
     private static final String PROPERTY_TEXT_LINE_HEIGHT = "text-line-height";
     private static final String PROPERTY_TEXT_VARIABLE_ANCHOR = "text-variable-anchor";
     private static final String PROPERTY_TEXT_MAX_ANGLE = "text-max-angle";
+    private static final String PROPERTY_TEXT_WRITING_MODE = "text-writing-mode";
     private static final String PROPERTY_TEXT_PADDING = "text-padding";
     private static final String PROPERTY_TEXT_KEEP_UPRIGHT = "text-keep-upright";
     private static final String PROPERTY_TEXT_ALLOW_OVERLAP = "text-allow-overlap";
@@ -121,6 +121,7 @@ public class SymbolManager extends AnnotationManager<SymbolLayer, Symbol, Symbol
         dataDrivenPropertyUsageMap.put(SymbolOptions.PROPERTY_ICON_SIZE, false);
         dataDrivenPropertyUsageMap.put(SymbolOptions.PROPERTY_ICON_IMAGE, false);
         dataDrivenPropertyUsageMap.put(SymbolOptions.PROPERTY_ICON_ROTATE, false);
+        dataDrivenPropertyUsageMap.put(SymbolOptions.PROPERTY_ICON_PADDING, false);
         dataDrivenPropertyUsageMap.put(SymbolOptions.PROPERTY_ICON_OFFSET, false);
         dataDrivenPropertyUsageMap.put(SymbolOptions.PROPERTY_ICON_ANCHOR, false);
         dataDrivenPropertyUsageMap.put(SymbolOptions.PROPERTY_TEXT_FIELD, false);
@@ -160,6 +161,9 @@ public class SymbolManager extends AnnotationManager<SymbolLayer, Symbol, Symbol
                 break;
             case SymbolOptions.PROPERTY_ICON_ROTATE:
                 layer.setProperties(iconRotate(get(SymbolOptions.PROPERTY_ICON_ROTATE)));
+                break;
+            case SymbolOptions.PROPERTY_ICON_PADDING:
+                layer.setProperties(iconPadding(get(SymbolOptions.PROPERTY_ICON_PADDING)));
                 break;
             case SymbolOptions.PROPERTY_ICON_OFFSET:
                 layer.setProperties(iconOffset(get(SymbolOptions.PROPERTY_ICON_OFFSET)));
@@ -243,6 +247,7 @@ public class SymbolManager extends AnnotationManager<SymbolLayer, Symbol, Symbol
      * SymbolOptions.PROPERTY_ICON_SIZE - Float<br>
      * SymbolOptions.PROPERTY_ICON_IMAGE - String<br>
      * SymbolOptions.PROPERTY_ICON_ROTATE - Float<br>
+     * SymbolOptions.PROPERTY_ICON_PADDING - Float<br>
      * SymbolOptions.PROPERTY_ICON_OFFSET - Float[]<br>
      * SymbolOptions.PROPERTY_ICON_ANCHOR - String<br>
      * SymbolOptions.PROPERTY_TEXT_FIELD - String<br>
@@ -289,6 +294,7 @@ public class SymbolManager extends AnnotationManager<SymbolLayer, Symbol, Symbol
      * SymbolOptions.PROPERTY_ICON_SIZE - Float<br>
      * SymbolOptions.PROPERTY_ICON_IMAGE - String<br>
      * SymbolOptions.PROPERTY_ICON_ROTATE - Float<br>
+     * SymbolOptions.PROPERTY_ICON_PADDING - Float<br>
      * SymbolOptions.PROPERTY_ICON_OFFSET - Float[]<br>
      * SymbolOptions.PROPERTY_ICON_ANCHOR - String<br>
      * SymbolOptions.PROPERTY_TEXT_FIELD - String<br>
@@ -402,7 +408,7 @@ public class SymbolManager extends AnnotationManager<SymbolLayer, Symbol, Symbol
     /**
      * Get the SymbolAvoidEdges property
      * <p>
-     * If true, the symbols will not cross tile edges to avoid mutual collisions. Recommended in layers that don't have enough padding in the vector tile to prevent collisions, or if it is a point symbol layer placed after a line symbol layer.
+     * If true, the symbols will not cross tile edges to avoid mutual collisions. Recommended in layers that don't have enough padding in the vector tile to prevent collisions, or if it is a point symbol layer placed after a line symbol layer. When using a client that supports global collision detection, like MapLibre GL JS version 0.42.0 or greater, enabling this property is not needed to prevent clipped labels at tile boundaries.
      * </p>
      *
      * @return property wrapper value around Boolean
@@ -414,7 +420,7 @@ public class SymbolManager extends AnnotationManager<SymbolLayer, Symbol, Symbol
     /**
      * Set the SymbolAvoidEdges property
      * <p>
-     * If true, the symbols will not cross tile edges to avoid mutual collisions. Recommended in layers that don't have enough padding in the vector tile to prevent collisions, or if it is a point symbol layer placed after a line symbol layer.
+     * If true, the symbols will not cross tile edges to avoid mutual collisions. Recommended in layers that don't have enough padding in the vector tile to prevent collisions, or if it is a point symbol layer placed after a line symbol layer. When using a client that supports global collision detection, like MapLibre GL JS version 0.42.0 or greater, enabling this property is not needed to prevent clipped labels at tile boundaries.
      * </p>
      *
      * @param value property wrapper value around Boolean
@@ -582,33 +588,6 @@ public class SymbolManager extends AnnotationManager<SymbolLayer, Symbol, Symbol
     }
 
     /**
-     * Get the IconPadding property
-     * <p>
-     * Size of the additional area around the icon bounding box used for detecting symbol collisions.
-     * </p>
-     *
-     * @return property wrapper value around Float
-     */
-    public Float getIconPadding() {
-        Float[] values = layer.getIconPadding().value;
-        return (values != null && values.length > 0) ? values[0] : null;
-    }
-
-    /**
-     * Set the IconPadding property
-     * <p>
-     * Size of the additional area around the icon bounding box used for detecting symbol collisions.
-     * </p>
-     *
-     * @param value property wrapper value around Float
-     */
-    public void setIconPadding(Float value) {
-        PropertyValue propertyValue = iconPadding(value);
-        constantPropertyUsageMap.put(PROPERTY_ICON_PADDING, propertyValue);
-        layer.setProperties(propertyValue);
-    }
-
-    /**
      * Get the IconKeepUpright property
      * <p>
      * If true, the icon may be flipped to prevent it from being rendered upside-down.
@@ -741,7 +720,7 @@ public class SymbolManager extends AnnotationManager<SymbolLayer, Symbol, Symbol
     /**
      * Get the TextVariableAnchor property
      * <p>
-     * To increase the chance of placing high-priority labels on the map, you can provide an array of {@link Property.TEXT_ANCHOR} locations: the render will attempt to place the label at each location, in order, before moving onto the next label. Use `text-justify: auto` to choose justification based on anchor position. To apply an offset, use the {@link PropertyFactory#textRadialOffset} instead of the two-dimensional {@link PropertyFactory#textOffset}.
+     * To increase the chance of placing high-priority labels on the map, you can provide an array of {@link Property.TEXT_ANCHOR} locations: the renderer will attempt to place the label at each location, in order, before moving onto the next label. Use `text-justify: auto` to choose justification based on anchor position. To apply an offset, use the {@link PropertyFactory#textRadialOffset} or the two-dimensional {@link PropertyFactory#textOffset}.
      * </p>
      *
      * @return property wrapper value around String[]
@@ -753,7 +732,7 @@ public class SymbolManager extends AnnotationManager<SymbolLayer, Symbol, Symbol
     /**
      * Set the TextVariableAnchor property
      * <p>
-     * To increase the chance of placing high-priority labels on the map, you can provide an array of {@link Property.TEXT_ANCHOR} locations: the render will attempt to place the label at each location, in order, before moving onto the next label. Use `text-justify: auto` to choose justification based on anchor position. To apply an offset, use the {@link PropertyFactory#textRadialOffset} instead of the two-dimensional {@link PropertyFactory#textOffset}.
+     * To increase the chance of placing high-priority labels on the map, you can provide an array of {@link Property.TEXT_ANCHOR} locations: the renderer will attempt to place the label at each location, in order, before moving onto the next label. Use `text-justify: auto` to choose justification based on anchor position. To apply an offset, use the {@link PropertyFactory#textRadialOffset} or the two-dimensional {@link PropertyFactory#textOffset}.
      * </p>
      *
      * @param value property wrapper value around String[]
@@ -787,6 +766,32 @@ public class SymbolManager extends AnnotationManager<SymbolLayer, Symbol, Symbol
     public void setTextMaxAngle(Float value) {
         PropertyValue propertyValue = textMaxAngle(value);
         constantPropertyUsageMap.put(PROPERTY_TEXT_MAX_ANGLE, propertyValue);
+        layer.setProperties(propertyValue);
+    }
+
+    /**
+     * Get the TextWritingMode property
+     * <p>
+     * The property allows control over a symbol's orientation. Note that the property values act as a hint, so that a symbol whose language doesn’t support the provided orientation will be laid out in its natural orientation. Example: English point symbol will be rendered horizontally even if array value contains single 'vertical' enum value. The order of elements in an array define priority order for the placement of an orientation variant.
+     * </p>
+     *
+     * @return property wrapper value around String[]
+     */
+    public String[] getTextWritingMode() {
+        return layer.getTextWritingMode().value;
+    }
+
+    /**
+     * Set the TextWritingMode property
+     * <p>
+     * The property allows control over a symbol's orientation. Note that the property values act as a hint, so that a symbol whose language doesn’t support the provided orientation will be laid out in its natural orientation. Example: English point symbol will be rendered horizontally even if array value contains single 'vertical' enum value. The order of elements in an array define priority order for the placement of an orientation variant.
+     * </p>
+     *
+     * @param value property wrapper value around String[]
+     */
+    public void setTextWritingMode(String[] value) {
+        PropertyValue propertyValue = textWritingMode(value);
+        constantPropertyUsageMap.put(PROPERTY_TEXT_WRITING_MODE, propertyValue);
         layer.setProperties(propertyValue);
     }
 

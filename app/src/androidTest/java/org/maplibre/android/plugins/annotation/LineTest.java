@@ -64,6 +64,19 @@ public class LineTest extends BaseActivityTest {
     }
 
     @Test
+    public void testLineSortKey() {
+        validateTestSetup();
+        setupAnnotation();
+        Timber.i("line-sort-key");
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
+            assertNotNull(line);
+
+            line.setLineSortKey(2.0f);
+            assertEquals((Float) line.getLineSortKey(), (Float) 2.0f);
+        });
+    }
+
+    @Test
     public void testLineOpacity() {
         validateTestSetup();
         setupAnnotation();
@@ -151,6 +164,19 @@ public class LineTest extends BaseActivityTest {
 
             line.setLineBlur(2.0f);
             assertEquals((Float) line.getLineBlur(), (Float) 2.0f);
+        });
+    }
+
+    @Test
+    public void testLineDasharray() {
+        validateTestSetup();
+        setupAnnotation();
+        Timber.i("line-dasharray");
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
+            assertNotNull(line);
+
+            line.setLineDasharray(new Float[]{});
+            assertEquals((Float[]) line.getLineDasharray(), (Float[]) new Float[]{});
         });
     }
 

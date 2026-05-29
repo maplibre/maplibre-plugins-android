@@ -54,6 +54,19 @@ public class FillTest extends BaseActivityTest {
     }
 
     @Test
+    public void testFillSortKey() {
+        validateTestSetup();
+        setupAnnotation();
+        Timber.i("fill-sort-key");
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
+            assertNotNull(fill);
+
+            fill.setFillSortKey(2.0f);
+            assertEquals((Float) fill.getFillSortKey(), (Float) 2.0f);
+        });
+    }
+
+    @Test
     public void testFillOpacity() {
         validateTestSetup();
         setupAnnotation();

@@ -32,6 +32,7 @@ public class SymbolOptions extends Options<Symbol> {
     private Float iconSize;
     private String iconImage;
     private Float iconRotate;
+    private Float iconPadding;
     private Float[] iconOffset;
     private String iconAnchor;
     private String textField;
@@ -60,6 +61,7 @@ public class SymbolOptions extends Options<Symbol> {
     static final String PROPERTY_ICON_SIZE = "icon-size";
     static final String PROPERTY_ICON_IMAGE = "icon-image";
     static final String PROPERTY_ICON_ROTATE = "icon-rotate";
+    static final String PROPERTY_ICON_PADDING = "icon-padding";
     static final String PROPERTY_ICON_OFFSET = "icon-offset";
     static final String PROPERTY_ICON_ANCHOR = "icon-anchor";
     static final String PROPERTY_TEXT_FIELD = "text-field";
@@ -88,7 +90,7 @@ public class SymbolOptions extends Options<Symbol> {
     /**
      * Set symbol-sort-key to initialise the symbol with.
      * <p>
-     * Sorts features in ascending order based on this value. Features with a higher sort key will appear above features with a lower sort key when they overlap. Features with a lower sort key will have priority over other features when doing placement.
+     * Sorts features in ascending order based on this value. Features with lower sort keys are drawn and placed first.  When {@link PropertyFactory#iconAllowOverlap} or {@link PropertyFactory#textAllowOverlap} is `false`, features with a lower sort key will have priority during placement. When {@link PropertyFactory#iconAllowOverlap} or {@link PropertyFactory#textAllowOverlap} is set to `true`, features with a higher sort key will overlap over features with a lower sort key.
      * </p>
      *
      * @param symbolSortKey the symbol-sort-key value
@@ -102,7 +104,7 @@ public class SymbolOptions extends Options<Symbol> {
     /**
      * Get the current configured  symbol-sort-key for the symbol
      * <p>
-     * Sorts features in ascending order based on this value. Features with a higher sort key will appear above features with a lower sort key when they overlap. Features with a lower sort key will have priority over other features when doing placement.
+     * Sorts features in ascending order based on this value. Features with lower sort keys are drawn and placed first.  When {@link PropertyFactory#iconAllowOverlap} or {@link PropertyFactory#textAllowOverlap} is `false`, features with a lower sort key will have priority during placement. When {@link PropertyFactory#iconAllowOverlap} or {@link PropertyFactory#textAllowOverlap} is set to `true`, features with a higher sort key will overlap over features with a lower sort key.
      * </p>
      *
      * @return symbolSortKey value
@@ -190,6 +192,32 @@ public class SymbolOptions extends Options<Symbol> {
     }
 
     /**
+     * Set icon-padding to initialise the symbol with.
+     * <p>
+     * Size of additional area round the icon bounding box used for detecting symbol collisions.
+     * </p>
+     *
+     * @param iconPadding the icon-padding value
+     * @return this
+     */
+    public SymbolOptions withIconPadding(Float iconPadding) {
+        this.iconPadding = iconPadding;
+        return this;
+    }
+
+    /**
+     * Get the current configured  icon-padding for the symbol
+     * <p>
+     * Size of additional area round the icon bounding box used for detecting symbol collisions.
+     * </p>
+     *
+     * @return iconPadding value
+     */
+    public Float getIconPadding() {
+        return iconPadding;
+    }
+
+    /**
      * Set icon-offset to initialise the symbol with.
      * <p>
      * Offset distance of icon from its anchor. Positive values indicate right and down, while negative values indicate left and up. Each component is multiplied by the value of {@link PropertyFactory#iconSize} to obtain the final offset in density-independent pixels. When combined with {@link PropertyFactory#iconRotate} the offset will be as if the rotated direction was up.
@@ -270,7 +298,7 @@ public class SymbolOptions extends Options<Symbol> {
     /**
      * Set text-font to initialise the symbol with.
      * <p>
-     * Font stack to use for displaying text.
+     * Fonts to use for displaying text. If the `glyphs` root property is specified, this array is joined together and interpreted as a font stack name. Otherwise, it is interpreted as a cascading fallback list of local font names.
      * </p>
      *
      * @param textFont the text-font value
@@ -284,7 +312,7 @@ public class SymbolOptions extends Options<Symbol> {
     /**
      * Get the current configured  text-font for the symbol
      * <p>
-     * Font stack to use for displaying text.
+     * Fonts to use for displaying text. If the `glyphs` root property is specified, this array is joined together and interpreted as a font stack name. Otherwise, it is interpreted as a cascading fallback list of local font names.
      * </p>
      *
      * @return textFont value
@@ -400,7 +428,7 @@ public class SymbolOptions extends Options<Symbol> {
     /**
      * Set text-radial-offset to initialise the symbol with.
      * <p>
-     * Radial offset of text, in the direction of the symbol's anchor. Useful in combination with {@link PropertyFactory#textVariableAnchor}, which doesn't support the two-dimensional {@link PropertyFactory#textOffset}.
+     * Radial offset of text, in the direction of the symbol's anchor. Useful in combination with {@link PropertyFactory#textVariableAnchor}, which defaults to using the two-dimensional {@link PropertyFactory#textOffset} if present.
      * </p>
      *
      * @param textRadialOffset the text-radial-offset value
@@ -414,7 +442,7 @@ public class SymbolOptions extends Options<Symbol> {
     /**
      * Get the current configured  text-radial-offset for the symbol
      * <p>
-     * Radial offset of text, in the direction of the symbol's anchor. Useful in combination with {@link PropertyFactory#textVariableAnchor}, which doesn't support the two-dimensional {@link PropertyFactory#textOffset}.
+     * Radial offset of text, in the direction of the symbol's anchor. Useful in combination with {@link PropertyFactory#textVariableAnchor}, which defaults to using the two-dimensional {@link PropertyFactory#textOffset} if present.
      * </p>
      *
      * @return textRadialOffset value
@@ -504,7 +532,7 @@ public class SymbolOptions extends Options<Symbol> {
     /**
      * Set text-offset to initialise the symbol with.
      * <p>
-     * Offset distance of text from its anchor. Positive values indicate right and down, while negative values indicate left and up.
+     * Offset distance of text from its anchor. Positive values indicate right and down, while negative values indicate left and up. If used with text-variable-anchor, input values will be taken as absolute values. Offsets along the x- and y-axis will be applied automatically based on the anchor position.
      * </p>
      *
      * @param textOffset the text-offset value
@@ -518,7 +546,7 @@ public class SymbolOptions extends Options<Symbol> {
     /**
      * Get the current configured  text-offset for the symbol
      * <p>
-     * Offset distance of text from its anchor. Positive values indicate right and down, while negative values indicate left and up.
+     * Offset distance of text from its anchor. Positive values indicate right and down, while negative values indicate left and up. If used with text-variable-anchor, input values will be taken as absolute values. Offsets along the x- and y-axis will be applied automatically based on the anchor position.
      * </p>
      *
      * @return textOffset value
@@ -556,7 +584,7 @@ public class SymbolOptions extends Options<Symbol> {
     /**
      * Set icon-color to initialise the symbol with.
      * <p>
-     * The color of the icon. This can only be used with sdf icons.
+     * The color of the icon. This can only be used with SDF icons.
      * </p>
      *
      * @param iconColor the icon-color value
@@ -570,7 +598,7 @@ public class SymbolOptions extends Options<Symbol> {
     /**
      * Get the current configured  icon-color for the symbol
      * <p>
-     * The color of the icon. This can only be used with sdf icons.
+     * The color of the icon. This can only be used with SDF icons.
      * </p>
      *
      * @return iconColor value
@@ -608,7 +636,9 @@ public class SymbolOptions extends Options<Symbol> {
     /**
      * Set icon-halo-width to initialise the symbol with.
      * <p>
-     * Distance of halo to the icon outline.
+     * Distance of halo to the icon outline. 
+
+The unit is in density-independent pixels only for SDF sprites that were created with a blur radius of 8, multiplied by the display density. I.e., the radius needs to be 16 for `@2x` sprites, etc.
      * </p>
      *
      * @param iconHaloWidth the icon-halo-width value
@@ -622,7 +652,9 @@ public class SymbolOptions extends Options<Symbol> {
     /**
      * Get the current configured  icon-halo-width for the symbol
      * <p>
-     * Distance of halo to the icon outline.
+     * Distance of halo to the icon outline. 
+
+The unit is in density-independent pixels only for SDF sprites that were created with a blur radius of 8, multiplied by the display density. I.e., the radius needs to be 16 for `@2x` sprites, etc.
      * </p>
      *
      * @return iconHaloWidth value
@@ -880,6 +912,7 @@ public class SymbolOptions extends Options<Symbol> {
         jsonObject.addProperty(PROPERTY_ICON_SIZE, iconSize);
         jsonObject.addProperty(PROPERTY_ICON_IMAGE, iconImage);
         jsonObject.addProperty(PROPERTY_ICON_ROTATE, iconRotate);
+        jsonObject.addProperty(PROPERTY_ICON_PADDING, iconPadding);
         jsonObject.add(PROPERTY_ICON_OFFSET, convertArray(iconOffset));
         jsonObject.addProperty(PROPERTY_ICON_ANCHOR, iconAnchor);
         jsonObject.addProperty(PROPERTY_TEXT_FIELD, textField);
@@ -936,6 +969,9 @@ public class SymbolOptions extends Options<Symbol> {
         }
         if (feature.hasProperty(PROPERTY_ICON_ROTATE)) {
             options.iconRotate = feature.getProperty(PROPERTY_ICON_ROTATE).getAsFloat();
+        }
+        if (feature.hasProperty(PROPERTY_ICON_PADDING)) {
+            options.iconPadding = feature.getProperty(PROPERTY_ICON_PADDING).getAsFloat();
         }
         if (feature.hasProperty(PROPERTY_ICON_OFFSET)) {
             options.iconOffset = toFloatArray(feature.getProperty(PROPERTY_ICON_OFFSET).getAsJsonArray());

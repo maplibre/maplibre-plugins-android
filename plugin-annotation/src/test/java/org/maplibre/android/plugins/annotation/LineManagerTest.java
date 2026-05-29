@@ -158,12 +158,14 @@ public class LineManagerTest {
 
         Feature feature = Feature.fromGeometry(geometry);
         feature.addStringProperty("line-join", LINE_JOIN_BEVEL);
+        feature.addNumberProperty("line-sort-key", 2.0f);
         feature.addNumberProperty("line-opacity", 2.0f);
         feature.addStringProperty("line-color", "rgba(0, 0, 0, 1)");
         feature.addNumberProperty("line-width", 2.0f);
         feature.addNumberProperty("line-gap-width", 2.0f);
         feature.addNumberProperty("line-offset", 2.0f);
         feature.addNumberProperty("line-blur", 2.0f);
+        feature.addProperty("line-dasharray", convertArray(new Float[]{}));
         feature.addStringProperty("line-pattern", "pedestrian-polygon");
         feature.addBooleanProperty("is-draggable", true);
 
@@ -172,12 +174,14 @@ public class LineManagerTest {
 
         assertEquals(line.geometry, geometry);
         assertEquals(line.getLineJoin(), LINE_JOIN_BEVEL);
+        assertEquals(line.getLineSortKey(), 2.0f);
         assertEquals(line.getLineOpacity(), 2.0f);
         assertEquals(line.getLineColor(), "rgba(0, 0, 0, 1)");
         assertEquals(line.getLineWidth(), 2.0f);
         assertEquals(line.getLineGapWidth(), 2.0f);
         assertEquals(line.getLineOffset(), 2.0f);
         assertEquals(line.getLineBlur(), 2.0f);
+        assertTrue(Arrays.equals(line.getLineDasharray(), new Float[]{}));
         assertEquals(line.getLinePattern(), "pedestrian-polygon");
         assertTrue(line.isDraggable());
     }
@@ -280,6 +284,23 @@ public class LineManagerTest {
     }
 
     @Test
+    public void testLineSortKeyLayerProperty() {
+        lineManager = new LineManager(mapView, maplibreMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
+        verify(lineLayer, times(0)).setProperties(argThat(new PropertyValueMatcher(lineSortKey(get("line-sort-key")))));
+
+        List<LatLng> latLngs = new ArrayList<>();
+        latLngs.add(new LatLng());
+        latLngs.add(new LatLng(1, 1));
+        LineOptions options = new LineOptions().withLatLngs(latLngs).withLineSortKey(2.0f);
+        lineManager.create(options);
+        lineManager.updateSourceNow();
+        verify(lineLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(lineSortKey(get("line-sort-key")))));
+
+        lineManager.create(options);
+        verify(lineLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(lineSortKey(get("line-sort-key")))));
+    }
+
+    @Test
     public void testLineOpacityLayerProperty() {
         lineManager = new LineManager(mapView, maplibreMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
         verify(lineLayer, times(0)).setProperties(argThat(new PropertyValueMatcher(lineOpacity(get("line-opacity")))));
@@ -379,6 +400,23 @@ public class LineManagerTest {
 
         lineManager.create(options);
         verify(lineLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(lineBlur(get("line-blur")))));
+    }
+
+    @Test
+    public void testLineDasharrayLayerProperty() {
+        lineManager = new LineManager(mapView, maplibreMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
+        verify(lineLayer, times(0)).setProperties(argThat(new PropertyValueMatcher(lineDasharray(get("line-dasharray")))));
+
+        List<LatLng> latLngs = new ArrayList<>();
+        latLngs.add(new LatLng());
+        latLngs.add(new LatLng(1, 1));
+        LineOptions options = new LineOptions().withLatLngs(latLngs).withLineDasharray(new Float[]{});
+        lineManager.create(options);
+        lineManager.updateSourceNow();
+        verify(lineLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(lineDasharray(get("line-dasharray")))));
+
+        lineManager.create(options);
+        verify(lineLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(lineDasharray(get("line-dasharray")))));
     }
 
     @Test

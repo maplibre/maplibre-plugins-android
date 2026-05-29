@@ -45,6 +45,9 @@ public class Circle extends Annotation<Point> {
 
     @Override
     void setUsedDataDrivenProperties() {
+        if (!(jsonObject.get(CircleOptions.PROPERTY_CIRCLE_SORT_KEY) instanceof JsonNull)) {
+            annotationManager.enableDataDrivenProperty(CircleOptions.PROPERTY_CIRCLE_SORT_KEY);
+        }
         if (!(jsonObject.get(CircleOptions.PROPERTY_CIRCLE_RADIUS) instanceof JsonNull)) {
             annotationManager.enableDataDrivenProperty(CircleOptions.PROPERTY_CIRCLE_RADIUS);
         }
@@ -91,6 +94,33 @@ public class Circle extends Annotation<Point> {
     }
 
     // Property accessors
+
+    /**
+     * Get the CircleSortKey property
+     * <p>
+     * Sorts features in ascending order based on this value. Features with a higher sort key will appear above features with a lower sort key.
+     * </p>
+     *
+     * @return property wrapper value around Float
+     */
+    public Float getCircleSortKey() {
+        return jsonObject.get(CircleOptions.PROPERTY_CIRCLE_SORT_KEY).getAsFloat();
+    }
+
+    /**
+     * Set the CircleSortKey property
+     * <p>
+     * Sorts features in ascending order based on this value. Features with a higher sort key will appear above features with a lower sort key.
+     * </p>
+     * <p>
+     * To update the circle on the map use {@link CircleManager#update(Annotation)}.
+     * <p>
+     *
+     * @param value constant property value for Float
+     */
+    public void setCircleSortKey(Float value) {
+        jsonObject.addProperty(CircleOptions.PROPERTY_CIRCLE_SORT_KEY, value);
+    }
 
     /**
      * Get the CircleRadius property

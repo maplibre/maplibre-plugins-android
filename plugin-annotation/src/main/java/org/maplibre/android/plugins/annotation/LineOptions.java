@@ -29,21 +29,25 @@ public class LineOptions extends Options<Line> {
     private JsonElement data;
     private LineString geometry;
     private String lineJoin;
+    private Float lineSortKey;
     private Float lineOpacity;
     private String lineColor;
     private Float lineWidth;
     private Float lineGapWidth;
     private Float lineOffset;
     private Float lineBlur;
+    private Float[] lineDasharray;
     private String linePattern;
 
     static final String PROPERTY_LINE_JOIN = "line-join";
+    static final String PROPERTY_LINE_SORT_KEY = "line-sort-key";
     static final String PROPERTY_LINE_OPACITY = "line-opacity";
     static final String PROPERTY_LINE_COLOR = "line-color";
     static final String PROPERTY_LINE_WIDTH = "line-width";
     static final String PROPERTY_LINE_GAP_WIDTH = "line-gap-width";
     static final String PROPERTY_LINE_OFFSET = "line-offset";
     static final String PROPERTY_LINE_BLUR = "line-blur";
+    static final String PROPERTY_LINE_DASHARRAY = "line-dasharray";
     static final String PROPERTY_LINE_PATTERN = "line-pattern";
     private static final String PROPERTY_IS_DRAGGABLE = "is-draggable";
 
@@ -71,6 +75,32 @@ public class LineOptions extends Options<Line> {
      */
     public String getLineJoin() {
         return lineJoin;
+    }
+
+    /**
+     * Set line-sort-key to initialise the line with.
+     * <p>
+     * Sorts features in ascending order based on this value. Features with a higher sort key will appear above features with a lower sort key.
+     * </p>
+     *
+     * @param lineSortKey the line-sort-key value
+     * @return this
+     */
+    public LineOptions withLineSortKey(Float lineSortKey) {
+        this.lineSortKey = lineSortKey;
+        return this;
+    }
+
+    /**
+     * Get the current configured  line-sort-key for the line
+     * <p>
+     * Sorts features in ascending order based on this value. Features with a higher sort key will appear above features with a lower sort key.
+     * </p>
+     *
+     * @return lineSortKey value
+     */
+    public Float getLineSortKey() {
+        return lineSortKey;
     }
 
     /**
@@ -230,6 +260,32 @@ public class LineOptions extends Options<Line> {
     }
 
     /**
+     * Set line-dasharray to initialise the line with.
+     * <p>
+     * Specifies the lengths of the alternating dashes and gaps that form the dash pattern. The lengths are later scaled by the line width. To convert a dash length to density-independent pixels, multiply the length by the current line width. GeoJSON sources with `lineMetrics: true` specified won't render dashed lines to the expected scale. Zoom-dependent expressions will be evaluated only at integer zoom levels. The only way to create an array value is using `["literal", [...]]`; arrays cannot be read from or derived from feature properties.
+     * </p>
+     *
+     * @param lineDasharray the line-dasharray value
+     * @return this
+     */
+    public LineOptions withLineDasharray(Float[] lineDasharray) {
+        this.lineDasharray = lineDasharray;
+        return this;
+    }
+
+    /**
+     * Get the current configured  line-dasharray for the line
+     * <p>
+     * Specifies the lengths of the alternating dashes and gaps that form the dash pattern. The lengths are later scaled by the line width. To convert a dash length to density-independent pixels, multiply the length by the current line width. GeoJSON sources with `lineMetrics: true` specified won't render dashed lines to the expected scale. Zoom-dependent expressions will be evaluated only at integer zoom levels. The only way to create an array value is using `["literal", [...]]`; arrays cannot be read from or derived from feature properties.
+     * </p>
+     *
+     * @return lineDasharray value
+     */
+    public Float[] getLineDasharray() {
+        return lineDasharray;
+    }
+
+    /**
      * Set line-pattern to initialise the line with.
      * <p>
      * Name of image in sprite to use for drawing image lines. For seamless patterns, image width must be a factor of two (2, 4, 8, ..., 512). Note that zoom-dependent expressions will be evaluated only at integer zoom levels.
@@ -352,12 +408,14 @@ public class LineOptions extends Options<Line> {
         }
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty(PROPERTY_LINE_JOIN, lineJoin);
+        jsonObject.addProperty(PROPERTY_LINE_SORT_KEY, lineSortKey);
         jsonObject.addProperty(PROPERTY_LINE_OPACITY, lineOpacity);
         jsonObject.addProperty(PROPERTY_LINE_COLOR, lineColor);
         jsonObject.addProperty(PROPERTY_LINE_WIDTH, lineWidth);
         jsonObject.addProperty(PROPERTY_LINE_GAP_WIDTH, lineGapWidth);
         jsonObject.addProperty(PROPERTY_LINE_OFFSET, lineOffset);
         jsonObject.addProperty(PROPERTY_LINE_BLUR, lineBlur);
+        jsonObject.add(PROPERTY_LINE_DASHARRAY, convertArray(lineDasharray));
         jsonObject.addProperty(PROPERTY_LINE_PATTERN, linePattern);
         Line line = new Line(id, annotationManager, jsonObject, geometry);
         line.setDraggable(isDraggable);
@@ -384,6 +442,9 @@ public class LineOptions extends Options<Line> {
         if (feature.hasProperty(PROPERTY_LINE_JOIN)) {
             options.lineJoin = feature.getProperty(PROPERTY_LINE_JOIN).getAsString();
         }
+        if (feature.hasProperty(PROPERTY_LINE_SORT_KEY)) {
+            options.lineSortKey = feature.getProperty(PROPERTY_LINE_SORT_KEY).getAsFloat();
+        }
         if (feature.hasProperty(PROPERTY_LINE_OPACITY)) {
             options.lineOpacity = feature.getProperty(PROPERTY_LINE_OPACITY).getAsFloat();
         }
@@ -401,6 +462,9 @@ public class LineOptions extends Options<Line> {
         }
         if (feature.hasProperty(PROPERTY_LINE_BLUR)) {
             options.lineBlur = feature.getProperty(PROPERTY_LINE_BLUR).getAsFloat();
+        }
+        if (feature.hasProperty(PROPERTY_LINE_DASHARRAY)) {
+            options.lineDasharray = toFloatArray(feature.getProperty(PROPERTY_LINE_DASHARRAY).getAsJsonArray());
         }
         if (feature.hasProperty(PROPERTY_LINE_PATTERN)) {
             options.linePattern = feature.getProperty(PROPERTY_LINE_PATTERN).getAsString();

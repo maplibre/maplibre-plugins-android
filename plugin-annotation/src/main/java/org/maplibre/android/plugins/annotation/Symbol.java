@@ -57,6 +57,9 @@ public class Symbol extends Annotation<Point> {
         if (!(jsonObject.get(SymbolOptions.PROPERTY_ICON_ROTATE) instanceof JsonNull)) {
             annotationManager.enableDataDrivenProperty(SymbolOptions.PROPERTY_ICON_ROTATE);
         }
+        if (!(jsonObject.get(SymbolOptions.PROPERTY_ICON_PADDING) instanceof JsonNull)) {
+            annotationManager.enableDataDrivenProperty(SymbolOptions.PROPERTY_ICON_PADDING);
+        }
         if (!(jsonObject.get(SymbolOptions.PROPERTY_ICON_OFFSET) instanceof JsonNull)) {
             annotationManager.enableDataDrivenProperty(SymbolOptions.PROPERTY_ICON_OFFSET);
         }
@@ -155,7 +158,7 @@ public class Symbol extends Annotation<Point> {
     /**
      * Get the SymbolSortKey property
      * <p>
-     * Sorts features in ascending order based on this value. Features with a higher sort key will appear above features with a lower sort key when they overlap. Features with a lower sort key will have priority over other features when doing placement.
+     * Sorts features in ascending order based on this value. Features with lower sort keys are drawn and placed first.  When {@link PropertyFactory#iconAllowOverlap} or {@link PropertyFactory#textAllowOverlap} is `false`, features with a lower sort key will have priority during placement. When {@link PropertyFactory#iconAllowOverlap} or {@link PropertyFactory#textAllowOverlap} is set to `true`, features with a higher sort key will overlap over features with a lower sort key.
      * </p>
      *
      * @return property wrapper value around Float
@@ -167,7 +170,7 @@ public class Symbol extends Annotation<Point> {
     /**
      * Set the SymbolSortKey property
      * <p>
-     * Sorts features in ascending order based on this value. Features with a higher sort key will appear above features with a lower sort key when they overlap. Features with a lower sort key will have priority over other features when doing placement.
+     * Sorts features in ascending order based on this value. Features with lower sort keys are drawn and placed first.  When {@link PropertyFactory#iconAllowOverlap} or {@link PropertyFactory#textAllowOverlap} is `false`, features with a lower sort key will have priority during placement. When {@link PropertyFactory#iconAllowOverlap} or {@link PropertyFactory#textAllowOverlap} is set to `true`, features with a higher sort key will overlap over features with a lower sort key.
      * </p>
      * <p>
      * To update the symbol on the map use {@link SymbolManager#update(Annotation)}.
@@ -261,6 +264,33 @@ public class Symbol extends Annotation<Point> {
     }
 
     /**
+     * Get the IconPadding property
+     * <p>
+     * Size of additional area round the icon bounding box used for detecting symbol collisions.
+     * </p>
+     *
+     * @return property wrapper value around Float
+     */
+    public Float getIconPadding() {
+        return jsonObject.get(SymbolOptions.PROPERTY_ICON_PADDING).getAsFloat();
+    }
+
+    /**
+     * Set the IconPadding property
+     * <p>
+     * Size of additional area round the icon bounding box used for detecting symbol collisions.
+     * </p>
+     * <p>
+     * To update the symbol on the map use {@link SymbolManager#update(Annotation)}.
+     * <p>
+     *
+     * @param value constant property value for Float
+     */
+    public void setIconPadding(Float value) {
+        jsonObject.addProperty(SymbolOptions.PROPERTY_ICON_PADDING, value);
+    }
+
+    /**
      * Get the IconOffset property
      * <p>
      * Offset distance of icon from its anchor. Positive values indicate right and down, while negative values indicate left and up. Each component is multiplied by the value of {@link PropertyFactory#iconSize} to obtain the final offset in density-independent pixels. When combined with {@link PropertyFactory#iconRotate} the offset will be as if the rotated direction was up.
@@ -348,7 +378,7 @@ public class Symbol extends Annotation<Point> {
     /**
      * Get the TextFont property
      * <p>
-     * Font stack to use for displaying text.
+     * Fonts to use for displaying text. If the `glyphs` root property is specified, this array is joined together and interpreted as a font stack name. Otherwise, it is interpreted as a cascading fallback list of local font names.
      * </p>
      *
      * @return property wrapper value around String[]
@@ -365,7 +395,7 @@ public class Symbol extends Annotation<Point> {
     /**
      * Set the TextFont property.
      * <p>
-     * Font stack to use for displaying text.
+     * Fonts to use for displaying text. If the `glyphs` root property is specified, this array is joined together and interpreted as a font stack name. Otherwise, it is interpreted as a cascading fallback list of local font names.
      * </p>
      * <p>
      * To update the symbol on the map use {@link SymbolManager#update(Annotation)}.
@@ -492,7 +522,7 @@ public class Symbol extends Annotation<Point> {
     /**
      * Get the TextRadialOffset property
      * <p>
-     * Radial offset of text, in the direction of the symbol's anchor. Useful in combination with {@link PropertyFactory#textVariableAnchor}, which doesn't support the two-dimensional {@link PropertyFactory#textOffset}.
+     * Radial offset of text, in the direction of the symbol's anchor. Useful in combination with {@link PropertyFactory#textVariableAnchor}, which defaults to using the two-dimensional {@link PropertyFactory#textOffset} if present.
      * </p>
      *
      * @return property wrapper value around Float
@@ -504,7 +534,7 @@ public class Symbol extends Annotation<Point> {
     /**
      * Set the TextRadialOffset property
      * <p>
-     * Radial offset of text, in the direction of the symbol's anchor. Useful in combination with {@link PropertyFactory#textVariableAnchor}, which doesn't support the two-dimensional {@link PropertyFactory#textOffset}.
+     * Radial offset of text, in the direction of the symbol's anchor. Useful in combination with {@link PropertyFactory#textVariableAnchor}, which defaults to using the two-dimensional {@link PropertyFactory#textOffset} if present.
      * </p>
      * <p>
      * To update the symbol on the map use {@link SymbolManager#update(Annotation)}.
@@ -600,7 +630,7 @@ public class Symbol extends Annotation<Point> {
     /**
      * Get the TextOffset property
      * <p>
-     * Offset distance of text from its anchor. Positive values indicate right and down, while negative values indicate left and up.
+     * Offset distance of text from its anchor. Positive values indicate right and down, while negative values indicate left and up. If used with text-variable-anchor, input values will be taken as absolute values. Offsets along the x- and y-axis will be applied automatically based on the anchor position.
      * </p>
      *
      * @return PointF value for Float[]
@@ -613,7 +643,7 @@ public class Symbol extends Annotation<Point> {
     /**
      * Set the TextOffset property.
      * <p>
-     * Offset distance of text from its anchor. Positive values indicate right and down, while negative values indicate left and up.
+     * Offset distance of text from its anchor. Positive values indicate right and down, while negative values indicate left and up. If used with text-variable-anchor, input values will be taken as absolute values. Offsets along the x- and y-axis will be applied automatically based on the anchor position.
      * </p>
      * <p>
      * To update the symbol on the map use {@link SymbolManager#update(Annotation)}.
@@ -658,7 +688,7 @@ public class Symbol extends Annotation<Point> {
     /**
      * Get the IconColor property
      * <p>
-     * The color of the icon. This can only be used with sdf icons.
+     * The color of the icon. This can only be used with SDF icons.
      * </p>
      *
      * @return color value for String
@@ -671,7 +701,7 @@ public class Symbol extends Annotation<Point> {
     /**
      * Get the IconColor property
      * <p>
-     * The color of the icon. This can only be used with sdf icons.
+     * The color of the icon. This can only be used with SDF icons.
      * </p>
      *
      * @return color value for String
@@ -683,7 +713,7 @@ public class Symbol extends Annotation<Point> {
     /**
      * Set the IconColor property
      * <p>
-     * The color of the icon. This can only be used with sdf icons.
+     * The color of the icon. This can only be used with SDF icons.
      * </p>
      * <p>
      * To update the symbol on the map use {@link SymbolManager#update(Annotation)}.
@@ -698,7 +728,7 @@ public class Symbol extends Annotation<Point> {
     /**
      * Set the IconColor property
      * <p>
-     * The color of the icon. This can only be used with sdf icons.
+     * The color of the icon. This can only be used with SDF icons.
      * </p>
      * <p>
      * To update the symbol on the map use {@link SymbolManager#update(Annotation)}.
@@ -768,7 +798,9 @@ public class Symbol extends Annotation<Point> {
     /**
      * Get the IconHaloWidth property
      * <p>
-     * Distance of halo to the icon outline.
+     * Distance of halo to the icon outline. 
+
+The unit is in density-independent pixels only for SDF sprites that were created with a blur radius of 8, multiplied by the display density. I.e., the radius needs to be 16 for `@2x` sprites, etc.
      * </p>
      *
      * @return property wrapper value around Float
@@ -780,7 +812,9 @@ public class Symbol extends Annotation<Point> {
     /**
      * Set the IconHaloWidth property
      * <p>
-     * Distance of halo to the icon outline.
+     * Distance of halo to the icon outline. 
+
+The unit is in density-independent pixels only for SDF sprites that were created with a blur radius of 8, multiplied by the display density. I.e., the radius needs to be 16 for `@2x` sprites, etc.
      * </p>
      * <p>
      * To update the symbol on the map use {@link SymbolManager#update(Annotation)}.

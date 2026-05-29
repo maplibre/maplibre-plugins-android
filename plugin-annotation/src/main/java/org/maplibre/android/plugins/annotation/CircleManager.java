@@ -80,6 +80,7 @@ public class CircleManager extends AnnotationManager<CircleLayer, Circle, Circle
 
     @Override
     void initializeDataDrivenPropertyMap() {
+        dataDrivenPropertyUsageMap.put(CircleOptions.PROPERTY_CIRCLE_SORT_KEY, false);
         dataDrivenPropertyUsageMap.put(CircleOptions.PROPERTY_CIRCLE_RADIUS, false);
         dataDrivenPropertyUsageMap.put(CircleOptions.PROPERTY_CIRCLE_COLOR, false);
         dataDrivenPropertyUsageMap.put(CircleOptions.PROPERTY_CIRCLE_BLUR, false);
@@ -92,6 +93,9 @@ public class CircleManager extends AnnotationManager<CircleLayer, Circle, Circle
     @Override
     protected void setDataDrivenPropertyIsUsed(@NonNull String property) {
         switch (property) {
+            case CircleOptions.PROPERTY_CIRCLE_SORT_KEY:
+                layer.setProperties(circleSortKey(get(CircleOptions.PROPERTY_CIRCLE_SORT_KEY)));
+                break;
             case CircleOptions.PROPERTY_CIRCLE_RADIUS:
                 layer.setProperties(circleRadius(get(CircleOptions.PROPERTY_CIRCLE_RADIUS)));
                 break;
@@ -122,6 +126,7 @@ public class CircleManager extends AnnotationManager<CircleLayer, Circle, Circle
      * Circles are going to be created only for features with a matching geometry.
      * <p>
      * All supported properties are:<br>
+     * CircleOptions.PROPERTY_CIRCLE_SORT_KEY - Float<br>
      * CircleOptions.PROPERTY_CIRCLE_RADIUS - Float<br>
      * CircleOptions.PROPERTY_CIRCLE_COLOR - String<br>
      * CircleOptions.PROPERTY_CIRCLE_BLUR - Float<br>
@@ -148,6 +153,7 @@ public class CircleManager extends AnnotationManager<CircleLayer, Circle, Circle
      * Circles are going to be created only for features with a matching geometry.
      * <p>
      * All supported properties are:<br>
+     * CircleOptions.PROPERTY_CIRCLE_SORT_KEY - Float<br>
      * CircleOptions.PROPERTY_CIRCLE_RADIUS - Float<br>
      * CircleOptions.PROPERTY_CIRCLE_COLOR - String<br>
      * CircleOptions.PROPERTY_CIRCLE_BLUR - Float<br>

@@ -45,6 +45,9 @@ public class Fill extends Annotation<Polygon> {
 
     @Override
     void setUsedDataDrivenProperties() {
+        if (!(jsonObject.get(FillOptions.PROPERTY_FILL_SORT_KEY) instanceof JsonNull)) {
+            annotationManager.enableDataDrivenProperty(FillOptions.PROPERTY_FILL_SORT_KEY);
+        }
         if (!(jsonObject.get(FillOptions.PROPERTY_FILL_OPACITY) instanceof JsonNull)) {
             annotationManager.enableDataDrivenProperty(FillOptions.PROPERTY_FILL_OPACITY);
         }
@@ -102,6 +105,33 @@ public class Fill extends Annotation<Polygon> {
     }
 
     // Property accessors
+
+    /**
+     * Get the FillSortKey property
+     * <p>
+     * Sorts features in ascending order based on this value. Features with a higher sort key will appear above features with a lower sort key.
+     * </p>
+     *
+     * @return property wrapper value around Float
+     */
+    public Float getFillSortKey() {
+        return jsonObject.get(FillOptions.PROPERTY_FILL_SORT_KEY).getAsFloat();
+    }
+
+    /**
+     * Set the FillSortKey property
+     * <p>
+     * Sorts features in ascending order based on this value. Features with a higher sort key will appear above features with a lower sort key.
+     * </p>
+     * <p>
+     * To update the fill on the map use {@link FillManager#update(Annotation)}.
+     * <p>
+     *
+     * @param value constant property value for Float
+     */
+    public void setFillSortKey(Float value) {
+        jsonObject.addProperty(FillOptions.PROPERTY_FILL_SORT_KEY, value);
+    }
 
     /**
      * Get the FillOpacity property
