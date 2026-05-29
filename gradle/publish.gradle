@@ -1,12 +1,15 @@
-apply plugin: 'maven-publish'
-apply plugin: 'signing'
+apply plugin: 'com.vanniktech.maven.publish.base'
 apply from: '../gradle/artifact-settings.gradle'
-apply from: '../gradle/publish-root.gradle'
 
 version = project.ext.versionName
 group = project.ext.mapLibreArtifactGroupId
 
 afterEvaluate {
+    mavenPublishing {
+        publishToMavenCentral(true)
+        signAllPublications()
+    }
+
     publishing {
         publications {
             release(MavenPublication) {
@@ -44,8 +47,4 @@ afterEvaluate {
             }
         }
     }
-}
-
-signing {
-    sign publishing.publications
 }
