@@ -67,7 +67,7 @@ public class <%- camelize(type) %>Test extends BaseActivityTest {
     }
 <% for (const property of properties) { -%>
 <% if (supportsPropertyFunction(property)) { -%>
-<% if (propertyType(property).endsWith("Float[]")) { -%>
+<% if (isPointFProperty(property)) { -%>
 
     @Test
     public void test<%- camelize(property.name) %>() {

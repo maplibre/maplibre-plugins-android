@@ -157,19 +157,6 @@ public class SymbolManagerTest extends BaseActivityTest {
     }
 
     @Test
-    public void testIconPaddingAsConstant() {
-        validateTestSetup();
-        setupSymbolManager();
-        Timber.i("icon-padding");
-        invoke(maplibreMap, (uiController, maplibreMap) -> {
-            assertNotNull(symbolManager);
-
-            symbolManager.setIconPadding(2.0f);
-            assertEquals((Float) symbolManager.getIconPadding(), (Float) 2.0f);
-        });
-    }
-
-    @Test
     public void testIconKeepUprightAsConstant() {
         validateTestSetup();
         setupSymbolManager();
@@ -257,6 +244,19 @@ public class SymbolManagerTest extends BaseActivityTest {
 
             symbolManager.setTextMaxAngle(2.0f);
             assertEquals((Float) symbolManager.getTextMaxAngle(), (Float) 2.0f);
+        });
+    }
+
+    @Test
+    public void testTextWritingModeAsConstant() {
+        validateTestSetup();
+        setupSymbolManager();
+        Timber.i("text-writing-mode");
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
+            assertNotNull(symbolManager);
+
+            symbolManager.setTextWritingMode(new String[]{TEXT_WRITING_MODE_HORIZONTAL});
+            assertEquals((String[]) symbolManager.getTextWritingMode(), (String[]) new String[]{TEXT_WRITING_MODE_HORIZONTAL});
         });
     }
 

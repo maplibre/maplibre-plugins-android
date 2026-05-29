@@ -162,7 +162,7 @@ public class <%- camelize(type) %> extends Annotation<<%- geometryType(type) %>>
 <% for (const property of properties) { -%>
 <% if (supportsPropertyFunction(property)) { -%>
 <% if (propertyType(property).endsWith("[]")) { -%>
-<% if (propertyType(property).endsWith("Float[]")) { -%>
+<% if (isPointFProperty(property)) { -%>
 
     /**
      * Get the <%- camelize(property.name) %> property

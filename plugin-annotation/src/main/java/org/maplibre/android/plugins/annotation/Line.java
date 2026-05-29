@@ -48,6 +48,9 @@ public class Line extends Annotation<LineString> {
         if (!(jsonObject.get(LineOptions.PROPERTY_LINE_JOIN) instanceof JsonNull)) {
             annotationManager.enableDataDrivenProperty(LineOptions.PROPERTY_LINE_JOIN);
         }
+        if (!(jsonObject.get(LineOptions.PROPERTY_LINE_SORT_KEY) instanceof JsonNull)) {
+            annotationManager.enableDataDrivenProperty(LineOptions.PROPERTY_LINE_SORT_KEY);
+        }
         if (!(jsonObject.get(LineOptions.PROPERTY_LINE_OPACITY) instanceof JsonNull)) {
             annotationManager.enableDataDrivenProperty(LineOptions.PROPERTY_LINE_OPACITY);
         }
@@ -65,6 +68,9 @@ public class Line extends Annotation<LineString> {
         }
         if (!(jsonObject.get(LineOptions.PROPERTY_LINE_BLUR) instanceof JsonNull)) {
             annotationManager.enableDataDrivenProperty(LineOptions.PROPERTY_LINE_BLUR);
+        }
+        if (!(jsonObject.get(LineOptions.PROPERTY_LINE_DASHARRAY) instanceof JsonNull)) {
+            annotationManager.enableDataDrivenProperty(LineOptions.PROPERTY_LINE_DASHARRAY);
         }
         if (!(jsonObject.get(LineOptions.PROPERTY_LINE_PATTERN) instanceof JsonNull)) {
             annotationManager.enableDataDrivenProperty(LineOptions.PROPERTY_LINE_PATTERN);
@@ -129,6 +135,33 @@ public class Line extends Annotation<LineString> {
      */
     public void setLineJoin(@Property.LINE_JOIN String value) {
         jsonObject.addProperty(LineOptions.PROPERTY_LINE_JOIN, value);
+    }
+
+    /**
+     * Get the LineSortKey property
+     * <p>
+     * Sorts features in ascending order based on this value. Features with a higher sort key will appear above features with a lower sort key.
+     * </p>
+     *
+     * @return property wrapper value around Float
+     */
+    public Float getLineSortKey() {
+        return jsonObject.get(LineOptions.PROPERTY_LINE_SORT_KEY).getAsFloat();
+    }
+
+    /**
+     * Set the LineSortKey property
+     * <p>
+     * Sorts features in ascending order based on this value. Features with a higher sort key will appear above features with a lower sort key.
+     * </p>
+     * <p>
+     * To update the line on the map use {@link LineManager#update(Annotation)}.
+     * <p>
+     *
+     * @param value constant property value for Float
+     */
+    public void setLineSortKey(Float value) {
+        jsonObject.addProperty(LineOptions.PROPERTY_LINE_SORT_KEY, value);
     }
 
     /**
@@ -319,6 +352,42 @@ public class Line extends Annotation<LineString> {
      */
     public void setLineBlur(Float value) {
         jsonObject.addProperty(LineOptions.PROPERTY_LINE_BLUR, value);
+    }
+
+    /**
+     * Get the LineDasharray property
+     * <p>
+     * Specifies the lengths of the alternating dashes and gaps that form the dash pattern. The lengths are later scaled by the line width. To convert a dash length to density-independent pixels, multiply the length by the current line width. GeoJSON sources with `lineMetrics: true` specified won't render dashed lines to the expected scale. Zoom-dependent expressions will be evaluated only at integer zoom levels. The only way to create an array value is using `["literal", [...]]`; arrays cannot be read from or derived from feature properties.
+     * </p>
+     *
+     * @return property wrapper value around Float[]
+     */
+    public Float[] getLineDasharray() {
+        JsonArray jsonArray = jsonObject.getAsJsonArray(LineOptions.PROPERTY_LINE_DASHARRAY);
+        Float[] value = new Float[jsonArray.size()];
+        for (int i = 0; i < jsonArray.size(); i++) {
+            value[i] = jsonArray.get(i).getAsFloat();
+        }
+        return value;
+    }
+
+    /**
+     * Set the LineDasharray property.
+     * <p>
+     * Specifies the lengths of the alternating dashes and gaps that form the dash pattern. The lengths are later scaled by the line width. To convert a dash length to density-independent pixels, multiply the length by the current line width. GeoJSON sources with `lineMetrics: true` specified won't render dashed lines to the expected scale. Zoom-dependent expressions will be evaluated only at integer zoom levels. The only way to create an array value is using `["literal", [...]]`; arrays cannot be read from or derived from feature properties.
+     * </p>
+     * <p>
+     * To update the line on the map use {@link LineManager#update(Annotation)}.
+     * <p>
+     *
+     * @param value constant property value for Float[]
+     */
+    public void setLineDasharray(Float[] value) {
+        JsonArray jsonArray = new JsonArray();
+        for (Float element : value) {
+            jsonArray.add(element);
+        }
+        jsonObject.add(LineOptions.PROPERTY_LINE_DASHARRAY, jsonArray);
     }
 
     /**

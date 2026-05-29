@@ -3,7 +3,7 @@
 
 const fs = require('fs');
 const ejs = require('ejs');
-const spec = require('./../gl-js/src/style-spec/reference/v8');
+const spec = require('./../maplibre-style-spec/src/reference/v8');
 const _ = require('lodash');
 const path = require('path');
 
@@ -68,10 +68,35 @@ const lightProperties = Object.keys(spec[`light`]).reduce((memo, name) => {
   return memo;
 }, []);
 
+// Properties that cannot be represented by the annotation plugin's per-feature
+// model (a GeoJSON JsonObject + simple expressions) and are therefore skipped
+// during generation, analogous to the `visibility` layout property. The
+// text-variable-anchor-offset property uses the variableAnchorOffsetCollection
+// type (an alternating list of anchors and offsets) which has no meaningful
+// scalar/array representation in a feature's JsonObject.
+const skippedProperties = ['visibility', 'text-variable-anchor-offset'];
+
+// A property is only generated when it is actually implemented in the MapLibre
+// Android SDK. The style spec records this under sdk-support: an implemented
+// property has a semver string (e.g. "2.0.1") for android, while an unimplemented
+// one has either no entry or a GitHub issue URL (e.g. icon-overlap, text-overlap).
+// Generating an unsupported property would reference SDK methods that do not
+// exist, so mirror the maplibre-native code generator and skip them.
+global.isSupportedOnAndroid = function (property) {
+  const support = property['sdk-support']
+    && property['sdk-support']['basic functionality']
+    && property['sdk-support']['basic functionality'].android;
+  return typeof support === 'string' && /^[0-9]/.test(support);
+};
+
+const includeProperty = function (property, name) {
+  return skippedProperties.indexOf(name) === -1 && global.isSupportedOnAndroid(property);
+};
+
 // Collect layer types from spec
 var layers = Object.keys(spec.layer.type.values).map((type) => {
   const layoutProperties = Object.keys(spec[`layout_${type}`]).reduce((memo, name) => {
-    if (name !== 'visibility') {
+    if (includeProperty(spec[`layout_${type}`][name], name)) {
       spec[`layout_${type}`][name].name = name;
       memo.push(spec[`layout_${type}`][name]);
     }
@@ -79,8 +104,10 @@ var layers = Object.keys(spec.layer.type.values).map((type) => {
   }, []);
 
   const paintProperties = Object.keys(spec[`paint_${type}`]).reduce((memo, name) => {
-    spec[`paint_${type}`][name].name = name;
-    memo.push(spec[`paint_${type}`][name]);
+    if (includeProperty(spec[`paint_${type}`][name], name)) {
+      spec[`paint_${type}`][name].name = name;
+      memo.push(spec[`paint_${type}`][name]);
+    }
     return memo;
   }, []);
 
@@ -99,14 +126,28 @@ const paintProperties = _(layers).map('paintProperties').flatten().value();
 const allProperties = _(layoutProperties).union(paintProperties).union(lightProperties).value();
 const enumProperties = _(allProperties).filter({'type': 'enum'}).value();
 
+// Two-element numeric arrays (icon-offset, text-offset) are surfaced through the
+// per-feature API as a PointF. Variable-length numeric arrays such as
+// line-dasharray have no fixed (x, y) shape and must use the generic Float[]
+// array accessors instead, otherwise the generated code would index a possibly
+// empty array.
+global.isPointFProperty = function (property) {
+  return property.type === 'array' && property.value === 'number' && property.length === 2;
+};
+
 global.propertyType = function propertyType(property) {
   switch (property.type) {
       case 'boolean':
         return 'Boolean';
       case 'number':
+      // A padding is exposed by the SDK as a single Float per feature
+      // (PropertyFactory#iconPadding accepts an expression resolving to a number).
+      case 'padding':
         return 'Float';
       case 'formatted':
       case 'string':
+      // A resolvedImage resolves to an image name string (icon-image, *-pattern).
+      case 'resolvedImage':
         return 'String';
       case 'enum':
         return 'String';
@@ -235,9 +276,11 @@ global.defaultValueJava = function(property) {
       case 'boolean':
         return 'true';
       case 'number':
+      case 'padding':
         return '2.0f';
       case 'formatted':
       case 'string':
+      case 'resolvedImage':
         return '"' + property['default'] + '"';
       case 'enum':
         return snakeCaseUpper(property.name) + "_" + snakeCaseUpper(Object.keys(property.values)[0]);
@@ -248,6 +291,8 @@ global.defaultValueJava = function(property) {
               case 'formatted':
               case 'string':
                 return '[' + property['default'] + "]";
+              case 'enum':
+                return `new String[]{${snakeCaseUpper(property.name)}_${snakeCaseUpper(Object.keys(property.values)[0])}}`;
               case 'number':
                 var result ='new Float[]{';
                 for (var i = 0; i < property.length; i++) {

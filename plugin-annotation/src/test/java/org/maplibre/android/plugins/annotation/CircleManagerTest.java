@@ -151,6 +151,7 @@ public class CircleManagerTest {
         Geometry geometry = Point.fromLngLat(10, 10);
 
         Feature feature = Feature.fromGeometry(geometry);
+        feature.addNumberProperty("circle-sort-key", 2.0f);
         feature.addNumberProperty("circle-radius", 2.0f);
         feature.addStringProperty("circle-color", "rgba(0, 0, 0, 1)");
         feature.addNumberProperty("circle-blur", 2.0f);
@@ -164,6 +165,7 @@ public class CircleManagerTest {
         Circle circle = circles.get(0);
 
         assertEquals(circle.geometry, geometry);
+        assertEquals(circle.getCircleSortKey(), 2.0f);
         assertEquals(circle.getCircleRadius(), 2.0f);
         assertEquals(circle.getCircleColor(), "rgba(0, 0, 0, 1)");
         assertEquals(circle.getCircleBlur(), 2.0f);
@@ -230,6 +232,20 @@ public class CircleManagerTest {
         assertFalse(circleZero.isDraggable());
     }
 
+
+    @Test
+    public void testCircleSortKeyLayerProperty() {
+        circleManager = new CircleManager(mapView, maplibreMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
+        verify(circleLayer, times(0)).setProperties(argThat(new PropertyValueMatcher(circleSortKey(get("circle-sort-key")))));
+
+        CircleOptions options = new CircleOptions().withLatLng(new LatLng()).withCircleSortKey(2.0f);
+        circleManager.create(options);
+        circleManager.updateSourceNow();
+        verify(circleLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(circleSortKey(get("circle-sort-key")))));
+
+        circleManager.create(options);
+        verify(circleLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(circleSortKey(get("circle-sort-key")))));
+    }
 
     @Test
     public void testCircleRadiusLayerProperty() {

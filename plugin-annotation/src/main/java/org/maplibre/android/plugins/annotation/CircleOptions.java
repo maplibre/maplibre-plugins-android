@@ -28,6 +28,7 @@ public class CircleOptions extends Options<Circle> {
     private boolean isDraggable;
     private JsonElement data;
     private Point geometry;
+    private Float circleSortKey;
     private Float circleRadius;
     private String circleColor;
     private Float circleBlur;
@@ -36,6 +37,7 @@ public class CircleOptions extends Options<Circle> {
     private String circleStrokeColor;
     private Float circleStrokeOpacity;
 
+    static final String PROPERTY_CIRCLE_SORT_KEY = "circle-sort-key";
     static final String PROPERTY_CIRCLE_RADIUS = "circle-radius";
     static final String PROPERTY_CIRCLE_COLOR = "circle-color";
     static final String PROPERTY_CIRCLE_BLUR = "circle-blur";
@@ -44,6 +46,32 @@ public class CircleOptions extends Options<Circle> {
     static final String PROPERTY_CIRCLE_STROKE_COLOR = "circle-stroke-color";
     static final String PROPERTY_CIRCLE_STROKE_OPACITY = "circle-stroke-opacity";
     private static final String PROPERTY_IS_DRAGGABLE = "is-draggable";
+
+    /**
+     * Set circle-sort-key to initialise the circle with.
+     * <p>
+     * Sorts features in ascending order based on this value. Features with a higher sort key will appear above features with a lower sort key.
+     * </p>
+     *
+     * @param circleSortKey the circle-sort-key value
+     * @return this
+     */
+    public CircleOptions withCircleSortKey(Float circleSortKey) {
+        this.circleSortKey = circleSortKey;
+        return this;
+    }
+
+    /**
+     * Get the current configured  circle-sort-key for the circle
+     * <p>
+     * Sorts features in ascending order based on this value. Features with a higher sort key will appear above features with a lower sort key.
+     * </p>
+     *
+     * @return circleSortKey value
+     */
+    public Float getCircleSortKey() {
+        return circleSortKey;
+    }
 
     /**
      * Set circle-radius to initialise the circle with.
@@ -316,6 +344,7 @@ public class CircleOptions extends Options<Circle> {
             throw new RuntimeException("geometry field is required");
         }
         JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty(PROPERTY_CIRCLE_SORT_KEY, circleSortKey);
         jsonObject.addProperty(PROPERTY_CIRCLE_RADIUS, circleRadius);
         jsonObject.addProperty(PROPERTY_CIRCLE_COLOR, circleColor);
         jsonObject.addProperty(PROPERTY_CIRCLE_BLUR, circleBlur);
@@ -345,6 +374,9 @@ public class CircleOptions extends Options<Circle> {
 
         CircleOptions options = new CircleOptions();
         options.geometry = (Point) feature.geometry();
+        if (feature.hasProperty(PROPERTY_CIRCLE_SORT_KEY)) {
+            options.circleSortKey = feature.getProperty(PROPERTY_CIRCLE_SORT_KEY).getAsFloat();
+        }
         if (feature.hasProperty(PROPERTY_CIRCLE_RADIUS)) {
             options.circleRadius = feature.getProperty(PROPERTY_CIRCLE_RADIUS).getAsFloat();
         }

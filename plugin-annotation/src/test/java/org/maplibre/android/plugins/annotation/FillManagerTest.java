@@ -165,6 +165,7 @@ public class FillManagerTest {
         Geometry geometry = Polygon.fromLngLats(points);
 
         Feature feature = Feature.fromGeometry(geometry);
+        feature.addNumberProperty("fill-sort-key", 2.0f);
         feature.addNumberProperty("fill-opacity", 2.0f);
         feature.addStringProperty("fill-color", "rgba(0, 0, 0, 1)");
         feature.addStringProperty("fill-outline-color", "rgba(0, 0, 0, 1)");
@@ -175,6 +176,7 @@ public class FillManagerTest {
         Fill fill = fills.get(0);
 
         assertEquals(fill.geometry, geometry);
+        assertEquals(fill.getFillSortKey(), 2.0f);
         assertEquals(fill.getFillOpacity(), 2.0f);
         assertEquals(fill.getFillColor(), "rgba(0, 0, 0, 1)");
         assertEquals(fill.getFillOutlineColor(), "rgba(0, 0, 0, 1)");
@@ -294,6 +296,26 @@ public class FillManagerTest {
         assertFalse(fillZero.isDraggable());
     }
 
+
+    @Test
+    public void testFillSortKeyLayerProperty() {
+        fillManager = new FillManager(mapView, maplibreMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
+        verify(fillLayer, times(0)).setProperties(argThat(new PropertyValueMatcher(fillSortKey(get("fill-sort-key")))));
+
+        List<LatLng> innerLatLngs = new ArrayList<>();
+        innerLatLngs.add(new LatLng());
+        innerLatLngs.add(new LatLng(1, 1));
+        innerLatLngs.add(new LatLng(-1, -1));
+        List<List<LatLng>> latLngs = new ArrayList<>();
+        latLngs.add(innerLatLngs);
+        FillOptions options = new FillOptions().withLatLngs(latLngs).withFillSortKey(2.0f);
+        fillManager.create(options);
+        fillManager.updateSourceNow();
+        verify(fillLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(fillSortKey(get("fill-sort-key")))));
+
+        fillManager.create(options);
+        verify(fillLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(fillSortKey(get("fill-sort-key")))));
+    }
 
     @Test
     public void testFillOpacityLayerProperty() {

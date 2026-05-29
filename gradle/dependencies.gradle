@@ -1,15 +1,17 @@
  ext {
 
   androidVersions = [
-      minSdkVersion    : 21,
+      minSdkVersion    : 23,
       targetSdkVersion : 30,
       compileSdkVersion: 34,
   ]
 
   version = [
-      mapLibreAndroidSdk : '11.3.0',
-      mapLibreJava       : '5.9.0',
-      mapLibreTurf       : '5.9.0',
+      mapLibreAndroidSdk : '13.1.0',
+      mapLibreGeoJson    : '6.0.1',
+      mapLibreGeocoding  : '5.9.0',
+      mapLibreTurf       : '6.0.1',
+      mapLibreCore       : '5.9.0',
       playLocation       : '16.0.0',
       autoValue          : '1.5.4',
       autoValueParcel    : '0.2.6',
@@ -32,10 +34,10 @@
   dependenciesList = [
           // MapLibre
           mapLibreAndroidSdk     : "org.maplibre.gl:android-sdk:${version.mapLibreAndroidSdk}",
-          maplibreGeoJson        : "org.maplibre.gl:android-sdk-geojson:${version.maplibreJava}",
-          maplibreGeocoding      : "org.maplibre.gl:android-sdk-services:${version.maplibreJava}",
+          maplibreGeoJson        : "org.maplibre.gl:android-sdk-geojson:${version.mapLibreGeoJson}",
+          maplibreGeocoding      : "org.maplibre.gl:android-sdk-services:${version.mapLibreGeocoding}",
           maplibreTurf           : "org.maplibre.gl:android-sdk-turf:${version.mapLibreTurf}",
-          maplibreCore           : "org.maplibre.gl:android-sdk-core:${version.mapLibreJava}",
+          maplibreCore           : "org.maplibre.gl:android-sdk-core:${version.mapLibreCore}",
 
           // Google Play Location
           playLocation           : "com.google.android.gms:play-services-location:${version.playLocation}",

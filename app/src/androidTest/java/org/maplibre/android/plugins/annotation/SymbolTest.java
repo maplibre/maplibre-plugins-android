@@ -100,6 +100,19 @@ public class SymbolTest extends BaseActivityTest {
     }
 
     @Test
+    public void testIconPadding() {
+        validateTestSetup();
+        setupAnnotation();
+        Timber.i("icon-padding");
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
+            assertNotNull(symbol);
+
+            symbol.setIconPadding(2.0f);
+            assertEquals((Float) symbol.getIconPadding(), (Float) 2.0f);
+        });
+    }
+
+    @Test
     public void testIconOffset() {
         validateTestSetup();
         setupAnnotation();

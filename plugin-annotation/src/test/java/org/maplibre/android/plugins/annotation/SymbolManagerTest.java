@@ -155,6 +155,7 @@ public class SymbolManagerTest {
         feature.addNumberProperty("icon-size", 2.0f);
         feature.addStringProperty("icon-image", "undefined");
         feature.addNumberProperty("icon-rotate", 2.0f);
+        feature.addNumberProperty("icon-padding", 2.0f);
         feature.addProperty("icon-offset", convertArray(new Float[]{0f, 0f}));
         feature.addStringProperty("icon-anchor", ICON_ANCHOR_CENTER);
         feature.addStringProperty("text-field", "");
@@ -188,6 +189,7 @@ public class SymbolManagerTest {
         assertEquals(symbol.getIconSize(), 2.0f);
         assertEquals(symbol.getIconImage(), "undefined");
         assertEquals(symbol.getIconRotate(), 2.0f);
+        assertEquals(symbol.getIconPadding(), 2.0f);
         PointF iconOffsetExpected = new PointF(new Float[]{0f, 0f}[0], new Float[]{0f, 0f}[1]);
         assertEquals(iconOffsetExpected.x, symbol.getIconOffset().x);
         assertEquals(iconOffsetExpected.y, symbol.getIconOffset().y);
@@ -329,6 +331,20 @@ public class SymbolManagerTest {
 
         symbolManager.create(options);
         verify(symbolLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(iconRotate(get("icon-rotate")))));
+    }
+
+    @Test
+    public void testIconPaddingLayerProperty() {
+        symbolManager = new SymbolManager(mapView, maplibreMap, style, coreElementProvider, null, null, null, draggableAnnotationController);
+        verify(symbolLayer, times(0)).setProperties(argThat(new PropertyValueMatcher(iconPadding(get("icon-padding")))));
+
+        SymbolOptions options = new SymbolOptions().withLatLng(new LatLng()).withIconPadding(2.0f);
+        symbolManager.create(options);
+        symbolManager.updateSourceNow();
+        verify(symbolLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(iconPadding(get("icon-padding")))));
+
+        symbolManager.create(options);
+        verify(symbolLayer, times(1)).setProperties(argThat(new PropertyValueMatcher(iconPadding(get("icon-padding")))));
     }
 
     @Test

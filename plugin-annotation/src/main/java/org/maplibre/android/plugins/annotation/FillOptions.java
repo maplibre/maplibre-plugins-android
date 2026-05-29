@@ -28,16 +28,44 @@ public class FillOptions extends Options<Fill> {
     private boolean isDraggable;
     private JsonElement data;
     private Polygon geometry;
+    private Float fillSortKey;
     private Float fillOpacity;
     private String fillColor;
     private String fillOutlineColor;
     private String fillPattern;
 
+    static final String PROPERTY_FILL_SORT_KEY = "fill-sort-key";
     static final String PROPERTY_FILL_OPACITY = "fill-opacity";
     static final String PROPERTY_FILL_COLOR = "fill-color";
     static final String PROPERTY_FILL_OUTLINE_COLOR = "fill-outline-color";
     static final String PROPERTY_FILL_PATTERN = "fill-pattern";
     private static final String PROPERTY_IS_DRAGGABLE = "is-draggable";
+
+    /**
+     * Set fill-sort-key to initialise the fill with.
+     * <p>
+     * Sorts features in ascending order based on this value. Features with a higher sort key will appear above features with a lower sort key.
+     * </p>
+     *
+     * @param fillSortKey the fill-sort-key value
+     * @return this
+     */
+    public FillOptions withFillSortKey(Float fillSortKey) {
+        this.fillSortKey = fillSortKey;
+        return this;
+    }
+
+    /**
+     * Get the current configured  fill-sort-key for the fill
+     * <p>
+     * Sorts features in ascending order based on this value. Features with a higher sort key will appear above features with a lower sort key.
+     * </p>
+     *
+     * @return fillSortKey value
+     */
+    public Float getFillSortKey() {
+        return fillSortKey;
+    }
 
     /**
      * Set fill-opacity to initialise the fill with.
@@ -247,6 +275,7 @@ public class FillOptions extends Options<Fill> {
             throw new RuntimeException("geometry field is required");
         }
         JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty(PROPERTY_FILL_SORT_KEY, fillSortKey);
         jsonObject.addProperty(PROPERTY_FILL_OPACITY, fillOpacity);
         jsonObject.addProperty(PROPERTY_FILL_COLOR, fillColor);
         jsonObject.addProperty(PROPERTY_FILL_OUTLINE_COLOR, fillOutlineColor);
@@ -273,6 +302,9 @@ public class FillOptions extends Options<Fill> {
 
         FillOptions options = new FillOptions();
         options.geometry = (Polygon) feature.geometry();
+        if (feature.hasProperty(PROPERTY_FILL_SORT_KEY)) {
+            options.fillSortKey = feature.getProperty(PROPERTY_FILL_SORT_KEY).getAsFloat();
+        }
         if (feature.hasProperty(PROPERTY_FILL_OPACITY)) {
             options.fillOpacity = feature.getProperty(PROPERTY_FILL_OPACITY).getAsFloat();
         }

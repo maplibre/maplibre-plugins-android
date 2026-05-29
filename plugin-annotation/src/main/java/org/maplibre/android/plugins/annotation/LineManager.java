@@ -35,7 +35,6 @@ public class LineManager extends AnnotationManager<LineLayer, Line, LineOptions,
     private static final String PROPERTY_LINE_ROUND_LIMIT = "line-round-limit";
     private static final String PROPERTY_LINE_TRANSLATE = "line-translate";
     private static final String PROPERTY_LINE_TRANSLATE_ANCHOR = "line-translate-anchor";
-    private static final String PROPERTY_LINE_DASHARRAY = "line-dasharray";
 
     /**
      * Create a line manager, used to manage lines.
@@ -83,12 +82,14 @@ public class LineManager extends AnnotationManager<LineLayer, Line, LineOptions,
     @Override
     void initializeDataDrivenPropertyMap() {
         dataDrivenPropertyUsageMap.put(LineOptions.PROPERTY_LINE_JOIN, false);
+        dataDrivenPropertyUsageMap.put(LineOptions.PROPERTY_LINE_SORT_KEY, false);
         dataDrivenPropertyUsageMap.put(LineOptions.PROPERTY_LINE_OPACITY, false);
         dataDrivenPropertyUsageMap.put(LineOptions.PROPERTY_LINE_COLOR, false);
         dataDrivenPropertyUsageMap.put(LineOptions.PROPERTY_LINE_WIDTH, false);
         dataDrivenPropertyUsageMap.put(LineOptions.PROPERTY_LINE_GAP_WIDTH, false);
         dataDrivenPropertyUsageMap.put(LineOptions.PROPERTY_LINE_OFFSET, false);
         dataDrivenPropertyUsageMap.put(LineOptions.PROPERTY_LINE_BLUR, false);
+        dataDrivenPropertyUsageMap.put(LineOptions.PROPERTY_LINE_DASHARRAY, false);
         dataDrivenPropertyUsageMap.put(LineOptions.PROPERTY_LINE_PATTERN, false);
     }
 
@@ -97,6 +98,9 @@ public class LineManager extends AnnotationManager<LineLayer, Line, LineOptions,
         switch (property) {
             case LineOptions.PROPERTY_LINE_JOIN:
                 layer.setProperties(lineJoin(get(LineOptions.PROPERTY_LINE_JOIN)));
+                break;
+            case LineOptions.PROPERTY_LINE_SORT_KEY:
+                layer.setProperties(lineSortKey(get(LineOptions.PROPERTY_LINE_SORT_KEY)));
                 break;
             case LineOptions.PROPERTY_LINE_OPACITY:
                 layer.setProperties(lineOpacity(get(LineOptions.PROPERTY_LINE_OPACITY)));
@@ -116,6 +120,9 @@ public class LineManager extends AnnotationManager<LineLayer, Line, LineOptions,
             case LineOptions.PROPERTY_LINE_BLUR:
                 layer.setProperties(lineBlur(get(LineOptions.PROPERTY_LINE_BLUR)));
                 break;
+            case LineOptions.PROPERTY_LINE_DASHARRAY:
+                layer.setProperties(lineDasharray(get(LineOptions.PROPERTY_LINE_DASHARRAY)));
+                break;
             case LineOptions.PROPERTY_LINE_PATTERN:
                 layer.setProperties(linePattern(get(LineOptions.PROPERTY_LINE_PATTERN)));
                 break;
@@ -129,12 +136,14 @@ public class LineManager extends AnnotationManager<LineLayer, Line, LineOptions,
      * <p>
      * All supported properties are:<br>
      * LineOptions.PROPERTY_LINE_JOIN - String<br>
+     * LineOptions.PROPERTY_LINE_SORT_KEY - Float<br>
      * LineOptions.PROPERTY_LINE_OPACITY - Float<br>
      * LineOptions.PROPERTY_LINE_COLOR - String<br>
      * LineOptions.PROPERTY_LINE_WIDTH - Float<br>
      * LineOptions.PROPERTY_LINE_GAP_WIDTH - Float<br>
      * LineOptions.PROPERTY_LINE_OFFSET - Float<br>
      * LineOptions.PROPERTY_LINE_BLUR - Float<br>
+     * LineOptions.PROPERTY_LINE_DASHARRAY - Float[]<br>
      * LineOptions.PROPERTY_LINE_PATTERN - String<br>
      * Learn more about above properties in the <a href="https://www.mapbox.com/mapbox-gl-js/style-spec/">Style specification</a>.
      * <p>
@@ -156,12 +165,14 @@ public class LineManager extends AnnotationManager<LineLayer, Line, LineOptions,
      * <p>
      * All supported properties are:<br>
      * LineOptions.PROPERTY_LINE_JOIN - String<br>
+     * LineOptions.PROPERTY_LINE_SORT_KEY - Float<br>
      * LineOptions.PROPERTY_LINE_OPACITY - Float<br>
      * LineOptions.PROPERTY_LINE_COLOR - String<br>
      * LineOptions.PROPERTY_LINE_WIDTH - Float<br>
      * LineOptions.PROPERTY_LINE_GAP_WIDTH - Float<br>
      * LineOptions.PROPERTY_LINE_OFFSET - Float<br>
      * LineOptions.PROPERTY_LINE_BLUR - Float<br>
+     * LineOptions.PROPERTY_LINE_DASHARRAY - Float[]<br>
      * LineOptions.PROPERTY_LINE_PATTERN - String<br>
      * Learn more about above properties in the <a href="https://www.mapbox.com/mapbox-gl-js/style-spec/">Style specification</a>.
      * <p>
@@ -325,32 +336,6 @@ public class LineManager extends AnnotationManager<LineLayer, Line, LineOptions,
     public void setLineTranslateAnchor(@Property.LINE_TRANSLATE_ANCHOR String value) {
         PropertyValue propertyValue = lineTranslateAnchor(value);
         constantPropertyUsageMap.put(PROPERTY_LINE_TRANSLATE_ANCHOR, propertyValue);
-        layer.setProperties(propertyValue);
-    }
-
-    /**
-     * Get the LineDasharray property
-     * <p>
-     * Specifies the lengths of the alternating dashes and gaps that form the dash pattern. The lengths are later scaled by the line width. To convert a dash length to density-independent pixels, multiply the length by the current line width. Note that GeoJSON sources with `lineMetrics: true` specified won't render dashed lines to the expected scale. Also note that zoom-dependent expressions will be evaluated only at integer zoom levels.
-     * </p>
-     *
-     * @return property wrapper value around Float[]
-     */
-    public Float[] getLineDasharray() {
-        return layer.getLineDasharray().value;
-    }
-
-    /**
-     * Set the LineDasharray property
-     * <p>
-     * Specifies the lengths of the alternating dashes and gaps that form the dash pattern. The lengths are later scaled by the line width. To convert a dash length to density-independent pixels, multiply the length by the current line width. Note that GeoJSON sources with `lineMetrics: true` specified won't render dashed lines to the expected scale. Also note that zoom-dependent expressions will be evaluated only at integer zoom levels.
-     * </p>
-     *
-     * @param value property wrapper value around Float[]
-     */
-    public void setLineDasharray(Float[] value) {
-        PropertyValue propertyValue = lineDasharray(value);
-        constantPropertyUsageMap.put(PROPERTY_LINE_DASHARRAY, propertyValue);
         layer.setProperties(propertyValue);
     }
 

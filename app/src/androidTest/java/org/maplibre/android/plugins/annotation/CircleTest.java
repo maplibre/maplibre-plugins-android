@@ -48,6 +48,19 @@ public class CircleTest extends BaseActivityTest {
     }
 
     @Test
+    public void testCircleSortKey() {
+        validateTestSetup();
+        setupAnnotation();
+        Timber.i("circle-sort-key");
+        invoke(maplibreMap, (uiController, maplibreMap) -> {
+            assertNotNull(circle);
+
+            circle.setCircleSortKey(2.0f);
+            assertEquals((Float) circle.getCircleSortKey(), (Float) 2.0f);
+        });
+    }
+
+    @Test
     public void testCircleRadius() {
         validateTestSetup();
         setupAnnotation();
