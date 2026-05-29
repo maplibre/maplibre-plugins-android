@@ -1,58 +1,62 @@
-# Changelog for the Mapbox Localization Plugin
+# Changelog for the MapLibre Localization Plugin
 
-Mapbox welcomes participation and contributions from everyone.
+MapLibre welcomes participation and contributions from everyone.
 
-### mapbox-android-plugin-localization-v9:0.12.0 - March 5, 2020
+### maplibre-android-plugin-localization:4.0.0 - May 29, 2026
+- Targets MapLibre Android 13.1.0
+- Published to Maven Central via the vanniktech maven-publish plugin
+
+### maplibre-android-plugin-localization-v9:0.12.0 - March 5, 2020
 #### Features
-- Switching all plugins to AndroidX [#1100](https://github.com/mapbox/mapbox-plugins-android/pull/1100)
+- Switching all plugins to AndroidX [#1100](https://github.com/mapbox/maplibre-plugins-android/pull/1100)
 
 #### Bugs
-- Switch Timber log level to debug for setMapLanguage [#1085](https://github.com/mapbox/mapbox-plugins-android/pull/1085)
+- Switch Timber log level to debug for setMapLanguage [#1085](https://github.com/mapbox/maplibre-plugins-android/pull/1085)
 
-### mapbox-android-plugin-localization-v8:0.11.0 - August 20, 2019
+### maplibre-android-plugin-localization-v8:0.11.0 - August 20, 2019
 #### Features
-- adjusted Timber.e to Timber.d [#993](https://github.com/mapbox/mapbox-plugins-android/pull/993)
+- adjusted Timber.e to Timber.d [#993](https://github.com/mapbox/maplibre-plugins-android/pull/993)
 
-### mapbox-android-plugin-localization-v8:0.10.0 - June 11, 2019
+### maplibre-android-plugin-localization-v8:0.10.0 - June 11, 2019
 #### Features
-- Adding Portuguese language support to Localization Plugin [#979](https://github.com/mapbox/mapbox-plugins-android/pull/979)
+- Adding Portuguese language support to Localization Plugin [#979](https://github.com/mapbox/maplibre-plugins-android/pull/979)
 
-### mapbox-android-plugin-localization-v7:0.9.0 - April 5, 2019
+### maplibre-android-plugin-localization-v7:0.9.0 - April 5, 2019
 #### Features
-- Maps SDK bump to 7.3.0 [#895](https://github.com/mapbox/mapbox-plugins-android/pull/895)
-- Add better support for Chinese languages [#878](https://github.com/mapbox/mapbox-plugins-android/pull/878)
+- Maps SDK bump to 7.3.0 [#895](https://github.com/mapbox/maplibre-plugins-android/pull/895)
+- Add better support for Chinese languages [#878](https://github.com/mapbox/maplibre-plugins-android/pull/878)
 #### Bugs
-- Correct javadoc syntax [#871](https://github.com/mapbox/mapbox-plugins-android/commit/0761054e0be8b55e5c41415bf196ab8c42a4decc)
-- Remove textField constant value check [#875](https://github.com/mapbox/mapbox-plugins-android/pull/875)
-- Register only one style loaded listener [#905](https://github.com/mapbox/mapbox-plugins-android/pull/905)
+- Correct javadoc syntax [#871](https://github.com/mapbox/maplibre-plugins-android/commit/0761054e0be8b55e5c41415bf196ab8c42a4decc)
+- Remove textField constant value check [#875](https://github.com/mapbox/maplibre-plugins-android/pull/875)
+- Register only one style loaded listener [#905](https://github.com/mapbox/maplibre-plugins-android/pull/905)
 
-### mapbox-android-plugin-localization-v7:0.8.0 - February 5, 2019
-- Language fallbacks for Localization plugin [#823](https://github.com/mapbox/mapbox-plugins-android/pull/823)
-- Update dependencies and javadoc source reference [#827](https://github.com/mapbox/mapbox-plugins-android/pull/827)
-- Increase usefulness of warning log for Localization sources [#825](https://github.com/mapbox/mapbox-plugins-android/pull/825)
-- Maps SDK v7.1.1 [#820](https://github.com/mapbox/mapbox-plugins-android/pull/820)
+### maplibre-android-plugin-localization-v7:0.8.0 - February 5, 2019
+- Language fallbacks for Localization plugin [#823](https://github.com/mapbox/maplibre-plugins-android/pull/823)
+- Update dependencies and javadoc source reference [#827](https://github.com/mapbox/maplibre-plugins-android/pull/827)
+- Increase usefulness of warning log for Localization sources [#825](https://github.com/mapbox/maplibre-plugins-android/pull/825)
+- Maps SDK v7.1.1 [#820](https://github.com/mapbox/maplibre-plugins-android/pull/820)
 
-### mapbox-android-plugin-localization-v7:0.7.0 - January 8, 2019
- - Update localization plugin with the Maps SDK v7.0.0 [#791](https://github.com/mapbox/mapbox-plugins-android/pull/791)
+### maplibre-android-plugin-localization-v7:0.7.0 - January 8, 2019
+ - Update localization plugin with the Maps SDK v7.0.0 [#791](https://github.com/mapbox/maplibre-plugins-android/pull/791)
 
 ### 0.6.0 - December 20, 2018
- - Add support for Russian locale [#678](https://github.com/mapbox/mapbox-plugins-android/pull/678)
- - Support for streets v8 sources [#778](https://github.com/mapbox/mapbox-plugins-android/pull/778)
- - Maps 6.8.0 bump [#797](https://github.com/mapbox/mapbox-plugins-android/pull/797)
+ - Add support for Russian locale [#678](https://github.com/mapbox/maplibre-plugins-android/pull/678)
+ - Support for streets v8 sources [#778](https://github.com/mapbox/maplibre-plugins-android/pull/778)
+ - Maps 6.8.0 bump [#797](https://github.com/mapbox/maplibre-plugins-android/pull/797)
 
 ### 0.5.0 - September 12, 2018
- - Update ProGuard to support built-in shrinker of Gradle Plugin [#582](https://github.com/mapbox/mapbox-plugins-android/pull/582)
- - Update localization plugin to support expressions [#654](https://github.com/mapbox/mapbox-plugins-android/pull/654)
- - Fix Localization set camera to locale country Javadoc broken link [#640](https://github.com/mapbox/mapbox-plugins-android/pull/640)
- - Adding japanese and korean support to localization plugin [#575](https://github.com/mapbox/mapbox-plugins-android/pull/575)
- - Maps SDK bump to 6.5.0 [#634](https://github.com/mapbox/mapbox-plugins-android/pull/634)
+ - Update ProGuard to support built-in shrinker of Gradle Plugin [#582](https://github.com/mapbox/maplibre-plugins-android/pull/582)
+ - Update localization plugin to support expressions [#654](https://github.com/mapbox/maplibre-plugins-android/pull/654)
+ - Fix Localization set camera to locale country Javadoc broken link [#640](https://github.com/mapbox/maplibre-plugins-android/pull/640)
+ - Adding japanese and korean support to localization plugin [#575](https://github.com/mapbox/maplibre-plugins-android/pull/575)
+ - Maps SDK bump to 6.5.0 [#634](https://github.com/mapbox/maplibre-plugins-android/pull/634)
 
 ### 0.4.0 - May 23, 2018
-- Updates the Map SDK to 6.1.3 [#531](https://github.com/mapbox/mapbox-plugins-android/pull/531)
+- Updates the Map SDK to 6.1.3 [#531](https://github.com/mapbox/maplibre-plugins-android/pull/531)
 
 ### 0.3.0 - May 7, 2018
-- Updates Map SDK to 6.1.1 [#488](https://github.com/mapbox/mapbox-plugins-android/pull/488)
-- Lowered min SDK to API level 14 to match Map SDK [#472](https://github.com/mapbox/mapbox-plugins-android/pull/472)
+- Updates Map SDK to 6.1.1 [#488](https://github.com/mapbox/maplibre-plugins-android/pull/488)
+- Lowered min SDK to API level 14 to match Map SDK [#472](https://github.com/mapbox/maplibre-plugins-android/pull/472)
 
 ### 0.2.0 - April 18, 2018
 - Updates Map SDK to 6.0.1
